@@ -1,0 +1,142 @@
+<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<ul class="breadcrumb">
+									<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+									<li><%= link_to "Reservations", reservation_path %> <span class="divider">/</span></li>
+									<li class="active">New</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span12">
+								<h2>New Reservation</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+</div>
+<div class="container">
+
+	<div class="row">
+		<div class="span6">
+
+			<div class="alert alert-success hidden" id="contactSuccess">
+				<strong>Success!</strong> 
+			</div>
+
+			<div class="alert alert-error hidden" id="contactError">
+				<strong>Oh snap!</strong>
+			</div>
+
+			<h2 class="short"><strong>Muzikus</strong> Alfonso</h2>
+
+			<%= form_for @reservation, :id => 'contactForm', :url => {:controller => "reservations", :action => "create"} do |f| %>
+				<div class="row controls">
+					<div class="span3 control-group">
+						<label>Your name *</label>
+						<input type="text" value="<%= current_user.name %>" maxlength="100" class="span3" name="name" id="name" disabled>
+					</div>
+					<div class="span3 control-group">
+						<label>Which studio? * </label>
+						<% if (@currentUser.ismyk || @currentUser.isyk) && @currentUser.isworkshop %>
+							<%= f.select :room_id, options_for_select([["Davul Odasi", "1"], ["Hangar", "6"], ["Piyano Odasi 1", "3"], ["Piyano Odasi 2", "4"], ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
+						<% elsif @currentUser.isdavul || @currentUser.isyk %>
+							<%= f.select :room_id, options_for_select([["Davul Odasi", "1"], ["Piyano Odasi 1", "3"], ["Piyano Odasi 2", "4"], ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
+						<% else %>
+							<%= f.select :room_id, options_for_select([["Piyano Odasi 1", "3"], ["Piyano Odasi 2", "4"], ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
+						<% end %>
+					</div>
+				</div>
+				<div class="row controls">
+					<div class="span3 control-group">
+						<label>Which day? </label>
+						<select class="span3" id="whichday">
+							<option value="<%= (Time.now + 2.hours).strftime("%F") %>"><%= (Time.now + 2.hours).strftime("%A") %></option>
+							<option value="<%= 1.day.from_now.strftime("%F") %>"><%= 1.day.from_now.strftime("%A") %></option>
+							<option value="<%= 2.days.from_now.strftime("%F") %>"><%= 2.days.from_now.strftime("%A") %></option>
+						</select>
+					</div>
+					<div class="span3 control-group">
+						<label>Start Time</label>
+						<select class="span1" id="starthour">
+							<option>08:00</option>
+							<option>08:30</option>
+							<option>09:00</option>
+							<option>09:30</option>
+							<option>10:00</option>
+							<option>10:30</option>
+							<option>11:00</option>
+							<option>11:30</option>
+							<option>12:00</option>
+							<option>12:30</option>
+							<option>13:00</option>
+							<option>13:30</option>
+							<option>14:00</option>
+							<option>14:30</option>
+							<option>15:00</option>
+							<option>15:30</option>
+							<option>16:00</option>
+							<option>16:30</option>
+							<option>17:00</option>
+							<option>17:30</option>
+							<option>18:00</option>
+							<option>18:30</option>
+							<option>19:00</option>
+							<option>19:30</option>
+							<option>20:00</option>
+							<option>20:30</option>
+							<option>21:00</option>
+							<option>21:30</option>
+							<option>22:00</option>
+							<option>22:30</option>
+							<option>23:00</option>
+							<option>23:30</option>
+							<option>00:00</option>
+							<option>00:30</option>
+							<option>01:00</option>
+							<option>01:30</option>
+							<option>02:00</option>
+						</select>
+						<select class="span2" id="hourcount">
+							<option value="1">1 Hour</option>
+							<option value="2">2 Hours</option>
+							<option value="3">3 Hours</option>
+						</select>
+					</div>
+				</div>
+				<div class="row controls">
+					<div class="span6 control-group">
+						<label>Message *</label>
+						<%= f.text_area :info, :maxlength => "5000", :rows => '10', :class => 'span6', :placeholder => "It is strongly encouraged to fill this part of the form." %>
+					</div>
+				</div>
+				<div class="btn-toolbar">
+					<%= f.submit "Reserve", "data-loading-text" => 'Loading...', :class =>'btn btn-primary btn-large', :id => 'submitreservation' %>
+				</div>
+			<% end %>
+		</div>
+		<div class="span6">
+
+			<h4 class="pull-top">What is my <strong>limit?</strong></h4>
+			<p>I can only let you reserve 3 hours a day master.</p>
+			<p>You must call the officer before retrieving the studio key.</p>
+
+			<hr />
+
+			<h4>May I present you the Studio <strong>Officer</strong>?</h4>
+			<ul class="unstyled">
+				<li><i class="icon-map-marker"></i> <strong>Name:</strong> <div id="address" style="display: inline;">Kaan KARA</div></li>
+				<li><i class="icon-phone"></i> <strong>Phone:</strong> <div id="phone" style="display: inline;">0534 872 8072</div></li>
+				<li><i class="icon-envelope"></i> <strong>Email:</strong> <div id="email" style="display: inline;">kaankara@sabanciuniv.edu</div></li>
+			</ul>
+
+			
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,374 @@
+Started GET "/" for 127.0.0.1 at 2013-07-24 20:05:56 +0300
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (1.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.8ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE `muzikususers`.`id` = 1 LIMIT 1
+Completed 200 OK in 4170ms (Views: 4003.3ms | ActiveRecord: 8.9ms)
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-07-24 20:06:00 +0300
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-07-24 20:06:00 +0300
+Started GET "/font/fontawesome-webfont.woff" for 127.0.0.1 at 2013-07-24 20:06:02 +0300
+Started GET "/font/fontawesome-webfont.ttf" for 127.0.0.1 at 2013-07-24 20:06:03 +0300
+Started GET "/asdasdasd" for 127.0.0.1 at 2013-07-24 20:06:08 +0300
+Started GET "/" for 127.0.0.1 at 2013-07-24 20:06:11 +0300
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (0.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (1.9ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE `muzikususers`.`id` = 1 LIMIT 1
+Completed 200 OK in 10ms (Views: 4.4ms | ActiveRecord: 2.6ms)
+Started GET "/" for 127.0.0.1 at 2013-07-24 20:06:12 +0300
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (2.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (1.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.3ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE `muzikususers`.`id` = 1 LIMIT 1
+Completed 200 OK in 10ms (Views: 5.2ms | ActiveRecord: 2.7ms)
+Started GET "/reservations" for 127.0.0.1 at 2013-07-24 20:06:19 +0300
+Processing by ReservationsController#index as HTML
+  [1m[36mUsers Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mReservations Load (0.2ms)[0m  [1mSELECT `reservations`.* FROM `reservations` WHERE (start_date > '2013-07-23 21:00:00') ORDER BY start_date ASC[0m
+  [1m[35mRooms Load (0.2ms)[0m  SELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 1 ORDER BY `rooms`.`id` ASC LIMIT 1
+  [1m[36mUsers Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered reservations/index.html.erb within layouts/application (72.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.3ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE `muzikususers`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 83ms (Views: 71.3ms | ActiveRecord: 6.8ms)
+Started GET "/reservations" for 127.0.0.1 at 2013-07-24 20:07:01 +0300
+Processing by ReservationsController#index as HTML
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mReservations Load (0.4ms)[0m  SELECT `reservations`.* FROM `reservations` WHERE (start_date > '2013-07-23 21:00:00') ORDER BY start_date ASC
+  [1m[36mRooms Load (0.3ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 1 ORDER BY `rooms`.`id` ASC LIMIT 1[0m
+  [1m[35mUsers Load (0.9ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  Rendered reservations/index.html.erb within layouts/application (5.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.3ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE `muzikususers`.`id` = 1 LIMIT 1
+Completed 200 OK in 13ms (Views: 8.2ms | ActiveRecord: 2.4ms)
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-07-24 20:07:01 +0300
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-07-24 20:07:01 +0300
+Started GET "/font/fontawesome-webfont.woff" for 127.0.0.1 at 2013-07-24 20:07:02 +0300
+Started GET "/font/fontawesome-webfont.ttf" for 127.0.0.1 at 2013-07-24 20:07:02 +0300
+Started GET "/admin/usersasd" for 193.255.135.254 at 2013-10-22 11:56:43 +0000
+Started GET "/admin/usersasd" for 193.255.135.254 at 2013-10-22 11:56:45 +0000
+Started GET "/admin/usersasd" for 193.255.135.254 at 2013-10-22 11:56:46 +0000
+Started GET "/" for 193.255.135.254 at 2013-10-22 11:56:49 +0000
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (2.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.2ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 149ms (Views: 34.2ms | ActiveRecord: 3.0ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 11:56:49 +0000
+Started GET "/asd" for 193.255.135.254 at 2013-10-22 11:56:52 +0000
+Started GET "/asd" for 193.255.135.254 at 2013-10-22 11:57:18 +0000
+Started GET "/asd" for 193.255.135.254 at 2013-10-22 11:57:19 +0000
+Started GET "/asd" for 193.255.135.254 at 2013-10-22 11:57:45 +0000
+Started GET "/" for 193.255.135.254 at 2013-10-22 11:58:05 +0000
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (2.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.2ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 153ms (Views: 34.8ms | ActiveRecord: 3.1ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 11:58:05 +0000
+Started GET "/admin/muzikus" for 193.255.135.254 at 2013-10-22 11:58:09 +0000
+Processing by AdminController#muzikus as HTML
+  [1m[35mUsers Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mUsers Load (1.2ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY created_at DESC[0m
+  Rendered admin/muzikus.html.erb within layouts/application (19.8ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.1ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 29ms (Views: 25.0ms | ActiveRecord: 1.8ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 11:58:09 +0000
+Started GET "/admin/master/style-switcher/style-switcher.css" for 193.255.135.254 at 2013-10-22 11:58:10 +0000
+Started GET "/admin/master/style-switcher/colorpicker/css/colorpicker.css" for 193.255.135.254 at 2013-10-22 11:58:10 +0000
+Started GET "/admin/master/style-switcher/colorpicker/js/bootstrap-colorpicker.js?_=1382443090451" for 193.255.135.254 at 2013-10-22 11:58:10 +0000
+Started GET "/admin/master/style-switcher/cssbeautify/cssbeautify.js?_=1382443090452" for 193.255.135.254 at 2013-10-22 11:58:10 +0000
+Started GET "/admin/vendor/jquery.mapmarker.js" for 193.255.135.254 at 2013-10-22 11:58:10 +0000
+Started GET "/" for 193.255.135.254 at 2013-10-22 11:58:14 +0000
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (0.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.4ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 1.0ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 11:58:14 +0000
+Started GET "/" for 220.181.108.82 at 2013-10-22 12:00:28 +0000
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms)
+Started GET "/" for 193.255.135.254 at 2013-10-22 12:31:49 +0000
+Processing by MainController#index as HTML
+  [1m[35mUsers Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')[0m
+  Rendered main/registered.html.erb within layouts/application (0.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.1ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 52ms (Views: 48.1ms | ActiveRecord: 0.5ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 12:31:50 +0000
+Started GET "/reservations/new" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Processing by ReservationsController#new as HTML
+  [1m[36mUsers Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.1ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+  Rendered reservations/new.html.erb within layouts/application (43.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 61ms (Views: 50.4ms | ActiveRecord: 1.9ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Started GET "/reservations/master/style-switcher/colorpicker/js/bootstrap-colorpicker.js?_=1382445132611" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Started GET "/reservations/master/style-switcher/cssbeautify/cssbeautify.js?_=1382445132612" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Started GET "/reservations/master/style-switcher/colorpicker/css/colorpicker.css" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Started GET "/reservations/master/style-switcher/style-switcher.css" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Started GET "/reservations/vendor/jquery.mapmarker.js" for 193.255.135.254 at 2013-10-22 12:32:10 +0000
+Started POST "/reservations/new" for 193.255.135.254 at 2013-10-22 12:32:22 +0000
+Processing by ReservationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "reservations"=>{"room_id"=>"6", "info"=>""}, "whichDay"=>"2013-10-24", "startHour"=>"22:00", "hourCount"=>"3"}
+  [1m[36mUsers Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')
+  [1m[36mReservations Load (0.8ms)[0m  [1mSELECT `reservations`.* FROM `reservations` WHERE (start_date BETWEEN '2013-10-23 21:00:00' AND '2013-10-24 20:59:59') AND (room_id = 6)[0m
+  [1m[35m (0.4ms)[0m  SELECT SUM(`reservations`.`hour`) AS sum_id FROM `reservations` WHERE (start_date BETWEEN '2013-10-23 21:00:00' AND '2013-10-24 20:59:59') AND (user_id = 5) AND (room_id = 6)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `reservations` (`created_at`, `end_date`, `hour`, `info`, `room_id`, `start_date`, `updated_at`, `user_id`) VALUES ('2013-10-22 12:32:22', '2013-10-24 22:00:00', 3, '', 6, '2013-10-24 19:00:00', '2013-10-22 12:32:22', 5)
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 342ms (Views: 0.2ms | ActiveRecord: 4.8ms)
+Started GET "/reservations" for 193.255.135.254 at 2013-10-22 12:32:22 +0000
+Processing by ReservationsController#index as HTML
+  [1m[35mUsers Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')[0m
+  [1m[35mReservations Load (0.7ms)[0m  SELECT `reservations`.* FROM `reservations` WHERE (start_date > '2013-10-21 18:00:00') ORDER BY start_date ASC
+  [1m[36mRooms Load (0.2ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 2 ORDER BY `rooms`.`id` ASC LIMIT 1[0m
+  [1m[35mUsers Load (0.6ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 15 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mRooms Load (0.2ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 6 ORDER BY `rooms`.`id` ASC LIMIT 1[0m
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mRooms Load (0.1ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 4 ORDER BY `rooms`.`id` ASC LIMIT 1[0m
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 61 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mRooms Load (0.1ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 3 ORDER BY `rooms`.`id` ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 2 ORDER BY `rooms`.`id` ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 56 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 2 ORDER BY `rooms`.`id` ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 54 ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mRooms Load (0.1ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 1 ORDER BY `rooms`.`id` ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 6 ORDER BY `rooms`.`id` ASC LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `rooms`.* FROM `rooms` WHERE `rooms`.`id` = 6 ORDER BY `rooms`.`id` ASC LIMIT 1[0m  [["id", 6]]
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 5 ORDER BY `users`.`id` ASC LIMIT 1
+  Rendered reservations/index.html.erb within layouts/application (109.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.1ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'meltembagci@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 118ms (Views: 109.9ms | ActiveRecord: 5.4ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 12:32:23 +0000
+Started GET "/admin/createuser" for 159.20.94.165 at 2013-10-22 12:37:05 +0000
+Started GET "/contactus" for 208.115.113.88 at 2013-10-22 12:44:03 +0000
+Processing by MainController#contactus as */*
+  Rendered main/contactus.html.erb within layouts/application (24.3ms)
+Completed 200 OK in 34ms (Views: 29.6ms | ActiveRecord: 1.4ms)
+Started GET "/" for 220.181.108.96 at 2013-10-22 12:57:03 +0000
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms)
+Started GET "/" for 159.20.94.165 at 2013-10-22 13:18:16 +0000
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.js" for 159.20.94.165 at 2013-10-22 13:18:16 +0000
+Started GET "/auth/facebook" for 159.20.94.165 at 2013-10-22 13:18:26 +0000
+(facebook) Request phase initiated.
+Started GET "/auth/facebook/callback?code=AQAxmLXzk5d5hUdLSDSWlJIaVik2VbX_nkN4WOHds3kqAPg9aq25YG_NO4rl8q7MbIFLMfIWEiGlNVDi_ms4fvo4mqeuAYLqSlxKgULtp3a0BT25W7a22NJg4_15h1yQnzjcqqC1M9wvw69yzYyxrPsXWaGkUJ4DyJdyuloUFRfNcu00txJruf9Fah1FfqpsZjE7MaFoU84IB7PgiYTK33CejdgRVFS-_DxkBCUWcY-TBOGmFxy6VpqJVfwqB7zfSNsamwdj5V3jMbxyMeK1g7mkslHR0ZlMTbdtcnREZTs49UYozet4mR1FU8PY3zdSeh8&state=ab7cd0f668ed7361da1f961ac600d75a5d4e48c3bf17ac5c" for 159.20.94.165 at 2013-10-22 13:18:26 +0000
+(facebook) Callback phase initiated.
+Processing by SessionsController#create as HTML
+  Parameters: {"code"=>"AQAxmLXzk5d5hUdLSDSWlJIaVik2VbX_nkN4WOHds3kqAPg9aq25YG_NO4rl8q7MbIFLMfIWEiGlNVDi_ms4fvo4mqeuAYLqSlxKgULtp3a0BT25W7a22NJg4_15h1yQnzjcqqC1M9wvw69yzYyxrPsXWaGkUJ4DyJdyuloUFRfNcu00txJruf9Fah1FfqpsZjE7MaFoU84IB7PgiYTK33CejdgRVFS-_DxkBCUWcY-TBOGmFxy6VpqJVfwqB7zfSNsamwdj5V3jMbxyMeK1g7mkslHR0ZlMTbdtcnREZTs49UYozet4mR1FU8PY3zdSeh8", "state"=>"ab7cd0f668ed7361da1f961ac600d75a5d4e48c3bf17ac5c", "provider"=>"facebook"}
+  [1m[35mUsers Load (1.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`provider` = 'facebook' AND `users`.`uid` = '730354563' ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE `users` SET `oauth_token` = 'CAACJhZAbiaysBAIQP3aTQz3NtZCF5Lr82X3azhZAZC9O9fcSahZCPXSGHdS0JUWE6Bar4YLw4hybPwVKx0vkHw8EbIZAzXvqS3X2KfRnMF0Mi8xDSnPQWfIT65zMZBcuZBW0DWIS6p2mWej8rZCL9ZCZA87DfmIStvlbfAZD', `oauth_expires_at` = '2013-12-21 13:18:27', `updated_at` = '2013-10-22 13:18:27' WHERE `users`.`id` = 8
+  [1m[36m (5.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://muzik.us/mail
+Completed 302 Found in 24ms (ActiveRecord: 7.6ms)
+Started GET "/mail" for 159.20.94.165 at 2013-10-22 13:18:27 +0000
+Processing by MainController#mail as HTML
+  [1m[35mUsers Load (0.8ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 8 LIMIT 1
+Redirected to http://muzik.us/
+Completed 302 Found in 5ms (ActiveRecord: 0.8ms)
+Started GET "/" for 159.20.94.165 at 2013-10-22 13:18:27 +0000
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 8 LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (0.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.6ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 15ms (Views: 8.9ms | ActiveRecord: 1.9ms)
+Started GET "/admin/budget" for 159.20.94.165 at 2013-10-22 13:18:40 +0000
+Processing by AdminController#budget as HTML
+  [1m[35mUsers Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 8 LIMIT 1
+  [1m[36mMuzikususers Load (0.2ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+  [1m[35mBudget Load (0.3ms)[0m  SELECT `budgets`.* FROM `budgets` ORDER BY created_at DESC
+  [1m[36mUsers Load (0.9ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1  [["id", "2"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m  [["id", "2"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1  [["id", "2"]]
+  [1m[36mUsers Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 8 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 8 LIMIT 1  [["id", "8"]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m  [["id", "2"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1  [["id", "2"]]
+  Rendered admin/budget.html.erb within layouts/application (21.5ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'metehantutar@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 90ms (Views: 29.9ms | ActiveRecord: 4.7ms)
+Started GET "/admin/master/style-switcher/style-switcher.css" for 159.20.94.165 at 2013-10-22 13:18:41 +0000
+Started GET "/admin/master/style-switcher/cssbeautify/cssbeautify.js?_=1382447920890" for 159.20.94.165 at 2013-10-22 13:18:41 +0000
+Started GET "/admin/master/style-switcher/colorpicker/js/bootstrap-colorpicker.js?_=1382447920889" for 159.20.94.165 at 2013-10-22 13:18:41 +0000
+Started GET "/admin/vendor/jquery.mapmarker.js" for 159.20.94.165 at 2013-10-22 13:18:41 +0000
+Started GET "/admin/master/style-switcher/colorpicker/css/colorpicker.css" for 159.20.94.165 at 2013-10-22 13:18:41 +0000
+Started GET "/admin/createuser" for 159.20.94.165 at 2013-10-22 13:46:33 +0000
+Started GET "/" for 123.125.71.21 at 2013-10-22 13:57:38 +0000
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 35ms (Views: 11.9ms | ActiveRecord: 0.0ms)
+Started GET "/" for 220.181.108.92 at 2013-10-22 13:58:23 +0000
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+Started GET "/" for 159.20.89.139 at 2013-10-22 14:16:21 +0000
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.js" for 159.20.89.139 at 2013-10-22 14:16:21 +0000
+Started GET "/auth/facebook" for 159.20.89.139 at 2013-10-22 14:16:25 +0000
+(facebook) Request phase initiated.
+Started GET "/auth/facebook/callback?code=AQBA58X34duFppWJvSz_Mam1uLnpidBA8kbTooMWaFbgJ56rIQaryozNiIDKwnZ7UI5kihZFCX3_dhhZcTcdsY9Ad72nf2S7FKtWxozTv6WsZYJF-rK0w6t6It75xZw-A0WeMbx7elNW00RdFBaH6ACFzQz_XWWZIKmf2Kpfc475sxwDUl7CEhC4NByocEZo65o4dbubqqRa41Lz7eMfTJf_OqQUhSWiX-CKMEjkE547zJEs4NGVyrj3TS3zHbOqJcgR3lDtSSc-pZbRsjVuS_I4apPA3VD19Wkwd-2xqxNwYyBYJR3TYX98UDP2OU6jnAw&state=bc2099e46a5fcf0078005c2af09758c62f4c228de055a755" for 159.20.89.139 at 2013-10-22 14:16:26 +0000
+(facebook) Callback phase initiated.
+Processing by SessionsController#create as HTML
+  Parameters: {"code"=>"AQBA58X34duFppWJvSz_Mam1uLnpidBA8kbTooMWaFbgJ56rIQaryozNiIDKwnZ7UI5kihZFCX3_dhhZcTcdsY9Ad72nf2S7FKtWxozTv6WsZYJF-rK0w6t6It75xZw-A0WeMbx7elNW00RdFBaH6ACFzQz_XWWZIKmf2Kpfc475sxwDUl7CEhC4NByocEZo65o4dbubqqRa41Lz7eMfTJf_OqQUhSWiX-CKMEjkE547zJEs4NGVyrj3TS3zHbOqJcgR3lDtSSc-pZbRsjVuS_I4apPA3VD19Wkwd-2xqxNwYyBYJR3TYX98UDP2OU6jnAw", "state"=>"bc2099e46a5fcf0078005c2af09758c62f4c228de055a755", "provider"=>"facebook"}
+  [1m[36mUsers Load (2.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`provider` = 'facebook' AND `users`.`uid` = '100005243550201' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE `users` SET `oauth_token` = 'CAACJhZAbiaysBAFdmPDNaksGOp4reLYGagCR674fceuFtCHxoOjSb54povBVgIvwh22wNJzZA8ZBXsDTI3P7UTYcv6bTm5j1mG4kpp2LF0xziZAdrztpMDkpE9LJ6yzzZAHr5zTc1ic9E6cIpZCe67', `oauth_expires_at` = '2013-12-21 14:16:25', `updated_at` = '2013-10-22 14:16:26' WHERE `users`.`id` = 57[0m
+  [1m[35m (4.0ms)[0m  COMMIT
+Redirected to http://muzik.us/mail
+Completed 302 Found in 104ms (ActiveRecord: 9.7ms)
+Started GET "/mail" for 159.20.89.139 at 2013-10-22 14:16:26 +0000
+Processing by MainController#mail as HTML
+  [1m[36mUsers Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 57 LIMIT 1[0m
+Redirected to http://muzik.us/
+Completed 302 Found in 5ms (ActiveRecord: 0.7ms)
+Started GET "/" for 159.20.89.139 at 2013-10-22 14:16:26 +0000
+Processing by MainController#index as HTML
+  [1m[35mUsers Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 57 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')[0m
+  Rendered main/registered.html.erb within layouts/application (2.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.3ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 68ms (Views: 54.9ms | ActiveRecord: 2.9ms)
+Started GET "/assets/application.js" for 159.20.89.139 at 2013-10-22 14:16:27 +0000
+Started GET "/reservations/new" for 159.20.89.139 at 2013-10-22 14:16:31 +0000
+Processing by ReservationsController#new as HTML
+  [1m[36mUsers Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 57 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.3ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+  Rendered reservations/new.html.erb within layouts/application (75.1ms)
+  [1m[35mCACHE (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 102ms (Views: 85.2ms | ActiveRecord: 3.2ms)
+Started GET "/assets/application.js" for 159.20.89.139 at 2013-10-22 14:16:32 +0000
+Started GET "/reservations/master/style-switcher/style-switcher.css" for 159.20.89.139 at 2013-10-22 14:16:32 +0000
+Started GET "/reservations/master/style-switcher/colorpicker/css/colorpicker.css" for 159.20.89.139 at 2013-10-22 14:16:32 +0000
+Started GET "/reservations/master/style-switcher/cssbeautify/cssbeautify.js?_=1382451395081" for 159.20.89.139 at 2013-10-22 14:16:32 +0000
+Started GET "/reservations/master/style-switcher/colorpicker/js/bootstrap-colorpicker.js?_=1382451395080" for 159.20.89.139 at 2013-10-22 14:16:32 +0000
+Started GET "/reservations/vendor/jquery.mapmarker.js" for 159.20.89.139 at 2013-10-22 14:16:32 +0000
+Started GET "/reservations/new" for 159.20.89.139 at 2013-10-22 14:17:01 +0000
+Processing by ReservationsController#new as HTML
+  [1m[36mUsers Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 57 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.1ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+  Rendered reservations/new.html.erb within layouts/application (3.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 11ms (Views: 7.0ms | ActiveRecord: 0.5ms)
+Started GET "/assets/application.js" for 159.20.89.139 at 2013-10-22 14:17:01 +0000
+Started GET "/reservations/master/style-switcher/style-switcher.css" for 159.20.89.139 at 2013-10-22 14:17:01 +0000
+Started GET "/reservations/master/style-switcher/colorpicker/css/colorpicker.css" for 159.20.89.139 at 2013-10-22 14:17:01 +0000
+Started GET "/reservations/master/style-switcher/colorpicker/js/bootstrap-colorpicker.js?_=1382451424810" for 159.20.89.139 at 2013-10-22 14:17:01 +0000
+Started GET "/reservations/master/style-switcher/cssbeautify/cssbeautify.js?_=1382451424811" for 159.20.89.139 at 2013-10-22 14:17:01 +0000
+Started GET "/reservations/vendor/jquery.mapmarker.js" for 159.20.89.139 at 2013-10-22 14:17:02 +0000
+Started GET "/" for 159.20.89.139 at 2013-10-22 14:18:59 +0000
+Processing by MainController#index as HTML
+  [1m[36mUsers Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 57 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  Rendered main/registered.html.erb within layouts/application (0.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.1ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'aliemrecelik@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.4ms)
+Started GET "/assets/application.js" for 159.20.89.139 at 2013-10-22 14:18:59 +0000
+Started GET "/asdasd" for 193.255.135.254 at 2013-10-22 15:46:07 +0000
+Started GET "/scout" for 193.255.135.254 at 2013-10-22 15:46:38 +0000
+Processing by ScoutController#index as HTML
+  [1m[35mUsers Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mScout Load (0.3ms)[0m  [1mSELECT `scouts`.* FROM `scouts` WHERE `scouts`.`id` = 1 LIMIT 1[0m
+  Rendered scout/index.html.erb within layouts/application (0.8ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.1ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 58ms (Views: 7.6ms | ActiveRecord: 2.3ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 15:46:38 +0000
+Started GET "/scout" for 193.255.135.254 at 2013-10-22 15:49:20 +0000
+Processing by ScoutController#index as HTML
+  [1m[36mUsers Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mScout Load (0.3ms)[0m  SELECT `scouts`.* FROM `scouts` WHERE `scouts`.`id` = 1 LIMIT 1
+  Rendered scout/index.html.erb within layouts/application (0.4ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (0.3ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 15ms (Views: 8.9ms | ActiveRecord: 1.3ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 15:49:20 +0000
+Started GET "/scout" for 193.255.135.254 at 2013-10-22 15:49:23 +0000
+Processing by ScoutController#index as HTML
+  [1m[35mUsers Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mScout Load (0.2ms)[0m  [1mSELECT `scouts`.* FROM `scouts` WHERE `scouts`.`id` = 1 LIMIT 1[0m
+  Rendered scout/index.html.erb within layouts/application (0.5ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mMuzikususers Load (0.2ms)[0m  SELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1
+Completed 200 OK in 13ms (Views: 7.9ms | ActiveRecord: 1.1ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 15:49:23 +0000
+Started GET "/scout" for 193.255.135.254 at 2013-10-22 15:49:44 +0000
+Processing by ScoutController#index as HTML
+  [1m[36mUsers Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mScout Load (0.1ms)[0m  SELECT `scouts`.* FROM `scouts` WHERE `scouts`.`id` = 1 LIMIT 1
+  Rendered scout/index.html.erb within layouts/application (0.2ms)
+  [1m[36m (50.9ms)[0m  [1mSELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu')
+  [1m[36mMuzikususers Load (2.9ms)[0m  [1mSELECT `muzikususers`.* FROM `muzikususers` WHERE (email = 'ynizipli@sabanciuniv.edu') ORDER BY `muzikususers`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 61ms (Views: 5.2ms | ActiveRecord: 54.0ms)
+Started GET "/assets/application.js" for 193.255.135.254 at 2013-10-22 15:49:44 +0000
+Started GET "/scout" for 193.255.135.254 at 2013-10-22 15:50:00 +0000
+Processing by ScoutController#index as HTML
+  [1m[35mUsers Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mScout Load (0.4ms)[0m  [1mSELECT `scouts`.* FROM `scouts` WHERE `scouts`.`id` = 1 LIMIT 1[0m
+Completed 404 Not Found in 3ms
+Started GET "/scout" for 193.255.135.254 at 2013-10-22 15:50:01 +0000
+Processing by ScoutController#index as HTML
+  [1m[35mUsers Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mScout Load (0.1ms)[0m  [1mSELECT `scouts`.* FROM `scouts` WHERE `scouts`.`id` = 1 LIMIT 1[0m
+Completed 404 Not Found in 3ms

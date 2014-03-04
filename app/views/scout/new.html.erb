@@ -1,0 +1,115 @@
+<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<ul class="breadcrumb">
+									<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+									<li><%= link_to "Scout", scout_path %> <span class="divider">/</span></li>
+									<li class="active">New User</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span12">
+								<h2>Add me to Scout!</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+</div>
+<div class="container">
+
+	<div class="row">
+		<div class="span6">
+
+			<div class="alert alert-success hidden" id="contactSuccess">
+				<strong>Success!</strong> 
+			</div>
+
+			<div class="alert alert-error hidden" id="contactError">
+				<strong>Oh snap!</strong>
+			</div>
+
+			<h2 class="short"><strong>Muzikus</strong> Scout v2.0</h2>
+
+			<%= form_for @newUser, :id => 'contactForm', :url => {:controller => "scout", :action => "create"} do |f| %>
+				<div class="row controls">
+					<div class="span6 control-group">
+						<label>Your name *</label>
+						<input type="text" value="<%= current_user.name %>" maxlength="100" class="span2" name="name" id="name" disabled>
+					</div>
+					
+				</div>
+				<div class="row controls">
+					<div class="span2 control-group">
+						<label>1st Instrument</label>
+						<%= f.select :BirinciEns, options_for_select([["None", "None"], ["Electric Guitar", "Electric Guitar"], ["Classical Guitar", "Classical Guitar"], ["Bass Guitar", "Bass Guitar"], ["Drums", "Drums"], ["Percussion", "Percussion"], ["Piano", "Piano"], ["Keyboards", "Keyboards"], ["Flute", "Flute"], ["Saxophone", "Saxophone"], ["Acordeon", "Acordeon"], ["Clarinet", "Clarinet"], ["Violin", "Violin"], ["Cello", "Cello"], ["Trombone", "Trombone"], ["Trumpet", "Trumpet"], ["Other", "Other"] ]), {:include_blank => false}, { :class => "span2"} %>
+					</div>
+					<div class="span2 control-group">
+						<label>Skill Level</label>
+						<%= f.select :BirinciSev, options_for_select([["Beginner", "Beginner"], ["Intermediate", "Intermediate"], ["Advanced", "Advanced"]]), {:include_blank => false}, { :class => "span2"} %>
+					</div>
+					<div class="span2 control-group">
+						<label>Experience</label>
+						<%= f.select :BirinciYil, options_for_select([["0-2 Years", "0-2 Years"], ["3-5 Years", "3-5 Years"], ["6+ Years", "6+ Years"]]), {:include_blank => false}, { :class => "span2"} %>
+					</div>
+				</div>
+				<div class="row controls">
+					<div class="span2 control-group">
+						<label>2nd Instrument</label>
+						<%= f.select :IkinciEns, options_for_select([["Electric Guitar", "Electric Guitar"], ["Classical Guitar", "Classical Guitar"], ["Bass Guitar", "Bass Guitar"], ["Drums", "Drums"], ["Percussion", "Percussion"], ["Piano", "Piano"], ["Keyboards", "Keyboards"], ["Flute", "Flute"], ["Saxophone", "Saxophone"], ["Acordeon", "Acordeon"], ["Clarinet", "Clarinet"], ["Violin", "Violin"], ["Cello", "Cello"], ["Trombone", "Trombone"], ["Trumpet", "Trumpet"], ["Other", "Other"] ]), {:include_blank => true}, { :class => "span2"} %>
+					</div>
+					<div class="span2 control-group">
+						<label>Skill Level</label>
+						<%= f.select :IkinciSev, options_for_select([["Beginner", "Beginner"], ["Intermediate", "Intermediate"], ["Advanced", "Advanced"]]), {:include_blank => true}, { :class => "span2"} %>
+					</div>
+					<div class="span2 control-group">
+						<label>Experience</label>
+						<%= f.select :IkinciYil, options_for_select([["0-2 Years", "0-2 Years"], ["3-5 Years", "3-5 Years"], ["6+ Years", "6+ Years"]]), {:include_blank => true}, { :class => "span2"} %>
+					</div>
+				</div>
+				<div class="row controls">
+					<div class="span3 control-group">
+						<label>Vocal Experience </label>
+						<%= f.select :VokalYetenek, options_for_select([["None", "None"], ["Only Back Vocal", "Only Back Vocal"], ["Lead Vocal", "Lead Vocal"], ["Lead & Back Vocal", "Lead & Back Vocal"]]), {:include_blank => false}, { :class => "span3"} %>
+					</div>
+					<div class="span3 control-group">
+						<label>Stage Experience</label>
+						<%= f.select :SahneTecrubesi, options_for_select([["None", "None"], ["Low", "Low"], ["Mid-Level", "Mid-Level"], ["High", "High"]]), {:include_blank => false}, { :class => "span3"} %>
+					</div>
+				</div>
+				<div class="row controls">
+					<div class="span6 control-group">
+						<label>Band Memberships *</label>
+						<%= f.text_area :UyeGruplar, :maxlength => "1000", :rows => '3', :class => 'span6', :placeholder => "Bands that you are involved with" %>
+					</div>
+				</div>
+				<div class="row controls">
+					<div class="span6 control-group">
+						<label>Bands you like *</label>
+						<%= f.text_area :SevdiginGruplar, :maxlength => "100", :rows => '3', :class => 'span6', :placeholder => "Bands that you like" %>
+					</div>
+				</div>
+				<div class="btn-toolbar">
+					<%= f.submit "Add me. Now!", "data-loading-text" => 'Loading...', :class =>'btn btn-primary btn-large' %>
+				</div>
+			<% end %>
+		</div>
+		<div class="span6">
+
+			<h4 class="pull-top">As once <strong>Obi-Wan</strong> said</h4>
+			<p>The Force is what gives a Jedi his power. It's an energy field created by all living things. It surrounds us and penetrates us. It binds the galaxy together.</p>
+
+			<hr />
+
+			<h4>What really is <strong>Scout</strong>?</h4>
+			<img src="http://www.wired.com/geekdad/wp-content/uploads/2012/05/0205-660x440.jpg" style="max-width: 100%; border-radius:25px;" />
+
+			
+		</div>
+
+	</div>
+
+</div>

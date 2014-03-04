@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  BirinciEns: MyString
+  BirinciSev: MyString
+  BirinciYil: MyString
+  IkinciEns: MyString
+  IkinciSev: MyString
+  IkinciYil: MyString
+  VokalYetenek: MyString
+  SahneTecrubesi: MyString
+  UyeGruplar: MyText
+  SevdiginGruplar: MyText
+  user_id: 1
+
+two:
+  BirinciEns: MyString
+  BirinciSev: MyString
+  BirinciYil: MyString
+  IkinciEns: MyString
+  IkinciSev: MyString
+  IkinciYil: MyString
+  VokalYetenek: MyString
+  SahneTecrubesi: MyString
+  UyeGruplar: MyText
+  SevdiginGruplar: MyText
+  user_id: 1

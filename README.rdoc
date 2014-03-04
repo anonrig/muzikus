@@ -1,0 +1,9 @@
+== MUZIK.US
+
+Implementation of Sabanci University Music Club Muzikus' website, reservation system and Scout, Musician Database.
+
+
+Feel free to use and develop it.
+
+Install dependencies using
+<tt>bundle install</tt>.

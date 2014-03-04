@@ -1,0 +1,92 @@
+<div role="main" class="main">
+
+	<section class="page-top">
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<ul class="breadcrumb">
+						<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+						<li><%= link_to "Admin", admin_users_path %> <span class="divider">/</span>
+						<li class="active">Edit user</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<h2>Edit me master. Edit me hard!</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="span6">
+
+				<div class="alert alert-success hidden" id="contactSuccess">
+					<strong>Success!</strong> Your message has been sent to us.
+				</div>
+
+				<div class="alert alert-error hidden" id="contactError">
+					<strong>Oh snap!</strong> There was an error sending your message.
+				</div>
+
+				<%= form_for @current, :url => {:controller => 'admin', :action => 'editSubmit'}, :method => 'post' do |f| %>
+					<div class="row controls">
+						<div class="span6 control-group">
+							<label style="width: 200px;  ">Email</label>
+							<%= f.text_field :email, :type => 'text', :class => 'span3', :maxlength => '100', :value => @current.email %>
+						</div>
+					</div>
+					<div class="row controls">
+						<div class="span6 control-group">
+							Is YK member?
+							<% if (@current.isyk) %>
+								<%= f.check_box :isyk,:class => 'span3', :checked => true %>
+							<% else %>
+								<%= f.check_box :isyk,:class => 'span3', :checked => false %>
+							<% end %>
+						</div>
+					</div>
+					<div class="row controls">
+						<div class="span6 control-group">
+							Is MYK member?
+							<% if (@current.ismyk) %>
+								<%= f.check_box :ismyk,:class => 'span3', :checked => true %>
+							<% else %>
+								<%= f.check_box :ismyk,:class => 'span3', :checked => false %>
+							<% end %>
+						</div>
+					</div>
+					<div class="row controls">
+						<div class="span6 control-group">
+							Taking drum lessons?
+							<% if (@current.isdavul) %>
+								<%= f.check_box :isdavul,:class => 'span3', :checked => true %>
+							<% else %>
+								<%= f.check_box :isdavul,:class => 'span3', :checked => false %>
+							<% end %>
+						</div>
+					</div>
+					<div class="row controls">
+						<div class="span6 control-group">
+							Did attend workshop?
+							<% if (@current.isworkshop) %>
+								<%= f.check_box :isworkshop,:class => 'span3', :checked => true %>
+							<% else %>
+								<%= f.check_box :isworkshop,:class => 'span3', :checked => false %>
+							<% end %>
+						</div>
+					</div>
+					<div class="btn-toolbar">
+						<%= f.submit "Submit", :class => 'btn btn-primary btn-large' %>
+					</div>
+				<% end %>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

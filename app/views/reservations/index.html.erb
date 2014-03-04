@@ -1,0 +1,66 @@
+<div role="main" class="main">
+
+				<section class="page-top custom-product">
+					<div class="container">
+						<div class="row">
+							<div class="span7">
+								<h1>Introducing the new <strong>Alfonso</strong>.</h1>
+								<p class="lead">Here is a list of all reservations. Feel free to make yours. Today.</p>
+								<%= link_to "Reserve!", new_reservation_path, :class => 'btn btn-large pull-bottom' %> <span class="arrow hl hidden-phone" style="top: 10px;"></span>
+							</div>
+							<div class="span5">
+								<img class="pull-right responsive hidden-phone" alt="" src="/img/custom-header.png">
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+
+					<h2>Current <strong>reservations</strong></h2>
+
+					<div class="row">
+						<div class="span12">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Room</th>
+										<th>User</th>
+										<th>Interval</th>
+										<th>Date</th>
+										<th>Day</th>
+										<th>#</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @all.each do |item| %>
+									<tr <% if item.end_date < Time.now %>class="success"<% end %>>
+										<td><%= item.room.name %></td>
+										<td><%= link_to "#{item.user.name}", "mailto:#{item.user.sabancimail}" %></td>
+										<td><%= item.start_date.strftime("%H:%M") %> - <%= item.end_date.strftime("%H:%M") %></td>
+										<td><%= item.start_date.strftime("%B %d, %Y") %></td>
+										<td><%= item.start_date.strftime("%A") %></td>
+										<td>
+										<td>
+											<% if item.user_id == current_user.id %>
+											
+											<% if item.end_date > Time.now %>
+
+											<%= link_to "Delete", reservation_delete_path(item), :class => "btn btn-small btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %></td>
+											
+												<% else %>
+												
+												Can't Delete.
+												<% end %>
+											<% end %>
+										</td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div>

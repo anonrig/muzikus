@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<title>Muzikus</title>
+		<meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
+		<meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
+		<meta name="author" content="Yagiz Nizipli">
+		
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+		
+
+		<!-- Libs CSS -->
+		<link rel="stylesheet" href="/css/bootstrap.css">
+		<link rel="stylesheet" href="/css/fonts/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="/vendor/flexslider/flexslider.css" media="screen" />
+		<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" media="screen" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="/css/theme.css">
+		<link rel="stylesheet" href="/css/theme-elements.css">
+
+		<!-- Responsive CSS -->
+		<link rel="stylesheet" href="/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" href="/css/theme-responsive.css" />
+
+		<!-- Current Page Styles -->
+		<link rel="stylesheet" href="/vendor/revolution-slider/css/settings.css" media="screen" />
+		<link rel="stylesheet" href="/vendor/revolution-slider/css/captions.css" media="screen" />
+		<link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css" media="screen" />
+
+		<!-- Favicons -->
+		<link rel="shortcut icon" href="/img/favicon.ico">
+		<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png">
+
+		<!-- Head Libs -->
+		<script src="/vendor/modernizr.js"></script>
+
+		<!--[if IE]>
+			<link rel="stylesheet" href="css/ie.css">
+		<![endif]-->
+
+		<!--[if lte IE 8]>
+			<script src="/vendor/respond.js"></script>
+		<![endif]-->
+
+		<!-- Facebook OpenGraph Tags -->
+		<meta property="og:title" content="Muzikus Alfonso"/>
+		<meta property="og:url" content="http://www.muzik.us"/>
+		<meta property="og:image" content="http://www.muzik.us/img/facebook-image.png"/>
+		<meta property="og:site_name" content="Muzikus Alfonso"/>
+		<meta property="fb:app_id" content="151206855076651"/>
+		<meta property="og:description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubu Muzikus'un reservasyon sistemidir. "/>
+
+	</head>
+	<body>
+
+		<div class="body">
+			<header>
+				<div class="container">
+					<h1 class="logo">
+						<%= link_to "<img alt='Muzikus Alfonso' src='/img/logo.png'>".html_safe, root_path %>
+
+					</h1>
+					<div class="search">
+						<form class="form-search">
+							<input type="text" class="input-medium search-query" placeholder="Search...">
+							<button class="search" type="submit"><i class="icon-search"></i></button>
+						</form>
+					</div>
+					<nav>
+						<ul class="nav nav-pills nav-top">
+							
+							
+							<% if current_user %>
+							<li>
+								<%= link_to "<i class='icon-user'></i>Log Out #{current_user.name.split(' ')[0]}".html_safe, signout_path, id: "sign_out" %>
+							</li>
+							<% else %>
+							<li>
+								<%= link_to "<i class='icon-user'></i>Register/Login".html_safe, '/auth/facebook', id: "sign_in" %>
+							</li>
+							
+							<% end %>
+							
+							<li>
+								<%= link_to '<i class="icon-angle-right"></i>Contact Us'.html_safe, contactus_path, 'data-no-turbolink' => true %>
+							</li>
+							
+							<li class="phone">
+								<span><i class="icon-phone"></i>+90 (216) 483-9000</span>
+							</li>
+						</ul>
+					</nav>
+					<div class="social-icons">
+						<a href="http://www.facebook.com/muzikus" target="_blank" title="Facebook" data-placement="bottom" rel="tooltip"><i class="icon-facebook"></i><span>Facebook</span></a>
+						<a href="http://www.twitter.com/muzikus" title="Twitter" data-placement="bottom" rel="tooltip"><i class="icon-twitter"></i><span>Twitter</span></a>
+					</div>
+					<nav>
+						<ul class="nav nav-pills nav-main" id="mainMenu">
+							<li>
+								<%= link_to "Home", root_path %>
+							</li>
+							<li>
+								<a href="/aboutus">About Us</a>
+							</li>
+							
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									Music
+									<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<%= link_to "Projects", projects_path %>
+									</li>
+									<li>
+										<%= link_to "Bands", bands_path %>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									Facilities
+									<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<%= link_to "Events", events_path %>
+									</li>
+									<li>
+										<%= link_to "Faculty", faculty_path %>
+									</li>
+									<li>
+										<%= link_to "Rooms & Studios", rooms_path %>
+									</li>
+								</ul>
+							</li>
+							
+							<li>
+								<%= link_to "Gallery", gallery_path %>
+							</li>
+							
+							<% if current_user %>
+								<% if current_user.sabancimail && Muzikususers.where('email = ?', current_user.sabancimail).count > 0 %>
+									<li class ="dropdown">
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+											Alfonso
+											<i class="icon-angle-down"></i>
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<%= link_to "Reserve", new_reservation_path %>
+											</li>
+											<li>
+												<%= link_to "View all", reservation_path %>
+											</li>
+											<li>
+												<%= link_to "How to?", howto_path %>
+											</li>
+										</ul>
+									
+									</li>
+									
+									<li>
+										<%= link_to "SCOUT", scout_path %>
+									</li>
+								<% end %>
+							<% end %>
+							
+							
+							
+							
+							<% if current_user && current_user.sabancimail != nil %>
+								<% if Muzikususers.where("email = ?", current_user.sabancimail).count > 0 %>
+									<% if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true) %>
+										<li class="dropdown">
+											<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+												Management
+												<i class="icon-angle-down"></i>
+											</a>
+											<ul class="dropdown-menu">
+												<li><%= link_to "Webpage Users", admin_muzikus_path %></li>
+												<li><%= link_to "Muzikus Members", admin_users_path %></li>
+												<li><%= link_to "Budget Status", admin_budget_path %></li>
+												<li><%= link_to "Support", admin_support_path %></li>
+											</ul>
+										</li>
+									<% end %>
+								<% end %>
+							<% end %>
+							
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+			<%= yield %>
+
+			<footer>
+				<div class="container">
+					<div class="row">
+						<div class="footer-ribon">
+							<span>Get in Touch</span>
+						</div>
+						<div class="span3">
+							<h4>Newsletter</h4>
+							<p>Please get in contact with our representative to get into our newsletter.</p>
+							
+						</div>
+						<div class="span3">
+							<h4>On Facebook</h4>
+							
+							<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fmuzikus&amp;width=270&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;appId=151206855076651" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:258px; background: white; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;" allowTransparency="true"></iframe>
+							
+						</div>
+						<div class="span4">
+							<div class="contact-details">
+								<h4>Contact Us</h4>
+								<ul class="contact">
+									<li><p><i class="icon-map-marker"></i> <strong>Address:</strong> Sabancı Universitesi Orta Mahalle, Universite Caddesi No: 27 34956 Tuzla-Istanbul/TURKEY</p></li>
+									<li><p><i class="icon-phone"></i> <strong>Phone:</strong> +90 (216) 483 9000 </p></li>
+									<li><p><i class="icon-envelope"></i> <strong>Email:</strong> dkebude[at]sabanciuniv[dot]edu </p></li>
+								</ul>
+							</div>
+						</div>
+						<div class="span2">
+							<h4>Follow Us</h4>
+							<div class="social-icons">
+								<a title="Facebook" target="_blank" href="http://www.facebook.com/muzikus" data-placement="bottom" rel="tooltip"><i class="icon-facebook"></i><span>Facebook</span></a>
+								<a title="Twitter" href="http://www.twitter.com/muzikus" data-placement="bottom" rel="tooltip"><i class="icon-twitter"></i><span>Twitter</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="container">
+						<div class="row">
+							
+							<div class="span8">
+								<p>© Copyright 2013 by Muzikus. All Rights Reserved.</p>
+							</div>
+							<div class="span4">
+								<nav id="sub-menu">
+									<ul>
+										<li><%= link_to "How to?", howto_path %></li>
+										<li><%= link_to "Features", system_path %></li>
+										<li><%= link_to "Contact", contactus_path %></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Libs -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/vendor/jquery.js"><\/script>')</script>
+		<script src="/vendor/jquery.easing.js"></script>
+		<script src="/vendor/jquery.cookie.js"></script>
+		<script src="/master/style-switcher/style.switcher.js"></script> <!-- Style Switcher -->
+		<script src="/vendor/bootstrap.js"></script>
+		<script src="/vendor/selectnav.js"></script>
+		<script src="/vendor/twitterjs/twitter.js"></script>
+		<script src="/vendor/revolution-slider/js/jquery.themepunch.plugins.js"></script>
+		<script src="/vendor/revolution-slider/js/jquery.themepunch.revolution.js"></script>
+		<script src="/vendor/flexslider/jquery.flexslider.js"></script>
+		<script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+		<script src="/vendor/fancybox/jquery.fancybox.js"></script>
+		<script src="/vendor/jquery.validate.js"></script>
+		<script src="/vendor/fancybox/jquery.fancybox.js"></script>
+		<script src="/vendor/isotope/jquery.isotope.js"></script>
+
+
+
+		<script src="/js/plugins.js"></script>
+
+		<!-- Current Page Scripts -->
+		<script src="/js/views/view.home.js"></script>
+
+		<!-- Theme Initializer -->
+		<script src="/js/theme.js"></script>
+
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script src="vendor/jquery.mapmarker.js"></script>
+
+	</body>
+</html>

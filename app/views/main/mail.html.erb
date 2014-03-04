@@ -1,0 +1,68 @@
+			<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<ul class="breadcrumb">
+									<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+									<li class="active">Sabanci Mail Registration</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span12">
+								<h2>About Us</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+
+					<h2>Put your Sabanci mail, you <strong>must</strong>.</h2>
+
+					<div class="row">
+						<div class="span10">
+							<p class="lead">
+								As you know 'Muzikus Management System: <strong>Alfonso</strong>' is for Sabanci University students and Muzikus members platform. Therefore, we must check your email with our current list. Also, there are some regulations for this system. Please read "<%= link_to 'How to?', howto_path %>" for further questions, or:
+							</p>
+						</div>
+						<div class="span2">
+							<%= link_to "Contact Us", contactus_path, :class => 'btn btn-large btn-primary pull-top' %>
+						</div>
+					</div>
+
+					<hr class="tall">
+
+					<div class="row">
+						<div class="span8">
+							<h3><strong>Who</strong> We Are</h3>
+							<%= form_for current_user, :id => 'contactForm', :url => submit_mail_path, :method => :post do |f| %>
+				<div class="row controls">
+					<div class="span6 control-group">
+						<label>Your Sabanci University e-mail *</label>
+						<%= f.text_field :sabancimail, :class => "span6" %>
+						<i>Your email must include @sabanciuniv.edu</i>
+					</div>
+
+				</div>
+				
+				<div class="btn-toolbar">
+					<%= f.submit "Send it to Alfonso", "data-loading-text" => 'Loading...', :class =>'btn btn-primary btn-large' %>
+				</div>
+			<% end %>
+						</div>
+						<div class="span4">
+							<div class="featured-box featured-box-quaternary">
+								<div class="box-content">
+									<h4>Behind the scenes</h4>
+									<ul class="flickr-feed" data-plugin-options='{"qstrings": { "id": "52617155@N08" }}'></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
