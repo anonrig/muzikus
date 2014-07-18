@@ -12,7 +12,7 @@ class ScoutController < ApplicationController
   		redirect_to root_path
   	end
   end
-#GET REQUEST
+
   def new
   	if current_user
   		@current = Scout.where("user_id = ?", current_user.id).first
@@ -26,8 +26,7 @@ class ScoutController < ApplicationController
   		redirect_to root_path
   	end
   end
-  
-#POST REQUEST
+
   def create
   	@isSaved = false
   	@newUser = Scout.new(scout_params)
@@ -60,8 +59,6 @@ class ScoutController < ApplicationController
   end
   
   private
-
-  #assuming you're using params[:support]
   def scout_params
     params.require(:scout).permit(:BirinciEns, :BirinciSev, :BirinciYil, :IkinciEns, :IkinciSev, :IkinciYil, :VokalYetenek, :SahneTecrubesi, :UyeGruplar, :SevdiginGruplar)
   end
