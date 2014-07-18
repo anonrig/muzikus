@@ -75,16 +75,16 @@ class ReservationsController < ApplicationController
 			#newRes -> rezervasyon almak istedigim saat
 			#item -> veritabaninda olan
 			if (newRes.start_date >= item.start_date && newRes.start_date < item.end_date)
-				#tam ortasinda demek
+				# tam ortasinda demek
 				isValid = false
 			elsif (newRes.end_date < item.end_date && newRes.end_date > item.start_date)
-				#bitis zamani mevcut olan rezervasyonun tam ortasinda bitiyor demek
+				# bitis zamani mevcut olan rezervasyonun tam ortasinda bitiyor demek
 				isValid = false
 			elsif (newRes.start_date < item.start_date && newRes.end_date > item.end_date)
-				#mevcut rezervasyondan once basliyor, sonra bitiyor.
+				# mevcut rezervasyondan once basliyor, sonra bitiyor.
 				isValid = false
 			elsif (newRes.end_date == item.end_date)
-				#metehan tutar sagolsun. 
+				# eger rezervasyon bitis zamanlari ayniysa.
 				isValid = false
 			end
 		end
