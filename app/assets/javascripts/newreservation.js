@@ -11,29 +11,29 @@ $(document).ready(function(){
         email.empty();
 
         if (id == 1){ //davul odasi
-            address.append('Kaan KARA');
-            phone.append('0534 872 8072');
-            email.append('kaankara@sabanciuniv.edu');
+            address.append(‘Emre BOZKIR');
+            phone.append('0536 509 9305');
+            email.append('emrebozkir@sabanciuniv.edu');
         } else if (id == 2){ //studyo
-            address.append('Yagiz ANDAC, Cagri KARAOGLU');
-            phone.append('0537 222 7192, 0553 354 9171');
-            email.append('yagizandac@sabanciuniv.edu, hkaraoglu@sabanciuniv.edu');
+            address.append(‘Ercan USTA, Can ARSOY');
+            phone.append('0530 220 2870, 0533 359 2094');
+            email.append(‘ercanusta@sabanciuniv.edu, canarsoy@sabanciuniv.edu');
         } else if (id == 3){ // piyano odasi 1
-            address.append('Sinem BAYRAKTAR');
-            phone.append('0536 384 6791');
-            email.append('sinemb@sabanciuniv.edu');
+            address.append(‘Burcu CIRACI’);
+            phone.append('0537 877 9461');
+            email.append('burcuciraci@sabanciuniv.edu');
         } else if (id == 4){ // piyano odasi 2
             address.append('Iskender YALCINKAYA');
             phone.append('0542 242 0520');
             email.append('iyalcinkaya@sabanciuniv.edu');
         } else if (id == 5){ // san odasi
-            address.append('Meryem Sena BICER');
-            phone.append('0536 814 2044');
-            email.append('meryemsenab@sabanciuniv.edu');
+            address.append(‘Sinan USTA’);
+            phone.append(’0530 220 2871’);
+            email.append(‘sinanusta@sabanciuniv.edu’);
         } else { //hangar
-            address.append('Jankat YILMAZ');
-            phone.append('0533 431 3445');
-            email.append('jankaty@sabanciuniv.edu');
+            address.append(‘Mert CAPAN’);
+            phone.append('0537 351 9650’);
+            email.append(‘mertcap@sabanciuniv.edu’);
         }
 	});
 
