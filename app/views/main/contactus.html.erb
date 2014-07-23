@@ -1,0 +1,115 @@
+<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<ul class="breadcrumb">
+									<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+									<li class="active">Contact Us</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span12">
+								<h2>Talk to me, master.</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Google Maps -->
+				<div id="googlemaps" class="google-map"></div>
+
+				<div class="container">
+
+					<div class="row">
+						<div class="span6">
+
+							<div class="alert alert-success hidden" id="contactSuccess">
+								<strong>Success!</strong> Your message has been sent to us.
+							</div>
+
+							<div class="alert alert-error hidden" id="contactError">
+								<strong>Oh snap!</strong> There was an error sending your message.
+							</div>
+
+							<h2 class="short"><strong>Contact</strong> Us</h2>
+							<%= form_for @newSupport, :url => {:controller => 'main', :action => 'contactsubmit'}, :method => 'post' do |f| %>
+								<div class="row controls">
+									<div class="span3 control-group">
+										<label>Your name *</label>
+										<%= f.text_field :name, :type => 'text', :class => 'span3', :maxlength => '100' %>
+									</div>
+									<div class="span3 control-group">
+										<label>Your email address *</label>
+										<%= f.text_field :email, :type => 'email', :class => 'span3', :maxlength => '100' %>
+									</div>
+								</div>
+								<div class="row controls">
+									<div class="span6 control-group">
+										<label>Subject</label>
+										<%= f.text_field :subject, :type => 'text', :class => 'span6', :maxlength => '100' %>
+									</div>
+								</div>
+								<div class="row controls">
+									<div class="span6 control-group">
+										<label>Message *</label>
+										<%= f.text_area :message, :maxlength => '5000', :rows => '10', :class => 'span6' %>
+									</div>
+								</div>
+								<div class="btn-toolbar">
+									<%= f.submit "Send Message", :class => 'btn btn-primary btn-large' %>
+								</div>
+							<% end %>
+						</div>
+						<div class="span6">
+
+							<h4 class="pull-top">Get in <strong>touch</strong></h4>
+							<p>Send us an email easily, or feel free to come to our meetings every monday.</p>
+
+							<hr />
+
+							<h4>The <strong>Office</strong></h4>
+							<ul class="unstyled">
+								<li><i class="icon-map-marker"></i> <strong>Address:</strong> Sabanci University, Istanbul, Turkey</li>
+								<li><i class="icon-phone"></i> <strong>Phone:</strong> +90 (212) 483 9000</li>
+								<li><i class="icon-envelope"></i> <strong>Email:</strong> dkebude[at]sabanciuniv[dot]edu</li>
+							</ul>
+
+							
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<script>
+			$(document).ready(function() {
+
+				var mapMarkers = {
+					"markers": [
+						{
+							"latitude": "40.891780",
+							"longitude":"29.378489",
+							"icon": "img/pin.png"
+						}
+					]
+				};
+
+				$("#googlemaps").mapmarker({
+					zoom : 15,
+					center: "40.891780, 29.378489",
+					dragging:1,
+					mousewheel:0,
+					markers: mapMarkers,
+					featureType:"all",
+					visibility: "on",
+					elementType:"geometry"
+				});
+			
+			});
+		</script>

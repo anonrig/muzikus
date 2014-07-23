@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: MyString
+  reason: MyString
+  user_id: MyString
+
+two:
+  amount: MyString
+  reason: MyString
+  user_id: MyString

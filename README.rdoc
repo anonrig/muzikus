@@ -1,0 +1,29 @@
+== MUZIK.US
+
+Implementation of Sabanci University Music Club Muzikus' website, reservation system and Scout, Musician Database.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Feel free to use and develop it.
+
+Install dependencies using
+<tt>bundle install</tt>.

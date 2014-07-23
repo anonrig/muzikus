@@ -1,0 +1,6 @@
+/* Home */
+html.ie8 div.home-concept div.process-image,
+html.ie8 div.home-concept div.project-image,
+html.ie8 ul.timeline li div.thumb {
+	background: none;
+}

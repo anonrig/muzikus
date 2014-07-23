@@ -1,0 +1,125 @@
+<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="container">
+						<div class="row">
+							<div class="span12">
+								<ul class="breadcrumb">
+									<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+									<li>Management <span class="divider">/</span></li>
+									<li class="active">Muzikus Members</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span12">
+								<h2>Muzikus Members</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+					<div class="row">
+						<%= form_for @newMember, :url => {:controller => "admin", :action => "createuser"} do |f| %>
+							<div class="span3 control-group">
+								<%= f.text_field :sid, :placeholder => "Student #" %>
+								<%= f.text_field :email, :placeholder => "Sabanci Email Address" %>
+								<%= f.submit "Add Member", :class => "btn" %>
+							</div>
+							<div class="span1 control-group">
+									<label>isYK?</label><%= f.check_box :isyk, :style => "display: inline;" %>
+
+									<label>isMYK?</label><%= f.check_box :ismyk %>
+									
+							</div>
+							<div class="span1 control-group">
+								<label>isDavul?</label><%= f.check_box :isdavul %>
+									<label>isWorkshop?</label><%= f.check_box :isworkshop %>
+							</div>
+							
+						<% end %>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="span9">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Student ID</th>
+										<th>E-Mail</th>
+										<th>isYK?</th>
+										<th>isMYK?</th>
+										<th>isDavul?</th>
+										<th>isWorkshop?</th>
+										<th>Member Since</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @muzikusMembers.each do |item| %>
+										<%= form_for item, :url => {:controller => "admin", :action => "deleteuser"}, :method => "post" do |f| %>
+											<tr>
+												<td><%= item.sid%></td>
+												<td><%= item.email %></td>
+												<td><%= item.isyk %></td>
+												<td><%= item.ismyk %></td>
+												<td><%= item.isdavul %></td>
+												<td><%= item.isworkshop %></td>
+												<td><%= item.created_at.strftime("%B %d, %Y") %></td>
+												<%= f.hidden_field :userid, :value => item.id %>
+												<td><a href="/admin/edit/<%= item.id %>" class="btn btn-success">Edit</a></td>
+												<td><%= f.submit "Delete", :class => "btn btn-danger" %></td>
+											</tr>
+										<% end %>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+						<div class="span3">
+							<aside class="sidebar">
+								<h4>Top Reservers</h4>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Count</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% @topReserve.each do |item| %>
+										<tr>
+											<td><%= Users.find(item[0]).name %></td>
+											<td><%= item[1] %></td>
+										</tr>
+										<% end %>
+									</tbody>
+								</table>
+								<hr>
+								<h4>All MYK</h4>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>E-Mail</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% @mykMembers.each do |item| %>
+										<tr>
+											<td><%= item.sid%></td>
+											<td><%= item.email %></td>
+										</tr>
+										<% end %>
+									</tbody>
+								</table>
+							</aside>
+						</div>
+					</div>
+					
+					
+				</div>
+
+			</div>
