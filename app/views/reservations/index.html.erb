@@ -21,7 +21,9 @@
 
 					<div class="row">
 						<div class="span12">
+							<% if (@all.count > 0) %>
 							<table class="table table-hover">
+								
 								<thead>
 									<tr>
 										<th>Room</th>
@@ -58,6 +60,9 @@
 									<% end %>
 								</tbody>
 							</table>
+							<% else %>
+								<img style="display: block; margin-left: auto; margin-right: auto;" src="/idontalways.png" />
+							<% end %>
 						</div>
 					</div>
 
