@@ -25,12 +25,18 @@ require 'flickraw'
   def createmail
     @user = current_user
     emailadress = params['users']['sabancimail']
-
+	isAlreadyRegistered = false
+	
     Users.all.each do |item|
       if item.sabancimail == emailadress
+		isAlreadyRegistered = true
         redirect_to mail_path
       end
     end
+    
+    if (isAlreadyRegistered)
+		return    
+	end
 
     if (emailadress.length > 0 && emailadress.include?("@sabanciuniv.edu"))
       @user.sabancimail = emailadress
