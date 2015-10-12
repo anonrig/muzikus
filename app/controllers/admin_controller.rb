@@ -17,7 +17,11 @@ class AdminController < ApplicationController
   
   def muzikus
   	if current_user
-  		@allUsers = Users.all.order("created_at DESC")
+	  	if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true)
+  			@allUsers = Users.all.order("created_at DESC")
+  		else
+  			redirect_to root_path
+  		end
   	else
   		redirect_to root_path
   	end

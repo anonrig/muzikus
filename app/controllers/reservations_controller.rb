@@ -28,7 +28,6 @@ class ReservationsController < ApplicationController
   def new
     if current_user
       @reservation = Reservations.new
-      #@currentUser = Muzikususers.find(current_user.id)
       @currentUser = Muzikususers.where("email = ?", current_user.sabancimail).first
       
       if !@currentUser

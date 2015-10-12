@@ -10,31 +10,31 @@ $(document).ready(function(){
         phone.empty();
         email.empty();
 
-        if (id == 1){ //davul odasi
-            address.append('Emre BOZKIR');
-            phone.append('0536 509 9305');
-            email.append('emrebozkir@sabanciuniv.edu');
-        } else if (id == 2){ //studyo
-            address.append('Ercan USTA, Can ARSOY');
-            phone.append('0530 220 2870, 0533 359 2094');
-            email.append('ercanusta@sabanciuniv.edu, canarsoy@sabanciuniv.edu');
-        } else if (id == 3){ // piyano odasi 1
-            address.append('Burcu CIRACI');
-            phone.append('0537 877 9461');
-            email.append('burcuciraci@sabanciuniv.edu');
-        } else if (id == 4){ // piyano odasi 2
-            address.append('Iskender YALCINKAYA');
-            phone.append('0542 242 0520');
-            email.append('iyalcinkaya@sabanciuniv.edu');
-        } else if (id == 5){ // san odasi
-            address.append('Sinan USTA');
-            phone.append('0530 220 2871');
-            email.append('sinanusta@sabanciuniv.edu');
-        } else { //hangar
-            address.append('Mert CAPAN');
-            phone.append('0537 351 9650');
-            email.append('mertcap@sabanciuniv.edu');
-        }
+if (id == 1){ //davul odasi
+    address.append('Berkin Özbatir');
+    phone.append('0534 357 6588');
+    email.append('berkinozbatir@sabanciuniv.edu');
+} else if (id == 2){ //studyo
+    address.append('Kartal Batuhan Ucar, Ege Sarac');
+    phone.append('0537 598 9192, 0543 978 0607');
+    email.append('kartalucar@sabanciuniv.edu, esarac@sabanciuniv.edu');
+} else if (id == 3){ // piyano odasi 1
+    address.append('Sevval Calis');
+    phone.append('0534 438 1116');
+    email.append('calissevval@sabanciuniv.edu');
+} else if (id == 4){ // piyano odasi 2
+    address.append('Iskender Yalcinkaya');
+    phone.append('0542 242 0520');
+    email.append('iyalcinkaya@sabanciuniv.edu');
+} else if (id == 5){ // san odasi
+    address.append('Isinsu Tastan');
+    phone.append('0554 776 7718');
+    email.append('tastanisinsu@sabanciuniv.edu');
+} else { //hangar
+    address.append('Berk Can Altindag');
+    phone.append('0535 221 6994');
+    email.append('acan@sabanciuniv.edu');
+}
 	});
 
 	$('#submitreservation').on('click', function(event){
