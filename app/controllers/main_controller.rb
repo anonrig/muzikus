@@ -102,10 +102,10 @@ require 'flickraw'
   end
   
   def gallery
-	  FlickRaw.api_key = "5cf030ba22cac17dbb8a0fc49d446c6a"
-	  FlickRaw.shared_secret = "90e250b6a9d65260"
+	  #FlickRaw.api_key = "5cf030ba22cac17dbb8a0fc49d446c6a"
+	  #lickRaw.shared_secret = "90e250b6a9d65260"
 	  
-	  @list = flickr.photos.search(:user_id => "43317424@N04", :per_page => 500)
+	  #@list = flickr.photos.search(:user_id => "43317424@N04", :per_page => 500)
   end
   
   def faq
