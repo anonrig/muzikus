@@ -23,6 +23,7 @@ Alfonsoapp::Application.routes.draw do
   match '/rooms' => 'main#rooms', via: :get, :as => 'rooms'
   match '/projects' => 'main#projects', via: :get, :as => 'projects'
   match '/bands' => 'main#bands', via: :get, :as => 'bands'
+  #match '/gallery' => 'main#gallery', via: :get, :as => 'gallery'
   match '/gallery' => 'main#gallery', via: :get, :as => 'gallery'
   match '/faq' => 'main#faq', via: :get, :as => 'faq'
   
