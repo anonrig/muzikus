@@ -25,10 +25,29 @@
 		<div class="row">
 			<div class="span12">
 				<p class="lead">
-					Coming soon.
+				
+				 Instagram Lookup
 				</p>
+               
+               
 			</div>
-			
+        </div>      
+       
+            
+            <% @popular.each do |insta|%>
+           
+        <div class="thumbnail" style="float:left;width:40%;margin:10px">
+            <%=image_tag insta.images.standard_resolution.url %>
+                <div class="caption" >
+                    <%=insta.caption.text%>
+                </div>
+            </div>
+                <% end %>
+            
+            
+       
+  </div>
+
 		</div>
 		
 	</div>
