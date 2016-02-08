@@ -102,7 +102,10 @@ require 'flickraw'
   end
   
   def gallery
+  @popular=::Instagram.user_recent_media('1702172116')
   end
+
+
   
   def faq
   end
