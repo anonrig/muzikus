@@ -8,6 +8,7 @@ gem 'pg'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -26,6 +27,7 @@ gem 'coffee-rails', '~> 4.0.0'
 #gem 'jquery-turbolinks'
 
 gem 'flickraw'
+gem 'instagram'
 
 gem 'kaminari'
 
