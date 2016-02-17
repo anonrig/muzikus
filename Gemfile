@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.2.4'
-u Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby "2.2.4"
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
 #gem 'activeadmin'
