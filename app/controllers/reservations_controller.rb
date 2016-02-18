@@ -14,6 +14,8 @@ class ReservationsController < ApplicationController
   end
 
   def index
+#add method here so everyone can see the occupied time slots
+  	muzikusrezervation
     if current_user
       @all = Reservations.where("start_date > ?", Time.now.beginning_of_day - 6.hours).order("start_date ASC")
     else
@@ -53,6 +55,9 @@ class ReservationsController < ApplicationController
   end
 
   def create
+#add the method here to prevent people that directly open the create page
+  	muzikusrezervation
+
 	  respond_to do |format|
 
 	    newRes = Reservations.new
@@ -108,4 +113,40 @@ class ReservationsController < ApplicationController
   def update
 
   end
+
+  #Preset reservation times for Muzikus projects
+  #This code runs every time someone opens the reservation create or index page.
+  #It's checks if it already ran in a week, otherwise it reserves the slots.
+  def muzikusrezervation
+		tuesdaysaved=Reservations.where('hour=5').where('start_date > ?',Time.now).count
+		currentday=Time.now.wday
+		tuesdaydifference=(2-currentday)%7
+		thursdaydifference=(4-currentday)%7
+		if tuesdaysaved==0    	
+	    	#salı günkü rezervasyon
+	    	newRes=Reservations.new
+	    	newRes.user_id=364
+	    	newRes.room_id=2
+	    	tuesday=Time.now+tuesdaydifference.days
+	    	newRes.start_date=Time.parse("#{tuesday.strftime("%F")} 17:00")
+	    	startdate=newRes.start_date
+	    	newRes.end_date=newRes.start_date+5.hours
+	    	newRes.info='Gitar Dersi'
+	    	newRes.hour= 5
+	    	newRes.save
+		end
+	    	#perşembe günkü rezervasyon
+		thursdaysaved=Reservations.where('hour=8').where('start_date>?',Time.now).count
+		if thursdaysaved==0
+	    	newRes=Reservations.new
+	    	newRes.user_id=364
+	    	newRes.room_id=2
+	    	thursday=Time.now+thursdaydifference.days
+	    	newRes.start_date=Time.parse("#{thursday.strftime("#F")} 14:00")
+	    	newRes.end_date=newRes.start_date+8.hours
+	    	newRes.info='Gitar Dersi'
+	    	newRes.hour= 8
+	    	newRes.save
+		end
+end
 end
