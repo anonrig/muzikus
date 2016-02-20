@@ -8,7 +8,7 @@ gem 'pg'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~>0.3.18'
 
-
+gem 'whenever', :require=> false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
