@@ -56,6 +56,15 @@ namespace :reserve do
 		puts 'San odası Success'
 	end
 
-task :reserve_all =>[:gitar_dersi,:davul_odasi,:san_odasi] 
+	task :piyano_odasi => :environment do #ADDED AFTER LAST PULL REQUEST
+		wednesday=Time.now+4.days
+		wednesday_start_date=Time.parse("#{wednesday.strftime('%F')} 14:30")
+		wednesday_end_date=wednesday_start_date+3.hours
+		WednesdayRes=Reservations.new(user_id:364,room_id:4,start_date: wednesday_start_date,end_date:wednesday_end_date,hour:3)
+		puts "Piyano odası Success"
+	end
+
+
+task :reserve_all =>[:gitar_dersi,:davul_odasi,:san_odasi,:piyano_odasi] 
 end
 
