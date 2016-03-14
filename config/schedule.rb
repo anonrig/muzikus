@@ -5,7 +5,7 @@
 
 every :saturday, :at=>'12pm' do
 
-rake "reserve:gitar_dersi"
+rake "reserve:reserve_all"
 end
 
 # Example:
