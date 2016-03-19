@@ -53,6 +53,7 @@ namespace :reserve do
 		wednesday_start_date=Time.parse("#{wednesday.strftime('%F')} 10:00")
 		wednesday_end_date=wednesday_start_date+7.hours
 		WednesdayRes=Reservations.new(user_id:364,room_id: 5,start_date:wednesday_start_date,end_date:wednesday_end_date,hour:7)
+		WednesdayRes.save #Forgot to put them
 		puts 'San odası Success'
 	end
 
@@ -61,6 +62,7 @@ namespace :reserve do
 		wednesday_start_date=Time.parse("#{wednesday.strftime('%F')} 14:30")
 		wednesday_end_date=wednesday_start_date+3.hours
 		WednesdayRes=Reservations.new(user_id:364,room_id:4,start_date: wednesday_start_date,end_date:wednesday_end_date,hour:3)
+		WednesdayRes.save #Forgot to put them
 		puts "Piyano odası Success"
 	end
 
