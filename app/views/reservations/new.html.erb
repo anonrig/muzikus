@@ -43,11 +43,11 @@
 					<div class="span3 control-group">
 						<label>Which studio? * </label>
 						<% if (@currentUser.ismyk || @currentUser.isyk) && @currentUser.isworkshop %>
-							<%= f.select :room_id, options_for_select([["Davul Odasi", "1"], ["Hangar", "6"], ["Piyano Odasi 1", "3"], ["Piyano Odasi 2", "4"], ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
+							<%= f.select :room_id, options_for_select([["Davul Odasi", "1"], ["Hangar", "6"], ["Piyano Odasi 1", "3"],  ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
 						<% elsif @currentUser.isdavul || @currentUser.isyk %>
-							<%= f.select :room_id, options_for_select([["Davul Odasi", "1"], ["Piyano Odasi 1", "3"], ["Piyano Odasi 2", "4"], ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
+							<%= f.select :room_id, options_for_select([["Davul Odasi", "1"], ["Piyano Odasi 1", "3"] , ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
 						<% else %>
-							<%= f.select :room_id, options_for_select([["Piyano Odasi 1", "3"], ["Piyano Odasi 2", "4"], ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
+							<%= f.select :room_id, options_for_select([["Piyano Odasi 1", "3"],  ["San Odasi", "5"], ["Studyo", "2"]]), {:include_blank => false}, { :class => "span3 roomselector"} %>
 						<% end %>
 					</div>
 				</div>
