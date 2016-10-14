@@ -9,25 +9,28 @@ $(document).ready(function(){
         address.empty();
         phone.empty();
         email.empty();
-
+				<% rooms=Rooms.all %>
 if (id == 1){ //davul odasi
-    address.append('Burak Aksar');
-    phone.append('0507 310 2235');
-    email.append('burakaksar@sabanciuniv.edu');
+    address.append('<%= rooms.find_by_id(1).officer%>'  );
+    phone.append('<%= rooms.find_by_id(1).officer_num%>');
+    email.append('<%= rooms.find_by_id(1).officer_mail%>');
 } else if (id == 2){ //studyo
-    address.append('Erkin Alacamli, Orhun Baris');
-    phone.append('0535 0535 41 73 , 0532 345 5468');
-    email.append('erkinalacamli@sabanciuniv.edu, orhunbaris@sabanciuniv.edu');
+
+			address.append('<%= rooms.find_by_id(2).officer%>'  );
+			phone.append('<%= rooms.find_by_id(2).officer_num%>');
+			email.append('<%= rooms.find_by_id(2).officer_mail%>');
 } else if (id == 3){ // piyano odasi 1
-    address.append('Ege Sarac');
-    phone.append('0543 978 0607');
-    email.append('esarac@sabanciuniv.edu');
-} 
- 
+
+			address.append('<%= rooms.find_by_id(3).officer%>'  );
+			phone.append('<%= rooms.find_by_id(3).officer_num%>');
+			email.append('<%= rooms.find_by_id(3).officer_mail%>');
+}
+
 else if (id == 5){ // san odasi
-    address.append('Rabia Tuncbilek');
-    phone.append('0537 311 5401');
-    email.append('rabiatuncbilek@sabanciuniv.edu');
+
+			address.append('<%= rooms.find_by_id(5).officer%>'  );
+			phone.append('<%= rooms.find_by_id(5).officer_num%>');
+			email.append('<%= rooms.find_by_id(5).officer_mail%>');
 } else { //hangar
     address.append('Kartal Batuhan Ucar, Kenan Akpınar');
     phone.append('0537 598 9192 , 0506 113 1912 ');
@@ -39,7 +42,7 @@ else if (id == 5){ // san odasi
 		event.preventDefault();
 		$('#contactError').addClass('hidden').empty().append("<strong>Oh snap!</strong> ");
 		$('#contactSuccess').addClass('hidden').empty().append("<strong>Success!</strong> ");
-		
+
 		var f = $(this).parent().parent(),
             whichDay = $('#whichday').find("option:selected").attr('value'),
             startHour = $('#starthour').find("option:selected").text(),
@@ -75,6 +78,6 @@ else if (id == 5){ // san odasi
 		});
 
 	});
-	
+
 	$('.tooltip-test').tooltip();
 });
