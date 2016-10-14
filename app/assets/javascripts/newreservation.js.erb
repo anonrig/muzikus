@@ -32,9 +32,9 @@ else if (id == 5){ // san odasi
 			phone.append('<%= rooms.find_by_id(5).officer_num%>');
 			email.append('<%= rooms.find_by_id(5).officer_mail%>');
 } else { //hangar
-    address.append('Kartal Batuhan Ucar, Kenan Akpınar');
-    phone.append('0537 598 9192 , 0506 113 1912 ');
-    email.append('kartalucar@sabanciuniv.edu', 'kenanakpınar@sabanciuniv.edu');
+    address.append('<%=rooms.find_by_id(6).officer%>');
+    phone.append('<%=rooms.find_by_id(6).officer_num%>');
+    email.append('<% rooms.find_by_id(6).officer_mail&>');
 }
 	});
 

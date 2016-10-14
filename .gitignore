@@ -16,5 +16,5 @@
 /log/*.log
 /tmp
 /public/assets
-
+/config/environments/development.rb
 .idea
