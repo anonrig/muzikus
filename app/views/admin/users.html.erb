@@ -50,14 +50,14 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>Student ID</th>
+
 										<th>E-Mail</th>
 										<th>isYK?</th>
 										<th>isMYK?</th>
 										<th>isDavul?</th>
 										<th>isWorkshop?</th>
 										<th>isBlogger?</th>
-										<th>Member Since</th>
+
 										<th></th>
 										<th></th>
 									</tr>
@@ -66,14 +66,14 @@
 									<% @muzikusMembers.each do |item| %>
 										<%= form_for item, :url => {:controller => "admin", :action => "deleteuser"}, :method => "post" do |f| %>
 											<tr>
-												<td><%= item.sid%></td>
+											
 												<td><%= item.email %></td>
 												<td><%= item.isyk %></td>
 												<td><%= item.ismyk %></td>
 												<td><%= item.isdavul %></td>
 												<td><%= item.isworkshop %></td>
 												<td><%= item.isblogger %></td>
-												<td><%= item.created_at.strftime("%B %d, %Y") %></td>
+
 												<%= f.hidden_field :userid, :value => item.id %>
 												<td><a href="/admin/edit/<%= item.id %>" class="btn btn-success">Edit</a></td>
 												<td><%= f.submit "Delete", :class => "btn btn-danger" %></td>
