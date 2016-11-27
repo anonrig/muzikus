@@ -22,7 +22,7 @@
         <% if current_user && current_user.sabancimail != nil %>
           <% if Muzikususers.where("email = ?", current_user.sabancimail).count > 0 %>
             <% if post.user_id=current_user.id %>
-        <td><%= link_to 'Edit', edit_post_path(post),:class=>"btn btn-info",:role=>"button" %></td>
+        <td><%= link_to 'Edit', edit_post_path(post,:subject_id=>@subject.id,:subject_title=>@subject.title),:class=>"btn btn-info",:role=>"button" %></td>
         <td><%= link_to 'Destroy', post,:class=>"btn btn-danger",:role=>"button", method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
           <%end%>

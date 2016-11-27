@@ -14,5 +14,5 @@
   <%= raw @post.body %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Edit', edit_post_path(@post,:subject_id=>@post.subject_id) %> |
 <%= link_to 'Back', "/subjects/#{@post.subject_id}" %>

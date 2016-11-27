@@ -31,6 +31,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    params[:subject_title]=Subject.find(params[:subject_id]).title
     if current_user && current_user.sabancimail != nil
       if Muzikususers.where("email = ?", current_user.sabancimail).count > 0
           if (Muzikususers.where("email = ?", current_user.sabancimail).first.isblogger == true) #FIXME: only owner should edit
