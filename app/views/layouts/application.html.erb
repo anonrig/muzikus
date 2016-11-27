@@ -11,7 +11,7 @@
 		<meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
 		<meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
 		<meta name="author" content="Yagiz Nizipli">
-		
+
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		<!-- Mobile Metas -->
@@ -19,7 +19,7 @@
 
 		<!-- Web Fonts  -->
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-		
+
 
 		<!-- Libs CSS -->
 		<link rel="stylesheet" href="/css/bootstrap.css">
@@ -84,8 +84,8 @@
 					</div>
 					<nav>
 						<ul class="nav nav-pills nav-top">
-							
-							
+
+
 							<% if current_user %>
 							<li>
 								<%= link_to "<i class='icon-user'></i>Log Out #{current_user.name.split(' ')[0]}".html_safe, signout_path, id: "sign_out" %>
@@ -94,13 +94,13 @@
 							<li>
 								<%= link_to "<i class='icon-user'></i>Register/Login".html_safe, '/auth/facebook', id: "sign_in" %>
 							</li>
-							
+
 							<% end %>
-							
+
 							<li>
 								<%= link_to '<i class="icon-angle-right"></i>Contact Us'.html_safe, contactus_path, 'data-no-turbolink' => true %>
 							</li>
-							
+
 							<li class="phone">
 								<span><i class="icon-phone"></i>+90 (216) 483-9000</span>
 							</li>
@@ -118,7 +118,7 @@
 							<li>
 								<a href="/aboutus">About Us</a>
 							</li>
-							
+
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									Music
@@ -133,7 +133,7 @@
 									</li>
 								</ul>
 							</li>
-							
+
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									Facilities
@@ -151,11 +151,11 @@
 									</li>
 								</ul>
 							</li>
-							
+
 							<li>
 								<%= link_to "Gallery", gallery_path %>
 							</li>
-							
+
 							<% if current_user %>
 								<% if current_user.sabancimail && Muzikususers.where('email = ?', current_user.sabancimail).count > 0 %>
 									<li class ="dropdown">
@@ -174,9 +174,9 @@
 												<%= link_to "How to?", howto_path %>
 											</li>
 										</ul>
-									
+
 									</li>
-									
+
 									<li>
 										<%= link_to "SCOUT", scout_path %>
 									</li>
@@ -186,13 +186,15 @@
 									</li>
 								<% end %>
 							<% end %>
-							
-							
-							
-							
+
+
+
+
 							<% if current_user && current_user.sabancimail != nil %>
 								<% if Muzikususers.where("email = ?", current_user.sabancimail).count > 0 %>
 									<% if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true) %>
+									<li>
+										<a href="/subjects">BLOG</a>
 										<li class="dropdown">
 											<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 												Management
@@ -209,7 +211,7 @@
 									<% end %>
 								<% end %>
 							<% end %>
-							
+
 						</ul>
 					</nav>
 				</div>
@@ -227,13 +229,13 @@
 							<h4>On Twitter</h4>
 							<a class="twitter-timeline" href="https://twitter.com/muzikus" data-widget-id="693200858524295169">Tweets by @muzikus</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-							
+
 						</div>
 						<div class="span3">
 							<h4>On Facebook</h4>
-							
+
 							<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fmuzikus&amp;width=270&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;appId=151206855076651" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:258px; background: white; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;" allowTransparency="true"></iframe>
-							
+
 						</div>
                         <div class="span3">
                             <h4>On Instagram</h4>
@@ -250,13 +252,13 @@
 								</ul>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 				<div class="footer-copyright">
 					<div class="container">
 						<div class="row">
-							
+
 							<div class="span8">
 								<p>© Copyright 2013 by Muzikus. All Rights Reserved.</p>
 							</div>
