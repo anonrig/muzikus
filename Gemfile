@@ -40,7 +40,8 @@ gem 'kaminari'
 # gem 'turbolinks'
 
 gem 'jquery-rails'
-
+gem 'ckeditor'
+gem 'paperclip'
 gem 'newrelic_rpm'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
