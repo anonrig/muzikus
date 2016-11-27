@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    redirect_to root_path
   end
 
   # GET /posts/1
@@ -14,11 +15,30 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @subject_id=params[:subject_id]
+    @subject_title=params[:suject_title]
+    if current_user && current_user.sabancimail != nil
+      if Muzikususers.where("email = ?", current_user.sabancimail).count > 0
+         if (Muzikususers.where("email = ?", current_user.sabancimail).first.isblogger == true)
+            @post = Post.new
+          end
+        end
+
+    else
+      redirect_to subjects_path
+        end
   end
 
   # GET /posts/1/edit
   def edit
+    if current_user && current_user.sabancimail != nil
+      if Muzikususers.where("email = ?", current_user.sabancimail).count > 0
+          if (Muzikususers.where("email = ?", current_user.sabancimail).first.isblogger == true) #FIXME: only owner should edit
+         end
+       end
+   else
+     redirect_to subjects_path
+      end
   end
 
   # POST /posts

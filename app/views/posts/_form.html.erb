@@ -12,19 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_area :title %>
+    <%=f.hidden_field :subject_id, :value=>params[:subject_id]%>
+    <%=f.hidden_field :user_id, :value=>current_user.id %>
+    <%= f.label :title %>
+    <%= f.text_field :title,:placeholder=>"enter Title" %>
   </div>
   <div class="field">
-    <%= f.label :subject_id %><br>
-    <%= f.number_field :subject_id %>
+    <%= f.label :subject_Name %>
+    <%= f.text_field :subject_title,:value=>params[:subject_title],:disabled=>"disabled" %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :user_id %>
+    <%= f.text_field :user_name, :value=>current_user.name,:disabled=>"disabled" %>
   </div>
   <div class="field">
-    <%= f.label :body %><br>
+    <%= f.label :body %>
     <%= f.cktext_area :body %>
   </div>
   <div class="actions">

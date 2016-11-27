@@ -10,15 +10,30 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    #@subject = Subject.find(params[:id])
+    @posts=@subject.posts
   end
 
   # GET /subjects/new
   def new
-    @subject = Subject.new
+         if (Muzikususers.where("email = ?", current_user.sabancimail).first.isblogger == true)
+            @subject = Subject.new
+        else
+      redirect_to subjects_path
+    end
   end
 
   # GET /subjects/1/edit
   def edit
+    if current_user && current_user.sabancimail != nil
+      if Muzikususers.where("email = ?", current_user.sabancimail).count > 0
+         if (Muzikususers.where("email = ?", current_user.sabancimail).first.isblogger == true)
+          end
+        end
+
+    else
+      redirect_to subjects_path
+        end
   end
 
   # POST /subjects
