@@ -9,12 +9,13 @@ class AdminController < ApplicationController
 				  	@newMember = Muzikususers.new
 				  	@mykMembers = Muzikususers.where("ismyk = ? ", true)
 				  	@topReserve = Reservations.limit(10).group("user_id").count
+            @bloggers   = Muzikususers.where("isblogger=?",true)
 				  end
 			  end
 		  end
 	 end
   end
-  
+
   def muzikus
   	if current_user
 	  	if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true)
@@ -28,7 +29,7 @@ class AdminController < ApplicationController
   end
 
   def createuser
-  	
+
   	@new = Muzikususers.new
   	@new.sid = params['muzikususers']['sid']
   	@new.email = params['muzikususers']['email']
@@ -50,13 +51,13 @@ class AdminController < ApplicationController
 	  	redirect_to admin_users_path
   	end
   end
-  
+
   def edit
   	if current_user
   		@current = Muzikususers.find(params['id'])
   	end
   end
-  
+
   def editSubmit
   	if (current_user)
   		@current = Muzikususers.where("email = ?", params['muzikususers']['email']).first
@@ -65,6 +66,7 @@ class AdminController < ApplicationController
   		@current.ismyk = params['muzikususers']['ismyk']
   		@current.isdavul = params['muzikususers']['isdavul']
   		@current.isworkshop = params['muzikususers']['isworkshop']
+      @current.isblogger=params['muzikususers']['isblogger']
   		@current.save
   		redirect_to admin_users_path
   	else
@@ -97,7 +99,7 @@ class AdminController < ApplicationController
 	  	@newBudget.amount = params['budget']['amount']
 	  	@newBudget.reason = params['budget']['reason']
 	  	@newBudget.save
-	
+
 	  	redirect_to admin_budget_path
   	end
   end
@@ -106,7 +108,7 @@ class AdminController < ApplicationController
 	  if current_user
 	  	if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true)
 	  		@allSupports = Support.all.order("created_at DESC")
-	
+
 	  	end
 	  end
   end
@@ -120,7 +122,7 @@ class AdminController < ApplicationController
 	  	end
   	end
   end
-  
+
   def log
   	if current_user
   		if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true)
@@ -128,5 +130,5 @@ class AdminController < ApplicationController
   		end
   	end
   end
-  
+
 end

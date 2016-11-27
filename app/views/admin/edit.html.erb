@@ -79,6 +79,16 @@
 							<% end %>
 						</div>
 					</div>
+					<div class="row controls">
+						<div class="span6 control-group">
+							Is Blogger ?
+							<% if (@current.isblogger) %>
+								<%= f.check_box :isblogger,:class => 'span3', :checked => true %>
+							<% else %>
+								<%= f.check_box :isblogger,:class => 'span3', :checked => false %>
+							<% end %>
+						</div>
+					</div>
 					<div class="btn-toolbar">
 						<%= f.submit "Submit", :class => 'btn btn-primary btn-large' %>
 					</div>

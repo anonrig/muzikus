@@ -31,13 +31,16 @@
 									<label>isYK?</label><%= f.check_box :isyk, :style => "display: inline;" %>
 
 									<label>isMYK?</label><%= f.check_box :ismyk %>
-									
 							</div>
 							<div class="span1 control-group">
 								<label>isDavul?</label><%= f.check_box :isdavul %>
 									<label>isWorkshop?</label><%= f.check_box :isworkshop %>
 							</div>
-							
+							<div class="span1 control-group">
+								<label>isBlogger?</label><%=f.check_box :isblogger %>
+						</div>
+
+
 						<% end %>
 					</div>
 				</div>
@@ -53,6 +56,7 @@
 										<th>isMYK?</th>
 										<th>isDavul?</th>
 										<th>isWorkshop?</th>
+										<th>isBlogger?</th>
 										<th>Member Since</th>
 										<th></th>
 										<th></th>
@@ -68,6 +72,7 @@
 												<td><%= item.ismyk %></td>
 												<td><%= item.isdavul %></td>
 												<td><%= item.isworkshop %></td>
+												<td><%= item.isblogger %></td>
 												<td><%= item.created_at.strftime("%B %d, %Y") %></td>
 												<%= f.hidden_field :userid, :value => item.id %>
 												<td><a href="/admin/edit/<%= item.id %>" class="btn btn-success">Edit</a></td>
@@ -115,11 +120,29 @@
 										<% end %>
 									</tbody>
 								</table>
+								<hr>
+								<h4>All Bloggers</h4>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>E-Mail</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% @bloggers.each do |item| %>
+										<tr>
+											<td><%= item.sid%></td>
+											<td><%= item.email %></td>
+										</tr>
+										<% end %>
+									</tbody>
+								</table>
 							</aside>
 						</div>
 					</div>
-					
-					
+
+
 				</div>
 
 			</div>
