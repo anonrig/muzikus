@@ -1,6 +1,7 @@
 Alfonsoapp::Application.routes.draw do
 
 
+  resources :posts
   get "scout", to: 'scout#index', as: 'scout'
   get "scout/new", as: 'new_scout'
   post "scout/create", as: 'create_scout'
