@@ -7,7 +7,7 @@ class ScoutController < ApplicationController
   			redirect_to new_scout_path
   		end
   		
-  		@allScout = Scout.page(params[:page]).per(20).order("BirinciEns DESC")
+  		@allScout = Scout.page(params[:page]).per(20).order(:BirinciEns)
   	else 
   		redirect_to root_path
   	end
