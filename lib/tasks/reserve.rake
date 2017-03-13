@@ -55,12 +55,15 @@ namespace :reserve do
 			thursday_end_date=thursday_start_date+duration.hours
 			thursdayRes=Reservations.new(user_id: muzikus_id, room_id: piyano_odasi_id,start_date: thursday_start_date, end_date: thursday_end_date,info:"Piyano Dersi",hour: duration)
 			thursdayRes.save
+			else
+			puts "it's not saturday"
 			end
+	end
 		
 
 	
 
 
-task :reserve_all =>[:hangar] 
+task :reserve_all =>[:hangar,:piyano_dersi] 
 end
 
