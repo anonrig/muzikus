@@ -1,5 +1,6 @@
 namespace :reserve do
 	#380 -> ozkan okan
+	#DB'de olanın 3 saat fazlası görünüyor viewda. Burada saat doğru ama
 	muzikus_id=364
 	
 	task :hangar => :environment do 
@@ -7,25 +8,19 @@ namespace :reserve do
 			if Time.now.wday==6
 		#1
 			tuesday=Time.now+3.days
-			tuesday_start_date=Time.parse("#{tuesday.strftime('%F')} 17:00")
+			tuesday_start_date=Time.parse("#{tuesday.strftime('%F')} 20:00")
 			duration=3
 			tuesday_end_date=tuesday_start_date+duration.hours
-			TuesdayRes=Reservations.new(user_id: muzikus_id,room_id: hangar_id,start_date: tuesday_start_date,end_date:tuesday_end_date,info:"Proje",hour:duration)
+			TuesdayRes=Reservations.new(user_id: muzikus_id,room_id: hangar_id,start_date: tuesday_start_date,end_date:tuesday_end_date,info:"Ensemble",hour:duration)
 			TuesdayRes.save
 		#2
-			wednesday=Time+4.days
-			wednesday_end_date=Time.parse("#{wednesday.strftime('%F')} 17:00")
+			wednesday=Time.now+4.days
+			wednesday_end_date=Time.parse("#{wednesday.strftime('%F')} 20:00")
 			duration=3
 			wednesday_end_date=wednesday_start_date+duration.hours
-			WednesdayRes=Reservations.new(user_id: muzikus_id,room_id:hangar_id,start_date: wednesday_start_date,end_date:wednesday_end_date,info:"Proje",hour:duration)
+			WednesdayRes=Reservations.new(user_id: muzikus_id,room_id:hangar_id,start_date: wednesday_start_date,end_date:wednesday_end_date,info:"KoroSU",hour:duration)
 			WednesdayRes.save
-		#3	
-		friday=Time.now+6.days
-		friday_start_date=Time.parse("#{friday.strftime('%F')} 13:00")
-		duration=2
-		friday_end_date=friday_start_date+duration.hours
-		FridayRes=Reservations.new(user_id: muzikus_id,room_id:hangar_id,start_date: friday_start_date,end_date:friday_end_date,info:"Proje",hour:duration)
-		FridayRes.save	
+		
 			else
 			puts "it's not saturday"
 			end
