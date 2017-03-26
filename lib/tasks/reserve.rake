@@ -15,7 +15,7 @@ namespace :reserve do
 			TuesdayRes.save
 		#2
 			wednesday=Time.now+4.days
-			wednesday_end_date=Time.parse("#{wednesday.strftime('%F')} 20:00")
+			wednesday_start_date=Time.parse("#{wednesday.strftime('%F')} 20:00")
 			duration=3
 			wednesday_end_date=wednesday_start_date+duration.hours
 			WednesdayRes=Reservations.new(user_id: muzikus_id,room_id:hangar_id,start_date: wednesday_start_date,end_date:wednesday_end_date,info:"KoroSU",hour:duration)
