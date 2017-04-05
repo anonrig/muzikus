@@ -1,0 +1,80 @@
+<div role="main" class="main">
+
+	<section class="page-top">
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<ul class="breadcrumb">
+						<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
+						<li class="active">Faculty</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<h2>Faculty Members</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<h2>Muzikus Faculty</h2>
+
+		<div class="row">
+			<div class="span12">
+				<p class="lead">
+					Muzikus Faculty aims to create an environment that makes it easier and more entertaining to learn music for the university students. The music lessons provided by the faculty are listed below. If you need information about an instructor or a lesson, you can reach the contact related to that lesson.
+				</p>
+			</div>
+			<%@teachers.each do |teacher|%>
+			
+			<div class="span4">
+				
+			<div class="thumbnail" style="" >
+      <img src=<%=teacher.photo%> alt="..." style="width:209px;height:209px">
+      <div class="caption">
+        <h3><%=teacher.full_name%></h3>
+		
+		<p>
+		<strong>Instrument<br></strong>
+		<%=teacher.instrument%></strong>
+		</p>
+        <p style="width:342;height:312px">
+		<strong>Bio</strong><br><%=teacher.bio%></p>
+		
+		<p>
+		<strong>Website</strong><br>
+		<%=teacher.website%>
+		</p>
+		<% if current_user && current_user.sabancimail != nil %>
+								<% if Muzikususers.where("email = ?", current_user.sabancimail).count > 0 %>
+									<% if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true) %>
+								
+        <p><%= link_to 'Edit', edit_teacher_path(teacher),:class=>"btn btn-info",:role=>"button" %> <%= link_to 'Destroy', teacher, :class=>"btn btn-danger",:role=>"button", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      		<%end%>
+			  <%end%>
+			  <%end%>
+			  
+			  </div>
+    		</div>
+			</div>
+
+			<%end%>
+
+			
+		</div>
+
+		<% if current_user && current_user.sabancimail != nil %>
+								<% if Muzikususers.where("email = ?", current_user.sabancimail).count > 0 %>
+									<% if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true) %>
+				
+<p><%= link_to 'New Teacher', new_teacher_path,:class=>"btn btn-success",:role=>"button" %></p>
+    <%end%>
+			  <%end%>
+			  <%end%>
+			  
+	</div>
+
+</div>
