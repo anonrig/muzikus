@@ -18,11 +18,16 @@ class TeachersController < ApplicationController
       end
       
       def  new
-          if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true)
-            @teacher = Teacher.new
+     if current_user && current_user.sabancimail != nil
+      if Muzikususers.where("email = ?", current_user.sabancimail).count > 0
+         if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true)
+             @teacher = Teacher.new
         else
       redirect_to teachers_path
+        end
     end
+end
+
     end
 
         def create
