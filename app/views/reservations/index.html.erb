@@ -42,7 +42,7 @@
 										<td><%= item.start_date.strftime("%H:%M") %> - <%= item.end_date.strftime("%H:%M") %></td>
 										<td><%= item.start_date.strftime("%B %d, %Y") %></td>
 										<td><%= item.start_date.strftime("%A") %></td>
-										<td>
+										<td><%= item.info %></td>
 										<td>
 											<% if item.user_id == current_user.id %>
 											

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127160656) do
+ActiveRecord::Schema.define(version: 20170405185912) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "amount",      limit: 255
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 20161127160656) do
     t.text     "message",    limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "full_name",  limit: 255,   null: false
+    t.string "photo",      limit: 255,   null: false
+    t.text   "bio",        limit: 65535, null: false
+    t.string "instrument", limit: 255,   null: false
+    t.string "website",    limit: 255
   end
 
   create_table "users", force: :cascade do |t|
