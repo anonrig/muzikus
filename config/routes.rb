@@ -4,6 +4,7 @@ Alfonsoapp::Application.routes.draw do
   resources :subjects
   mount Ckeditor::Engine => '/ckeditor'
   resources :posts
+  resources :teachers
   get "scout", to: 'scout#index', as: 'scout'
   get "scout/new", as: 'new_scout'
   post "scout/create", as: 'create_scout'
@@ -22,7 +23,7 @@ Alfonsoapp::Application.routes.draw do
   match '/mail' => 'main#createmail', via: :post, :as => 'submit_mail'
   
   match '/events' => 'main#events', via: :get, :as => 'events'
-  match '/faculty' => 'main#faculty', via: :get, :as => 'faculty'
+  #match '/faculty' => 'main#faculty', via: :get, :as => 'faculty'
   match '/rooms' => 'main#rooms', via: :get, :as => 'rooms'
   match '/projects' => 'main#projects', via: :get, :as => 'projects'
   match '/bands' => 'main#bands', via: :get, :as => 'bands'
@@ -52,6 +53,10 @@ Alfonsoapp::Application.routes.draw do
   get "admin/edit/:id" => 'admin#edit'
   post "admin/edit/" => 'admin#editSubmit'
   get "admin/log" => 'admin#log'
+  
+
+
+  #Teacher controllers
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
