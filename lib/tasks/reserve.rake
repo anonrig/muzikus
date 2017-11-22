@@ -5,7 +5,7 @@ namespace :reserve do
 	
 	task :hangar => :environment do 
 			hangar_id=6
-			if Time.now.wday==3
+			if Time.now.wday==6
 		#1
 			monday=Time.now+2.days
 			monday_start_date=Time.parse("#{monday.strftime('%F')} 20:00")
