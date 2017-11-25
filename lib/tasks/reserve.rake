@@ -59,7 +59,7 @@ namespace :reserve do
 			wednesdayRes.save
 		#perşembe 8:40 - 19:30
 			thursday=Time.now+5.days
-			thursay_start_date=Time.parse("#{thursday.strftime('%F')} 8:30")
+			thursday_start_date=Time.parse("#{thursday.strftime('%F')} 8:30")
 			duration=11
 			thursday_end_date=thursday_start_date+duration.hours
 			thursdayRes=Reservations.new(user_id: muzikus_id, room_id: piyano_odasi_id,start_date: thursday_start_date, end_date: thursday_end_date,info:"Piyano Dersi",hour: duration)
@@ -111,7 +111,7 @@ namespace :reserve do
 			tuesdayRes.save
 		#perşembe 10:30 - 19:30
 			thursday=Time.now+5.days
-			thursay_start_date=Time.parse("#{thursday.strftime('%F')} 10:30")
+			thursday_start_date=Time.parse("#{thursday.strftime('%F')} 10:30")
 			duration=9
 			thursday_end_date=thursday_start_date+duration.hours
 			thursdayRes=Reservations.new(user_id: muzikus_id, room_id: davul_odasi_id,start_date: thursday_start_date, end_date: thursday_end_date,info:"Davul Dersi",hour: duration)
