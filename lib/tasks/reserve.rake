@@ -79,7 +79,20 @@ namespace :reserve do
 			monday_end_date=monday_start_date+duration.hours
 			mondayRes=Reservations.new(user_id: muzikus_id,room_id: san_odasi_id,start_date: monday_start_date,end_date:monday_end_date,info:"Şan Dersi",hour:duration)
 			mondayRes.save
-		#2
+			
+			monday_start_date=Time.parse("#{monday.strftime('%F')} 20:00")
+			duration=2
+			monday_end_date=monday_start_date+duration.hours
+			mondayRes=Reservations.new(user_id: muzikus_id,room_id: san_odasi_id,start_date: monday_start_date,end_date:monday_end_date,info:"Keman Dersi",hour:duration)
+			mondayRes.save
+		#2	
+			tuesday=Time.now+3.days
+			tuesday_start_date=Time.parse("#{tuesday.strftime('%F')} 19:00")
+			duration=2
+			tuesday_end_date=tuesday_start_date+duration.hours
+			tuesdayRes=Reservations.new(user_id: muzikus_id, room_id: san_odasi_id, start_date: tuesday_start_date, end_date: tuesday_end_date, info:"Keman Dersi", hour: duration)
+			tuesdayRes.save
+		#3
 			wednesday=Time.now+4.days
 			wednesday_start_date=Time.parse("#{wednesday.strftime('%F')} 11:30")
 			duration=7
