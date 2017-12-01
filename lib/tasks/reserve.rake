@@ -99,7 +99,13 @@ namespace :reserve do
 			wednesday_end_date=wednesday_start_date+duration.hours
 			wednesdayRes=Reservations.new(user_id: muzikus_id,room_id:san_odasi_id,start_date: wednesday_start_date,end_date:wednesday_end_date,info:"Şan Dersi",hour:duration)
 			wednesdayRes.save
-		
+		#4
+			thursday=Time.now+5.days
+			thursday_start_date=Time.parse("#{thursday.strftime('%F')} 18:30")
+			duration=3.5
+			thursday_end_date=thursday_start_date+duration.hours
+			thursdayRes=Reservations.new(user_id: muzikus_id, room_id: san_odasi_id,start_date: thursday_start_date, end_date: thursday_end_date,info:"Keman Dersi",hour: duration)
+			thursdayRes.save
 			else
 			puts "it's not saturday"
 			end
