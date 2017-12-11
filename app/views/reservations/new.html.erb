@@ -55,7 +55,7 @@
 					<div class="span3 control-group">
 						<label>Which day? </label>
 						<select class="span3" id="whichday">
-							<option value="<%= (Time.now + 2.hours).strftime("%F") %>"><%= (Time.now + 2.hours).strftime("%A") %></option>
+							<option value="<%= (Time.now).strftime("%F") %>"><%= (Time.now).strftime("%A") %></option>
 							<option value="<%= 1.day.from_now.strftime("%F") %>"><%= 1.day.from_now.strftime("%A") %></option>
 							<option value="<%= 2.days.from_now.strftime("%F") %>"><%= 2.days.from_now.strftime("%A") %></option>
 						</select>
