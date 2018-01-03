@@ -39,7 +39,7 @@ require 'flickraw'
 	end
 
     if (emailadress.length > 0 && emailadress.include?("@sabanciuniv.edu"))
-      @user.sabancimail = emailadress
+      @user.sabancimail = emailadress.downcase
       @user.save!
       redirect_to root_path
     else
