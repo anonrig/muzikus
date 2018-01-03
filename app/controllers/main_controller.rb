@@ -28,7 +28,7 @@ require 'flickraw'
 	isAlreadyRegistered = false
 	
     Users.all.each do |item|
-      if item.sabancimail == emailadress
+      if item.sabancimail == emailadress.downcase
 		isAlreadyRegistered = true
         redirect_to mail_path
       end
