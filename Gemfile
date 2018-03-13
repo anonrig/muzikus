@@ -4,7 +4,7 @@ ruby '2.3.3'
 gem 'rails', '4.2.2'
 
 #gem 'activeadmin'
-gem 'pg'
+gem 'pg', '0.11.0'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~>0.3.18'
 
