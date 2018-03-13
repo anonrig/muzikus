@@ -4,7 +4,7 @@ ruby '2.3.3'
 gem 'rails', '4.2.2'
 
 #gem 'activeadmin'
-gem 'pg'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '~>0.3.18'
 
@@ -51,6 +51,10 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :production do
+	gem 'pg'
 end
 
 # Use ActiveModel has_secure_password
