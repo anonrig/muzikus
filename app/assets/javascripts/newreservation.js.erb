@@ -10,32 +10,32 @@ $(document).ready(function(){
         phone.empty();
         email.empty();
 				<% rooms=Rooms.all %>
-if (id == 1){ //davul odasi
-    address.append('<%= rooms.find_by_id(1).officer%>'  );
-    phone.append('<%= rooms.find_by_id(1).officer_num%>');
-    email.append('<%= rooms.find_by_id(1).officer_mail%>');
-} else if (id == 2){ //studyo
+		if (id == 1){ //davul odasi
+		    address.append('<%= rooms.find_by_id(1).officer%>'  );
+		    phone.append('<%= rooms.find_by_id(1).officer_num%>');
+		    email.append('<%= rooms.find_by_id(1).officer_mail%>');
+		} else if (id == 2){ //studyo
 
-			address.append('<%= rooms.find_by_id(2).officer%>'  );
-			phone.append('<%= rooms.find_by_id(2).officer_num%>');
-			email.append('<%= rooms.find_by_id(2).officer_mail%>');
-} else if (id == 3){ // piyano odasi 1
+					address.append('<%= rooms.find_by_id(2).officer%>');
+					phone.append('<%= rooms.find_by_id(2).officer_num%>');
+					email.append('<%= rooms.find_by_id(2).officer_mail%>');
+		} else if (id == 3){ // piyano odasi 1
 
-			address.append('<%= rooms.find_by_id(3).officer%>'  );
-			phone.append('<%= rooms.find_by_id(3).officer_num%>');
-			email.append('<%= rooms.find_by_id(3).officer_mail%>');
-}
+					address.append('<%= rooms.find_by_id(3).officer%>'  );
+					phone.append('<%= rooms.find_by_id(3).officer_num%>');
+					email.append('<%= rooms.find_by_id(3).officer_mail%>');
+		}
 
-else if (id == 5){ // san odasi
+		else if (id == 5){ // san odasi
 
-			address.append('<%= rooms.find_by_id(5).officer%>'  );
-			phone.append('<%= rooms.find_by_id(5).officer_num%>');
-			email.append('<%= rooms.find_by_id(5).officer_mail%>');
-} else { //hangar
-    address.append('<%= rooms.find_by_id(6).officer%>');
-    phone.append('<%= rooms.find_by_id(6).officer_num%>');
-    email.append('<%= rooms.find_by_id(6).officer_mail%>');
-}
+					address.append('<%= rooms.find_by_id(5).officer%>'  );
+					phone.append('<%= rooms.find_by_id(5).officer_num%>');
+					email.append('<%= rooms.find_by_id(5).officer_mail%>');
+		} else { //hangar
+		    address.append('<%= rooms.find_by_id(6).officer%>');
+		    phone.append('<%= rooms.find_by_id(6).officer_num%>');
+		    email.append('<%= rooms.find_by_id(6).officer_mail%>');
+		}
 	});
 
 	$('#submitreservation').on('click', function(event){

@@ -128,6 +128,13 @@ namespace :reserve do
 			tuesday_end_date=tuesday_start_date+duration.hours
 			tuesdayRes=Reservations.new(user_id: muzikus_id, room_id: davul_odasi_id, start_date: tuesday_start_date, end_date: tuesday_end_date, info:"Davul Dersi", hour: duration)
 			tuesdayRes.save
+		#carsamba 10:30-19:30	
+			wednesday=Time.now+4.days
+			wednesday_start_date=Time.parse("#{wednesday.strftime('%F')} 10:30")
+			duration=9
+			wednesday_end_date=wednesday_start_date+duration.hours
+			wednesdayRes=Reservations.new(user_id: muzikus_id, room_id: davul_odasi_id, start_date: wednesday_start_date, end_date: wednesday_end_date, info:"Davul Dersi", hour: duration)
+			wednesdayRes.save
 		#perşembe 10:30 - 19:30
 			thursday=Time.now+5.days
 			thursday_start_date=Time.parse("#{thursday.strftime('%F')} 10:30")
