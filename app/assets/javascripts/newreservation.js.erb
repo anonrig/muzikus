@@ -11,7 +11,7 @@ $(document).ready(function(){
         email.empty();
 				<% rooms=Rooms.all %>
 		if (id == 1){ //davul odasi
-		    address.append('<%= rooms.find_by_id(1).officer%>'  );
+		    address.append('<%= rooms.find_by_id(1).officer%>');
 		    phone.append('<%= rooms.find_by_id(1).officer_num%>');
 		    email.append('<%= rooms.find_by_id(1).officer_mail%>');
 		} else if (id == 2){ //studyo
