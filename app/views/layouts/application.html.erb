@@ -1,44 +1,21 @@
 
 <!DOCTYPE html>
-<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
-<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
-<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+<!--[if IE 8]>		  <html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>		  <html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->  <html> <!--<![endif]-->
 	<head>
 
 		<!-- Basic -->
 		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">   
+
 		<title>Muzikus - Sabanci University Music Club</title>
-		<meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
-		<meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
-		<meta name="author" content="Yagiz Nizipli">
+        <meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
+        <meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
+        <meta name="author" content="Yagiz Nizipli">
 
-		<%= javascript_include_tag "application" %>
-		<%= csrf_meta_tags %>
-		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- Web Fonts  -->
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-
-		<!-- Libs CSS -->
-		<link rel="stylesheet" href="/css/bootstrap.css">
-		<link rel="stylesheet" href="/css/fonts/font-awesome/css/font-awesome.css">
-		<link rel="stylesheet" href="/vendor/flexslider/flexslider.css" media="screen" />
-		<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" media="screen" />
-
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="/css/theme.css">
-		<link rel="stylesheet" href="/css/theme-elements.css">
-
-		<!-- Responsive CSS -->
-		<link rel="stylesheet" href="/css/bootstrap-responsive.css" />
-		<link rel="stylesheet" href="/css/theme-responsive.css" />
-
-		<!-- Current Page Styles -->
-		<link rel="stylesheet" href="/vendor/revolution-slider/css/settings.css" media="screen" />
-		<link rel="stylesheet" href="/vendor/revolution-slider/css/captions.css" media="screen" />
-		<link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css" media="screen" />
+        <%= javascript_include_tag "application" %>
+        <%= csrf_meta_tags %>
 
 		<!-- Favicons -->
 		<link rel="shortcut icon" href="/img/favicon.ico">
@@ -47,266 +24,278 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
 		<link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png">
 
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Web Fonts  -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/vendor/animate/animate.min.css">
+		<link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.min.css">
+		<link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="/vendor/magnific-popup/magnific-popup.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="/css/theme.css">
+		<link rel="stylesheet" href="/css/theme-elements.css">
+		<link rel="stylesheet" href="/css/theme-blog.css">
+		<link rel="stylesheet" href="/css/theme-shop.css">
+
+		<!-- Current Page CSS -->
+		<link rel="stylesheet" href="/vendor/rs-plugin/css/settings.css">
+		<link rel="stylesheet" href="/vendor/rs-plugin/css/layers.css">
+		<link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css">
+		<link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css">
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="/css/skins/default.css">
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="/css/custom.css">
+
 		<!-- Head Libs -->
-		<script src="/vendor/modernizr.js"></script>
+		<script src="/vendor/modernizr/modernizr.min.js"></script>
+        <link href="/css/bootstrap-material-datetimepicker.css" rel="stylesheet" media="screen">
 
-		<!--[if IE]>
-			<link rel="stylesheet" href="css/ie.css">
-		<![endif]-->
-
-		<!--[if lte IE 8]>
-			<script src="/vendor/respond.js"></script>
-		<![endif]-->
-
-		<!-- Facebook OpenGraph Tags -->
-		<meta property="og:title" content="Muzikus Alfonso"/>
-		<meta property="og:url" content="http://www.muzik.us"/>
-		<meta property="og:image" content="http://www.muzik.us/img/facebook-image.png"/>
-		<meta property="og:site_name" content="Muzikus Alfonso"/>
-		<meta property="fb:app_id" content="151206855076651"/>
-		<meta property="og:description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubu Muzikus'un reservasyon sistemidir. "/>
+		<script src="/vendor/jquery/jquery.min.js"></script>
+		<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 	</head>
 	<body>
-
 		<div class="body">
-			<header>
-				<div class="container">
-					<h1 class="logo">
-						<%= link_to "<img alt='Muzikus Alfonso' src='/img/logo.png'>".html_safe, root_path %>
-
-					</h1>
-					<div class="search">
-						<form class="form-search">
-							<input type="text" class="input-medium search-query" placeholder="Search...">
-							<button class="search" type="submit"><i class="icon-search"></i></button>
-						</form>
-					</div>
-					<nav>
-						<ul class="nav nav-pills nav-top">
-
-
-							<% if current_user %>
-							<li>
-								<%= link_to "<i class='icon-user'></i>Log Out #{current_user.name.split(' ')[0]}".html_safe, signout_path, id: "sign_out" %>
-							</li>
-							<% else %>
-							<li>
-								<%= link_to "<i class='icon-user'></i>Register/Login".html_safe, '/auth/facebook', id: "sign_in" %>
-							</li>
-
-							<% end %>
-
-							<li>
-								<%= link_to '<i class="icon-angle-right"></i>Contact Us'.html_safe, contactus_path, 'data-no-turbolink' => true %>
-							</li>
-
-							<li class="phone">
-								<span><i class="icon-phone"></i>+90 (216) 483-9000</span>
-							</li>
-						</ul>
-					</nav>
-					<div class="social-icons">
-						<a href="http://www.facebook.com/muzikus" target="_blank" title="Facebook" data-placement="bottom" rel="tooltip"><i class="icon-facebook"></i><span>Facebook</span></a>
-						<a href="http://www.twitter.com/muzikus" title="Twitter" data-placement="bottom" rel="tooltip"><i class="icon-twitter"></i><span>Twitter</span></a>
-					</div>
-					<nav>
-						<ul class="nav nav-pills nav-main" id="mainMenu">
-							<li>
-								<%= link_to "Home", root_path %>
-							</li>
-							<li>
-								<a href="/aboutus">About Us</a>
-							</li>
-
-							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									Music
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<%= link_to "Projects", projects_path %>
-									</li>
-									<li>
-										<%= link_to "Bands", bands_path %>
-									</li>
-								</ul>
-							</li>
-
-							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									Facilities
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<%= link_to "Events", events_path %>
-									</li>
-									<li>
-										<%= link_to "Faculty Teachers", teachers_path %>
-									</li>
-									<li>
-										<%= link_to "Rooms & Studios", rooms_path %>
-									</li>
-								</ul>
-							</li>
-
-							<li>
-								<%= link_to "Gallery", gallery_path %>
-							</li>
-
-							<% if current_user %>
-								<% if current_user.sabancimail && Muzikususers.where('email = ?', current_user.sabancimail).count > 0 %>
-									<li class ="dropdown">
-										<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-											Alfonso
-											<i class="icon-angle-down"></i>
-										</a>
-										<ul class="dropdown-menu">
-											<li>
-												<%= link_to "Reserve", new_reservation_path %>
+			<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 57, 'stickySetTop': '-57px', 'stickyChangeLogo': true}">
+				<div class="header-body">
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-logo">
+                                    <%= link_to "<img alt='Muzikus Alfonso' width='70' height='70' data-sticky-width='40' data-sticky-height='40' data-sticky-top='33' src='/img/logo.png'>".html_safe, root_path %>
+								</div>
+							</div>
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-search hidden-xs">
+										<form id="searchForm" action="page-search-results.html" method="get">
+											<div class="input-group">
+												<input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+												</span>
+											</div>
+										</form>
+									</div>
+									<nav class="header-nav-top">
+										<ul class="nav nav-pills">
+											<li class="hidden-xs">
+												<a href="/aboutus"><i class="fa fa-angle-right"></i> About Us</a>
 											</li>
-											<li>
-												<%= link_to "View all", reservation_path %>
+											<li class="hidden-xs">
+												<a href="/contactus"><i class="fa fa-angle-right"></i> Contact Us</a>
 											</li>
+											<% if current_user %>
 											<li>
-												<%= link_to "How to?", howto_path %>
+												<a href="/sign_out"><i class="fa fa-sign-out"></i>Log Out, <%= current_user.name.split(' ')[0] %></a>
 											</li>
+											<% else %>
+											<li>
+												<a href="/auth/google_oauth2" "><i class="fa fa-sign-in"></i>Register/Login</a>
+											</li>
+											<% end %>
 										</ul>
-
-									</li>
-
-									<li>
-										<%= link_to "SCOUT", scout_path %>
-									</li>
-									<% else %>
-									<li>
-									<a href="#info_block"><u>Are you a member ?</u></a>
-									</li>
-								<% end %>
-							<% end %>
-
-
-
-
-							<% if current_user && current_user.sabancimail != nil %>
-								<% if Muzikususers.where("email = ?", current_user.sabancimail).count > 0 %>
-									<% if (Muzikususers.where("email = ?", current_user.sabancimail).first.ismyk == true) %>
-									<li>
-										<a href="/subjects">BLOG</a>
-										<li class="dropdown">
-											<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-												Management
-												<i class="icon-angle-down"></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li><%= link_to "Webpage Users", admin_muzikus_path %></li>
-												<li><%= link_to "Muzikus Members", admin_users_path %></li>
-												<li><%= link_to "Budget Status", admin_budget_path %></li>
-												<li><%= link_to "Support", admin_support_path %></li>
-												<li><%= link_to "Logs", admin_log_path %></li>
-											</ul>
-										</li>
-									<% end %>
-								<% end %>
-							<% end %>
-
-						</ul>
-					</nav>
+									</nav>
+								</div>
+								<div class="header-row">
+									<div class="header-nav">
+										<button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+											<i class="fa fa-bars"></i>
+										</button>
+										<ul class="header-social-icons social-icons hidden-xs">
+											<li class="social-icons-facebook"><a href="http://www.facebook.com/muzikus" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+											<li class="social-icons-twitter"><a href="http://www.twitter.com/muzikus" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+											<li class="social-icons-instagram"><a href="http://www.instagram.com/muzikussabanci" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+										</ul>
+										<div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+											<nav>
+												<ul class="nav nav-pills" id="mainNav">
+													<li class="">
+														<%= link_to "HOME", root_path %>
+													</li>
+													<li class="">
+														<%= link_to "ABOUT US", aboutus_path %>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-toggle" href="#">
+															MUSIC
+														</a>
+														<ul class="dropdown-menu">
+															<li>
+																<%= link_to "Projects", projects_path %>
+															</li>
+															<li>
+																<%= link_to "Bands", bands_path %>
+															</li>
+														</ul>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-toggle" href="#">
+															FACILITIES
+														</a>
+														<ul class="dropdown-menu">
+															<li>
+																<%= link_to "Events" %>
+															</li>
+															<li>
+																<%= link_to "Faculty Teachers", teachers_path %>
+															</li>
+														</ul>
+													</li>
+													<li class="">
+														<%= link_to "Gallery", gallery_path %>
+													</li>
+													<% if current_user && current_user.is_member %>
+													<li class="dropdown">
+														<a class="dropdown-toggle" href="#">
+															ALFONSO
+														</a>
+														<ul class="dropdown-menu">
+															<li>
+																<%= link_to "Reserve", reservations_path %>
+															</li>
+															<li>
+																<%= link_to "How to?", howto_path %>
+															</li>
+														</ul>
+													</li>
+													<li class="">
+														<%= link_to "SCOUT", profile_path(current_user.email.split('@')[0]) %>
+													</li>
+														<% if current_user.is_myk %>
+														<li class="dropdown">
+															<a class="dropdown-toggle" href="#">
+																MANAGEMENT
+															</a>
+															<ul class="dropdown-menu">
+																<li><%= link_to "Users", admin_users_path %></li>
+																<li><%= link_to "Rooms", admin_rooms_path %></li>
+																<li><%= link_to "Budget Status", admin_budget_path %></li>
+																<li><%= link_to "Faculty Lessons", admin_lessons_path %></li>
+															</ul>
+														</li>
+														<% end %>
+													<% end %>
+												</ul>
+											</nav>
+										</div>
+									</div>
+								</div> 
+							</div>
+						</div>
+					</div>
 				</div>
 			</header>
-
 			<%= yield %>
-
-			<footer>
+			
+			<footer id="footer">
 				<div class="container">
 					<div class="row">
-						<div class="footer-ribon">
+						<div class="footer-ribbon">
 							<span>Get in Touch</span>
 						</div>
-						<div class="span3">
-							<h4>On Twitter</h4>
+						<div class="col-md-3">
+							<h4>Latest Tweets</h4>
 							<a class="twitter-timeline" href="https://twitter.com/muzikus" data-widget-id="693200858524295169">Tweets by @muzikus</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 						</div>
-						<div class="span3">
+						<div class="col-md-3">
 							<h4>On Facebook</h4>
-
 							<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fmuzikus&amp;width=270&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;appId=151206855076651" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:258px; background: white; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;" allowTransparency="true"></iframe>
-
 						</div>
-                        <div class="span3">
-                            <h4>On Instagram</h4>
+						<div class="col-md-3">
+							<h4>On Instagram</h4>
 							<blockquote class="instagram-media" data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:37.5% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/_pj4X-oRTf/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A photo posted by Müzikus (@muzikussabanci)</a> on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2015-12-23T21:27:15+00:00">Dec 23, 2015 at 1:27pm PST</time></p></div></blockquote>
-<script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
-                        </div>
-						<div class="span3">
+							<script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+						</div>
+						<div class="col-md-3">
 							<div class="contact-details">
 								<h4>Contact Us</h4>
 								<ul class="contact">
-									<li><p><i class="icon-map-marker"></i> <strong>Address:</strong> Sabancı Universitesi Orta Mahalle, Universite Caddesi No: 27 34956 Tuzla-Istanbul/TURKEY</p></li>
-									<li><p><i class="icon-phone"></i> <strong>Phone:</strong> +90 (216) 483 9000 </p></li>
-									<li><p><i class="icon-envelope"></i> <strong>Email:</strong> muzikus@sabanciuniv.edu </p></li>
+									<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> Sabancı Universitesi Orta Mahalle, Universite Caddesi No: 27 34956 Tuzla-Istanbul/TURKEY</p></li>
+									<li><p><i class="fa fa-phone"></i> <strong>Phone:</strong> +90 (216) 483 9000 </p></li>
+									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> muzikus@sabanciuniv.edu </p></li>
 								</ul>
 							</div>
 						</div>
-
 					</div>
 				</div>
-				<div class="footer-copyright">
-					<div class="container">
-						<div class="row">
-
-							<div class="span8">
-								<p>© Copyright 2013 by Muzikus. All Rights Reserved.</p>
-							</div>
-							<div class="span4">
-								<nav id="sub-menu">
-									<ul>
-										<li><%= link_to "How to?", howto_path %></li>
-										<li><%= link_to "Features", system_path %></li>
-										<li><%= link_to "Contact", contactus_path %></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p>© Copyright 2013 by Muzikus. All Rights Reserved.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <nav id="sub-menu">
+                                    <ul>
+                                        <li><%= link_to "Contact Us", contactus_path %></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</footer>
 		</div>
+		<!-- Vendor -->
+		<script src="/vendor/jquery.appear/jquery.appear.min.js"></script>
+		<script src="/vendor/common/common.min.js"></script>
+		<script src="/vendor/jquery.validation/jquery.validation.min.js"></script>
+		<script src="/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+		<script src="/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+		<script src="/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="/vendor/vide/vide.min.js"></script>
 
-		<!-- Libs -->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="/vendor/jquery.js"><\/script>')</script>
-		<script src="/vendor/jquery.easing.js"></script>
-		<script src="/vendor/jquery.cookie.js"></script>
-		<script src="/master/style-switcher/style.switcher.js"></script> <!-- Style Switcher -->
-		<script src="/vendor/bootstrap.js"></script>
-		<script src="/vendor/selectnav.js"></script>
-		<script src="/vendor/twitterjs/twitter.js"></script>
-		<script src="/vendor/revolution-slider/js/jquery.themepunch.plugins.js"></script>
-		<script src="/vendor/revolution-slider/js/jquery.themepunch.revolution.js"></script>
-		<script src="/vendor/flexslider/jquery.flexslider.js"></script>
-		<script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
-		<script src="/vendor/fancybox/jquery.fancybox.js"></script>
-		<script src="/vendor/jquery.validate.js"></script>
-		<script src="/vendor/fancybox/jquery.fancybox.js"></script>
-		<script src="/vendor/isotope/jquery.isotope.js"></script>
-
-
-
-		<script src="/js/plugins.js"></script>
-
-		<!-- Current Page Scripts -->
-		<script src="/js/views/view.home.js"></script>
-
-		<!-- Theme Initializer -->
+		<!-- Theme Base, Components and Settings -->
 		<script src="/js/theme.js"></script>
+		
+		<!-- Current Page Vendor and Views -->
+		<script src="/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+		<script src="/js/views/view.home.js"></script>
+		
+		<!-- Theme Custom -->
+		<script src="/js/custom.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="/js/theme.init.js"></script>
 
-		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<script src="vendor/jquery.mapmarker.js"></script>
+		<!-- Examples -->
+		<script src="/js/examples/examples.demos.js"></script>
+
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+			ga('create', 'UA-12345678-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		 -->
 
 	</body>
 </html>

@@ -1,0 +1,66 @@
+<div role="main" class="main">
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li>MANAGEMENT</li>
+						<li><%= link_to "ROOMS", admin_rooms_path %></li>
+						<li class="active">MANAGERS</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1>Edit Managers</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container">
+			<div class="row">
+				<% manager_options = @ykList.collect {|x| [(x.name.nil? ? "" : "#{x.name} - ") + x.email, x.id]} %>
+				<% @rooms.each do |r| %>
+					<% managers = @managers.select{|m| m[:room_id] == r.id }%>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="featured-boxes featured-boxes-style-8">
+			                <div class="featured-box featured-box-quaternary featured-box-text-left">
+			                	<div class="box-content">
+			                		<div class="row">
+			                			<div class="col-md-12">
+					                		<h3><%= r.name %></h3>	                		
+			                			</div>
+			                		</div>
+			                		<div class="row">
+										<% if managers.length == 0 %>
+											<h4>No manager assigned yet...</h4>
+										<% else %>
+											<% managers.each do |m| %>
+												<% user = m.user %> 
+												<div class="input-group mb-md">
+													<span class="input-group-addon btn-danger">
+														<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_deletemanager_path(m), method: :delete, data: { confirm: 'Are you sure?' }%>
+													</span>
+													<input class="form-control" type="text" value="<%= (user.name.nil? ? "" : "#{user.name} - ") + user.email %>" disabled="">
+												</div>
+											<% end %>
+										<% end %>
+										<%= form_for @newManager, :url => {:controller => "admin", :action => "createmanager"} do |f| %>
+											<%= f.select :user_id, options_for_select(manager_options), {:include_blank => "Select One"}, id: :manager_user_id, :class => "form-control mb-md" %>
+												<%= f.hidden_field :room_id, :value => r.id %>
+												<%= f.submit "Add Manager", :class =>"btn btn-block btn-primary" %>
+										<% end %>
+			                		</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</section>
+</div>

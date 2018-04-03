@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,137 +10,134 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405185912) do
+ActiveRecord::Schema.define(version: 20180331184750) do
 
-  create_table "budgets", force: :cascade do |t|
-    t.string   "amount",      limit: 255
-    t.string   "reason",      limit: 255
-    t.string   "user_id",     limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "budget_type", limit: 255
+  create_table "banned_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user"
+    t.datetime "banned_until"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",    limit: 255, null: false
-    t.string   "data_content_type", limit: 255
-    t.integer  "data_file_size",    limit: 4
-    t.string   "data_fingerprint",  limit: 255
-    t.integer  "assetable_id",      limit: 4
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width",             limit: 4
-    t.integer  "height",            limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+  create_table "budgets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "amount"
+    t.string "reason"
+    t.string "budget_type"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
-
-  create_table "muzikususers", force: :cascade do |t|
-    t.string   "email",      limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "sid",        limit: 4
-    t.boolean  "isyk",       limit: 1
-    t.boolean  "ismyk",      limit: 1
-    t.boolean  "isdavul",    limit: 1
-    t.boolean  "isworkshop", limit: 1
-    t.boolean  "isblogger",  limit: 1
+  create_table "faculty_lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "teacher_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_faculty_lessons_on_teacher_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.text     "title",      limit: 65535
-    t.integer  "subject_id", limit: 4
-    t.integer  "user_id",    limit: 4
-    t.text     "body",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "faculty_students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "faculty_lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["faculty_lesson_id"], name: "index_faculty_students_on_faculty_lesson_id"
+    t.index ["user_id"], name: "index_faculty_students_on_user_id"
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "room_id",    limit: 4
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.boolean  "isCanceled", limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "day",        limit: 4
-    t.text     "info",       limit: 65535
-    t.integer  "hour",       limit: 4
+  create_table "instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "category"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "officer",      limit: 255, null: false
-    t.string   "officer_num",  limit: 255, null: false
-    t.string   "officer_mail", limit: 255, null: false
+  create_table "lesson_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "faculty_lesson_id"
+    t.bigint "room_id"
+    t.string "weekday"
+    t.time "start_at"
+    t.time "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["faculty_lesson_id"], name: "index_lesson_schedules_on_faculty_lesson_id"
+    t.index ["room_id"], name: "index_lesson_schedules_on_room_id"
   end
 
-  create_table "roomschedules", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "room_id",    limit: 4
-    t.integer  "day",        limit: 4
+  create_table "managers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.string "manager_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_managers_on_room_id"
+    t.index ["user_id"], name: "index_managers_on_user_id"
   end
 
-  create_table "scouts", force: :cascade do |t|
-    t.string   "BirinciEns",      limit: 255
-    t.string   "BirinciSev",      limit: 255
-    t.string   "BirinciYil",      limit: 255
-    t.string   "IkinciEns",       limit: 255
-    t.string   "IkinciSev",       limit: 255
-    t.string   "IkinciYil",       limit: 255
-    t.string   "VokalYetenek",    limit: 255
-    t.string   "SahneTecrubesi",  limit: 255
-    t.text     "UyeGruplar",      limit: 65535
-    t.text     "SevdiginGruplar", limit: 65535
-    t.integer  "user_id",         limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "musician_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "scout_profile_id"
+    t.bigint "instrument_id"
+    t.string "experience"
+    t.string "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_musician_infos_on_instrument_id"
+    t.index ["scout_profile_id"], name: "index_musician_infos_on_scout_profile_id"
   end
 
-  create_table "subjects", force: :cascade do |t|
-    t.text     "title",      limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "reservations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean "is_canceled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_reservations_on_room_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "supports", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.string   "subject",    limit: 255
-    t.text     "message",    limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "teachers", force: :cascade do |t|
-    t.string "full_name",  limit: 255,   null: false
-    t.string "photo",      limit: 255,   null: false
-    t.text   "bio",        limit: 65535, null: false
-    t.string "instrument", limit: 255,   null: false
-    t.string "website",    limit: 255
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "provider",         limit: 255
-    t.string   "uid",              limit: 255
-    t.string   "name",             limit: 255
-    t.string   "email",            limit: 255
-    t.string   "sabancimail",      limit: 255
-    t.string   "oauth_token",      limit: 255
-    t.datetime "oauth_expires_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "scout_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.text "bio"
+    t.string "phone_num"
     t.datetime "birthday"
+    t.boolean "is_hidden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "vocal_exp"
+    t.string "stage_exp"
+    t.index ["user_id"], name: "index_scout_profiles_on_user_id"
+  end
+
+  create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "email"
+    t.boolean "is_member"
+    t.boolean "is_yk"
+    t.boolean "is_myk"
+    t.boolean "is_workshop"
+    t.boolean "is_drum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone_num"
   end
 
 end

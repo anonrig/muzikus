@@ -1,117 +1,133 @@
 <div role="main" class="main">
-				<div id="content" class="content full">
+    <div class="slider-container rev_slider_wrapper" style="height: 700px;">
+        <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 800, 'gridheight': 475}">
+            <ul>
+                <li data-transition="fade">
+                    <img src="img/slides/slide-bg.jpg" data-fullwidthcentering="on" alt="">
 
-					<div class="slider-container">
-						<div class="slider" id="revolutionSlider">
-							<ul>
-								<li data-transition="fade" data-slotamount="10" data-masterspeed="300">
-									<img src="img/slides/slide-bg.jpg" data-fullwidthcentering="on" alt="">
-											 
-							
-
-										
-										<div class="caption fade"
-											 data-x="0"
-											 data-y="70"
-											 data-speed="500"
-											 data-start="100"
-											 data-easing="easeOutExpo"><img src="img/slides/slide-concept.png" alt=""></div>
-											 <div class="caption fade"
-											data-x="500"
-											data-y="100"
-											data-speed="500"
-											data-start="1000"
-											data-easing="easeOutExpo"><iframe width="500" height="300" src="https://www.youtube.com/embed/MFMUWCFXXsg" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="tp-caption"
+                        data-x="-65" 
+                        data-y="95"
+                        data-start="1000"
+                        data-transform_in="x:[300%];opacity:0;s:500;"><img src="img/slides/slide-concept.png" alt=""></div>
 
 
+                    <div class="tp-caption bottom-label"
+                        data-x="400" data-hoffset="0"
+                        data-y="100" data-voffset="5"
+                        data-start="2000"
+                        data-transform_in="y:[100%];opacity:0;s:500;"><iframe width="500" height="300" src="https://www.youtube.com/embed/MFMUWCFXXsg" frameborder="0" allowfullscreen></iframe></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="home-intro" id="home-intro">
+        <div class="container">
 
-								</li>
-							</ul>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <p>
+                        The easiest way to learn more about <em>Müzikus.</em>
+                        <span>You are logged in.</span>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="get-started">
+                        <%= link_to "Reserve Now!", reservations_path, class: "btn btn-lg btn-primary" %>
+                    </div>
+                </div>
+            </div>
 
-						</div>
-					</div>
-
-					<div class="home-intro">
-						<div class="container">
-
-							<div class="row">
-								<div class="span8">
-									<p>
-										The easiest way to learn more about <em>Müzikus.</em>
-										<span>You are logged in.</span>
-									</p>
-								</div>
-								<div class="span4">
-									<div class="get-started">
-										<%= link_to "Reserve Now!", new_reservation_path, class: "btn btn-large btn-primary" %>
-										<div class="learn-more">or <%= link_to "see all reservations", reservation_path %></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="container">
-
-						<div class="row center">
-							<div class="span12">
-								<h2 class="short">Welcome to <strong>Müzikus</strong>, mate!</h2>
-								<p class="featured lead">
-									Since you are a Müzikus member, you can reserve your spot at Müzikus studios!
-								</p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="home-concept">
-						<div class="container">
-
-							<div class="row center">
-								<span class="sun"></span>
-								<span class="cloud"></span>
-								<div class="span2 offset1">
-									<div class="process-image">
-										<img src="img/home-concept-item-1.png" alt="" />
-									</div>
-									<span class="shadow"></span>
-									<strong>Register</strong>
-								</div>
-								<div class="span2">
-									<div class="process-image">
-										<img src="img/home-concept-item-2.png" alt="" />
-									</div>
-									<span class="shadow"></span>
-									<strong>Reserve</strong>
-								</div>
-								<div class="span2">
-									<div class="process-image">
-										<img src="img/home-concept-item-3.png" alt="" />
-									</div>
-									<span class="shadow"></span>
-									<strong>Play</strong>
-								</div>
-								<div class="span4 offset1">
-									<div class="project-image">
-										<div id="fcSlideshow" class="fc-slideshow">
-											<ul class="fc-slides">
-												<li><a href="#"><img src="img/projects/homepage-1.png" /></a></li>
-												<li><a href="#"><img src="img/projects/homepage-2.png" /></a></li>
-												<li><a href="#"><img src="img/projects/homepage-3.png" /></a></li>
-												<li><a href="#"><img src="img/projects/homepage-4.png" /></a></li>
-											</ul>
-										</div>
-									</div>
-									<span class="shadow big"></span>
-									<strong class="our-work">Perform</strong>
-								</div>
-							</div>
-
-							<hr class="tall" />
-
-						</div>
-					</div>
-
-					
+        </div>
+    </div>
+	<div id="content" class="content full row">
+		<div class="container">
+			<div class="row center">
+				<div class="span12">
+					<h2 class="short">Welcome to <strong>Müzikus</strong>, mate!</h2>
+					<p class="featured lead">
+						Since you are a Müzikus member, you can reserve your spot at Müzikus studios!
+					</p>
 				</div>
 			</div>
+		</div>
+
+		<section class="mt-none mb-xl">
+            <div class="home-concept appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="500">
+                <svg class="home-concept-bg" x="0px" y="0px" width="345px" height="93px" viewBox="0 0 345 83" enable-background="new 0 0 345 93" xml:space="preserve">
+                    <image overflow="visible" width="26" height="39" xlink:href="img/home-concept-pin.png" transform="matrix(0.169 0.1308 -0.1308 0.169 339.8496 0.6826)" class="final-pin appear-animation" data-appear-animation="animated-pin" data-appear-animation-delay="3650">
+                    </image>
+                    <path class="line appear-animation" fill="none" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-duration="4s" d="M7.086,87.455c8.133-8.646,54.247-51.634,155.173-36.766C268.762,66.38,327.34,17.642,337.992,10.241"/>
+                    <path fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" d="M7.086,87.455c8.133-8.646,54.247-51.634,155.173-36.766C268.762,66.38,327.34,17.642,337.992,10.241"/>
+                    <image overflow="visible" width="26" height="39" xlink:href="img/home-concept-pin.png" transform="matrix(0.2137 0 0 0.2137 1 81.5898)" class="initial-pin appear-animation" data-appear-animation="animated-pin">
+                    </image>
+                </svg>
+                <div class="container">
+
+                    <div class="row center">
+                        <span class="sun"></span>
+                        <span class="cloud"></span>
+                        <div class="col-md-2 col-md-offset-1">
+                            <div class="process-image">
+                                <div class="box-image">
+                                    <svg class="small-circle" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
+                                        <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="800" cx="19.5" cy="19.5" r="19.063"/>
+                                        <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="19.5" cy="19.5" r="19.063"/>
+                                    </svg>
+                                    <img src="img/home-concept-item-1.png" alt="" class="appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="1400" />
+                                </div>
+                                <strong class="appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="1150" data-plugin-options="{'accY': 200}">Register</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="process-image">
+                                <div class="box-image">
+                                    <svg class="small-circle" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
+                                        <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="1200" cx="19.5" cy="19.5" r="19.063"/>
+                                        <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="19.5" cy="19.5" r="19.063"/>
+                                    </svg>
+                                    <img src="img/home-concept-item-2.png" alt="" class="appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="1900" />
+                                </div>
+                                <strong class="appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="2150" data-plugin-options="{'accY': 200}">Reserve</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="process-image">
+                                <div class="box-image">
+                                    <svg class="small-circle" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
+                                        <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="1700" cx="19.5" cy="19.5" r="19.063"/>
+                                        <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="19.5" cy="19.5" r="19.063"/>
+                                    </svg>
+                                    <img src="img/home-concept-item-3.png" alt="" class="appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="2400" />
+                                </div>
+                                <strong class="appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="2650" data-plugin-options="{'accY': 200}">Play</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1">
+                            <div class="project-image">
+                                <div class="box-image">
+                                    <svg class="big-circle" x="0px" y="0px" width="85px" height="85px" viewBox="0 0 85 85" enable-background="new 0 0 85 85" xml:space="preserve">
+                                        <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="2250" cx="42.5" cy="42.5" r="42.063"/>
+                                        <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="42.5" cy="42.5" r="42.063"/>
+                                    </svg>
+                                    <div id="fcSlideshow" class="fc-slideshow appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="2900">
+                                        <ul class="fc-slides">
+                                            <li><img class="img-responsive" src="img/home-concept-item-4.png" alt="" /></li>
+                                            <li><img class="img-responsive" src="img/home-concept-item-5.png" alt="" /></li>
+                                            <li><img class="img-responsive" src="img/home-concept-item-6.png" alt="" /></li>
+                                            <li><img class="img-responsive" src="img/home-concept-item-7.png" alt="" /></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <strong class="our-work appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="3150" data-plugin-options="{'accY': 300}">Perform</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <hr class="tall" />
+            </div>
+        </section>
+		
+	</div>
+</div>

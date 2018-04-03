@@ -1,0 +1,72 @@
+<div role="main" class="main">
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li>MANAGEMENT</li>
+						<li class="active">BUDGET</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1>Budget Status</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-info alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						Master, your total budget is: <%= @total %>
+					</div>				
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<%= form_for @newBudget, :url => {:controller => 'admin', :action => 'createbudget'} do |f| %>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">								
+								<div class="col-lg-6 col-md-6 col-sm-3 mb-md"><%= f.text_field :amount, :class => "form-control", :placeholder => "Amount in integer" %></div>
+								<div class="col-lg-6 col-md-6 col-sm-9 mb-md"><%= f.select :budget_type, options_for_select(["Income", "Expense"], :selected => "Income"), {:include_blank => "Select One"}, :class => "form-control" %></div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<div class="col-lg-6 col-md-6 col-sm-9 mb-md"><%= f.text_field :reason, :class => "form-control", :placeholder => "Reason..." %></div>
+								<%= f.hidden_field :user_id, :value => current_user.id %>	
+								<div class="col-lg-6 col-md-6 col-sm-3 mb-md"><%= f.submit "Add", :class => "btn btn-block btn-primary" %></div>
+							</div>
+						<% end %>							
+					</div>
+				</div>
+				<div class="col-md-12">
+					<% @budgets.each do |item| %>
+					<% if item.budget_type == "Income" %>
+						<div class="alert alert-success">
+							<div class="row">
+								<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2" style="margin: 0;"><b>+<%= item.amount %></b></div>
+								<div class="col-lg-7 col-md-10 col-sm-10 col-xs-10" style="margin: 0; text-align: right;"><%= item.reason %></div>
+								<div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="margin: 0;"><%= User.find(item.user_id).name %></div>
+								<div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="margin: 0; text-align: right;"><%= item.created_at.strftime("%B %d, %Y") %></div>
+							</div>
+						</div>
+					<% else %>
+						<div class="alert alert-danger">
+							<div class="row">
+								<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2" style="margin: 0;"><b>-<%= item.amount %></b></div>
+								<div class="col-lg-7 col-md-10 col-sm-10 col-xs-10" style="margin: 0; text-align: right;"><%= item.reason %></div>
+								<div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="margin: 0;"><%= User.find(item.user_id).name %></div>
+								<div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="margin: 0; text-align: right;"><%= item.created_at.strftime("%B %d, %Y") %></div>
+							</div>
+						</div>
+					<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

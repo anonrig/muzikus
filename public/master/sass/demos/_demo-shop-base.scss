@@ -1,0 +1,25 @@
+// Demo Shop Base
+#header {
+	.header-nav-main {
+		nav {
+			> ul {
+				> li {
+					> a.dropdown-toggle {
+						&:after {
+							font-family: FontAwesome;
+						    border: none !important;
+						    margin: 0;
+						    width: initial !important;
+						    float: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// Custom Text Color
+.custom-text-color-1 {
+	color: #666 !important;
+}

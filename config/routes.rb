@@ -1,115 +1,60 @@
-Alfonsoapp::Application.routes.draw do
+Rails.application.routes.draw do
+  root 'main#index'
 
+  get 'main' => 'main#index'
+  get 'aboutus' => 'main#aboutus', as: 'aboutus'
+  get 'contactus' => 'main#contactus', as: 'contactus'
+  get 'projects' => 'main#projects', as: 'projects'
+  get 'bands' => 'main#bands', as: 'bands'
+  get 'gallery' => 'main#gallery', as: 'gallery'
+  get 'howto' => 'main#howto', as: 'howto'  
+# admin panel
+  get 'admin' => 'admin#index'
+  get 'admin/users' => 'admin#users', as: 'admin_users'
+  get 'admin/rooms' => 'admin#rooms', as: 'admin_rooms'
+  get 'admin/managers' => 'admin#managers', as: 'admin_managers'
+  get 'admin/facultylessons' => 'admin#lessons', as: 'admin_lessons'
+  get 'admin/lessonschedule/:id' => 'admin#showschedule', as: 'admin_schedule'
+  get 'admin/budgetstatus' => 'admin#budgetstatus', as: 'admin_budget'
+  #create
+  post 'admin/createuser'
+  post 'admin/createroom'
+  post 'admin/createmanager'
+  post 'admin/createteacher'
+  post 'admin/createlesson'
+  post 'admin/createschedule'
+  post 'admin/createbudget'
+  #edit
+  patch 'admin/updatemanager' => 'admin#updatemanager'
+  post 'admin/updateroom' => 'admin#updateroom'
+  post 'admin/updateteacher' => 'admin#updateteacher'
+  #destroy
+  delete 'admin/deleteroom/:id' => 'admin#deleteroom', as: 'admin_deleteroom'
+  delete 'admin/deleteschedule/:id' => 'admin#deleteschedule', as: 'admin_deleteschedule'
+  delete 'admin/deleteteacher/:id' => 'admin#deleteteacher', as: 'admin_deleteteacher'
+  delete 'admin/deletelesson/:id' => 'admin#deletelesson', as: 'admin_deletelesson'
+  delete 'admin/deleteuser/:id' => 'admin#deleteuser', as: 'admin_deleteuser'
+  delete 'admin/deletemanager/:id' => 'admin#deletemanager', as: 'admin_deletemanager'
+# Alfonso
+  get 'reservations' => 'reservations#index', as: 'reservations'
+  post 'reservation/create' => 'reservations#create'
+  delete 'reservation/destroy/:id' => 'reservations#destroy', as: 'reservation_destroy'
+#SCOUT
+  get 'scout/discover' => 'scout_profiles#index', as: 'scout'
+  get 'scout/profile/:email' => 'users#show', as: 'profile'
+  #get 'users/profile/:id/settings' => 'user#usersettings', as: 'user_settings'
+  patch 'users/:id' => 'users#update'
+  post 'users/scout' => 'scout_profiles#create'
+  patch 'user/scout/:id' => 'scout_profiles#update'
+  post 'user/scout/info' => 'musician_infos#create'
+  patch 'user/scout/info/:id' => 'musician_infos#update'
+  delete 'user/scout/deleteinfo/:id' => 'musician_infos#destroy', as: 'info_destroy'
 
-  resources :subjects
-  mount Ckeditor::Engine => '/ckeditor'
-  resources :posts
-  resources :teachers
-  get "scout", to: 'scout#index', as: 'scout'
-  get "scout/new", as: 'new_scout'
-  post "scout/create", as: 'create_scout'
-  get "scout/edit", as: 'edit_scout'
-  
-  get "sessions/create"
-  get "sessions/destroy"
-  root :to => 'main#index'
-  
-  match '/contactus' => 'main#contactus', via: :get, :as => 'contactus'
-  match '/contactus' => 'main#contactsubmit', via: :post, :as =>'submit_contactus'
-  match '/howto' => 'main#howto', via: :get, :as => 'howto'
-  match '/system' => 'main#system', via: :get, :as => 'system'
-  match '/aboutus' => 'main#aboutus', via: :get, :as => 'aboutus'
-  match '/mail' => 'main#mail', via: :get, :as => 'mail'
-  match '/mail' => 'main#createmail', via: :post, :as => 'submit_mail'
-  
-  match '/events' => 'main#events', via: :get, :as => 'events'
-  #match '/faculty' => 'main#faculty', via: :get, :as => 'faculty'
-  match '/rooms' => 'main#rooms', via: :get, :as => 'rooms'
-  match '/projects' => 'main#projects', via: :get, :as => 'projects'
-  match '/bands' => 'main#bands', via: :get, :as => 'bands'
-  #match '/gallery' => 'main#gallery', via: :get, :as => 'gallery'
-  match '/gallery' => 'main#gallery', via: :get, :as => 'gallery'
-  match '/faq' => 'main#faq', via: :get, :as => 'faq'
-  
-  match 'auth/:provider/callback' => 'sessions#create', via: :get
-  match 'auth/failure' => redirect('/'), via: :get
-  match 'signout' => 'sessions#destroy', :as => 'signout', via: :get
+#Faculty
+  get 'teachers' => 'teachers#index', as: 'teachers'
 
-  match 'reservations' => 'reservations#index', via: :get, :as => 'reservation'
-  match 'reservations/new' => 'reservations#new', via: :get, :as => 'new_reservation'
-  match 'reservations/new' => 'reservations#create', via: :post, :as => 'create_reservation'
-  #delete 'reservations/delete/:id' => 'reservations#delete'
-  match 'reservations/delete/:id' => 'reservations#delete', via: :delete, :as => 'reservation_delete'
-  #resources: :reservations, :only => [:delete]
-  
-  get "admin/users"
-  get "admin/budget"
-  post "admin/createuser"
-  post "admin/deleteuser"
-  post "admin/addbudget"
-  get "admin/support"
-  post "admin/supportdelete"
-  get "admin/muzikus"
-  get "admin/edit/:id" => 'admin#edit'
-  post "admin/edit/" => 'admin#editSubmit'
-  get "admin/log" => 'admin#log'
-  
+  get 'auth/:provider/callback', to: "sessions#create"
+  get 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
-
-  #Teacher controllers
-  
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-  
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

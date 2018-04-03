@@ -1,88 +1,115 @@
 /*
 Name: 			View - Contact
-Written by: 	Crivos - (http://www.crivos.com)
-Version: 		1.0
+Written by: 	Okler Themes - (http://www.okler.net)
+Theme Version:	5.7.2
 */
 
-var Contact = {
+(function($) {
 
-	initialized: false,
+	'use strict';
 
-	initialize: function() {
+	/*
+	Contact Form: Basic
+	*/
+	$('#contactForm').validate({
+		submitHandler: function(form) {
 
-		if (this.initialized) return;
-		this.initialized = true;
+			var $form = $(form),
+				$messageSuccess = $('#contactSuccess'),
+				$messageError = $('#contactError'),
+				$submitButton = $(this.submitButton),
+				$errorMessage = $('#mailErrorMessage');
 
-		this.build();
-		this.events();
+			$submitButton.button('loading');
 
-	},
+			// Ajax Submit
+			$.ajax({
+				type: 'POST',
+				url: $form.attr('action'),
+				data: {
+					name: $form.find('#name').val(),
+					email: $form.find('#email').val(),
+					subject: $form.find('#subject').val(),
+					message: $form.find('#message').val()
+				}
+			}).always(function(data, textStatus, jqXHR) {
 
-	build: function() {
+				$errorMessage.empty().hide();
 
-		this.validations();
+				if (data.response == 'success') {
 
-	},
+					$messageSuccess.removeClass('hidden');
+					$messageError.addClass('hidden');
 
-	events: function() {
+					// Reset Form
+					$form.find('.form-control')
+						.val('')
+						.blur()
+						.parent()
+						.removeClass('has-success')
+						.removeClass('has-error')
+						.find('label.error')
+						.remove();
 
-		
-
-	},
-
-	validations: function() {
-
-		$("#contactForm").validate({
-			submitHandler: function(form) {
-
-				$.ajax({
-					type: "POST",
-					url: "php/contact-form.php",
-					data: {
-						"name": $("#contactForm #name").val(),
-						"email": $("#contactForm #email").val(),
-						"subject": $("#contactForm #subject").val(),
-						"message": $("#contactForm #message").val()
-					},
-					dataType: "json",
-					success: function (data) {
-						if (data.response == "success") {
-							$("#contactSuccess").removeClass("hidden");
-							$("#contactError").addClass("hidden");
-						} else {
-							$("#contactError").removeClass("hidden");
-							$("#contactSuccess").addClass("hidden");
-						}
+					if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
+						$('html, body').animate({
+							scrollTop: $messageSuccess.offset().top - 80
+						}, 300);
 					}
 
-				});
-			},
-			rules: {
-				name: {
-					required: true
-				},
-				email: {
-					required: true,
-					email: true
-				},
-				subject: {
-					required: true
-				},
-				message: {
-					required: true
+					$submitButton.button('reset');
+					
+					return;
+
+				} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
+					$errorMessage.html(data.errorMessage).show();
+				} else {
+					$errorMessage.html(data.responseText).show();
 				}
+
+				$messageError.removeClass('hidden');
+				$messageSuccess.addClass('hidden');
+
+				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
+					$('html, body').animate({
+						scrollTop: $messageError.offset().top - 80
+					}, 300);
+				}
+
+				$form.find('.has-success')
+					.removeClass('has-success');
+					
+				$submitButton.button('reset');
+
+			});
+		}
+	});
+
+	/*
+	Contact Form: Advanced
+	*/
+	$('#contactFormAdvanced').validate({
+		onkeyup: false,
+		onclick: false,
+		onfocusout: false,
+		rules: {
+			'captcha': {
+				captcha: true
 			},
-			highlight: function (element) {
-				$(element).closest('.control-group').removeClass('success').addClass('error');
+			'checkboxes[]': {
+				required: true
 			},
-			success: function (element) {
-				element.text('OK!').addClass('valid')
-					.closest('.control-group').removeClass('error').addClass('success');
+			'radios': {
+				required: true
 			}
-		});
+		},
+		errorPlacement: function(error, element) {
+			if (element.attr('type') == 'radio' || element.attr('type') == 'checkbox') {
+				error.appendTo(element.parent().parent());
+			} else {
+				error.insertAfter(element);
+			}
+		}
+	});
 
-	}
-
-};
-
-Contact.initialize();
+}).apply(this, [jQuery]);

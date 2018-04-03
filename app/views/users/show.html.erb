@@ -1,0 +1,251 @@
+<div role="main" class="main">
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li>SCOUT</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1><strong>Muzikus</strong> Scout.</h1> <%=link_to "click", scout_path%> to discover other musicians...
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 mb-md">
+					<div class="featured-boxes featured-boxes-style-8">
+		                <div class="featured-box featured-box-quaternary featured-box-text-left">
+		                	<div class="box-content" style="height: 645px;">	
+								<div class="row">
+									<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+									<p><i class="fa fa-user"></i> <strong>Name:</strong> <%= @user.name %></p>
+									<p><i class="fa fa-envelope"></i> <strong>Email:</strong> <%= @user.email %></p>
+									<p><i class="fa fa-phone"></i> <strong>Phone:</strong> <%= @user.phone_num.nil? ? "" : @user.phone_num %></p>
+									</div>
+								</div>
+								<div>
+									<ul class="nav nav-tabs tab-nav-right" role="tablist" id="scout_tabs">
+										<li role="presentation" class="active"><a href="#profile_tab" data-toggle="tab" id="scout_info">Info</a></li>
+										<li role="presentation" ><a href="#instruments_tab" data-toggle="tab" id="scout_instruments">Instruments</a></li>
+										<% if current_user.id == @user.id %>
+										<li role="presentation"><a href="#settings_tab" data-toggle="tab" id="scout_settings">Settings</a></li>
+										<% end %>
+									</ul>
+									<div class="tab-content" id="scout_inf">
+										<div role="tabpanel" class="tab-pane fade in active" id="profile_tab">
+											<div class="row">
+												<div class="col-md-12">
+													<b>Birthday: </b><%= @scout.birthday.strftime("%B %d, %Y") %><br>
+													<br><b>Stage Experience: </b><%= @scout.stage_exp %><br>
+													<br><b>Vocal Experience: </b><%= @scout.vocal_exp %><br>
+													<br><b>Bio:</b><br>
+													<p id="bio_field" style="white-space: pre-wrap;"><%= @scout.bio %><p>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane fade" id="instruments_tab">
+											<% if current_user.id == @scout.user_id %>
+												<% instrument_options = @allInst.collect{|x| [x.name, x.id]} %>
+												<%= form_for @newInstrument, :url => {:controller => 'musician_infos', :action => 'create'} do |f| %>
+													<div class="form-group">
+														<div class="row clearfix">
+															<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+																<b>Instrument:</b>
+																<%= f.select :instrument_id, options_for_select(instrument_options), {:include_blank => "Select One"}, :class => "form-control show-tick" %>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+																<b>Experience:</b>
+																<%= f.select :experience, options_for_select(["Beginner","Intermediate", "Advanced"]), {:include_blank => "Select One"}, :class => "form-control show-tick" %>
+															</div>
+														</div>
+														<div class="form-line">
+															<b>Details:</b>										
+															<%= f.text_area :details, :class => "form-control no-resize auto-growth", :placeholder => "People might want to know more details about your experience, master..." %>
+														</div><br>
+														<%= f.hidden_field :scout_profile_id, :value => @scout.id %>
+														<%= f.submit "ADD!", :class => "btn btn-block btn-primary" %>
+													</div>
+												<% end %>
+											<% end %>
+											<% if @scout.musician_infos.length == 0 %>
+												No instrument information given...
+											<% else %>
+												<div class="panel-group panel-group-sm panel-group-quaternary" id="instrumentGroup">
+													<% first = true %>
+													<% @scout.musician_infos.each do |item| %>
+					                                    <div class="panel panel-default">
+					                                        <div class="panel-heading">
+					                                            <h4 class="panel-title">
+					                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#instrumentGroup" href="#instrument<%=item.id%>">  
+					                                                		<%= item.instrument.name %>
+					                                                </a>
+					                                            </h4>
+					                                        </div>
+					                                        <div id="instrument<%=item.id%>" class="accordion-body collapse <%= first ? "in" : "" %>">
+					                                            <div class="panel-body">
+					                                            	<div class="row">
+					                                            		<div class="col-md-12">
+						                                                	<% if current_user.id == @scout.user_id %>
+						                                                		<%= link_to "<i class=\"fa fa-trash\" style='color: #9E9E9E;'></i>".html_safe, info_destroy_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+						                                                	<% end %>
+					                                            		</div>
+					                                                	<div class="col-md-12">
+						                                                    <b>Experience:</b><br>
+						                                                    <%= item.experience %><br>
+						                                                    <b>Details:</b><br>
+						                                                    <p style="white-space: pre-wrap;"><%= item.details %></p>
+					                                                	</div>
+					                                            	</div>
+					                                            </div>
+					                                        </div>
+					                                    </div>
+					                                    <% first = false %>
+													<% end %>
+				                                </div>
+											<% end %>
+										</div>
+										
+										<% if current_user.id == @user.id %>
+											<div role="tabpanel" class="tab-pane fade" id="settings_tab">
+												<%= form_for @user, :url => {:controller => 'users', :action => 'update', :id => @user.id } do |f| %>
+												<div class="row">
+													<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 mb-md">
+														<div class="input-group">
+															<span class="input-group-addon">
+															<i class="fa fa-phone"></i>
+															</span>
+															<div class="form-line">
+																<%= f.text_field :phone_num, :id => "phone_num", :class => "form-control" %>
+															</div>
+														</div>
+													</div>
+													<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+															<%= f.submit "Update Phone", :class => "btn btn-block btn-primary" %>
+													</div>
+												</div>
+												<% end %>
+												<hr>
+												<%= form_for @scout, :url => { :controller => 'scout_profiles', :action => 'update', :id => @scout.id } do |f| %>
+												<div class="form-group">
+													<div class="row">
+						            					<div class="col-md-12">
+						            					<b>Birthday:</b>
+						            					</div>
+														<div class="col-lg-6 col-sm-6 mb-md">
+						            						<input type="text" value="<%=@scout.birthday.strftime('%B %d, %Y')%>" disabled="" class="form-control">
+						            					</div>
+						            					<div class="col-lg-6 col-sm-6 mb-md">
+						            						<div>
+							            						<%= f.check_box :is_hidden, id: :scout_hidden %> <b>Hide my Scout profile</b>
+						            						</div>
+						            					</div>
+													</div>
+					            					<div class="row">
+						            					<div class="col-lg-6 col-md-6 col-sm-6 mb-md">
+										    				<b>Stage Experience:</b>
+										        			<%= f.select :stage_exp, options_for_select(["None", "Low", "Mid-Level", "High"], selected: @scout.stage_exp), {:include_blank => "Select One"}, id: :scout_stage, :class => "form-control" %>
+										    			</div>
+										    			<div class="col-lg-6 col-md-6 col-sm-6 mb-md">
+										    				<b>Vocal Experience:</b>
+										        			<%= f.select :vocal_exp, options_for_select(["None", "Only Back Vocal", "Lead Vocal", "Lead & Back Vocal"], selected: @scout.vocal_exp), {:include_blank => "Select One"}, id: :vocal_stage, :class => "form-control" %>
+										    			</div>
+													</div>
+									    			<div class="row">
+														<div class="col-md-12 mb-md">
+															<b>Bio:</b>
+															<%= f.text_area :bio, id: :scout_bio, :class => "form-control no-resize auto-growth", :placeholder => "Tell me something about yourself..." %>											
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+															<%= f.submit "Update SCOUT", :class => "btn btn-block btn-primary" %>
+														</div>
+												<% end %>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+															<button class="btn btn-block btn-danger" id="scout_update_cancel">CANCEL</button>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										<% end %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
+	                <div class="featured-boxes featured-boxes-style-8">
+		                <div class="featured-box featured-box-quaternary featured-box-text-left">
+		                	<div class="box-content">
+		                		<div class="row">
+		                			<div class="col-md-9">
+				                		<h2>LAST RESERVATIONS</h2>	                		
+		                			</div>
+		                			<div class="col-md-3">
+		                				<div class="align-right">
+		                					<i class="icon-featured fa fa-clock-o"></i>
+		                				</div>
+		                			</div>
+		                		</div>
+				                <% if @allRes.length == 0 %>
+				                	<div class="block-header">User does not have any reservation...</div>
+				                <% else %>
+				                <div class="row">
+				                    <% [10, @allRes.length].min.times do |i| %>
+					                    <div class="col-lg-6 col-sm-6 mb-md">
+				                    		<div class="body" style="background-color: #f4f4f4; padding: 5px; border-radius: 15px;">
+				                    			<div class="row">
+					                    			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-bottom: 0">
+					                    				<b><p style="margin-bottom: 0"><%= Room.find(@allRes[i].room_id).name %><br><br>
+					                    				<%= @allRes[i].start_at.strftime("%H:%M") %> - <%= @allRes[i].end_at.strftime("%H:%M") %></p>
+					                    			</div>
+					                    			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-bottom: 0;">
+					                    				<p style="margin-bottom: 0" class="align-right"><%= @allRes[i].start_at.strftime("%B %d, %Y") %><br><br>
+					                    				<%= @allRes[i].start_at.strftime("%A") %></p></b>
+					                    			</div>		                    				
+				                    			</div>
+				                    		</div>
+					                    </div>
+				                    <% end %>
+				                <% end %>
+				                </div>
+		                	</div>
+		                </div>	                	
+	                </div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script src="/vendor/momentjs/moment.js"></script>
+<script src="/js/bootstrap-material-datetimepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+<script type="text/javascript">
+	$("#phone_num").mask("+99 (999) 999-9999", {placeholder:"+__ (___) ___-____"});
+	$('#scout_bday').bootstrapMaterialDatePicker({
+		format: "MMMM DD, YYYY",
+		maxDate: moment(),
+		time: false
+	});
+	$('#scout_bday').bootstrapMaterialDatePicker('setDate', moment("<%=@scout.birthday%>"));
+	$('#scout_update_cancel').click(function(e) {
+		e.preventDefault();
+    	id = "#scout_info";
+    	$(id).trigger('click');
+	});
+</script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript">
+	$('#scout_inf').slimScroll({
+		height: '425px'
+	});
+</script>

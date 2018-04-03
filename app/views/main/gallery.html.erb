@@ -1,38 +1,22 @@
 <div role="main" class="main">
-
-	<section class="page-top">
+	<section class="page-header">
 		<div class="container">
 			<div class="row">
-				<div class="span12">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<ul class="breadcrumb">
-						<li><%= link_to "Home", root_path %> <span class="divider">/</span></li>
-						<li class="active">Gallery</li>
+						<li><%= link_to "HOME", root_path %></li>
+						<li class="active">GALLERY</li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
-				<div class="span12">
-					<h2>Gallery</h2>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<h1>Gallery</h1>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<div class="container">
-
-		<h2>Muzikus</h2>
-
-		<div class="row">
-			<div class="span12">
-				<p class="lead">
-				
-				 Instagram Lookup
-				</p>
-               
-               
-			</div>
-        </div>      
-       
             
         <% @popular.each do |insta|%>
            

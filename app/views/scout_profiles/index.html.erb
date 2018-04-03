@@ -1,0 +1,118 @@
+<style type="text/css">
+	.scroll {
+		max-height: 285px;
+	  	overflow-y: scroll;
+	}
+	.scroll::-webkit-scrollbar {
+    	width: 12px;
+	}
+
+	.scroll::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+	    border-radius: 10px;
+	}
+
+	.scroll::-webkit-scrollbar-thumb {
+	    border-radius: 10px;
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	}
+</style>
+
+<div role="main" class="main">
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li><%= link_to "SCOUT", profile_path(current_user.email.split('@')[0]) %></li>
+						<li class="active">DISCOVER</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1><strong>Muzikus</strong> Scout.</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container">
+			<div class="row">
+			<% @scouts.each do |scout| %>
+				<% 	user = scout.user %>
+				<div class="col-lg-4 col-md-6 col-sm-6 colxs-12">
+					<div class="featured-boxes featured-boxes-style-8">
+		                <div class="featured-box featured-box-quaternary featured-box-text-left">
+		                	<div class="box-content" style="height: 500px;">	
+								<div class="row">
+									<div class="col-md-12">
+									<p><i class="fa fa-user"></i> <strong>Name:</strong> <%= user.name %></p>
+									<p><i class="fa fa-envelope"></i> <strong>Email:</strong> <%= user.email %></p>
+									<p><i class="fa fa-phone"></i> <strong>Phone:</strong> <%= user.phone_num.nil? ? "" : user.phone_num %></p>
+									</div>
+								</div>
+								<div>
+									<ul class="nav nav-tabs tab-nav-right" role="tablist" id="scout_tabs">
+										<li role="presentation" class="active"><a href="#profile_tab<%=scout.id%>" data-toggle="tab" id="scout_info">Info</a></li>
+										<li role="presentation" ><a href="#instruments_tab<%=scout.id%>" data-toggle="tab" id="scout_instruments">Instruments</a></li>
+									</ul>
+									<div class="tab-content scroll" id="scout_inf" style="height: 285px; overflow: auto;">
+										<div role="tabpanel" class="tab-pane fade in active" id="profile_tab<%=scout.id%>">
+											<div class="row">
+												<div class="col-md-12">
+													<b>Birthday: </b><%= scout.birthday.strftime("%B %d, %Y") %><br>
+													<br><b>Stage Experience: </b><%= scout.stage_exp %><br>
+													<br><b>Vocal Experience: </b><%= scout.vocal_exp %><br>
+													<br><b>Bio:</b><br>
+													<p id="bio_field" style="white-space: pre-wrap;"><%= scout.bio %><p>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane fade" id="instruments_tab<%=scout.id%>">
+											<% if scout.musician_infos.length == 0 %>
+												No instrument information given...
+											<% else %>
+												<div class="panel-group panel-group-sm panel-group-quaternary" id="instrumentGroup<%=user.id%>">
+													<% first = true %>
+													<% scout.musician_infos.each do |item| %>
+					                                    <div class="panel panel-default">
+					                                        <div class="panel-heading">
+					                                            <h4 class="panel-title">
+					                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#instrumentGroup<%=user.id%>" href="#instrument<%=item.id%>">  
+					                                                		<%= item.instrument.name %>
+					                                                </a>
+					                                            </h4>
+					                                        </div>
+					                                        <div id="instrument<%=item.id%>" class="accordion-body collapse <%= first ? "in" : "" %>">
+					                                            <div class="panel-body">
+					                                            	<div class="row">
+					                                                	<div class="col-md-12">
+						                                                    <b>Experience:</b><br>
+						                                                    <%= item.experience %><br>
+						                                                    <b>Details:</b><br>
+						                                                    <p style="white-space: pre-wrap;"><%= item.details %></p>
+					                                                	</div>
+					                                            	</div>
+					                                            </div>
+					                                        </div>
+					                                    </div>
+					                                    <% first = false %>
+													<% end %>
+				                                </div>
+											<% end %>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</section>
+</div>

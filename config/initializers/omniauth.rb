@@ -1,6 +1,7 @@
-OmniAuth.config.logger = Rails.logger
-
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, ENV["facebook_id"], ENV["facebook_secret"], {:scope => "email, user_birthday, publish_actions"}
-
+	provider :google_oauth2, ENV["GOOGLE_ID"], ENV["GOOGLE_SECRET"], 
+	{ 
+		:scope => 'email,profile',
+		:hd => 'sabanciuniv.edu'
+	}
 end

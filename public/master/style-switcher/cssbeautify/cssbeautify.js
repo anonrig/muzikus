@@ -164,14 +164,14 @@
             // Comment
             if (comment) {
                 formatted += ch;
-                if (ch === '*' && ch2 === '../../default.htm') {
+                if (ch === '*' && ch2 === '/') {
                     comment = false;
                     formatted += ch2;
                     index += 1;
                 }
                 continue;
             } else {
-                if (ch === '../../default.htm' && ch2 === '*') {
+                if (ch === '/' && ch2 === '*') {
                     comment = true;
                     formatted += ch;
                     formatted += ch2;

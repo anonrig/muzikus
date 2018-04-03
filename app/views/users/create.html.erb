@@ -1,0 +1,78 @@
+<div role="main" class="main">
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li>SCOUT</li>
+						<li class="active">CREATE</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1>Add me to Scout.</h1> or <%=link_to "click", scout_path%> to discover other musicians...
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 mb-md">
+				<%= form_for @newScout, :url => {:controller => "scout_profiles", :action => "create"} do |f| %>
+	    			<div class="col-lg-6 mb-md">
+		    			<b>Name:</b>
+		    			<input  class = "form-control"  disabled="" value="<%= current_user.name%>">
+	    			</div>
+	    			<div class="col-lg-6 mb-md">
+		    			<b>Birthday:</b>
+		    			<%= f.text_field :birthday, id: :scout_bday, :class => "form-control" %>
+	    			</div>
+					<div class="col-lg-6 col-md-6 mb-md">
+	    				<b>Stage Experience:</b>
+	        			<%= f.select :stage_exp, options_for_select(["None", "Low", "Mid-Level", "High"]), {:include_blank => "Select One"}, id: :scout_stage, :class => "form-control" %>
+	    			</div>
+	    			<div class="col-lg-6 col-md-6 mb-md">
+	    				<b>Vocal Experience:</b>
+	        			<%= f.select :vocal_exp, options_for_select(["None", "Only Back Vocal", "Lead Vocal", "Lead & Back Vocal"]), {:include_blank => "Select One"}, id: :vocal_stage, :class => "form-control" %>
+	    			</div>
+	        		<div class="col-lg-12 mb-md">
+	        			<b>Bio:</b>
+	        			<%= f.text_area :bio, id: :scout_bio, :class => "form-control", :placeholder => "Tell me something about yourself, master. Band that you're involved with or your favourite bands, maybe?", :style => "height: 150px" %>
+	        		</div>
+	        		<%= f.hidden_field :user_id, :value => current_user.id %>
+	        		<%= f.hidden_field :is_hidden, :value => false %>
+	        		<div class="col-lg-12">
+	        			<%= f.submit "Add me. Now!",:class =>"btn btn-primary btn-block" %>
+	        		</div>
+			    <%end%>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="col-lg-12">
+					<h4 class="pull-top">As once <strong>Obi-Wan</strong> said</h4>
+					<p>The Force is what gives a Jedi his power. It's an energy field created by all living things. It surrounds us and penetrates us. It binds the galaxy together.</p>					
+				</div>
+
+				<hr />
+
+				<div class="col-lg-12">
+					<h4>What really is <strong>Scout</strong>?</h4>
+					<img src="http://www.wired.com/geekdad/wp-content/uploads/2012/05/0205-660x440.jpg" style="max-width: 100%; border-radius:25px;" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/vendor/momentjs/moment.js"></script>
+<script src="/js/bootstrap-material-datetimepicker.js"></script>
+<script type="text/javascript">
+	$('#scout_bday').bootstrapMaterialDatePicker({
+		format: "MMMM Do YYYY, ddd",
+		maxDate: moment(),
+		currentDate: moment().subtract(18, 'years'),
+		time: false
+	});
+</script>

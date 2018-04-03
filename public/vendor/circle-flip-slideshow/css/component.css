@@ -105,49 +105,6 @@
 	text-align: right;
 }
 
-.fc-slideshow nav i.icon-arrow-left {
-	left: 0;
-}
-
-.no-csstransforms3d .fc-slideshow nav i.icon-arrow-left {
-	left: -100px;
-}
-
-.fc-slideshow nav i.icon-arrow-right {
-	right: 0;
-}
-
-.no-csstransforms3d .fc-slideshow nav i.icon-arrow-right {
-	right: -60px;
-}
-
-.icon-arrow-left:before, 
-.icon-arrow-right:before {
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 20px;
-	background: #cc2724;
-	color: #fff;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	display: inline-block;
-	margin: 0 20px;
-	border-radius: 20% 10% 50% 5% / 25% 10% 30% 75%;
-	-webkit-font-smoothing: antialiased;
-	display: none;
-}
-
-.icon-arrow-left:before {
-	content: "\e002";
-}
-
-.icon-arrow-right:before {
-	content: "\e003";
-}
-
 .csstransforms3d .fc-slideshow nav > div span:hover ~ i,
 .no-csstransforms3d .fc-slideshow nav i,
 .no-csstransforms3d .fc-slideshow nav > div span {

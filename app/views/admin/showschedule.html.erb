@@ -1,0 +1,105 @@
+<div role="main" class="main">
+	<section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li>MANAGEMENT</li>
+						<li><%= link_to "ROOMS", admin_rooms_path %></li>
+						<li class="active">SCHEDULE</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1><%= @room.name %></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content">
+		<div class="container">
+			<div class="col-lg-8">
+				<% if @count != 0 %>	
+					<% @schedule.each do |sch| %>
+						<% if not sch[1].length == 0 %>
+							<h4><%= sch[1][0].weekday.upcase %></h4>
+							<% sch[1].each do |item| %>
+								<% lesson = @lessons.select{|x| x.id == item.faculty_lesson_id}.first %>
+								<div class="input-group">
+									<span>
+										<label><%= link_to "<i class=\"fa fa-trash\" ></i>".html_safe, admin_deleteschedule_path(item), method: :delete, data: { confirm: 'Are you sure?' }%></label>
+										<label><%= lesson.name %> | <%= item.start_at.strftime("%H:%M") %> - <%= item.end_at.strftime("%H:%M") %></label>
+									</span>
+								</div>
+							<% end %>
+								<hr>
+						<% end %>
+					<% end %>
+				<% else %>
+				<div class="block-header">
+					<h2>No schedule available...</h2>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-lg-4">
+				<% lesson_options = @lessons.collect {|x| [x.name, x.id]} %>
+				<div class="form-group">
+					<%= form_for @newSchedule, :url => {:controller => "admin", :action => "createschedule"} do |f| %>
+						<b>Lesson / Project</b>
+						<div class="form_line mb-md">
+							<%= f.select :faculty_lesson_id, options_for_select(lesson_options), {:include_blank => "Select One"}, id: :schedule_lesson_id, :class => "form-control show-tick" %>
+						</div>
+						<b>Select a day</b>
+						<div class="form_line mb-md">
+							<%= f.select :weekday, options_for_select(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]), {:include_blank => "Select One"}, id: :schedule_lesson_id, :class => "form-control show-tick" %>
+						</div>
+						<div class="row">
+							<div class="col-lg-6 mb-md">
+								<b> Start at </b>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-clock-o"></i>
+									</span>
+										<%= f.text_field :start_at, id: :schedule_start_at, :class => "form-control timepicker", :placeholder => "Choose a time" %>
+								</div>
+							</div>
+							<div class="col-lg-6 mb-md">
+								<b> End at </b>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-clock-o"></i>
+									</span>
+										<%= f.text_field :end_at, id: :schedule_end_at, :class => "form-control timepicker", :placeholder => "Choose a time" %>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<%= f.hidden_field :room_id, :value => @room.id %>
+								<%= f.submit :class => "btn btn-primary btn-block " %>
+							</div>
+						</div>
+					<% end %>	
+				</div>					
+			</div>
+		</div>
+	</section>
+</div>
+<script src="/vendor/momentjs/moment.js"></script>
+<script src="/js/bootstrap-material-datetimepicker.js"></script>
+<script type="text/javascript">
+	$('#schedule_start_at').bootstrapMaterialDatePicker({
+		format: "LT",
+		date: false,
+		shortTime: true
+	}).on('change', function (e, date) {
+		$('#schedule_end_at').bootstrapMaterialDatePicker('setMinDate', date);
+	});
+	$('#schedule_end_at').bootstrapMaterialDatePicker({
+		format: "LT",
+		date: false,
+		shortTime: true
+	});
+</script>
