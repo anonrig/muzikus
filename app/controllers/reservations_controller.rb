@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
 	def set_schedule_today(date1, date2)
 		arr = date1.to_a
 		arr2 = date2.to_a
-		Time.new(arr[5], arr[4], arr[3], arr2[2], arr2[1], arr2[0], "+00:00")
+		Time.new(arr[5], arr[4], arr[3], arr2[2], arr2[1], arr2[0], "+03:00")
 	end
 
 	def create
