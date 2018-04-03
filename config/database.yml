@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: MuzikusTestServer_production
-  username: MuzikusTestServer
+  database: muzikus
+  username: muzikus
   password: <%= ENV['MUZIKUSTESTSERVER_DATABASE_PASSWORD'] %>
