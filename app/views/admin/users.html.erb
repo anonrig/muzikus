@@ -63,36 +63,36 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<h4>Add/edit member?</h4><br>
-				<%= form_for @newMember, :url => {:controller => "admin", :action => "createuser"} do |f| %>
-						<div class="col-md-12" style="padding: 0;">
-							<div class="input-group">
-								<div class="form-line">
-									<%= f.text_field :email, id: :user_email, :placeholder => "Email Address", :class => "form-control align-center" %>
+				<div class="row">
+					<%= form_for @newMember, :url => {:controller => "admin", :action => "createuser"} do |f| %>
+							<div class="col-md-12" style="padding: 0;">
+								<div class="input-group">
+									<div class="form-line">
+										<%= f.text_field :email, id: :user_email, :placeholder => "Email Address", :class => "form-control align-center" %>
+									</div>
+									<span class="input-group-addon">@sabanciuniv.edu</span>
 								</div>
-								<span class="input-group-addon">@sabanciuniv.edu</span>
 							</div>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<%= f.check_box :is_yk, id: :user_is_yk, :class => "chk-col-yellow" %>
-							<label for="user_is_yk">Is YK?</label>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-							<%= f.check_box :is_myk, id: :user_is_myk, :class => "chk-col-yellow" %>
-							<label for="user_is_myk">Is MYK?</label>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-							<%= f.check_box :is_workshop, id: :user_is_workshop, :class => "chk-col-yellow" %>
-							<label for="user_is_workshop">Hangar Workshop?</label>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-							<%= f.check_box :is_drum, id: :user_is_drum, :class => "chk-col-yellow", :style => "border: 2px solid white"%>
-							<label for="user_is_drum">Drum Lesson?</label>
-						</div>	
-						<%= f.hidden_field :is_member, :value => true %>
-						<div class="col-md-12" style="padding: 0">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+								<%= f.check_box :is_yk, id: :user_is_yk, :class => "chk-col-yellow" %>
+								<label for="user_is_yk">Is YK?</label>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+								<%= f.check_box :is_myk, id: :user_is_myk, :class => "chk-col-yellow" %>
+								<label for="user_is_myk">Is MYK?</label>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+								<%= f.check_box :is_workshop, id: :user_is_workshop, :class => "chk-col-yellow" %>
+								<label for="user_is_workshop">Hangar Workshop?</label>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+								<%= f.check_box :is_drum, id: :user_is_drum, :class => "chk-col-yellow", :style => "border: 2px solid white"%>
+								<label for="user_is_drum">Drum Lesson?</label>
+							</div>	
+							<%= f.hidden_field :is_member, :value => true %>
 							<%= f.submit "SUBMIT", :class => "btn btn-primary btn-block" %>
-						</div>
-				<% end %>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</section>
