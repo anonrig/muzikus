@@ -50,8 +50,8 @@
 										<td>
 											<a href="#" class="edit_user"><i class="fa fa-edit"></i></a>
 											<% if item.is_member %>
-											<%= link_to "<i class=\"fa fa-user\"></i>".html_safe, profile_path(item.email.split('@')[0]), :style => "color:#9E9E9E" %>
-												<%= link_to "<i class=\"fa fa-ban\"></i>".html_safe, admin_deleteuser_path(item.id), method: :delete, data: { confirm: "Do you want to remove #{item.name.nil? ? 'this user' : item.name.split(' ')[0]}\'s membership?" }, :style => "color:#9E9E9E"%>
+											<a href="/scout/profile/<%=item.email.split('@')[0]%>"><i class="fa fa-user"></i></a></a>
+											<%= link_to "<i class=\"fa fa-ban\"></i>".html_safe, admin_deleteuser_path(item.id), method: :delete, data: { confirm: "Do you want to remove #{item.name.nil? ? 'this user' : item.name.split(' ')[0]}\'s membership?" }%>
 											<% end %>
 										</td>
 									</tr>
