@@ -43,7 +43,7 @@
 												<% user = m.user %> 
 												<div class="input-group mb-md">
 													<span class="input-group-addon btn-danger">
-														<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_deletemanager_path(m), method: :delete, data: { confirm: 'Are you sure?' }%>
+														<%= link_to "<i class=\"fa fa-trash\" style=\"#{"color:#9E9E9E"}\"></i>".html_safe, admin_deletemanager_path(m), method: :delete, data: { confirm: 'Are you sure?' }%>
 													</span>
 													<input class="form-control" type="text" value="<%= (user.name.nil? ? "" : "#{user.name} - ") + user.email %>" disabled="">
 												</div>
