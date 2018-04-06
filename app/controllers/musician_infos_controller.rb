@@ -1,10 +1,12 @@
 class MusicianInfosController < ApplicationController
 	def create
 		@newInfo = MusicianInfo.new(info_params)
-		if current_user && current_user.id == ScoutProfile.find(@newInfo.scout_profile_id).user_id
-			@newInfo.save!
+		if not (@newInfo.instrument_id.nil? || @newInfo.experience.length == 0)
+			if current_user && current_user.id == ScoutProfile.find(@newInfo.scout_profile_id).user_id
+				@newInfo.save!
+			end
 		end
-		redirect_to profile_path(@newInfo.scout_profile.user.email.split('@')[0])
+		redirect_to profile_path(current_user.email.split('@')[0])
 	end
 
 	def update
