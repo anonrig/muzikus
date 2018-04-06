@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
 				if params[:reservation][:user_id].to_i == current_user.id
 					isValid = true
 					#take 6 hour interval to check if its occupied before
-					reservationsOnThatDay = Reservation.where(room_id: @newReservation.room_id).where('start_at BETWEEN ? AND ?', @newReservation.start_at - 3.hours, @newReservation.start_at + 3.hours)
+					reservationsOnThatDay = Reservation.where(room_id: @newReservation.room_id).where('start_at BETWEEN ? AND ?', @newReservation.start_at - 2.hours, @newReservation.start_at + 2.hours)
 					#take room schedule on that day
 					weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 					roomSchedule = LessonSchedule.where(room_id: @newReservation.room_id, weekday: weekdays[@newReservation.start_at.wday - 1])
