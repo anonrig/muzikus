@@ -94,7 +94,7 @@ class ReservationsController < ApplicationController
 
 	def destroy
 		@reservation = Reservation.find(params[:id])
-		if @reservation.user_id == current_user.id
+		if (@reservation.user_id == current_user.id) || (not Manager.where(room_id: @reservation.room_id, user_id: current_user.id).first.nil?)
 			@reservation.destroy!
 			redirect_to reservations_path
 		else
