@@ -38,7 +38,7 @@
 								<tr>
 									<td><%= item.id %></td>
 									<td><%= item.name %></td>
-									<td><%= teacher.name %></td>
+									<td><%= teacher ? teacher.name : nil %></td>
 									<td style="text-align: right;">
 										<a href="javascript:void(0);"><i class="fa fa-edit"></i></a>
 										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_deletelesson_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E" %>
