@@ -53,6 +53,10 @@ Rails.application.routes.draw do
 #Faculty
   get 'teachers' => 'teachers#index', as: 'teachers'
 
+#Events
+  get 'events/getAll' => 'events#get_all'
+  resources :events
+  
   get 'auth/:provider/callback', to: "sessions#create"
   get 'auth/failure', to: redirect('/')
   get 'sign_out', to: "sessions#destroy", as: 'sign_out'

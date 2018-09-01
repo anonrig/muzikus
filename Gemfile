@@ -40,6 +40,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'faker', :groups => [:development, :production]
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem "paperclip", "~> 6.0.0"
 
 group :production do
   gem 'pg'

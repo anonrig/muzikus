@@ -1,0 +1,174 @@
+<div role="main" class="main">
+    <section class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="breadcrumb">
+						<li><%= link_to "HOME", root_path %></li>
+						<li><%= link_to "EVENTS", events_path %></li>
+						<li class="active">NEW</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h1>Create new <strong>Event</strong>.</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-xs12">
+                <%= form_for @event, :html => { :multipart => true, html: {class: 'form-horizontal'} } do |f| %>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-2 control-label">Title</label>
+                        <div class="col-md-10">
+                            <%= f.text_field :title, class:'form-control', data: {bind: 'textInput: title'} %>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-2 control-label">Location</label>
+                        <div class="col-md-10">
+                            <%= f.text_field :location, class: 'form-control', data: {bind: 'textInput: location'} %>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-2 control-label">Starts at</label>
+                        <div class="col-md-6">
+                            <%= f.text_field :starts_at, class:'form-control', data: {bind: 'textInput: starts_at'} %>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label class="col-md-1 control-label">Details</label>
+                        <div class="col-md-11">
+                            <%= f.text_area :details, class: 'form-control', data: {bind: 'textInput: details'} %>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-2 control-label">Poster</label>
+                        <div class="col-md-10">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="input-append">
+                                    <span class="btn btn-default btn-file">
+                                        <%= f.file_field :photo, data: {bind: 'value: picture'} %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <%= f.submit 'Create Event', class: 'btn btn-primary pull-right', data: { bind: 'disable: !isFormValid()' } %>
+                        </div>
+                    </div>
+                <% end %>        
+            </div>
+            <div class="col-xs-12">
+                <label>Preview</label>
+                <hr>
+                <div class="row mb-xl">
+					<div class="col-md-4">
+						<span class="img-thumbnail">
+							<img alt="" class="img-responsive" id="eventPosterPreview" src="/img/facebook-image.png">
+						</span>
+					</div>
+
+					<div class="col-md-8">
+
+						<div class="portfolio-info">
+							<div class="row">
+								<div class="col-md-12 center">
+									<ul>
+										<li data-bind="html: '<i class=\'fa fa-calendar\'></i>' + StartsAt()">
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<h5 class="mt-sm" data-bind="text: Title()"></h5>
+						<p class="mt-xlg" style="white-space: pre-wrap;" data-bind="text: Details()"></p>
+
+						<ul class="portfolio-details">
+							<li>
+								<h5 class="mt-sm mb-xs">Location</h5>
+								<p data-bind="text: Location()"></p>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/knockout-3.4.2.js"></script>
+<script src="/vendor/momentjs/moment.js"></script>
+<script src="/js/bootstrap-material-datetimepicker.js"></script>
+<script>
+    $('#event_photo').on('change', function(){
+        var input = this;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#eventPosterPreview')
+                    .attr('src', e.target.result)
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        else
+            $('#eventPosterPreview')
+                    .attr('src', '/img/facebook-image.png')
+
+    });
+    
+    var start = moment();
+	start.set('second', 0);
+    $('#event_starts_at').bootstrapMaterialDatePicker({
+		format: 'ddd, DD MMM - HH:mm',
+        weekStart: 1,
+        currentDate: start,
+        minDate: start
+	});
+
+    function Event(){
+        var self = this
+        this.title = ko.observable();
+        this.location = ko.observable();
+        this.starts_at = ko.observable();
+        this.details = ko.observable();
+        this.picture = ko.observable();
+
+        this.Title = ko.computed(function () { return self.title() == null || self.title() == '' ? 'Event Title' : self.title() } )
+        this.Location = ko.computed(function () { return self.location() == null || self.location() == '' ? 'Location' : self.location() } )
+        this.StartsAt = ko.computed(function () { return self.starts_at() == null || self.starts_at() == '' ? 'Start Time' : self.starts_at() } )
+        this.Info = ko.computed(function() { return self.Location() + " | " + self.StartsAt() } )
+        this.Details = ko.computed(function () { return self.details() == null || self.details() == '' ? 'Details....' : self.details() } )
+
+        this.isFormValid = ko.computed(function() {
+            if (self.title() == null || self.title() == '')
+                return false
+            else if(self.location() == null || self.location() == '')
+                return false
+            else if(self.starts_at() == null || self.starts_at() == '')
+                return false
+            else if(self.details() == null || self.details() == '')
+                return false
+            else if(self.picture() == undefined)
+                return false
+            
+            return true
+        })
+    }
+
+    ko.applyBindings(new Event())
+</script>
