@@ -1,3 +1,11 @@
+<style>
+    #editor {
+        resize: none;
+        overflow-y: auto;
+        min-height: 50px;
+        max-height: 200px;
+    }
+</style>
 <div role="main" class="main">
     <section class="page-header">
 		<div class="container">
@@ -46,7 +54,8 @@
                     <div class="form-group col-xs-12">
                         <label class="col-md-1 control-label">Details</label>
                         <div class="col-md-11">
-                            <%= f.text_area :details, class: 'form-control', data: {bind: 'textInput: details'} %>
+                            <div class="form-control" id="editor" onkeyup="auto_grow(this)" data-bind="ckeditor: details"></div>
+                            <%= f.hidden_field :details, class: 'form-control', data: {bind: 'value: details'} %>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
@@ -94,7 +103,7 @@
 						</div>
 
 						<h5 class="mt-sm" data-bind="text: Title()"></h5>
-						<p class="mt-xlg" style="white-space: pre-wrap;" data-bind="text: Details()"></p>
+						<div data-bind="html: Details()"></div>
 
 						<ul class="portfolio-details">
 							<li>
@@ -114,7 +123,12 @@
 <script src="/js/knockout-3.4.2.js"></script>
 <script src="/vendor/momentjs/moment.js"></script>
 <script src="/js/bootstrap-material-datetimepicker.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/inline/ckeditor.js"></script>
 <script>
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
     $('#event_photo').on('change', function(){
         var input = this;
         if (input.files && input.files[0]) {
@@ -141,42 +155,67 @@
         currentDate: start,
         minDate: start
 	});
-
-    function Event(){
-        var self = this
-        this.title = ko.observable();
-        this.location = ko.observable();
-        this.starts_at = ko.observable();
-        this.details = ko.observable();
-        this.photo_url = ko.observable();
-
-        this.Title = ko.computed(function () { return self.title() == null || self.title() == '' ? 'Event Title' : self.title() } )
-        this.Location = ko.computed(function () { return self.location() == null || self.location() == '' ? 'Location' : self.location() } )
-        this.StartsAt = ko.computed(function () { return self.starts_at() == null || self.starts_at() == '' ? 'Start Time' : self.starts_at() } )
-        this.Info = ko.computed(function() { return self.Location() + " | " + self.StartsAt() } )
-        this.Details = ko.computed(function () { return self.details() == null || self.details() == '' ? 'Details....' : self.details() } )
-
-        this.isFormValid = ko.computed(function() {
-            if (self.title() == null || self.title() == '')
-                return false
-            else if(self.location() == null || self.location() == '')
-                return false
-            else if(self.starts_at() == null || self.starts_at() == '')
-                return false
-            else if(self.details() == null || self.details() == '')
-                return false
-            
-            return true
+    var editor;
+    InlineEditor.create(document.querySelector( '#editor' ), {
+            toolbar: ['heading', 'bold', 'italic', 'link', 'blockQuote', '|', 'numberedList', 'bulletedList', '|', 'undo', 'redo']
         })
-
-        $.getJSON(`/events/${$('#event_id').val()}`, function(data){
-            self.title(data.title)
-            self.location(data.location)
-            self.starts_at(moment(data.starts_at).format('ddd, DD MMM - HH:mm'))
-            self.details(data.details)
-            self.photo_url(data.photo_url)
+        .then(newEditor => {
+            editor = newEditor;
         })
-    }
+        .catch(error => {
+            console.error( error );
+        });
 
-    ko.applyBindings(new Event())
+    $(function(){
+
+        ko.bindingHandlers.ckeditor = {
+            init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                var modelValue = valueAccessor();
+                editor.model.document.on( 'change:data', () => {
+                    modelValue(editor.getData());
+                });
+            }
+        }
+        function Event(){
+            var self = this
+            this.title = ko.observable();
+            this.location = ko.observable();
+            this.starts_at = ko.observable();
+            this.details = ko.observable();
+            this.photo_url = ko.observable();
+
+            this.Title = ko.computed(function () { return self.title() == null || self.title() == '' ? 'Event Title' : self.title() } )
+            this.Location = ko.computed(function () { return self.location() == null || self.location() == '' ? 'Location' : self.location() } )
+            this.StartsAt = ko.computed(function () { return self.starts_at() == null || self.starts_at() == '' ? 'Start Time' : self.starts_at() } )
+            this.Info = ko.computed(function() { return self.Location() + " | " + self.StartsAt() } )
+            this.Details = ko.computed(function () { return self.details() == null || self.details() == '' ? 'Details....' : self.details() } )
+
+            this.isFormValid = ko.computed(function() {
+                if (self.title() == null || self.title() == '')
+                    return false
+                else if(self.location() == null || self.location() == '')
+                    return false
+                else if(self.starts_at() == null || self.starts_at() == '')
+                    return false
+                else if(self.details() == null || self.details() == '' || self.details() == '<p>&nbsp;</p>')
+                    return false
+                
+                return true
+            })
+
+            $.getJSON(`/events/${$('#event_id').val()}`, function(data){
+                self.title(data.title)
+                self.location(data.location)
+                self.starts_at(moment(data.starts_at).format('ddd, DD MMM - HH:mm'))
+                self.details(data.details)
+                self.photo_url(data.photo_url)
+
+                editor.setData(data.details)
+            })
+        }
+
+        ko.applyBindings(new Event())
+    
+    })
+
 </script>
