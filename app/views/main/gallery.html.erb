@@ -1,3 +1,10 @@
+<style>
+	.thumb-info .thumb-info-title {
+		text-transform: none;
+	}
+	.thumb-info-inner a {
+	}
+</style>
 <div role="main" class="main">
 	<section class="page-header">
 		<div class="container">
@@ -17,20 +24,62 @@
 		</div>
 	</section>
 	<div class="container">
-            
-        <% @popular.each do |insta|%>
-           
-        	<div class="thumbnail" style="float:left;width:40%;margin:10px">
-            	<%= image_tag insta.images.standard_resolution.url %>
-                	<div class="caption" >
-                    	<%= insta.caption.text%>
-                	</div>
-            </div>
-        <% end %>
-            
-            
-       
+		<ul hidden class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}"></ul>
+		<div class="row">
+			<div class="sort-destination-loader sort-destination-loader-showing">
+				<ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+					<% @popular.each do |insta|%>
+						<li class="col-md-6 isotope-item">
+							<div class="portfolio-item">
+								<a href="#">
+									<span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+										<span class="thumb-info-wrapper">
+											<%= image_tag insta.images.standard_resolution.url, class: 'image-responsive', html:{alt: ''} %>
+											<span class="thumb-info-title">
+												<span class="thumb-info-inner"><%= insta.caption.text %></span>
+											</span>
+										</span>
+									</span>
+								</a>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+        </div> 
   </div>
-
+  <div id="test"></div>
 </div>
+<script>
+	String.prototype.parseURL = function() {
+		return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
+			return url.link(url);
+		});
+	};
+	String.prototype.parseUsername = function() {
+		return this.replace(/[@]+[A-Za-z0-9-_]+/g, function(u) {
+			var username = u.replace("@","")
+			return u.link("https://www.instagram.com/"+username);
+		});
+	};
+	String.prototype.parseHashtag = function() {
+		return this.replace(/[#]+[A-Za-z0-9-_]+/g, function(t) {
+			var tag = t.replace("#","")
+			return t.link("https://www.instagram.com/explore/tags/"+tag);
+		});
+	};
+
+	$(function(){
+		$('.thumb-info-title').each(function(i, obj){
+			obj = $(obj);
+			obj.html(obj.html().parseURL().parseUsername().parseHashtag());
+		})
+
+		$('.thumb-info-inner a').on('click', function(e) {
+			e.preventDefault();
+
+			window.open(this.href, '_blank');
+		})
+	})
+</script>
 		
