@@ -210,6 +210,10 @@
     	id = "#tab";
     	id += $(this).val();
     	$(id).trigger('click');
+		if(this.selectedIndex != 0)
+			table.search(this.options[this.selectedIndex].text).draw();
+		else
+			table.search('').draw()
 	});
 </script>
 
