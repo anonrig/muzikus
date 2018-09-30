@@ -19,10 +19,9 @@ class ReservationsController < ApplicationController
 
 	def create
 		@newReservation = Reservation.new(reservation_params)
-		puts reservation_params[:start_at]
-		puts reservation_params[:end_at]
+		
 		if(@newReservation.room_id.nil? || @newReservation.start_at.nil? || @newReservation.end_at.nil?)
-			redirect_to reservations_path, notice: 'formempty'
+			render json: {type: 'warning', message: 'It seems like you forgot something, master.'}, status: :not_acceptable
 		else
 			if current_user && current_user.is_member
 				if params[:reservation][:user_id].to_i == current_user.id
@@ -40,8 +39,7 @@ class ReservationsController < ApplicationController
 							isValid = false
 						end						
 					end
-					puts @newReservation.start_at
-					puts @newReservation.end_at
+					
 					if isValid
 						#check faculty lessons
 						roomSchedule.each do |item|
@@ -50,11 +48,11 @@ class ReservationsController < ApplicationController
 
 							if(startTime < @newReservation.start_at && endTime > @newReservation.start_at)
 								isValid = false
-								redirect_to reservations_path, notice: 'faculty'
+								render json: {type: 'danger', message: '<strong>Oh snap!</strong> There is a faculty lesson or project in this room, don\'t forget to check room schedule, master.'}, status: :not_acceptable
 								break
 							elsif (startTime >= @newReservation.start_at && startTime < @newReservation.end_at)
 								isValid = false
-								redirect_to reservations_path, notice: 'faculty'
+								render json: {type: 'danger', message: '<strong>Oh snap!</strong> There is a faculty lesson or project in this room, don\'t forget to check room schedule, master.'}, status: :not_acceptable
 								break							
 							end
 						end
@@ -70,18 +68,14 @@ class ReservationsController < ApplicationController
 							end
 							total += (@newReservation.end_at - @newReservation.start_at)
 							if total <= 60*60*2
-								Reservation.create(user_id: @newReservation.user_id,
-													room_id: @newReservation.room_id,
-													start_at: @newReservation.start_at,
-													end_at: @newReservation.end_at,
-													is_canceled: @newReservation.is_canceled)
-								redirect_to reservations_path, notice: 'created'
+								@newReservation.save!
+								render json: {type: 'success', message: '<strong>Success!</strong>', data: @newReservation}, status: :ok
 							else
-								redirect_to reservations_path, notice: 'hourcount'
+								render json: {type: 'danger', message: '<strong>Oh snap!</strong> You can\'t reserve more than 2 hours in 24 hour interval, master.'}, status: :not_acceptable
 							end
 						end
 					else
-						redirect_to reservations_path, notice: 'occupied'
+						render json: {type: 'danger', message: '<strong>Oh snap!</strong> You\'re trying to reserve to an occupied spot, master.'}, status: :not_acceptable
 					end
 				else
 					redirect_to root_path

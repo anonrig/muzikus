@@ -147,14 +147,11 @@
 
     });
     
-    var start = moment();
-	start.set('second', 0);
     $('#event_starts_at').bootstrapMaterialDatePicker({
 		format: 'ddd, DD MMM - HH:mm',
-        weekStart: 1,
-        currentDate: start,
-        minDate: start
+        weekStart: 1
 	});
+    
     var editor;
     InlineEditor.create(document.querySelector( '#editor' ), {
             toolbar: ['heading', 'bold', 'italic', 'link', 'blockQuote', '|', 'numberedList', 'bulletedList', '|', 'undo', 'redo']

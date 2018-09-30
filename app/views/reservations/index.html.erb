@@ -42,35 +42,8 @@
 	
 
 	<div class="container">
-		<% flash.each do |key, value| %>
-			<% case value %>
-			<% when 'created' %>
-				<div class="alert alert-success alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Success!</strong>
-				</div>
-			<% when 'hourcount' %>
-				<div class="alert alert-danger alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Oh snap!</strong> You can't reserve more than 2 hours in 24 hour interval, master.
-				</div>
-			<% when 'faculty' %>
-				<div class="alert alert-danger alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Oh snap!</strong> There is a faculty lesson or project in this room, don't forget to check room schedule, master.
-				</div>
-			<% when 'occupied' %>
-				<div class="alert alert-danger alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Oh snap!</strong> You're trying to reserve to an occupied spot, master.
-				</div>
-			<% when 'formempty' %>
-			<div class="alert alert-warning alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				It seems like you forgot something, master.
-			</div>
-			<% end %>
-		<% end %>
+		<div id="reservation_result" class="alert" role="alert" data-bind="css: alertColor, html: alertMessage" style="display: none;">
+		</div>
 
 		<h4>Here is a list of all <strong>reservations.</strong> Feel free to make yours. Today.</h4>
 
@@ -119,33 +92,33 @@
 	                <h4>New Reservation?</h4><hr>
 					<% room_options = @rooms.collect{|x| [x.name, x.id]} %>
 					<%= form_for @newReservation, :url => {:controller => "reservations", :action => "create"} do |f| %>
-					<% if current_user && current_user.is_workshop && current_user.is_drum %>
-						<%= f.select :room_id, options_for_select(room_options), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick" %>
-					<% elsif current_user && current_user.is_workshop && (not current_user.is_myk) %>
-						<%= f.select :room_id, options_for_select(room_options, disabled: @drum_id), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick" %>
-					<% elsif current_user && current_user.is_drum && (not current_user.is_myk) %>
-						<%= f.select :room_id, options_for_select(room_options, disabled: @hangar_id), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick" %>
-					<% elsif current_user && (not current_user.is_myk) %>
-						<%= f.select :room_id, options_for_select(room_options, disabled: [@hangar_id, @drum_id]), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick" %>
-					<% else %> 
-						<%= f.select :room_id, options_for_select(room_options), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick" %>
-					<% end %>
-				    
-					<br>
-					<div class="row">
-						<div class="col-lg-6 col-md-6">
-							<%= f.text_field :start_at, id: :start_date, :class => 'form-control' %><br>
-						</div>					
-						<div class="col-lg-6 col-md-6">
-						    <%= f.text_field :end_at, id: :end_date, :class => "form-control" %><br>
-						</div>					
-					</div>
+						<% if current_user && current_user.is_workshop && current_user.is_drum %>
+							<%= f.select :room_id, options_for_select(room_options), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
+						<% elsif current_user && current_user.is_workshop && (not current_user.is_myk) %>
+							<%= f.select :room_id, options_for_select(room_options, disabled: @drum_id), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
+						<% elsif current_user && current_user.is_drum && (not current_user.is_myk) %>
+							<%= f.select :room_id, options_for_select(room_options, disabled: @hangar_id), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
+						<% elsif current_user && (not current_user.is_myk) %>
+							<%= f.select :room_id, options_for_select(room_options, disabled: [@hangar_id, @drum_id]), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
+						<% else %> 
+							<%= f.select :room_id, options_for_select(room_options), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
+						<% end %>
+						
+						<br>
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<%= f.text_field :start_at, id: :start_date, :class => 'form-control', data: {bind: 'textInput: start_at'} %><br>
+							</div>					
+							<div class="col-lg-6 col-md-6">
+								<%= f.text_field :end_at, id: :end_date, :class => "form-control", data: {bind: 'textInput: end_at'} %><br>
+							</div>					
+						</div>
 
-					<%= f.hidden_field :is_canceled, id: :is_canceled, :value => false %>
-					<%= f.hidden_field :user_id, id: :user_id, :value => current_user.id %>
-					<div class="form-group">
-						<%= f.submit "RESERVE!", :class =>"btn btn-primary btn-block", id: :submit_reservation %>
-					</div>
+						<%= f.hidden_field :is_canceled, id: :is_canceled, :value => false, data: {bind: 'value: is_canceled'} %>
+						<%= f.hidden_field :user_id, id: :user_id, :value => current_user.id, data: {bind: 'value: user_id'} %>
+						<div class="form-group">
+							<%= f.submit "RESERVE!", :class =>"btn btn-primary btn-block", id: :submit_reservation, data: {bind: 'click: saveReservation, disable: !isFormValid()'} %>
+						</div>
 					<% end %>
 					<div>
 						<ul class="nav nav-tabs tab-nav-right hidden" role="tablist" id="room_tabs">
@@ -217,17 +190,18 @@
 	</div>
 </div>
 <script>
-    $('#reserveTable').DataTable({
-    	"columnDefs": [
-    		{ "orderable": false, "targets": [0, 1, 3, 5] }
-  		],
-  		 "order": [[ 2, 'asc' ], [ 4, 'asc' ]],
-  		 "paging": false
-    });
+    var table = $('#reserveTable').DataTable({
+					"columnDefs": [
+						{ "orderable": false, "targets": [0, 1, 3, 5] }
+					],
+					"order": [[ 2, 'asc' ], [ 4, 'asc' ]],
+					"paging": false
+				});
 </script>
+<script src="/js/knockout-3.4.2.js"></script>
 <script src="/vendor/momentjs/moment.js"></script>
 <script src="/js/bootstrap-material-datetimepicker.js"></script>
- 	<script type="text/javascript">
+<script type="text/javascript">
 	$('#reservation_room_id').change(function() {
     	if ($(this).val() == 0)
     		$('#content').addClass('hidden');
@@ -248,6 +222,82 @@
 	end.set('hour', 23);
 	end.set('minute', 59);
 	end2.add(2, 'hour');
+
+	function ReservationViewModel(){
+		var self = this;
+
+		self.user_id = ko.observable('<%= current_user.id %>');
+		self.room_id = ko.observable(0);
+		self.start_at = ko.observable(start.format('ddd, DD MMM - HH:mm'));
+		self.end_at = ko.observable(end2.format('ddd, DD MMM - HH:mm'));
+		self.is_canceled = ko.observable(false);
+
+		self.alertType = ko.observable();
+		self.alertMessage = ko.observable();
+
+		self.saveReservation = function(item, e){
+			e.preventDefault();
+			var jsonData = {
+				utf8: $('[name=utf8]').val(),
+				authenticity_token: $('[name=authenticity_token]').val(),
+				reservation: {
+					user_id: self.user_id(),
+					room_id: self.room_id(),
+					start_at: self.start_at(),
+					end_at: self.end_at(),
+					is_canceled: self.is_canceled()
+				}
+			}
+
+			$.ajax('/reservation/create', {
+				method: 'POST',
+				data: JSON.stringify(jsonData),
+				contentType: 'application/json'
+			}).done((result) => {
+				self.alertType(result.type)
+				self.alertMessage(result.message)
+
+				var htmlString = 	`<a style="color:#9E9E9E" href="/scout/profile/${result.data.user.email.split('@')[0]}">
+										<i class="fa fa-user"></i>
+									</a>
+									<a style="color:#9E9E9E" href="/reservation/destroy/${result.data.id}" rel="nofollow" data-method="delete" data-confirm="Are you sure?">
+										<i class="fa fa-trash"></i>
+									</a>`
+				var rowNode = table.row.add([ 
+					result.data.user.name,
+					result.data.room_name,
+					moment(result.data.start_at).format('MMMM DD, YYYY'),
+					moment(result.data.start_at).format('dddd'),
+					moment(result.data.start_at).format('HH:mm') + ' - ' + moment(result.data.end_at).format('HH:mm'),
+					''
+				]).draw().node()
+				
+				$($(rowNode).children()[5]).html(htmlString);
+				$($(rowNode).children()[5]).css('text-align', 'right');
+			}).fail((xhr, status) => {
+				if(xhr.status == 406){
+					self.alertType(xhr.responseJSON.type)
+					self.alertMessage(xhr.responseJSON.message)
+				}
+				else{
+					self.alertType('danger')
+					self.alertMessage('Unexpected error occured while adding reservation.')
+				}
+			}).always(() => {
+				$('#reservation_result').fadeIn(500)
+				setTimeout(function(){
+					$('#reservation_result').fadeOut(500)
+				}, 5000)
+			})
+			
+		}
+
+		self.isFormValid = ko.pureComputed(function(){ return self.room_id() > 0 })
+		self.alertColor = ko.pureComputed(function() { return 'alert-' + self.alertType() })
+	}
+
+	ko.applyBindings(new ReservationViewModel())
+	
 	$('#end_date').bootstrapMaterialDatePicker({
 		format: 'ddd, DD MMM - HH:mm',
         weekStart: 1,
