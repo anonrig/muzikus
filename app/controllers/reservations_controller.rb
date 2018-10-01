@@ -22,6 +22,8 @@ class ReservationsController < ApplicationController
 		
 		if(@newReservation.room_id.nil? || @newReservation.start_at.nil? || @newReservation.end_at.nil?)
 			render json: {type: 'warning', message: 'It seems like you forgot something, master.'}, status: :not_acceptable
+		elsif(@newReservation.start_at > @newReservation.end_at)
+			render json:  {type: 'warning', message: 'Unknown error... Please refresh the current page and try again.'}, status: :not_acceptable
 		else
 			if current_user && current_user.is_member
 				if params[:reservation][:user_id].to_i == current_user.id
