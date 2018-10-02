@@ -51,7 +51,7 @@
 											<a href="#" class="edit_user"><i class="fa fa-edit"></i></a>
 											<% if item.is_member %>
 											<a href="/scout/profile/<%=item.email.split('@')[0]%>"><i class="fa fa-user"></i></a></a>
-											<%= link_to "<i class=\"fa fa-ban\"></i>".html_safe, admin_deleteuser_path(item.id), method: :delete, data: { confirm: "Do you want to remove #{item.name.nil? ? 'this user' : item.name.split(' ')[0]}\'s membership?" }%>
+											<%= link_to "<i class=\"fa fa-ban\"></i>".html_safe, admin_user_path(item.id), method: :delete, data: { confirm: "Do you want to remove #{item.name.nil? ? 'this user' : item.name.split(' ')[0]}\'s membership?" }%>
 											<% end %>
 										</td>
 									</tr>
@@ -64,7 +64,7 @@
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<h4>Add/edit member?</h4><br>
 				<div class="row">
-					<%= form_for @newMember, :url => {:controller => "admin", :action => "createuser"} do |f| %>
+					<%= form_for @newMember, :url => {:controller => "users", :action => "create"} do |f| %>
 							<div class="col-md-12" style="padding: 0;">
 								<div class="input-group">
 									<div class="form-line">

@@ -4,18 +4,6 @@ class EventsController < ApplicationController
     def index
     end
 
-    def get_all
-        @events = Event.all
-
-        render json: @events
-    end
-
-    def show
-        @event = Event.find(params[:id])
-
-        render json: @event
-    end
-
     def new
         @event = Event.new
     end

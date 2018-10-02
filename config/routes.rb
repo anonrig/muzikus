@@ -8,33 +8,40 @@ Rails.application.routes.draw do
   get 'bands' => 'main#bands', as: 'bands'
   get 'gallery' => 'main#gallery', as: 'gallery'
   get 'howto' => 'main#howto', as: 'howto'  
+
 # admin panel
+  #users
+  get 'admin/users' => 'users#index', as: 'admin_users'
+  post 'admin/users' => 'users#create'
+  delete 'admin/users/:id' => 'users#destroy', as: 'admin_user'
+
+  #rooms
+  get 'admin/rooms' => 'rooms#index', as: 'admin_rooms'
+  post 'admin/rooms' => 'rooms#create'
+  delete 'admin/rooms/:id' => 'rooms#destroy', as: 'admin_room'
+
+  #managers
+  get 'admin/rooms/managers' => 'managers#index', as: 'admin_managers'
+  post 'admin/rooms/managers' => 'managers#create'
+  delete 'admin/rooms/managers/:id' => 'managers#destroy', as: 'admin_manager'
+
+  #budget
+  get 'admin/budget' => 'budgets#index', as: 'admin_budget'
+  post 'admin/budget' => 'budgets#create'
+
   get 'admin' => 'admin#index'
-  get 'admin/users' => 'admin#users', as: 'admin_users'
-  get 'admin/rooms' => 'admin#rooms', as: 'admin_rooms'
-  get 'admin/managers' => 'admin#managers', as: 'admin_managers'
   get 'admin/facultylessons' => 'admin#lessons', as: 'admin_lessons'
   get 'admin/lessonschedule/:id' => 'admin#showschedule', as: 'admin_schedule'
-  get 'admin/budgetstatus' => 'admin#budgetstatus', as: 'admin_budget'
   #create
-  post 'admin/createuser'
-  post 'admin/createroom'
-  post 'admin/createmanager'
   post 'admin/createteacher'
   post 'admin/createlesson'
   post 'admin/createschedule'
-  post 'admin/createbudget'
   #edit
-  patch 'admin/updatemanager' => 'admin#updatemanager'
-  post 'admin/updateroom' => 'admin#updateroom'
   post 'admin/updateteacher' => 'admin#updateteacher'
   #destroy
-  delete 'admin/deleteroom/:id' => 'admin#deleteroom', as: 'admin_deleteroom'
   delete 'admin/deleteschedule/:id' => 'admin#deleteschedule', as: 'admin_deleteschedule'
   delete 'admin/deleteteacher/:id' => 'admin#deleteteacher', as: 'admin_deleteteacher'
   delete 'admin/deletelesson/:id' => 'admin#deletelesson', as: 'admin_deletelesson'
-  delete 'admin/deleteuser/:id' => 'admin#deleteuser', as: 'admin_deleteuser'
-  delete 'admin/deletemanager/:id' => 'admin#deletemanager', as: 'admin_deletemanager'
 # Alfonso
   get 'reservations' => 'reservations#index', as: 'reservations'
   post 'reservation/create' => 'reservations#create'
@@ -42,7 +49,6 @@ Rails.application.routes.draw do
 #SCOUT
   get 'scout/discover' => 'scout_profiles#index', as: 'scout'
   get 'scout/profile/:email' => 'users#show', as: 'profile'
-  #get 'users/profile/:id/settings' => 'user#usersettings', as: 'user_settings'
   patch 'users/:id' => 'users#update'
   post 'users/scout' => 'scout_profiles#create'
   patch 'user/scout/:id' => 'scout_profiles#update'
@@ -54,12 +60,15 @@ Rails.application.routes.draw do
   get 'teachers' => 'teachers#index', as: 'teachers'
 
 #Events
-  get 'events/getAll' => 'events#get_all'
-  resources :events
+  resources :events, except: [:show]
   
   get 'auth/:provider/callback', to: "sessions#create"
   get 'auth/failure', to: redirect('/')
   get 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+#API routes
+  namespace :api do
+    resources :events, only: [:index, :show]
+  end
 end

@@ -43,13 +43,13 @@
 												<% user = m.user %> 
 												<div class="input-group mb-md">
 													<span class="input-group-addon btn-danger">
-														<%= link_to "<i class=\"fa fa-trash\" style=\"#{"color:#9E9E9E"}\"></i>".html_safe, admin_deletemanager_path(m), method: :delete, data: { confirm: 'Are you sure?' }%>
+														<%= link_to "<i class=\"fa fa-trash\" style=\"#{"color:#9E9E9E"}\"></i>".html_safe, admin_manager_path(m), method: :delete, data: { confirm: 'Are you sure?' }%>
 													</span>
 													<input class="form-control" type="text" value="<%= (user.name.nil? ? "" : "#{user.name} - ") + user.email %>" disabled="">
 												</div>
 											<% end %>
 										<% end %>
-										<%= form_for @newManager, :url => {:controller => "admin", :action => "createmanager"} do |f| %>
+										<%= form_for @newManager, :url => {:controller => "managers", :action => "create"} do |f| %>
 											<%= f.select :user_id, options_for_select(manager_options), {:include_blank => "Select One"}, id: :manager_user_id, :class => "form-control mb-md" %>
 												<%= f.hidden_field :room_id, :value => r.id %>
 												<%= f.submit "Add Manager", :class =>"btn btn-block btn-primary" %>

@@ -200,7 +200,7 @@
                 return true
             })
 
-            $.getJSON(`/events/${$('#event_id').val()}`, function(data){
+            $.getJSON(`/api/events/${$('#event_id').val()}`, function(data){
                 self.title(data.title)
                 self.location(data.location)
                 self.starts_at(moment(data.starts_at).format('ddd, DD MMM - HH:mm'))

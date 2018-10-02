@@ -30,7 +30,7 @@
 				</div>
 				<div class="col-md-12">
 					<div class="row">
-						<%= form_for @newBudget, :url => {:controller => 'admin', :action => 'createbudget'} do |f| %>
+						<%= form_for @newBudget, :url => {:controller => 'budgets', :action => 'create'} do |f| %>
 							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">								
 								<div class="col-lg-6 col-md-6 col-sm-3 mb-md"><%= f.text_field :amount, :class => "form-control", :placeholder => "Amount in integer" %></div>
 								<div class="col-lg-6 col-md-6 col-sm-9 mb-md"><%= f.select :budget_type, options_for_select(["Income", "Expense"], :selected => "Income"), {:include_blank => "Select One"}, :class => "form-control" %></div>

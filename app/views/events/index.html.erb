@@ -116,7 +116,7 @@
 			return `/events/${self.SelectedEvent().id()}/edit`
 		})
 		
-		$.getJSON('/events/getAll', function(data){
+		$.getJSON('/api/events', function(data){
 			var mappedEvents = $.map(data, function(item){ return new Event(item) });
 			self.EventList(mappedEvents);
 		});

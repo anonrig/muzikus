@@ -46,7 +46,7 @@
 										<td><%= names.count == 0 ? "-" : names.join(" | ") %></td>
 										<td style="text-align: right;">
 											<%= link_to "<i class=\"fa fa-calendar\"></i>".html_safe, admin_schedule_path(item), :style => "color:#9E9E9E"%>
-											<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_deleteroom_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E"%>
+											<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_room_path(item.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E"%>
 										</td>
 									</tr>
 								<% end %>
@@ -57,7 +57,7 @@
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <div class="body">
 	                <h4>Add room?</h4>
-					<%= form_for @newRoom, :url => {:controller => "admin", :action => "createroom"} do |f| %>
+					<%= form_for @newRoom, :url => {:controller => "rooms", :action => "create"} do |f| %>
 					<div class="form-group">
 						<div class="form-line">
 							<%= f.text_field :name, id: :room_name, :placeholder => "Room Name", :class => "form-control"%>
