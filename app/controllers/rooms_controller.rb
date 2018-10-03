@@ -7,6 +7,23 @@ class RoomsController < ApplicationController
     end
     
     def show
+        @room = Room.find(params[:id])
+		@lessons = FacultyLesson.all
+		@schedule = {
+			:Monday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Monday").order("start_at ASC"),
+			:Tuesday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Tuesday").order("start_at ASC"),
+			:Wednesday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Wednesday").order("start_at ASC"),
+			:Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Thursday").order("start_at ASC"),
+			:Friday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Friday").order("start_at ASC"),
+			:Saturday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Saturday").order("start_at ASC"),
+			:Sunday => LessonSchedule.where("room_id = ? AND weekday = ?", @room.id, "Sunday").order("start_at ASC")
+			}
+		@newSchedule = LessonSchedule.new
+
+		@count = 0
+		@schedule.each { |sch|
+			@count+= sch[1].length
+		}
     end
     
     def edit
@@ -40,7 +57,6 @@ class RoomsController < ApplicationController
     end
 
     private
-
         def set_rights
             if current_user && current_user.is_member
                 if not current_user.is_myk

@@ -36,7 +36,7 @@
 											<div class="col-md-6 col-sm-6 col-xs-6 mb-md">
 												<div class="align-right">
 													<a href="javascript:void(0);"><i class="icon-featured fa fa-edit"></i></a>
-													<%= link_to "<i class=\"icon-featured fa fa-trash\"></i>".html_safe, admin_deleteteacher_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+													<%= link_to "<i class=\"icon-featured fa fa-trash\"></i>".html_safe, teacher_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
 												</div>
 											</div>
 												<div class="col-md-12">
@@ -55,7 +55,7 @@
 					<div class="card">
 		                <div class="body bg-deep-purple">
 								<h4>Add new teacher...</h4><br>
-								<%= form_for @newTeacher, :url => {:controller => "admin", :action => "createteacher"} do |f| %>
+								<%= form_for @newTeacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
 								<div class="form-group">
 									<div class="form-line">
 										<%= f.text_field :name, id: :teacher_name, :class => "form-control", :placeholder => "Teacher Name" %>

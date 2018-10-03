@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'howto' => 'main#howto', as: 'howto'  
 
 # admin panel
+  get 'admin' => 'admin#index'
+
   #users
   get 'admin/users' => 'users#index', as: 'admin_users'
   post 'admin/users' => 'users#create'
@@ -18,7 +20,12 @@ Rails.application.routes.draw do
   #rooms
   get 'admin/rooms' => 'rooms#index', as: 'admin_rooms'
   post 'admin/rooms' => 'rooms#create'
-  delete 'admin/rooms/:id' => 'rooms#destroy', as: 'admin_room'
+  get 'admin/rooms/:id' => 'rooms#show', as: 'admin_room'
+  delete 'admin/rooms/:id' => 'rooms#destroy'
+
+  #schedules
+  post 'admin/rooms/schedules' => 'lesson_schedules#create'
+  delete 'admin/rooms/schedules/:id' => 'lesson_schedules#destroy', as: 'admin_schedule'
 
   #managers
   get 'admin/rooms/managers' => 'managers#index', as: 'admin_managers'
@@ -28,24 +35,19 @@ Rails.application.routes.draw do
   #budget
   get 'admin/budget' => 'budgets#index', as: 'admin_budget'
   post 'admin/budget' => 'budgets#create'
+  
+  #teachers
+  resources :teachers, except: [:show, :edit]
 
-  get 'admin' => 'admin#index'
-  get 'admin/facultylessons' => 'admin#lessons', as: 'admin_lessons'
-  get 'admin/lessonschedule/:id' => 'admin#showschedule', as: 'admin_schedule'
-  #create
-  post 'admin/createteacher'
-  post 'admin/createlesson'
-  post 'admin/createschedule'
-  #edit
-  post 'admin/updateteacher' => 'admin#updateteacher'
-  #destroy
-  delete 'admin/deleteschedule/:id' => 'admin#deleteschedule', as: 'admin_deleteschedule'
-  delete 'admin/deleteteacher/:id' => 'admin#deleteteacher', as: 'admin_deleteteacher'
-  delete 'admin/deletelesson/:id' => 'admin#deletelesson', as: 'admin_deletelesson'
+  #lessons
+  get 'admin/lessons' => 'faculty_lessons#index', as: 'admin_lessons'
+  post 'admin/lessons' => 'faculty_lessons#create'
+  delete 'admin/lesson/:id' => 'faculty_lessons#destroy', as: 'admin_lesson'
+
 # Alfonso
   get 'reservations' => 'reservations#index', as: 'reservations'
-  post 'reservation/create' => 'reservations#create'
-  delete 'reservation/destroy/:id' => 'reservations#destroy', as: 'reservation_destroy'
+  post 'reservations' => 'reservations#create'
+  delete 'reservations/:id' => 'reservations#destroy', as: 'reservation'
 #SCOUT
   get 'scout/discover' => 'scout_profiles#index', as: 'scout'
   get 'scout/profile/:email' => 'users#show', as: 'profile'
@@ -56,9 +58,6 @@ Rails.application.routes.draw do
   patch 'user/scout/info/:id' => 'musician_infos#update'
   delete 'user/scout/deleteinfo/:id' => 'musician_infos#destroy', as: 'info_destroy'
 
-#Faculty
-  get 'teachers' => 'teachers#index', as: 'teachers'
-
 #Events
   resources :events, except: [:show]
   
@@ -67,7 +66,8 @@ Rails.application.routes.draw do
   get 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-#API routes
+
+  #API routes
   namespace :api do
     resources :events, only: [:index, :show]
   end

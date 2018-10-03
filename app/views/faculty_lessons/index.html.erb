@@ -41,7 +41,7 @@
 									<td><%= teacher ? teacher.name : nil %></td>
 									<td style="text-align: right;">
 										<a href="javascript:void(0);"><i class="fa fa-edit"></i></a>
-										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_deletelesson_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E" %>
+										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, admin_lesson_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E" %>
 									</td>
 								</tr>
 							<% end %>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<h4>Add lesson...</h4>
-				<%= form_for @newLesson, :url => {:controller => "admin", :action => "createlesson"} do |f| %>
+				<%= form_for @newLesson, :url => {:controller => "faculty_lessons", :action => "create"} do |f| %>
 					<% teacher_options = @teachers.collect{|x| [x.name, x.id]} %>
 					<div class="form-group">
 						<div class="form-line">

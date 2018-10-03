@@ -31,7 +31,7 @@
 								<% lesson = @lessons.select{|x| x.id == item.faculty_lesson_id}.first %>
 								<div class="input-group">
 									<span>
-										<label><%= link_to "<i class=\"fa fa-trash\" ></i>".html_safe, admin_deleteschedule_path(item), method: :delete, data: { confirm: 'Are you sure?' }%></label>
+										<label><%= link_to "<i class=\"fa fa-trash\" ></i>".html_safe, admin_schedule_path(item), method: :delete, data: { confirm: 'Are you sure?' }%></label>
 										<label><%= lesson.name %> | <%= item.start_at.strftime("%H:%M") %> - <%= item.end_at.strftime("%H:%M") %></label>
 									</span>
 								</div>
@@ -48,7 +48,7 @@
 			<div class="col-lg-4">
 				<% lesson_options = @lessons.collect {|x| [x.name, x.id]} %>
 				<div class="form-group">
-					<%= form_for @newSchedule, :url => {:controller => "admin", :action => "createschedule"} do |f| %>
+					<%= form_for @newSchedule, :url => {:controller => "lesson_schedules", :action => "create"} do |f| %>
 						<b>Lesson / Project</b>
 						<div class="form_line mb-md">
 							<%= f.select :faculty_lesson_id, options_for_select(lesson_options), {:include_blank => "Select One"}, id: :schedule_lesson_id, :class => "form-control show-tick" %>

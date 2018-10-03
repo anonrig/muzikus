@@ -76,7 +76,7 @@
 										<%= link_to "<i class=\"fa fa-user\"></i>".html_safe, profile_path(member.email.split('@')[0]), :style => "color:#9E9E9E" %>
 									<% end %>
 									<%  if ((current_user.id == item.user_id) || (not Manager.where(room_id: item.room_id, user_id: current_user.id).first.nil?)) && Time.now < item.end_at %>
-										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, reservation_destroy_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E"%>
+										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, reservation_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E"%>
 									<% end %>
 									</td>
 								</tr>
@@ -253,7 +253,7 @@
 				}
 			}
 
-			$.ajax('/reservation/create', {
+			$.ajax('/reservations', {
 				method: 'POST',
 				data: JSON.stringify(jsonData),
 				contentType: 'application/json'
@@ -264,7 +264,7 @@
 				var htmlString = 	`<a style="color:#9E9E9E" href="/scout/profile/${result.data.user.email.split('@')[0]}">
 										<i class="fa fa-user"></i>
 									</a>
-									<a style="color:#9E9E9E" href="/reservation/destroy/${result.data.id}" rel="nofollow" data-method="delete" data-confirm="Are you sure?">
+									<a style="color:#9E9E9E" href="/reservations/${result.data.id}" rel="nofollow" data-method="delete" data-confirm="Are you sure?">
 										<i class="fa fa-trash"></i>
 									</a>`
 				var rowNode = table.row.add([ 
