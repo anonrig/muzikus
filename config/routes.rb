@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get 'reservations' => 'reservations#index', as: 'reservations'
   post 'reservations' => 'reservations#create'
   delete 'reservations/:id' => 'reservations#destroy', as: 'reservation'
+  
 #SCOUT
   get 'scout/discover' => 'scout_profiles#index', as: 'scout'
   get 'scout/profile/:email' => 'users#show', as: 'profile'
