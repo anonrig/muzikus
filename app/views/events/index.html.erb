@@ -22,8 +22,13 @@
 	<% if current_user && current_user.is_yk %>
 		<%= link_to "Create New", new_event_path, class: 'pull-right' %>
 	<% end %>
-		<ul class="portfolio-list sort-destination" data-bind="foreach: EventList, visible: EventList().length > 0">
-			<li class="col-md-4 isotope-item brands">
+		<ul class="nav nav-pills sort-source" data-sort-id="events" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+			<li data-option-value="*" class="active"><a href="#">Show All</a></li>
+			<li data-option-value=".upcoming"><a href="#">Upcoming</a></li>
+			<li data-option-value=".past"><a href="#">Past Events</a></li>
+		</ul>
+		<ul class="portfolio-list sort-destination" data-sort-id="events" data-bind="foreach: EventList, visible: EventList().length > 0">
+			<li class="col-md-4 isotope-item" data-bind="css: getEventType">
 				<div class="portfolio-item">
 					<a data-toggle="modal" data-target="#noAnimModal" data-bind="click: $parent.getSelectedEvent">
 						<span class="thumb-info thumb-info-lighten">
@@ -91,6 +96,7 @@
 <script src="/vendor/momentjs/moment.js"></script>
 <script src="/js/knockout-3.4.2.js"></script>
 <script>
+	var now = moment().toNow();
 	function Event(data = {}){
 		var self = this;
 
@@ -100,8 +106,12 @@
 		this.starts_at = ko.observable(moment(data.starts_at).format('ddd, DD MMM - HH:mm'));
 		this.details = ko.observable(data.details);
 		this.photo_url = ko.observable(data.photo_url);
-	}
 
+		this.getEventType = ko.pureComputed(function()
+		{
+			return this.starts_at <  now ? 'past' : 'upcoming';
+		})
+	}
 	function EventViewModel(){
 		var self = this;
 
