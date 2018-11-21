@@ -1,6 +1,6 @@
 class Api::EventsController < ApplicationController
     def index
-        @events = Event.all
+        @events = Event.all.order("starts_at DESC")
         render json: @events
     end
 
