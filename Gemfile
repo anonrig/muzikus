@@ -10,6 +10,8 @@ gem 'rails', '~> 5.1.4'
 gem 'sprockets', '~>3.7.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5', :groups => [:development, :test]
+# Active record Session
+gem 'activerecord-session_store'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -19,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Google Login
-gem 'omniauth-google-oauth2', "~> 0.2.1"
+gem 'omniauth-google-oauth2', "~> 0.6.0"
 gem 'certified'
 #instagram gallery
 gem 'instagram'
