@@ -16,22 +16,22 @@ Rails.application.routes.draw do
   get 'admin/users' => 'users#index', as: 'admin_users'
   post 'admin/users' => 'users#create'
   delete 'admin/users/:id' => 'users#destroy', as: 'admin_user'
-
+  
+  #schedules
+  post 'admin/rooms/schedules' => 'lesson_schedules#create'
+  delete 'admin/rooms/schedules/:id' => 'lesson_schedules#destroy', as: 'admin_schedule'
+  
+  #managers
+  get 'admin/rooms/managers' => 'managers#index', as: 'admin_managers'
+  post 'admin/rooms/managers' => 'managers#create'
+  delete 'admin/rooms/managers/:id' => 'managers#destroy', as: 'admin_manager'
+  
   #rooms
   get 'admin/rooms' => 'rooms#index', as: 'admin_rooms'
   post 'admin/rooms' => 'rooms#create'
   get 'admin/rooms/:id' => 'rooms#show', as: 'admin_room'
   delete 'admin/rooms/:id' => 'rooms#destroy'
-
-  #schedules
-  post 'admin/rooms/schedules' => 'lesson_schedules#create'
-  delete 'admin/rooms/schedules/:id' => 'lesson_schedules#destroy', as: 'admin_schedule'
-
-  #managers
-  get 'admin/rooms/managers' => 'managers#index', as: 'admin_managers'
-  post 'admin/rooms/managers' => 'managers#create'
-  delete 'admin/rooms/managers/:id' => 'managers#destroy', as: 'admin_manager'
-
+  
   #budget
   get 'admin/budget' => 'budgets#index', as: 'admin_budget'
   post 'admin/budget' => 'budgets#create'
