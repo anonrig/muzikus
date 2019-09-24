@@ -76,6 +76,9 @@
 										<%= link_to "<i class=\"fa fa-user\"></i>".html_safe, profile_path(member.email.split('@')[0]), :style => "color:#9E9E9E" %>
 									<% end %>
 									<%  if ((current_user.id == item.user_id) || (not Manager.where(room_id: item.room_id, user_id: current_user.id).first.nil?)) && Time.now < item.end_at %>
+										<%if item.detail && item.detail.length > 0%>
+											<a href='#'  data-tooltip data-placement="top" data-original-title="<%= item.detail %>"><i class="fa fa-question" style="color:#9E9E9E;"></i></a>
+										<%end%>
 										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, reservation_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E"%>
 									<% end %>
 									</td>
@@ -112,6 +115,11 @@
 							<div class="col-lg-6 col-md-6">
 								<%= f.text_field :end_at, id: :end_date, :class => "form-control", data: {bind: 'textInput: end_at'} %><br>
 							</div>					
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<%= f.text_area :detail, id: :detail, placeholder: "You must enter the other people's names, who you'll share the room with.", :class=> 'form-control', data: {bind: 'textInput: detail'} %> <br>
+							</div>
 						</div>
 
 						<%= f.hidden_field :is_canceled, id: :is_canceled, :value => false, data: {bind: 'value: is_canceled'} %>
@@ -235,6 +243,7 @@
 		self.start_at = ko.observable(start.format('ddd, DD MMM - HH:mm'));
 		self.end_at = ko.observable(end2.format('ddd, DD MMM - HH:mm'));
 		self.is_canceled = ko.observable(false);
+		self.detail = ko.observable("")
 
 		self.alertType = ko.observable();
 		self.alertMessage = ko.observable();
@@ -249,7 +258,8 @@
 					room_id: self.room_id(),
 					start_at: self.start_at(),
 					end_at: $('#end_date').val(),
-					is_canceled: self.is_canceled()
+					is_canceled: self.is_canceled(),
+					detail: self.detail()
 				}
 			}
 

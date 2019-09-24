@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190124083749) do
+ActiveRecord::Schema.define(version: 20190924062219) do
 
   create_table "banned_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20190124083749) do
     t.string "details"
     t.string "location"
     t.datetime "starts_at"
-    t.datetime "ends_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photo_file_name"
@@ -109,6 +108,7 @@ ActiveRecord::Schema.define(version: 20190124083749) do
     t.boolean "is_canceled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "detail"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -121,14 +121,13 @@ ActiveRecord::Schema.define(version: 20190124083749) do
 
   create_table "scout_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.text "bio"
-    t.string "phone_num"
     t.datetime "birthday"
+    t.string "stage_exp"
+    t.string "vocal_exp"
+    t.text "bio"
     t.boolean "is_hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "vocal_exp"
-    t.string "stage_exp"
     t.index ["user_id"], name: "index_scout_profiles_on_user_id"
   end
 
@@ -153,6 +152,7 @@ ActiveRecord::Schema.define(version: 20190124083749) do
     t.string "uid"
     t.string "name"
     t.string "email"
+    t.string "phone_num"
     t.boolean "is_member"
     t.boolean "is_yk"
     t.boolean "is_myk"
@@ -160,7 +160,6 @@ ActiveRecord::Schema.define(version: 20190124083749) do
     t.boolean "is_drum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "phone_num"
   end
 
 end

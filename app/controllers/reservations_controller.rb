@@ -109,6 +109,6 @@ class ReservationsController < ApplicationController
 	end
 
 	def reservation_params
-      params.require(:reservation).permit(:user_id, :room_id, :start_at, :end_at, :is_canceled)
+      params.require(:reservation).permit(:user_id, :room_id, :start_at, :end_at, :is_canceled, :detail)
     end
 end
