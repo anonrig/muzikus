@@ -58,7 +58,7 @@
 														<% end %>
 														<% if room.schedule.Tuesday.any? %>
 															<li>
-																<i class="fas fa-calendar-week text-light"></i>Monday
+																<i class="fas fa-calendar-week text-light"></i>Tuesday
 																<ul class="list list-icons">
 																	<% room.schedule.Tuesday.each do |schedule| %>
 																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
@@ -68,7 +68,7 @@
 														<% end %>
 														<% if room.schedule.Wednesday.any? %>
 															<li>
-																<i class="fas fa-calendar-week text-light"></i>Monday
+																<i class="fas fa-calendar-week text-light"></i>Wednesday
 																<ul class="list list-icons">
 																	<% room.schedule.Wednesday.each do |schedule| %>
 																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
@@ -78,7 +78,7 @@
 														<% end %>
 														<% if room.schedule.Thursday.any? %>
 															<li>
-																<i class="fas fa-calendar-week text-light"></i>Monday
+																<i class="fas fa-calendar-week text-light"></i>Thursday
 																<ul class="list list-icons">
 																	<% room.schedule.Thursday.each do |schedule| %>
 																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
@@ -88,7 +88,7 @@
 														<% end %>
 														<% if room.schedule.Friday.any? %>
 															<li>
-																<i class="fas fa-calendar-week text-light"></i>Monday
+																<i class="fas fa-calendar-week text-light"></i>Friday
 																<ul class="list list-icons">
 																	<% room.schedule.Friday.each do |schedule| %>
 																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
@@ -98,7 +98,7 @@
 														<% end %>
 														<% if room.schedule.Saturday.any? %>
 															<li>
-																<i class="fas fa-calendar-week text-light"></i>Monday
+																<i class="fas fa-calendar-week text-light"></i>Saturday
 																<ul class="list list-icons">
 																	<% room.schedule.Saturday.each do |schedule| %>
 																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
@@ -108,7 +108,7 @@
 														<% end %>
 														<% if room.schedule.Sunday.any? %>
 															<li>
-																<i class="fas fa-calendar-week text-light"></i>Monday
+																<i class="fas fa-calendar-week text-light"></i>Sunday
 																<ul class="list list-icons">
 																	<% room.schedule.Sunday.each do |schedule| %>
 																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
