@@ -12,16 +12,6 @@ Theme Version:	@@version
 @import "base/header";
 @import "base/page-header";
 
-// GUI
-@import "gui/parallax";
-@import "gui/sections";
-@import "gui/sidebar";
-@import "gui/sliders";
-
-// PARTIALS
-@import "partials/home";
-@import "partials/page-not-found";
-
 // HELPERS
 @import "base/helpers";
 
@@ -31,3 +21,4 @@ Theme Version:	@@version
 // LAYOUTS
 @import "layouts/dark";
 @import "layouts/boxed";
+@import "layouts/gap-outside";

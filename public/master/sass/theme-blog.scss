@@ -9,13 +9,20 @@ Theme Version:	@@version
  
 /* Posts */
 .blog-posts {
-	article {
-		border-bottom: 1px solid #DDD;
-		margin-bottom: 50px;
-		padding-bottom: 10px;
+	&:not(.blog-posts-no-margins) {
+		article {
+			border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+			margin-bottom: 50px;
+			padding-bottom: 20px;
+		}
+		.pagination {
+			margin: -10px 0 20px;
+		}
 	}
-	.pagination {
-		margin: -10px 0 20px;
+	&.blog-posts-no-margins {
+		.pagination {
+			margin-top: 1.8rem;
+		}
 	}
 }
 
@@ -37,26 +44,27 @@ article {
 			}
 		}
 		.post-date {
-			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 			float: $left;
 			margin-#{$right}: 10px;
 			text-align: center;
 			.month {
+			    display: block;
 				background: #CCC;
 				border-radius: corner-values(0 0 2px 2px);
-				box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.07) inset;
 				color: #FFF;
-				font-size: 0.9em;
-				padding: 0 10px 2px;
+				font-size: 0.8em;
+			    line-height: 1.8;
+				padding: 1px 10px;
+				text-transform: uppercase;
+
 			}
 			.day {
-				background: #F4F4F4;
+				background: #f7f7f7;
 				border-radius: corner-values(2px 2px 0 0);
 				color: #CCC;
 				display: block;
-				font-size: 16px;
-				font-weight: 500;
-				font-weight: bold;
+				font-size: 18px;
+				font-weight: 900;
 				padding: 10px;
 			}
 		}
@@ -65,10 +73,10 @@ article {
 		}
 	}
 	.post-video {
-		@include transition (all 0.2s ease-in-out);
+		transition: all 0.2s ease-in-out;
 		padding: 0;
 		background-color: #FFF;
-		border: 1px solid #DDD;
+		border: 1px solid rgba(0, 0, 0, 0.06);
 		border-radius: 8px;
 		display: block;
 		height: auto;
@@ -90,16 +98,17 @@ article {
 		}
 	}
 	.post-audio {
-		@include transition (all 0.2s ease-in-out);
+		transition: all 0.2s ease-in-out;
 		padding: 0;
 		background-color: #FFF;
-		border: 1px solid #DDD;
+		border: 1px solid rgba(0, 0, 0, 0.06);
 		border-radius: 8px;
 		display: block;
 		height: auto;
 		position: relative;
 		margin: 0 0 30px 0;
-		padding-bottom: 25%;
+		padding-bottom: 35%;
+		min-height: 160px;
 		iframe {
 			bottom: 0;
 			height: auto;
@@ -128,7 +137,7 @@ article {
 			margin-#{$left}: -60px;
 		}
 		.post-image {
-			margin-bottom: 15px;
+			margin-bottom: 25px;
 			&.single {
 				margin-bottom: 30px;
 			}
@@ -155,9 +164,6 @@ article.blog-single-post .post-meta {
 
 /* Post Block */
 .post-block {
-	border-top: 1px solid #DDD;
-	margin: 15px 0 0 0;
-	padding: 20px 0 15px 0;
 	h3 {
 		font-size: 1.8em;
 		font-weight: 200;
@@ -171,7 +177,6 @@ article.blog-single-post .post-meta {
 
 /* Post Author */
 .post-author {
-	margin: 15px 0 0 0;
 	img {
 		max-height: 80px;
 		max-width: 80px;
@@ -192,17 +197,7 @@ article.blog-single-post .post-meta {
 	}
 }
 
-/* Post Share */
-.post-share {
-	margin: 55px 0 0 0;
-	padding-bottom: 0;
-}
-
 /* Post Comments */
-.post-comments {
-	margin-top: 45px;
-}
-
 ul.comments {
 	list-style: none;
 	margin: 0;
@@ -230,7 +225,7 @@ ul.comments {
 	}
 	.comment-arrow {
 		border-bottom: 15px solid transparent;
-		border-#{$right}: 15px solid #F4F4F4;
+		border-#{$right}: 15px solid #f7f7f7;
 		border-top: 15px solid transparent;
 		height: 0;
 		#{$left}: -15px;
@@ -239,7 +234,7 @@ ul.comments {
 		width: 0;
 	}
 	.comment-block {
-		background: #F4F4F4;
+		background: #f7f7f7;
 		border-radius: 5px;
 		padding: 20px 20px 30px;
 		position: relative;
@@ -265,8 +260,6 @@ ul.comments {
 
 /* Leave a Comment */
 .post-leave-comment {
-	margin-top: 25px;
-	padding-top: 45px;
 	h3 {
 		margin: 0 0 40px;
 	}
@@ -284,17 +277,15 @@ ul.comments {
 		}
 	}
 	.date {
-		float: $left;
 		margin-#{$right}: 10px;
-		margin-top: 8px;
 		text-align: center;
 		.month {
 			background: #CCC;
-			border-radius: corner-values(0 0 2px 2px);
-			box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.07) inset;
 			color: #FFF;
 			font-size: 0.9em;
-			padding: 0 10px 2px;
+			padding: 3px 10px;
+			position: relative;
+			top: -2px;
 		}
 		.day {
 			background: #F7F7F7;
@@ -339,11 +330,11 @@ ul.simple-post-list {
 }
 
 /* Responsive */
-@media (max-width: 479px) {
+@media (max-width: 575px) {
 
 	ul.comments {
 		li {
-			border-#{$left}: 8px solid #DDDDDD;
+			border-#{$left}: 8px solid rgba(0, 0, 0, 0.06);
 			clear: both;
 			padding: side-values(0 0 0 10px);
 			.img-thumbnail {

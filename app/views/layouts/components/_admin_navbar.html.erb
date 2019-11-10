@@ -1,0 +1,57 @@
+<div class="header-nav collapse">
+    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+        <nav>
+            <ul class="nav nav-pills" id="mainNav">
+                <li class="">
+                    <%= link_to "Home", root_path, class: "nav-link" %>
+                </li>
+                <li class="">
+                    <%= link_to "About Us", aboutus_path, class: "nav-link" %>   
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#">
+                        Music
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to "Projects", projects_path, class: "nav-link" %>
+                        </li>
+                        <li>
+                            <%= link_to "Bands", bands_path, class: "nav-link" %>
+                        </li>
+                        <li>
+                            <%= link_to "Müzikus Faculty", teachers_path, class: "nav-link" %>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <%= link_to "Events", events_path, class: "nav-link" %>    
+                </li>
+                <li class="">
+                    <%= link_to "Gallery", gallery_path, class: "nav-link" %>   
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#">
+                        Alfonso
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to "Reserve", reservations_path, class: "nav-link" %>
+                        </li>
+                        <li>
+                            <%= link_to "How to?", howto_path, class: "nav-link" %>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <%= link_to "SCOUT", profile_path(current_user.email.split('@')[0]), class: "nav-link" %>    
+                </li>
+                <li class="">
+                    <a class="nav-link active" href="/admin">
+                        Management
+                    </a>
+                </li>								
+            </ul>
+        </nav>
+    </div>
+</div>

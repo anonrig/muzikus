@@ -6,7 +6,7 @@ $color-primary: #6a80a9;
 $color-secondary: #25272c;
 $color-tertiary: #e5edf1;
 $color-quaternary: #172536;
-$color-dark: #2e353e;
+$color-dark: #1e1e1e;
 $color-light: #FFF;
 
 // DEMO FONT FAMILY
@@ -30,7 +30,7 @@ $font-primary: 'Poppins', sans-serif;
 
 	// Magnific Popup Close
 	.mfp-close {
-		right: initial;
+		right: auto;
 		left: 0;
 	}
 
@@ -40,9 +40,9 @@ $font-primary: 'Poppins', sans-serif;
 	}
 
 	// icons
-	.fa {
-		&.fa-long-arrow-right, &.fa-long-arrow-left, &.fa-chevron-left, &.fa-chevron-right {
-			@include transform(rotate(180deg));
+	[class*="fa-"] {
+		&.fa-long-arrow-alt-right, &.fa-long-arrow-alt-left, &.fa-chevron-left, &.fa-chevron-right {
+			transform: rotate(180deg);
 		}
 	}
 }
@@ -94,7 +94,7 @@ h4 {
 	color: #d9e0ef !important;
 }
 
-.custom-btn-background-color-1 {
+.custom-btn-bg-color-1 {
 	background: rgba(255, 255, 255, 0.2) !important;
 
 	&:hover {
@@ -103,14 +103,14 @@ h4 {
 }
 
 .custom-primary-hover {
-	@include transition(ease color 300ms);
+	transition: ease color 300ms;
 	&:hover {
 		color: $color-primary !important;
 	}
 }
 
 // IMAGE
-.custom-img-rounded {
+.custom-rounded-image {
 	border-radius: 100% !important;
 }
 
@@ -128,12 +128,12 @@ h4 {
 		display: block;
 		position: absolute;
 		top: 0;
-		left: 68.4%;
-		width: 100vw;
+		left: 0;
+		width: 200vw;
 		height: 100%;
 		background: $color-tertiary;
 		z-index: 0;
-		@include transform(translateX(-50%));
+		transform: translateX(-50%);
 
 		@media (max-width: 991px) {
 			left: 50%;
@@ -246,7 +246,7 @@ h4 {
 	    width: 20px;
 	    left: 50%;
 	    border-bottom: 3px solid $color-primary;
-		@include transform(translateX(-50%));
+		transform: translateX(-50%);
 
 		@media (max-width: 991px) {
 			bottom: -15px;
@@ -265,7 +265,7 @@ h4 {
 	    #{$right}: -16px;
 	    height: 37px;
 	    border-right: 1px solid #e4e7eb;
-		@include transform(translateY(-50%));
+		transform: translateY(-50%);
 	}
 }
 
@@ -302,7 +302,7 @@ h4 {
 	text-align: $right !important;
 }
 
-.custom-center-img-responsive {
+.custom-center-img-fluid {
 	margin: 0 auto;
 }
 
@@ -314,7 +314,7 @@ h4 {
 
 // EFFECT
 .custom-opacity-effect-1 {
-	@include transition(ease opacity 300ms);
+	transition: ease opacity 300ms;
 
 	&:hover {
 		opacity: 0.5;
@@ -389,13 +389,13 @@ h4 {
 		li {
 			list-style: none;
 		    border-radius: 0;
-		    border: 1px solid #c9c9cc;
+		    border: 0;
 		    box-shadow: none;
 		    margin-right: 5px;
 
 		    a {
-		    	border-radius: 0;
-		    	line-height: 33px;
+		    	border-radius: 50%;
+		    	line-height: 30px;
 		    	color: #93949a !important;
 		    }
 
@@ -439,7 +439,7 @@ h4 {
 			a {
 				line-height: 1;
 				width: 20px;
-				height: initial;
+				height: auto;
 				color: $color-primary !important;
 			}
 		}
@@ -453,19 +453,19 @@ h4 {
 	&.custom-nav {
 		.owl-nav {
 		    position: relative;
-			top: initial;
+			top: auto;
 			bottom: 105px;
 		    #{$left}: 50%;
 		    width: 230px;
-		    @include transform(translateX(-50%));
+		    transform: translateX(-50%);
 		    @include if-rtl() {
-		    	@include transform(translateX(53%));
+		    	transform: translateX(53%);
 		    }
 
-		    .owl-next, .owl-prev {
+		    button.owl-next, button.owl-prev {
 		    	background: transparent !important;
 		    	@include if-rtl() {
-		    		@include transform(rotate(180deg));
+		    		transform: rotate(180deg);
 		    	}
 
 		    	&:before {
@@ -478,81 +478,17 @@ h4 {
 					height: 20px;
 					border-top: 1px solid $color-dark;
 					border-left: 1px solid $color-dark;
-					@include transform(rotate(-45deg));
+					transform: rotate(-45deg);
 		    	}
 		    }
 
-		    .owl-next {
+		    button.owl-next {
 		    	#{$right}: -15px;
 
 		    	&:before {
-		    		@include transform(rotate(135deg));
+		    		transform: rotate(135deg);
 		    	}
 		    }
-		}
-	}
-}
-
-/*
-* Header
-*/
-#header {
-	.header-body {
-		border: none;
-	}
-
-	.header-nav-main {
-		&.custom-header-nav-main-dark-style {
-			nav {
-				> ul {
-					> li {
-						&:hover, &.active {
-							> a {
-								color: $color-primary;
-
-								&:after {
-									border-color: $color-primary transparent transparent transparent !important;
-								}
-							}
-						}
-
-						> a {
-							background: transparent !important;
-							color: $color-dark;
-							font-weight: 600;
-
-							&:after {
-								border-color: $color-dark transparent transparent transparent !important;
-							}
-						}
-
-						ul {
-							li {
-								a {
-									font-size: 12px !important;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-@media (min-width: 992px) {
-	#header {
-		.header-nav-main {
-			nav {
-				> ul {
-					> li {
-						> a {
-							font-size: 13px;
-							padding: 10px 20px;
-						}
-					}
-				}
-			}
 		}
 	}
 }
@@ -571,32 +507,6 @@ h4 {
 		&:before {
 			opacity: 1;
 		}
-	}
-}
-
-/*
-* Toll Free
-*/
-.custom-toll-free {
-	position: relative;
-	padding-#{$left}: 35px;
-	margin-#{$left}: 40px;
-
-	> span {
-		display: block;
-
-		&.toll-free-number {
-			font-size: 1.5em;
-    		letter-spacing: -1px;
-		}
-	}
-
-	> i {
-	    position: absolute;
-	    top: 2px;
-	    #{$left}: 0;
-	    font-size: 4em;
-	    line-height: 0.8;
 	}
 }
 
@@ -621,7 +531,7 @@ h4 {
 				#{$right}: -40px;
 				width: 30px;
 				border-bottom: 1px solid $color-light;
-				@include transform(translateY(-50%));
+				transform: translateY(-50%);
 			}
 
 			&:after {
@@ -635,7 +545,7 @@ h4 {
 			    border-top: 5px solid transparent;
 			    border-bottom: 5px solid transparent;
 			    border-#{$left}: 5px solid $color-light;
-				@include transform(translateY(-50%));
+				transform: translateY(-50%);
 			}
 		}
 	}
@@ -710,7 +620,7 @@ h4 {
 
 .custom-hover-opacity {
 	display: block;
-	@include transition(ease opacity 300ms);
+	transition: ease opacity 300ms;
 
 	&:hover {
 		opacity: 0.7;
@@ -761,9 +671,9 @@ h4 {
 * Team
 */
 .custom-thumb-info-1 {
-	overflow: initial;
+	overflow: visible;
 	margin-bottom: 30px !important;
-	@include transition(ease box-shadow 300ms);
+	transition: ease box-shadow 300ms;
 
 	&:hover {
 		box-shadow: 0px 0px 70px 0px rgba(139, 139, 139, 0.5);
@@ -780,7 +690,7 @@ h4 {
 	}
 
 	.thumb-info-wrapper {
-		@include transform(initial);
+		transform: none;
 	}
 
 	.thumb-info-caption {
@@ -788,7 +698,7 @@ h4 {
 		display: block;
 		padding: 0;
 		border-bottom: 1px solid #e3e3e3 !important;
-		@include transition(ease border-bottom 300ms);
+		transition: ease border-bottom 300ms;
 
 		.thumb-info-caption-text {
 			padding: 30px 20px;
@@ -934,7 +844,7 @@ h4 {
 @media (max-width: 767px) {
 	.custom-post-style-2 {
 		.post-infos {
-			position: initial;
+			position: static;
 			text-align: center;
 
 			.post-info {
@@ -942,7 +852,7 @@ h4 {
 				margin-right: 20px;
 
 				img {
-					display: initial;
+					display: block;
 				} 
 			}
 		}
@@ -1035,22 +945,18 @@ ul.custom-comments {
 .custom-sidebar-search {
 	.input-group {
 		width: 100%;
-
-		.form-control {
-			padding: 20px;
-		}
 	}
 
 	.input-group-btn {
-		.btn-default {
+		.btn-light {
 			background: transparent;
 		    border: 0 none;
 		    line-height: 36px;
 		    font-size: 19px;
 		    color: $color-dark;
 		    position: absolute;
-		    #{$right}: 0;
-		    top: 0;
+		    #{$right}: 2px;
+		    top: 2px;
 		    height: 100%;
 		    z-index: 3;			
 		}
@@ -1059,12 +965,7 @@ ul.custom-comments {
 
 .custom-featured-posts {
 	.custom-featured-post {
-		display: inline-block;
 		margin-bottom: 20px;
-
-		h6 {
-			padding-#{$left}: 15px;
-		}
 	}
 }
 
@@ -1078,8 +979,8 @@ ul.custom-comments {
 
 		> i {
 			position: absolute;
-			top: 10px;
-			#{$left}: 0;
+			top: 14px;
+			#{$left}: 4px;
 			color: $color-light;
 		}
 
@@ -1094,7 +995,7 @@ ul.custom-comments {
 		}
 
 		select.form-control {
-			@include appearance(none);
+			appearance: none;
 			background: transparent;
 			color: #FFF;
 
@@ -1115,7 +1016,7 @@ ul.custom-comments {
 				border-right: 1px solid #c8d4ea;
 				border-bottom: 1px solid #c8d4ea;
 				z-index: 0;
-				@include transform(translateY(-50%) rotate(45deg));
+				transform: translateY(-50%) rotate(45deg);
 			}
 
 			select {
@@ -1123,12 +1024,18 @@ ul.custom-comments {
 				z-index: 1;
 			}
 		}
+
+		label.error {
+			position: absolute;
+		    top: 2px;
+		    #{$right}: 0;
+		}
 	}
 
 	&.contact-page {
 		.form-control-custom {
 			.form-control {
-				height: initial;
+				height: auto;
 			}
 		}
 	}
@@ -1168,9 +1075,9 @@ ul.custom-comments {
 		background-size: cover;
 		width: 100%;
 		height: 100%;
-		@include transform(translate(-50%, -50%));
+		transform: translate(-50%, -50%);
 		@include if-rtl() {
-			@include transform(translate(-50%, -50%) rotateY(180deg));
+			transform: translate(-50%, -50%) rotateY(180deg);
 		}
 	}
 }

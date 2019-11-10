@@ -1,7 +1,7 @@
 /*
 Name: 			Medical
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {

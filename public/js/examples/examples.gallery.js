@@ -1,7 +1,7 @@
 /*
-Name: 			Shortcodes - Image Gallery - Examples
+Name: 			Elements - Image Gallery - Examples
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 (function($) {
 
@@ -22,7 +22,8 @@ Theme Version:	5.7.2
 			nav: true,
 			dots: false,
 			loop: false,
-			navText: []
+			navText: [],
+			rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 		})
 		.on('changed.owl.carousel', function(e) {
 			if (!flag) {
@@ -38,7 +39,8 @@ Theme Version:	5.7.2
 			items: 4,
 			nav: false,
 			center: false,
-			dots: false
+			dots: false,
+			rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 		})
 		.on('click', '.owl-item', function() {
 			$thumbGalleryDetail1.trigger('to.owl.carousel', [$(this).index(), duration, true]);
@@ -64,7 +66,8 @@ Theme Version:	5.7.2
 			items: 1,
 			margin: 10,
 			nav: false,
-			dots: false
+			dots: false,
+			rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 		})
 		.on('changed.owl.carousel', function(e) {
 			if (!flag) {
@@ -80,7 +83,8 @@ Theme Version:	5.7.2
 			items: 4,
 			nav: false,
 			center: true,
-			dots: false
+			dots: false,
+			rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 		})
 		.on('click', '.owl-item', function() {
 			$thumbGalleryDetail2.trigger('to.owl.carousel', [$(this).index(), duration, true]);

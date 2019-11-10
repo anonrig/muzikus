@@ -1,0 +1,59 @@
+<div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+    <nav class="collapse">
+        <ul class="nav nav-pills" id="mainNav">
+            <li class="">
+                <%= link_to "Home", root_path, class: "nav-link #{(controller_name == "main" and action_name == "index") ? "active" : ""}" %>
+            </li>
+            <li class="">
+                <%= link_to "About Us", aboutus_path, class: "nav-link #{(controller_name == "main" and action_name == "aboutus") ? "active" : ""}" %>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-item dropdown-toggle <%= ((controller_name == "main" and (action_name == "projects" or action_name == "bands")) or (controller_name == "teachers" and action_name == "index"))  ? "active" : "" %>" href="#">
+                    Music
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <%= link_to "Projects", projects_path, class: "dropdown-item #{(controller_name == "main" and action_name == "projects") ? "active" : ""}" %>
+                    </li>
+                    <li>
+                        <%= link_to "Bands", bands_path, class: "dropdown-item #{(controller_name == "main" and action_name == "bands") ? "active" : ""}" %>
+                    </li>
+                    <li>
+                        <%= link_to "Müzikus Faculty", teachers_path, class: "dropdown-item #{(controller_name == "teachers" and action_name == "index") ? "active" : ""}" %>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <%= link_to "Events", events_path, class: "nav-link #{(controller_name == "events" and action_name == "index") ? "active" : ""}" %>
+            </li>
+            <li class="">
+                <%= link_to "Gallery", gallery_path, class: "nav-link #{(controller_name == "main" and action_name == "gallery") ? "active" : ""}" %>
+            </li>
+            <% if current_user && current_user.is_member %>
+            <li class="dropdown">
+                <a class="dropdown-item dropdown-toggle <%= ((controller_name == "main" and action_name == "howto") or (controller_name == "reservations" and action_name == "index")) ? "active" : "" %>" href="#">
+                    ALFONSO
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <%= link_to "Reserve", reservations_path, class: "dropdown-item #{(controller_name == "reservations" and action_name == "index") ? "active" : ""}" %>
+                    </li>
+                    <li>
+                        <%= link_to "How to?", howto_path, class: "dropdown-item #{(controller_name == "main" and action_name == "howto") ? "active" : ""}" %>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <%= link_to "Scout", profile_path(current_user.email.split('@')[0]), class: "nav-link #{(controller_name == "users" or controller_name == "scout_profiles") ? "active" : ""}" %>
+            </li>
+                <% if current_user.is_yk %>
+                    <li class="">
+                        <a class="nav-link" href="/admin">
+                            Management
+                        </a>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+    </nav>
+</div>

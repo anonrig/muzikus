@@ -1,6 +1,10 @@
-/* Blockquote */
+/* Blockquotes */
 blockquote {
+    border-#{$left}: 5px solid #eee;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem 1rem;
 	font-size: 1em;
+
 	&.with-borders {
 		border-radius: 6px;
 		border-top: 1px solid #DFDFDF;
@@ -8,27 +12,32 @@ blockquote {
 		border-#{$left}: 1px solid #ECECEC;
 		border-#{$right}: 1px solid #ECECEC;
 		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04);
-		padding: 15px 20px;
+		padding: 1.3rem;
 	}
+
+	&.blockquote-reverse {
+		text-align: #{$right};
+		border-#{$right}: 5px solid #eee;
+		border-#{$left}: 0px !important;
+	}
+}
+
+/* Small */
+small, .small {
+	font-size: 70%;
 }
 
 /* Paragraphs */
 p {
 	color: $color-font-default;
-	line-height: 24px;
+	line-height: 26px;
 	margin: 0 0 20px;
 	&.featured {
 		font-size: 1.6em;
 		line-height: 1.5em;
 	}
-	&.short {
-		margin-bottom: 0;
-	}
-	&.tall {
-		margin-bottom: 20px;
-	}
-	&.taller {
-		margin-bottom: 40px;
+	&.lead {
+		line-height: 1.8rem;
 	}
 	.alternative-font {
 		display: inline-block;
@@ -37,6 +46,16 @@ p {
 		top: 3px;
 		margin-bottom: -6px;
 	}
+}
+
+/* Lead */
+.lead {
+	letter-spacing: -.05em;
+    font-size: 1.2rem;
+}
+
+.lead-2 {
+    font-size: 1.12rem;
 }
 
 /* Links */
@@ -75,4 +94,31 @@ p.drop-caps {
 	color: #CCC;
 	font-family: $font-secondary;
 	font-size: 1.6em;
+}
+
+.alternative-font-2 {
+	font-family: $font-tertiary;
+}
+
+/* Gradient Text */
+.gradient-text-color {
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+}
+
+.no-backgroundcliptext .gradient-text-color {
+	background: transparent !important;
+}
+
+/* Small Sup style */
+.sup-text-small {
+	font-size: 0.5em;
+	font-weight: 500;
+	top: -.7em;
+}
+
+/* Text Color Default */
+.text-default,
+.text-color-default {
+	color: #777 !important;
 }

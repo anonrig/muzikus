@@ -1,7 +1,7 @@
 /*
 Name: 			Gym
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -97,7 +97,8 @@ Theme Version:	5.7.2
 				loop: true,
 				navText: [],
 				autoplay: true,
-				autoplayTimeout: 6000
+				autoplayTimeout: 6000,
+				rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 			});
         }
     });
@@ -135,159 +136,5 @@ Theme Version:	5.7.2
 			});
 		});
 	}
-
-	/*
-	VIP Request Form
-	*/
-	$('#vipRequest').validate({
-		submitHandler: function(form) {
-
-			var $form = $(form),
-				$messageSuccess = $('#vipRequestSuccess'),
-				$messageError = $('#vipRequestError'),
-				$submitButton = $(this.submitButton),
-				$errorMessage = $('#vipRequestErrorMessage');
-
-			$submitButton.button('loading');
-
-			// Ajax Submit
-			$.ajax({
-				type: 'POST',
-				url: $form.attr('action'),
-				data: {
-					name: $form.find('#vipRequestName').val(),
-					email: 'you@domain.com',
-					subject: 'Gym - VIP Request',
-					message: 'Name' + $form.find('#vipRequestName').val() + '<br>E-mail:' + $form.find('#vipRequestEmail').val() + '<br>Phone:' + $form.find('#vipRequestPhone').val()
-				}
-			}).always(function(data, textStatus, jqXHR) {
-
-				$errorMessage.empty().hide();
-
-				if (data.response == 'success') {
-
-					$messageSuccess.removeClass('hidden');
-					$messageError.addClass('hidden');
-
-					// Reset Form
-					$form.find('.form-control')
-						.val('')
-						.blur()
-						.parent()
-						.removeClass('has-success')
-						.removeClass('has-error')
-						.find('label.error')
-						.remove();
-
-					if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
-						$('html, body').animate({
-							scrollTop: $messageSuccess.offset().top - 80
-						}, 300);
-					}
-
-					$submitButton.button('reset');
-					
-					return;
-
-				} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
-					$errorMessage.html(data.errorMessage).show();
-				} else {
-					$errorMessage.html(data.responseText).show();
-				}
-
-				$messageError.removeClass('hidden');
-				$messageSuccess.addClass('hidden');
-
-				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
-					$('html, body').animate({
-						scrollTop: $messageError.offset().top - 80
-					}, 300);
-				}
-
-				$form.find('.has-success')
-					.removeClass('has-success');
-					
-				$submitButton.button('reset');
-
-			});
-		}
-	});
-
-	/*
-	Contact Form Message
-	*/
-	$('#contactFormMessage').validate({
-		submitHandler: function(form) {
-
-			var $form = $(form),
-				$messageSuccess = $('#contactFormMessageSuccess'),
-				$messageError = $('#contactFormMessageError'),
-				$submitButton = $(this.submitButton),
-				$errorMessage = $('#contactFormMessageErrorMessage');
-
-			$submitButton.button('loading');
-
-			// Ajax Submit
-			$.ajax({
-				type: 'POST',
-				url: $form.attr('action'),
-				data: {
-					name: $form.find('#contactName').val(),
-					email: 'you@domain.com',
-					subject: 'Gym - Contact Message',
-					message: 'Name' + $form.find('#contactName').val() + '<br>E-mail:' + $form.find('#contactEmail').val() + '<br>Phone:' + $form.find('#contactPhone').val() + '<br>Message:' + $form.find('#contactMessage').val()
-				}
-			}).always(function(data, textStatus, jqXHR) {
-
-				$errorMessage.empty().hide();
-
-				if (data.response == 'success') {
-
-					$messageSuccess.removeClass('hidden');
-					$messageError.addClass('hidden');
-
-					// Reset Form
-					$form.find('.form-control')
-						.val('')
-						.blur()
-						.parent()
-						.removeClass('has-success')
-						.removeClass('has-error')
-						.find('label.error')
-						.remove();
-
-					if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
-						$('html, body').animate({
-							scrollTop: $messageSuccess.offset().top - 80
-						}, 300);
-					}
-
-					$submitButton.button('reset');
-					
-					return;
-
-				} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
-					$errorMessage.html(data.errorMessage).show();
-				} else {
-					$errorMessage.html(data.responseText).show();
-				}
-
-				$messageError.removeClass('hidden');
-				$messageSuccess.addClass('hidden');
-
-				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
-					$('html, body').animate({
-						scrollTop: $messageError.offset().top - 80
-					}, 300);
-				}
-
-				$form.find('.has-success')
-					.removeClass('has-success');
-					
-				$submitButton.button('reset');
-
-			});
-		}
-	});
     
 }).apply( this, [ jQuery ]);

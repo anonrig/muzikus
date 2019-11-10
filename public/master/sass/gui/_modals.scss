@@ -17,3 +17,14 @@
 .mfp-wrap .popup-inline-content {
 	display: block;
 }
+
+.modal-footer {
+	>:not(:first-child) {
+		margin-#{$left}: .25rem;
+		margin-#{$right}: 0rem;
+	}
+	>:not(:last-child) {
+		margin-#{$right}: .25rem;
+		margin-#{$left}: 0rem;
+	}
+}

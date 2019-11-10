@@ -7,8 +7,7 @@ html.boxed {
 	}
 	.body {
 		position: relative;
-		background-color: #FFF;
-		border-bottom: 5px solid $color-dark;
+		background-color: transparent;
 		border-radius: 5px;
 		border-top: 5px solid #CCC;
 		box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
@@ -20,9 +19,30 @@ html.boxed {
 		.header-body {
 			border-top-color: transparent;
 		}
+
+		&.header-effect-shrink {
+			.header-body {
+				max-width: 1200px;
+			}
+		}
 	}
 	.main {
+		background-color: #FFF;
 		overflow: hidden;
+	}
+	section.section {
+		&.section-footer {
+			padding-bottom: 100px;
+		}
+	}
+	#footer {
+		margin-top: 0;
+		border-bottom: 4px solid $footer-bg;
+		border-radius: 0 0 5px 5px;
+	}
+	.footer-reveal {
+		max-width: 1200px;
+		left: auto !important;
 	}
 }
 
@@ -33,22 +53,25 @@ html.boxed {
 	html.boxed.sticky-header-active {
 		#header {
 			.header-body {
-				width: auto;
+				width: 100%;
+				max-width: 1200px;
 			}
 		}
 	}
-
-	// Transparent
 	html.boxed {
-		#header.header-transparent,
-		#header.header-semi-transparent,
-		#header.header-semi-transparent-light {
-			.header-body {
-				width: auto;
-			}
+		.footer-reveal {
+			bottom: 25px !important;
 		}
 	}
+	
+}
 
+@media (max-width: 1199px) {
+	html.boxed {
+		.footer-reveal {
+			border-bottom: none !important;
+		}
+	}
 }
 
 @media (min-width: 992px) {
@@ -63,31 +86,11 @@ html.boxed {
 			}
 		}
 
-		// Transparent
-		#header.header-transparent,
-		#header.header-semi-transparent,
-		#header.header-semi-transparent-light {
-			.header-body {
-				position: absolute;
-				padding-left: 15px;
-				padding-right: 15px;
-			}
-		}
-
-		// Header Top
-		#header {
-			.header-top.header-top-style-2,
-			.header-top.header-top-style-3,
-			.header-top.header-top-style-4 {
-				margin-top: -13px;
-			}
-		}
-
 	}
 
 	// Sticky Header
 	html.boxed.sticky-header-active {
-		#header {
+		#header:not(.header-effect-shrink) {
 			.header-body {
 				position: fixed !important;
 				padding-left: 15px;
@@ -106,8 +109,6 @@ html.boxed {
 	html.boxed {
 		.body {
 			margin: 0 auto;
-			-webkit-border-radius: 0;
-			-moz-border-radius: 0;
 			border-radius: 0;
 		}
 	}

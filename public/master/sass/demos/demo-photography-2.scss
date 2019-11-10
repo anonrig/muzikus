@@ -15,21 +15,6 @@ $custom-font-size-2: 3.5em;
 */
 
 // Header
-@-webkit-keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
-}
-
-@-moz-keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
-}
-
-@-o-keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
-}
-
 @keyframes header-reveal {
 	0%   { top: -150px; }
 	100% { top: 0; }
@@ -76,7 +61,6 @@ html.photography-demo-2 {
 			.header-nav-main {
 				nav {
 					background: #FFF;
-					padding: 10px;
 
 					> ul {
 						> li {
@@ -146,15 +130,15 @@ html.photography-demo-2 {
 		}
 
 		&.calc-height {
-			height: calc(100vh - 79px);
+			height: calc(100vh - 71px);
 		}
 
 		&.initial-height {
-			height: initial !important;
+			height: auto !important;
 		}
 
 		&.calc-include-footer {
-			height: calc(100vh - 169px) !important;
+			height: calc(100vh - 157px) !important;
 		}
 	}
 
@@ -172,9 +156,9 @@ html.photography-demo-2 {
 		&.tp-rightarrow {
 			
 			&:before {
-				font-family: FontAwesome;
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
 				content: "\f054";
-				font-weight: 300;
 				font-size: 14px;
 			}
 		}
@@ -182,9 +166,9 @@ html.photography-demo-2 {
 		&.tp-leftarrow {
 			
 			&:before {
-				font-family: FontAwesome;
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
 				content: "\f053";
-				font-weight: 300;
 				font-size: 14px;
 			}
 		}
@@ -218,23 +202,23 @@ html.photography-demo-2 {
 	// Demo 2 Owl Carousel Arrows
 	.owl-carousel {
 		.owl-nav {
-			.owl-prev, .owl-next {
+			button.owl-prev, button.owl-next {
 				background: transparent !important;
 				width: 55px;
 			}
 
-			.owl-prev {
+			button.owl-prev {
 				&:before {
-					font-family: FontAwesome !important;
-					content: "\f053" !important;
+					font-family: "Font Awesome 5 Free" !important;
+					content: if-ltr("\f053" !important, "\f054" !important);
 					left: -1px !important;
 				}
 			}
 
-			.owl-next {
+			button.owl-next {
 				&:before {
-					font-family: FontAwesome !important;
-					content: "\f054" !important;
+					font-family: "Font Awesome 5 Free" !important;
+					content: if-ltr("\f054" !important, "\f053" !important);
 					left: -1px !important;
 				}
 			}
@@ -249,15 +233,17 @@ html.photography-demo-2 {
 		}
 
 		.prev:before {
-			font-family: FontAwesome !important;
-			content: "\f053" !important;
+			font-family: "Font Awesome 5 Free" !important;
+			content: if-ltr("\f053" !important, "\f054" !important);
 			left: 20px !important;
+			font-weight: 900 !important;
 		}
 
 		.next:before {
-			font-family: FontAwesome !important;
-			content: "\f054" !important;
+			font-family: "Font Awesome 5 Free" !important;
+			content: if-ltr("\f054" !important, "\f053" !important);
 			left: 24px !important;
+		    font-weight: 900 !important;
 		}
 	}	
 
@@ -302,7 +288,7 @@ html.photography-demo-2 {
 							}
 
 							.background-image {
-								@include transform(translate3d(0, 3%, 0) scale(1.3));
+								transform: translate3d(0, 3%, 0) scale(1.3);
 							}
 						}
 					}
@@ -312,7 +298,7 @@ html.photography-demo-2 {
 
 						&:before, .thumb-info-title {
 							bottom: -50%;
-							@include transition(ease bottom 300ms);
+							transition: ease bottom 300ms;
 						}
 
 						.thumb-info-title {
@@ -331,8 +317,8 @@ html.photography-demo-2 {
 						}
 						
 						.background-image {
-							@include transform(translate3d(-2%, -2%, 0) scale(1.2));
-							@include transition(ease all 5s);
+							transform: translate3d(-2%, -2%, 0) scale(1.2);
+							transition: ease all 5s;
 						}
 					}
 				}
@@ -359,7 +345,7 @@ html.photography-demo-2 {
 					}
 
 					img, .thumb-info-background {
-						@include transform(translate3d(0, 3%, 0) scale(1.3));
+						transform: translate3d(0, 3%, 0) scale(1.3);
 					}
 				}
 			}
@@ -378,7 +364,7 @@ html.photography-demo-2 {
 
 				&:before, .thumb-info-title {
 					bottom: -50%;
-					@include transition(ease bottom 300ms);
+					transition: ease bottom 300ms;
 				}
 
 				.thumb-info-plus {
@@ -396,7 +382,7 @@ html.photography-demo-2 {
 					padding: 0;
 					opacity: 1;
 					font-weight: 700 !important;
-					@include transform(initial);
+					transform: none;
 
 					.thumb-info-sub-title {
 						display: block;
@@ -404,13 +390,13 @@ html.photography-demo-2 {
 						opacity: 1;
 						font-size: 14px;
 						letter-spacing: 0;
-						@include transform(initial);
+						transform: none;
 					}
 				}
 				
 				img, .thumb-info-background {
-					@include transform(translate3d(-2%, -2%, 0) scale(1.2));
-					@include transition(ease all 5s);
+					transform: translate3d(-2%, -2%, 0) scale(1.2);
+					transition: ease all 5s;
 				}
 			}
 		}
@@ -420,13 +406,13 @@ html.photography-demo-2 {
 	.portfolio-detail-item {
 		&:hover {
 			.item-image {
-				@include transform(translate3d(0, 3%, 0) scale(1.3));
+				transform: translate3d(0, 3%, 0) scale(1.3);
 			}
 		}
 
 		.owl-carousel {
 			.owl-nav {
-				.owl-prev, .owl-next {
+				button.owl-prev, button.owl-next {
 					background: transparent;
 				}
 			}
@@ -440,8 +426,8 @@ html.photography-demo-2 {
 		}
 
 		.item-image {
-			@include transform(translate3d(-2%, -2%, 0) scale(1.2));
-			@include transition(ease all 5s);
+			transform: translate3d(-2%, -2%, 0) scale(1.2);
+			transition: ease all 5s;
 		}
 
 		.sub-item-description {
@@ -459,8 +445,8 @@ html.photography-demo-2 {
 			display: block;
 			position: absolute;
 			background: none;
-			top: initial;
-			right: initial;
+			top: auto;
+			right: auto;
 			bottom: -50%;
 			left: 0;
 			width: 100%;
@@ -468,7 +454,7 @@ html.photography-demo-2 {
 			background: transparent linear-gradient(to top, #182027 0px, transparent 100%) repeat scroll 0 0;
 			z-index: 0;
 			opacity: 0.7;
-			@include transition(ease bottom 300ms);
+			transition: ease bottom 300ms;
 		}
 
 		&:hover {
@@ -489,7 +475,7 @@ html.photography-demo-2 {
 			left: 25px;
 			bottom: -50%;
 			text-transform: uppercase;
-			@include transition(ease bottom 300ms);
+			transition: ease bottom 300ms;
 
 			.thumb-info-sub-title{
 				display: block;
@@ -518,13 +504,13 @@ html.photography-demo-2 {
 	// Fix Ajax on Page Rev Slider Height
 	#porfolioDetailsAjaxBox {
 		.rev_slider {
-			height: calc(100vh - 79px) !important;
+			height: calc(100vh - 71px) !important;
 		}
 	}
 
 	// Horizontal Scroll Height Demo 2
 	#horizontalScrollBox {
-		height: calc( 100vh - 181px );
+		height: calc( 100vh - 174px );
 	}
 
 	@media (min-width: 992px) {
@@ -564,6 +550,10 @@ html.photography-demo-2 {
 				}
 			}
 
+			.header-social-icons {
+				margin-top: -4px;
+			}
+
 			.header-nav-main {
 				margin-top: 0;
 
@@ -574,20 +564,21 @@ html.photography-demo-2 {
 								&.dropdown {
 									&:hover {
 										> .dropdown-menu {
+											border-radius: 0;
 											visibility: visible;
 											opacity: 1;
-											@include transform(translate3d(-50%, 0, 0));
-											@include transition(ease all 300ms);
+											transform: translate3d(-50%, 0, 0);
+											transition: ease all 300ms;
 										}
 									}
 
 									> .dropdown-menu {
-										top: initial;
+										top: 100%;
 										left: 50%;
 										opacity: 0;
 										visibility: hidden;
-										@include transform(translate3d(-50%, 3%, 0));
-										@include transition(ease all 300ms);
+										transform: translate3d(-50%, 3%, 0);
+										transition: ease all 300ms;
 
 										&:before {
 											content: '';
@@ -600,7 +591,7 @@ html.photography-demo-2 {
 											border-left: 7px solid transparent;
 											border-right: 7px solid transparent;
 											border-bottom: 7px solid white;
-											@include transform(translateX(-50%));
+											transform: translateX(-50%);
 										}
 									}
 								}
@@ -615,6 +606,8 @@ html.photography-demo-2 {
 
 					> ul {
 						> li {
+							display: inline-flex;
+							align-items: center;
 							&.dropdown {
 								&:hover {
 									> a {
@@ -633,8 +626,9 @@ html.photography-demo-2 {
 										&.dropdown-submenu {
 											> a {
 												&:after {
-													content: "\f105";
-													font-family: FontAwesome;
+													content: if-ltr("\f105","\f104");
+													font-family: 'Font Awesome 5 Free';
+													font-weight: 900;
 													border: none;
 													margin: 0;
 												}
@@ -654,32 +648,15 @@ html.photography-demo-2 {
 										left: 50%;
 										width: 0;
 										border-bottom: 2px solid #FFF;
-										@include transform(translateX(-50%));
-										@include transition(ease width 300ms);
+										transform: translateX(-50%);
+										transition: ease width 300ms;
 									}
 
 									&:hover {
 										&:after {
 											width: 100%;
+											border-color: #FFF;
 										}
-									}
-								}
-							}
-
-							&.active {
-								> a {
-									color: #FFF !important;
-
-									&:before {
-										content: '';
-										display: block;
-										position: absolute;
-										bottom: 5px;
-										left: 50%;
-										width: 100%;
-										border-bottom: 2px solid #FFF;
-										@include transform(translateX(-50%));
-										@include transition(ease width 300ms);
 									}
 								}
 							}
@@ -691,10 +668,26 @@ html.photography-demo-2 {
 							}
 
 							> a {
+								position: relative;
 								color: #FFF !important;
 								font-weight: 100;
 								padding: 5px 0px;
-								margin: 10px 13px;
+							    margin: 0 .9rem;
+								&.active {
+									color: #FFF !important;
+
+									&:before {
+										content: '';
+										display: block;
+										position: absolute;
+										bottom: 5px;
+										left: 50%;
+										width: 100%;
+										border-bottom: 2px solid #FFF;
+										transform: translateX(-50%);
+										transition: ease width 300ms;
+									}
+								}
 							}
 
 							a {
@@ -715,6 +708,17 @@ html.photography-demo-2 {
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 991px) {
+		#header {
+			.header-nav-main {
+				padding: 0 30px;
+				&:before {
+					content: none;
 				}
 			}
 		}

@@ -9,33 +9,7 @@ Rails.application.routes.draw do
   get 'gallery' => 'main#gallery', as: 'gallery'
   get 'howto' => 'main#howto', as: 'howto'  
 
-# admin panel
-  get 'admin' => 'admin#index'
-
-  #users
-  get 'admin/users' => 'users#index', as: 'admin_users'
-  post 'admin/users' => 'users#create'
-  delete 'admin/users/:id' => 'users#destroy', as: 'admin_user'
-  
-  #schedules
-  post 'admin/rooms/schedules' => 'lesson_schedules#create'
-  delete 'admin/rooms/schedules/:id' => 'lesson_schedules#destroy', as: 'admin_schedule'
-  
-  #managers
-  get 'admin/rooms/managers' => 'managers#index', as: 'admin_managers'
-  post 'admin/rooms/managers' => 'managers#create'
-  delete 'admin/rooms/managers/:id' => 'managers#destroy', as: 'admin_manager'
-  
-  #rooms
-  get 'admin/rooms' => 'rooms#index', as: 'admin_rooms'
-  post 'admin/rooms' => 'rooms#create'
-  get 'admin/rooms/:id' => 'rooms#show', as: 'admin_room'
-  delete 'admin/rooms/:id' => 'rooms#destroy'
-  
-  #budget
-  get 'admin/budget' => 'budgets#index', as: 'admin_budget'
-  post 'admin/budget' => 'budgets#create'
-  
+# admin panel    
   #teachers
   resources :teachers, except: [:show, :edit]
 
@@ -58,6 +32,31 @@ Rails.application.routes.draw do
   post 'user/scout/info' => 'musician_infos#create'
   patch 'user/scout/info/:id' => 'musician_infos#update'
   delete 'user/scout/deleteinfo/:id' => 'musician_infos#destroy', as: 'info_destroy'
+
+  namespace :admin do
+    get '/' => "main#index"
+    
+    #USERS
+    get 'users/members' => 'users#members', as: 'members'
+    get 'users/blocked' => 'users#blocked', as: 'blocked_users'
+    resources :users, only: [:index, :create, :show, :update, :destroy]
+
+    #ROOMS
+    resources :rooms, only: [:index, :show]
+    
+    #MANAGERS
+    resources :managers, only: [:index, :create, :destroy]
+
+    #SCHEDULES
+    resources :lesson_schedules, only: [:index, :create, :destroy]
+
+    #RESERVATIONS
+    resources :reservations, only: [:index]
+
+    #BUDGET STATUS
+    resources :budgets, only: [:index, :create]
+  end
+
 
 #Events
   resources :events, except: [:show]

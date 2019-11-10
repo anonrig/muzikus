@@ -1,0 +1,222 @@
+<style>
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+  }
+</style>
+
+<div role="main" class="main schedule-list scroll">
+	<header class="page-header">
+		<h2>Users</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span><a href="<%= admin_rooms_path %>">Rooms</a></span></li>
+				<li><span>Details</span></li>
+			</ol>
+
+			
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+
+	<div class="row justify-content-around">
+		<div class="col-lg-4 mb-3">
+			<section class="card-featured card-featured-info sticky">
+				<div class="card-header">
+					<h2 class="card-title"><%= @room.name %></h2>
+					<p class="card-subtitle">Managers: <%= @managers.any? ? @managers.collect{|x| x.name}.join(", ") : "No manager assigned" %></p>
+				</div>
+				<% if @reservations.any? %>
+				<div class="table-responsive">
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr>
+								<th style="width: 50px;" class="text-center">#</th>
+								<th>Name</th>
+								<th style="width: 100px;" class="text-center">Start At</th>
+								<th style="width: 100px;" class="text-center">End At</th>
+							</tr>
+						</thead>
+						<% i = 1%>
+						<tbody>
+							<% @reservations.each do |item| %>
+								<tr>
+									<td class="text-center"><%= i %></td>
+									<td><%= item.user.name %></td>
+									<td class="text-center"><%= item.start_at.to_datetime.strftime("%e %b, %a %H:%M") %></td>
+									<td class="text-center"><%= item.end_at.to_datetime.strftime("%e %b, %a %H:%M") %></td>
+								</tr>
+								<% i = i + 1%>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+				<% else %>
+					<div class="card-body">
+						No reservation info...
+					</div>
+				<% end %>
+			</section>
+		</div>
+		<div class="col-lg-5">
+			<section class="card card-featured card-featured-info">
+				<div class="card-header">
+					<h2 class="card-title">Weekly Room Schedule</h2>
+				</div>
+				<div class="card-body">
+					<div class="timeline timeline-simple">
+						<div class="tm-body">
+							<% if @room.schedule.Monday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Monday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Monday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if @room.schedule.Tuesday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Tuesday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Tuesday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if @room.schedule.Wednesday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Wednesday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Wednesday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if @room.schedule.Thursday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Thursday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Thursday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if @room.schedule.Friday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Friday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Friday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if @room.schedule.Saturday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Saturday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Saturday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if @room.schedule.Sunday.any? %>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase">Sunday</h5>
+								</div>
+								<ol class="tm-items">
+									<% @room.schedule.Sunday.each do |schedule| %>
+										<li>
+											<div class="tm-box">
+												<p class="text-muted mb-0"><%= "#{Time.parse(schedule.start_at).strftime("%H:%M")} - #{Time.parse(schedule.end_at).strftime("%H:%M")}" %></p>
+												<p class="text-light">
+													<%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+												</p>
+												<div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+											</div>
+										</li>
+									<% end %>
+								</ol>
+							<% end %>
+							<% if ((@room.schedule.Monday.count + @room.schedule.Tuesday.count + @room.schedule.Wednesday.count + @room.schedule.Thursday.count + @room.schedule.Friday.count + @room.schedule.Saturday.count + @room.schedule.Sunday.count) == 0) %>
+								<ol class="tm-items">
+									<li>
+										<div class="tm-box">
+											<p class="mt-2">
+												There is nothing to show...
+											</p>
+										</div>
+									</li>
+								</ol>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

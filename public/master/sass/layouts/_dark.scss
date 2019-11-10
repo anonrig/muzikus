@@ -1,7 +1,7 @@
 /* Dark Version */
 html.dark {
 
-	body {
+	body, .body {
 		background-color: $dark-bg;
 	}
 
@@ -48,51 +48,27 @@ html.dark {
 				}
 			}
 		}
+
+		// Nav Features
+		.header-nav-features {
+			.header-nav-top-icon,
+			.header-nav-top-icon-img {
+				color: #FFF;
+			}
+			.header-nav-features-dropdown {
+				background: $color-dark-2;
+				&:before {
+					border-bottom-color: $color-dark-2;
+				}
+			}
+		}
 	}
 
 	&.sticky-header-active {
 		#header {
 			.header-body {
 				border-bottom-color: $color-dark-4;
-			}
-		}
-	}
-
-	// Transparent
-	#header {
-		&.header-transparent {
-			.header-body {
-				background: transparent;
-				&:before {
-					background-color: $dark-bg;
-					border-bottom-color: $color-dark-4;
-				}
-			}
-		}
-	}
-
-	// Semi Transparent
-	#header {
-		&.header-semi-transparent {
-			.header-body {
-				background: transparent;
-				&:before {
-					background-color: $dark-bg;
-					border-bottom-color: $color-dark-4;
-				}
-			}
-		}
-	}
-
-	// Semi Transparent Light
-	#header {
-		&.header-semi-transparent-light {
-			.header-body {
-				background: transparent;
-				&:before {
-					background-color: $dark-bg;
-					border-bottom-color: $color-dark-4;
-				}
+				box-shadow: none;
 			}
 		}
 	}
@@ -126,12 +102,24 @@ html.dark {
 
 	// Dropdown
 	.dropdown-menu > li {
-		> a {
+		a {
 			color: #FFF;
 			&:hover, &:focus, {
 				background-color: $color-dark-4;
 			}
 		}
+	}
+
+	// Simple Search
+	.simple-search {
+		.input-group-append {
+			border-color: $color-dark-3;
+		}
+	}
+
+	// Home Intro
+	.home-intro {
+		background-color: $color-dark-2;
 	}
 
 	//Tabs
@@ -302,7 +290,7 @@ html.dark {
 		}
 
 		&.featured {
-			@include background(linear-gradient(to bottom, $color-dark-3 1%, $color-dark-4 98%) repeat scroll 0 0 rgba(0, 0, 0, 0));
+			background: linear-gradient(to bottom, $color-dark-3 1%, $color-dark-4 98%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 			border-bottom-color: $color-dark-4;
 			border-#{$left}-color: $color-dark-3;
 			border-#{$right}-color: $color-dark-3;
@@ -328,7 +316,7 @@ html.dark {
 		&.counters-text-dark {
 			.counter {
 				color: #FFF !important;
-				.fa, .icons, strong, label {
+				[class*="fa-"], .icons, strong, label {
 					color: #FFF !important;
 				}
 			}
@@ -339,11 +327,6 @@ html.dark {
 	section.timeline {
 		&:after {
 			background: rgb(80,80,80);
-			background: -moz-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1)));
-			background: -webkit-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
-			background: -o-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
-			background: -ms-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
 			background: linear-gradient(to bottom, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
 		}
 		.timeline-date {
@@ -381,13 +364,23 @@ html.dark {
 	}
 
 	// Form
-	.form-control {
-		background-color: $color-dark-3;
-		border-color: $color-dark-3;
+	form:not(.form-style-4) {
+		.form-control {
+			background-color: $color-dark-3;
+			border-color: $color-dark-3;
+		}
+	}
+
+	form {
+		&.form-style-4 {
+			.form-control {
+				border-bottom-color: #3c3c3c;
+			}
+		}
 	}
 
 	// Buttons
-	.btn-default {
+	.btn-light {
 		background-color: $color-dark-3;
 		border-color: $color-dark-3;
 		color: #FFF;
@@ -417,26 +410,26 @@ html.dark {
 
 	// Custom Map
 	section.section-custom-map {
-		background: transparent url(../img/map-dark.png) center 0 no-repeat;
+		background-color: $color-dark;
 		section.section {
-			border-top-color: rgba(#282d36, 0.8);
-			background: rgba(#21262d, 0.8);
+			background: rgba($color-dark-2, 0.8);
 		}
 	}
 
+	// Home Concept
 	.home-concept {
-		background-image: url(../img/home-concept-dark.png);
+		background-image: url(../img/home/home-concept-dark.png);
 		.process-image {
-			background-image: url(../img/home-concept-item-dark.png);
+			background-image: url(../img/home/home-concept-item-dark.png);
 		}
 		.project-image {
-			background-image: url(../img/home-concept-item-dark.png);
+			background-image: url(../img/home/home-concept-item-dark.png);
 		}
 		.sun {
-			background-image: url(../img/home-concept-icons-dark.png);
+			background-image: url(../img/home/home-concept-icons-dark.png);
 		}
 		.cloud {
-			background-image: url(../img/home-concept-icons-dark.png);
+			background-image: url(../img/home/home-concept-icons-dark.png);
 		}
 	}
 
@@ -449,15 +442,20 @@ html.dark {
 		background-color: lighten($color-dark, 8%);
 	}
 
-	// Panels
-	.panel-group {
-		.panel {
+	// Cards
+	.card {
+		background-color: $color-darken-1;
+	}
+
+	// Cards Inside Accordion
+	.accordion {
+		.card {
 			background-color: $color-dark-3;
 		}
-		.panel-default {
+		.card-default {
 			border-color: $color-dark-3;
 		}
-		.panel-heading {
+		.card-header {
 			background-color: $color-dark-4;
 		}
 
@@ -466,6 +464,18 @@ html.dark {
 			border-color: $color-dark-2;
 		}
 
+		&.accordion-modern {
+			.card {
+				.card-header {
+					background-color: $color-dark-2;
+				}
+				&:first-of-type,
+				&:not(:first-of-type):not(:last-of-type),
+				&:last-of-type {
+					border-color: $color-dark-2;
+				}
+			}
+		}
 	}
 
 	// Toggles
@@ -608,7 +618,7 @@ html.dark {
 
 	// Carousel
 	.owl-dots {
-		.owl-dot {
+		button.owl-dot {
 			span {
 				background: $color-dark-4;
 			}
@@ -767,7 +777,7 @@ html.dark {
 		color: $color-font-default;
 	}
 
-	.show-grid [class*="col-md-"] .show-grid-block {
+	.show-grid [class*="col-lg-"] .show-grid-block {
 		background-color: $color-dark-3;
 		border-color: $color-dark-3;
 	}
@@ -784,9 +794,9 @@ html.dark {
 
 	// Divider Line
 	hr {
-		@include background-image(linear-gradient(left, transparent, #3F4247, transparent));
+		background-image: linear-gradient(to left, $dark-bg, #3F4247, $dark-bg);
 		&.light {
-			@include background-image(linear-gradient(left, transparent, #3F4247, transparent));
+			background-image: linear-gradient(to left, $dark-bg, #3F4247, $dark-bg);
 		}
 		&.solid {
 			background: #3F4247;
@@ -794,9 +804,9 @@ html.dark {
 	}
 
 	.divider {
-		@include background-image(linear-gradient(left, transparent, #3F4247, transparent));
+		background-image: linear-gradient(to left, transparent, #3F4247, transparent);
 
-		.fa, .icons {
+		[class*="fa-"], .icons {
 			background: $color-dark;
 		}
 
@@ -805,19 +815,19 @@ html.dark {
 		}
 
 		&.divider-style-2 {
-			.fa, .icons {
+			[class*="fa-"], .icons {
 				background: $color-dark-2;
 			}
 		}
 
 		&.divider-style-3 {
-			.fa, .icons {
+			[class*="fa-"], .icons {
 				border-color: #3F4247;
 			}
 		}
 
 		&.divider-style-4 {
-			.fa, .icons {
+			[class*="fa-"], .icons {
 				border-color: #3F4247;
 				&:after {
 					border-color: $color-dark-2;
@@ -879,20 +889,9 @@ html.dark {
 
 	}
 
-	// History
-	ul.history {
-		li {
-			.thumb {
-				background-image: url(../img/history-thumb-dark.png);
-				@include if-rtl {
-					background-position: 0 -200px;
-				}
-			}
-		}
-	}
-
 	// Blog
-	.recent-posts .date .day {
+	.recent-posts .date .day,
+	section.section .recent-posts .date .day {
 		background-color: $color-dark-4;
 	}
 
@@ -1030,10 +1029,17 @@ html.dark {
 
 	// Footer
 	#footer {
-		.newsletter form .btn-default {
-			background-color: $color-dark-2;
-			border-color: $color-dark-2;
-			color: $color-font-default;
+		.newsletter {
+			form {
+				.btn-light {
+					background-color: $color-dark-2;
+					border-color: $color-dark-2;
+					color: $color-font-default;
+				}
+				.form-control {
+					border: 0;
+				}
+			}
 		}
 	}
 
@@ -1053,8 +1059,16 @@ html.dark {
 							.dropdown-menu {
 								background: $color-dark-2;
 								li {
+									&:hover, &:focus, &.active, &:active {
+										> a {
+											background: $color-dark-4;
+										}
+									}
 									a {
 										border-bottom-color: $color-dark-4;
+										&:hover, &:focus, &.active, &:active {
+											background: $color-dark-4;
+										}
 									}
 								}
 							}
@@ -1105,8 +1119,9 @@ html.dark {
 					}
 				}
 
-				// Header Nav Top Line
-				&.header-nav-top-line {
+				// Header Nav Links / Line
+				&.header-nav-links,
+				&.header-nav-line {
 					nav {
 						> ul {
 							> li, > li:hover {
@@ -1119,7 +1134,7 @@ html.dark {
 				}
 
 				// Header Nav Dark Dropdown
-				&.header-nav-dark-dropdown {
+				&.header-nav-dropdowns-dark {
 					nav {
 						> ul {
 							> li, > li:hover {
@@ -1136,9 +1151,9 @@ html.dark {
 
 		// Signin
 		.header-nav-main {
-			nav > {
-				ul > {
-					li.dropdown-mega-signin {
+			nav {
+				> ul {
+					> li.dropdown-mega-signin {
 						.dropdown-menu {
 							background-color: $dark-bg;
 						}
@@ -1157,10 +1172,32 @@ html.dark {
 		#header {
 
 			.header-nav-main {
+				&:before {
+					background-color: $dark-bg;
+				}
 				nav {
+					&::-webkit-scrollbar-thumb {
+					    border-color: transparent;
+					    background: #39404c;
+					}
 					> ul {
 						li {
 							border-bottom-color: $color-dark-4;
+						}
+						> li.dropdown-mega:not(.dropdown-full-color) {
+							.dropdown-mega-sub-title {
+								color: #FFF;
+							}
+						}
+					}
+					ul {
+						li {
+							a {
+								&:active {
+									background-color: #1e1e1e;
+									color: #FFF;
+								}
+							}
 						}
 					}
 				}
@@ -1168,17 +1205,9 @@ html.dark {
 
 		}
 
-		// Transparent
-		#header {
-			&.header-transparent,
-			&.header-semi-transparent,
-			&.header-semi-transparent-light {
-
-				.header-nav-main {
-					background-color: $dark-bg;
-				}
-
-			}
+		// Home Concept
+		.home-concept {
+			background-image: none;
 		}
 	}
 }

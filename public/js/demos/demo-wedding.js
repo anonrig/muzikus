@@ -1,10 +1,12 @@
 /*
 Name: 			Wedding
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
+
+	'use strict';
 
 	/*
 	Slider
@@ -65,18 +67,6 @@ Theme Version:	5.7.2
 	});
 
 	/*
-	Countdown
-	*/
-	$('#clock').countdown('2017/06/10 12:00:00').on('update.countdown', function(event) {
-		var $this = $(this).html(event.strftime(''
-			+ '<span>%D<span>day%!d</span></span> '
-			+ '<span>%H<span>hours</span></span> '
-			+ '<span>%M<span>minutes</span></span> '
-			+ '<span>%S<span>seconds</span></span> '
-		));
-	});
-
-	/*
 	Custom History Load More 
 	*/
 	var historyLoadMore = {
@@ -86,6 +76,7 @@ Theme Version:	5.7.2
 		$wrapper: $('#historyLoadMoreWrapper'),
 		$btn: $('#historyLoadMore'),
 		$loader: $('#historyLoadMoreLoader'),
+		$btnWrapper: $('#historyLoadMoreBtnWrapper'),
 
 		build: function() {
 
@@ -95,17 +86,10 @@ Theme Version:	5.7.2
 
 			if(self.pages <= 1) {
 
-				self.$btn.remove();
+				self.$btnWrapper.remove();
 				return;
 
 			} else {
-
-				// init isotope
-				self.$wrapper.isotope({
-					masonry: {
-						columnWidth: '.col-md-3'
-					}
-				});
 
 				self.$btn.on('click', function() {
 					self.loadMore();
@@ -146,14 +130,12 @@ Theme Version:	5.7.2
 
 						self.$wrapper.append($items)
 
-						self.$wrapper.isotope('appended', $items);
-
 						self.currentPage++;
 
 						if(self.currentPage < self.pages) {
 							self.$btn.show().blur();
 						} else {
-							self.$btn.remove();
+							self.$btnWrapper.remove();
 						}
 
 						// Lightbox
@@ -217,6 +199,7 @@ Theme Version:	5.7.2
 		$wrapper: $('#blogLoadMoreWrapper'),
 		$btn: $('#blogLoadMore'),
 		$loader: $('#blogLoadMoreLoader'),
+		$btnWrapper: $('#blogLoadMoreBtnWrapper'),
 
 		build: function() {
 
@@ -226,7 +209,7 @@ Theme Version:	5.7.2
 
 			if(self.pages <= 1) {
 
-				self.$btn.remove();
+				self.$btnWrapper.remove();
 				return;
 
 			} else {
@@ -278,7 +261,7 @@ Theme Version:	5.7.2
 						if(self.currentPage < self.pages) {
 							self.$btn.show().blur();
 						} else {
-							self.$btn.remove();
+							self.$btnWrapper.remove();
 						}
 
 						// Carousel
@@ -341,9 +324,10 @@ Theme Version:	5.7.2
 				$messageSuccess = $('#guestBookSuccess'),
 				$messageError = $('#guestBookError'),
 				$submitButton = $(this.submitButton),
-				$errorMessage = $('#guestBookErrorMessage');
+				$errorMessage = $('#guestBookErrorMessage'),
+				submitButtonText = $submitButton.val();
 
-			$submitButton.button('loading');
+			$submitButton.val( $submitButton.data('loading-text') ? $submitButton.data('loading-text') : 'Loading...' ).attr('disabled', true);
 
 			// Ajax Submit
 			$.ajax({
@@ -361,8 +345,8 @@ Theme Version:	5.7.2
 
 				if (data.response == 'success') {
 
-					$messageSuccess.removeClass('hidden');
-					$messageError.addClass('hidden');
+					$messageSuccess.removeClass('d-none');
+					$messageError.addClass('d-none');
 
 					// Reset Form
 					$form.find('.form-control')
@@ -370,7 +354,7 @@ Theme Version:	5.7.2
 						.blur()
 						.parent()
 						.removeClass('has-success')
-						.removeClass('has-error')
+						.removeClass('has-danger')
 						.find('label.error')
 						.remove();
 
@@ -380,7 +364,9 @@ Theme Version:	5.7.2
 						}, 300);
 					}
 
-					$submitButton.button('reset');
+					$form.find('.form-control').removeClass('error');
+
+					$submitButton.val( submitButtonText ).attr('disabled', false);
 					
 					return;
 
@@ -390,8 +376,8 @@ Theme Version:	5.7.2
 					$errorMessage.html(data.responseText).show();
 				}
 
-				$messageError.removeClass('hidden');
-				$messageSuccess.addClass('hidden');
+				$messageError.removeClass('d-none');
+				$messageSuccess.addClass('d-none');
 
 				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
 					$('html, body').animate({
@@ -402,7 +388,7 @@ Theme Version:	5.7.2
 				$form.find('.has-success')
 					.removeClass('has-success');
 					
-				$submitButton.button('reset');
+				$submitButton.val( submitButtonText ).attr('disabled', false);
 
 			});
 		}
@@ -418,9 +404,10 @@ Theme Version:	5.7.2
 				$messageSuccess = $('#rsvpSuccess'),
 				$messageError = $('#rsvpError'),
 				$submitButton = $(this.submitButton),
-				$errorMessage = $('#rsvpErrorMessage');
+				$errorMessage = $('#rsvpErrorMessage'),
+				submitButtonText = $submitButton.val();
 
-			$submitButton.button('loading');
+			$submitButton.val( $submitButton.data('loading-text') ? $submitButton.data('loading-text') : 'Loading...' ).attr('disabled', true);
 
 			// Ajax Submit
 			$.ajax({
@@ -438,8 +425,8 @@ Theme Version:	5.7.2
 
 				if (data.response == 'success') {
 
-					$messageSuccess.removeClass('hidden');
-					$messageError.addClass('hidden');
+					$messageSuccess.removeClass('d-none');
+					$messageError.addClass('d-none');
 
 					// Reset Form
 					$form.find('.form-control')
@@ -447,7 +434,7 @@ Theme Version:	5.7.2
 						.blur()
 						.parent()
 						.removeClass('has-success')
-						.removeClass('has-error')
+						.removeClass('has-danger')
 						.find('label.error')
 						.remove();
 
@@ -457,7 +444,9 @@ Theme Version:	5.7.2
 						}, 300);
 					}
 
-					$submitButton.button('reset');
+					$form.find('.form-control').removeClass('error');
+
+					$submitButton.val( submitButtonText ).attr('disabled', false);
 					
 					return;
 
@@ -467,8 +456,8 @@ Theme Version:	5.7.2
 					$errorMessage.html(data.responseText).show();
 				}
 
-				$messageError.removeClass('hidden');
-				$messageSuccess.addClass('hidden');
+				$messageError.removeClass('d-none');
+				$messageSuccess.addClass('d-none');
 
 				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
 					$('html, body').animate({
@@ -479,7 +468,7 @@ Theme Version:	5.7.2
 				$form.find('.has-success')
 					.removeClass('has-success');
 					
-				$submitButton.button('reset');
+				$submitButton.val( submitButtonText ).attr('disabled', false);
 
 			});
 		}

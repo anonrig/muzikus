@@ -1,7 +1,7 @@
 /*
 Name: 			Demos - Examples
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -19,7 +19,6 @@ Theme Version:	5.7.2
 
 	$sampleItemList.isotope({
 		itemSelector: '.isotope-item',
-		sortBy : 'random',
 		layoutMode: 'fitRows',
 		hiddenStyle: {
 			opacity: 0
@@ -28,11 +27,6 @@ Theme Version:	5.7.2
 			opacity: 1
 		}
 	});
-
-	// Shop Demo
-	var $shopDemoItem = $($('#shopDemo').html());
-
-	$sampleItemList.prepend($shopDemoItem).isotope('prepended', $shopDemoItem);
 
 	// Main Demo
 	var $mainDemoItem = $($('#mainDemo').html());
@@ -65,7 +59,8 @@ Theme Version:	5.7.2
 			stagePadding: 0,
 			navText: [],
 			autoplay: false,
-			autoplayTimeout: Math.floor(Math.random() * (12000 - 6000 + 1)) + 6000
+			autoplayTimeout: Math.floor(Math.random() * (12000 - 6000 + 1)) + 6000,
+			rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 		}).addClass('owl-carousel-init');
 		
 		$(this).on('changed.owl.carousel', function(event) {
@@ -74,28 +69,37 @@ Theme Version:	5.7.2
 	});
 
 	//	Open Demo Options
-	$('.open-demo-options').magnificPopup({
-		type: 'inline',
+	$(document).on('mousedown', 'a.open-demo-options', function(e) {
+		if (e.which != 2) {
+		
+			e.preventDefault();
 
-		fixedContentPos: true,
-		closeBtnInside: false,
-		closeOnContentClick: true,
-		preloader: false,
+			$.magnificPopup.open({
+				items: {
+					src: '#mainDemos',
+					type: 'inline',
+				},
+				fixedContentPos: true,
+				closeBtnInside: false,
+				closeOnContentClick: true,
+				preloader: false,
 
-		midClick: true,
-		removalDelay: 300,
-		mainClass: 'mfp-demo-options mfp-fade',
-		callbacks: {
-			open: function() {
-				$('html').addClass('lightbox-opened');
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'mfp-demo-options mfp-fade',
+				callbacks: {
+					open: function() {
+						$('html').addClass('lightbox-opened');
+					},
+					close: function() {
+						$('html').removeClass('lightbox-opened');
+					}
+				}
+			});
 
-				setTimeout(function() {
-					$(window).trigger('scroll');
-				}, 1000);
-			},
-			close: function() {
-				$('html').removeClass('lightbox-opened');
-			}
+			setTimeout(function() {
+				$(window).trigger('resize');
+			}, 1000);
 		}
 	});
 

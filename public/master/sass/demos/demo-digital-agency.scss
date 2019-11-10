@@ -4,7 +4,7 @@
 // Title With Video
 @media (min-width: 748px) {
 	.title-with-video-custom {
-		margin-top: -215px !important;
+		margin-top: -245px !important;
 
 		h1 {
 			color: #FFF;
@@ -33,9 +33,38 @@ section.section-color-custom {
 	}
 }
 
+// Tabs
+.custom-tabs-style-1 {
+	.nav-tabs {
+		> li.active {
+			> a {
+				p {
+					font-weight: 900 !important;
+				}
+			}
+		}
+	}
+}
+
 // Divider
 .divider-top-section-custom {
-	margin-bottom: -50px !important;
+	margin-bottom: -51px !important;
+}
+
+.divider-custom {
+    position: relative;
+    height: 10px;
+    width: 35px;
+    display: inline-block;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border-right: 1px solid #CCC;
+		height: 240%;
+		transform: translate3d(-50%, -50%, 0);
+	}
 }
 
 // Google Map

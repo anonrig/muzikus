@@ -1,7 +1,7 @@
 /*
 Name: 			Hotel
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -58,15 +58,17 @@ Theme Version:	5.7.2
 	// Header
 	var $headerWrapper = $('#headerBookNow');
 
-	$headerWrapper.find('input').on('focus', function() {
-		$headerWrapper.addClass('open');
+	if( $(window).width() > 991 ) {
+		$headerWrapper.on('mousedown', function() {
+			$headerWrapper.addClass('open');
+		});
 
 		$(document).mouseup(function(e) {
 			if (!$headerWrapper.is(e.target) && $headerWrapper.has(e.target).length === 0 && !$(e.target).parents('.datepicker').get(0)) {
 				$headerWrapper.removeClass('open');
 			}
 		});
-	});
+	}
 
 	// DatePicker
 	$('#bookNowArrivalHeader').datepicker({

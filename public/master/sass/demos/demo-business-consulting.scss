@@ -6,9 +6,9 @@ $secondary-font: 'Playfair Display', serif;
 
 // RTL
 @include if-rtl() {
-	.fa {
-		&.fa-chevron-right, &.fa-long-arrow-right, &.fa-reply {
-			@include transform(rotate(180deg));
+	[class*="fa-"] {
+		&.fa-chevron-right, &.fa-long-arrow-alt-right, &.fa-reply {
+			transform: rotate(180deg);
 		}
 	}	
 
@@ -54,9 +54,13 @@ h2 {
 	padding-top: 60px;
 }
 
+.custom-section-padding-3 {
+	padding-#{$left}: 110px !important;
+}
+
 .custom-opacity-font {
 	opacity: 0.6;
-	@include transition(ease all 300ms);
+	transition: ease all 300ms;
 	&:hover {
 		opacity: 1;
 	}
@@ -72,7 +76,7 @@ h2 {
 	}
 }
 
-.btn-borders.custom-border-width {
+.btn-outline.custom-border-width {
 	border-width: 2px;
 }
 
@@ -120,7 +124,7 @@ h2 {
 			height: 30px;
 			border-top: 1px solid #FFF;
 			border-left: 1px solid #FFF;
-			@include transform(translate3d(-50%, -50%, 0) rotate(-45deg));
+			transform: translate3d(-50%, -50%, 0) rotate(-45deg);
 		}
 
 		&:after {
@@ -131,7 +135,7 @@ h2 {
 			top: 50%;
 			width: 70px;
 			border-top: 1px solid #FFF;
-			@include transform(translate3d(-50%, -50%, 0));
+			transform: translate3d(-50%, -50%, 0);
 		}
 	}
 }
@@ -156,7 +160,7 @@ h2 {
 
 .tp-rightarrow {
 	&.custom-arrows-style-1 {
-		@include transform(rotate(180deg));
+		transform: rotate(180deg);
 	}
 }
 
@@ -184,11 +188,11 @@ h2 {
 	&.custom-dots-position-2 {
 		.owl-dots {
 			width: 100%;
-			max-width: 1170px;
+			max-width: 1140px;
 			right: 50%;
 			margin: 0 15px;
 			text-align: $right;
-			@include transform(translateX(50%));
+			transform: translateX(50%);
 			@include if-rtl() {
 				margin: 0 -15px;
 			}
@@ -220,7 +224,7 @@ h2 {
 	.owl-carousel {
 		&.custom-dots-position-2 {
 			.owl-dots {
-				max-width: 1170px;
+				max-width: 1140px;
 			}
 		}
 	}
@@ -230,10 +234,10 @@ h2 {
 .owl-carousel {
 	&.custom-arrows-style-2, &.custom-xs-arrows-style-2 {
 		.owl-nav {
-			.owl-prev, .owl-next {
+			button.owl-prev, button.owl-next {
 				position: absolute;
 				width: 30px;
-				@include transition(ease all 300ms);
+				transition: ease all 300ms;
 
 				&:before {
 					content: '';
@@ -241,10 +245,10 @@ h2 {
 					position: absolute;
 					top: 50%;
 					right: -2px;
-					left: initial;
+					left: auto;
 					width: 100%;
 					border-top: 1px solid #4dbb6d;
-					@include transform(translateY(-50%));
+					transform: translateY(-50%);
 				}
 
 				&:after {
@@ -257,7 +261,7 @@ h2 {
 					height: 15px;
 					border-top: 1px solid #4dbb6d;
 					border-right: 1px solid #4dbb6d;
-					@include transform(translateY(-50%) rotate(45deg));
+					transform: translateY(-50%) rotate(45deg);
 				}
 
 				&.disabled {
@@ -272,12 +276,12 @@ h2 {
 				}
 			}
 
-			.owl-prev {
+			button.owl-prev {
 				left: -95px;
-				@include transform(rotate(-180deg));
+				transform: rotate(-180deg);
 			}
 			
-			.owl-next {
+			button.owl-next {
 				right: 10px;
 			}
 		}
@@ -286,7 +290,7 @@ h2 {
 			.owl-nav {
 				margin-top: -52px;
 
-				[class*="owl-"], [class*="owl-"]:hover, [class*="owl-"]:active {
+				button[class*="owl-"], button[class*="owl-"]:hover, button[class*="owl-"]:active {
 					width: 30px;
 				}
 			}
@@ -320,120 +324,19 @@ h2 {
 	}
 }
 
-/*
+/* 
 * Header
 */
-#header {
-	&.custom-header-transparent-bottom-border {
+html:not(.sticky-header-active) {
+	#header.header-transparent-dark-bottom-border {
 		.header-body {
-			.header-container {
-				> .header-row {
-						&:after {
-						content: '';
-						display: block;
-						position: absolute;
-						left: 0;
-						bottom: 0;
-						width: 100%;
-						border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-					}
-				}
-			}
-		}
-	}
+    		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    	}
+    }
 }
 
-.sticky-header-active {
-	#header {
-		&.custom-header-transparent-bottom-border {
-			.header-body {
-				.header-container {
-					> .header-row {
-							&:after {
-							content: none !important;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-@media (min-width: 991px) {
-	#header {
-		.header-nav-main {
-			margin-#{$right}: -15px;
-			&.custom-header-nav-main-effect-1 {
-				nav {
-					> ul {
-						> li {
-							> a {
-								@include transition(ease all 300ms);
-							}
-						}
-						li.dropdown {
-							> a.dropdown-toggle {
-								&:after {
-									@include transition(ease all 300ms);
-									border-color: #fff transparent transparent;
-									top: 36px !important;
-								}
-							}
-							.dropdown-menu {
-								top: initial;
-								border-top: 0;
-								margin-top: -1px;
-								opacity: 0;
-								visibility: hidden;
-								@include transform(scale(0.7));
-								@include transition(ease all 300ms);
-								
-								li.dropdown-submenu {
-									.dropdown-menu {
-										top: 0;
-										border-top: 0;
-										opacity: 0;
-										visibility: hidden;
-										@include transform(scale(0.7));
-										@include transition(ease all 300ms);
-									}
-
-									&:hover {
-										.dropdown-menu {
-											opacity: 1;
-											visibility: visible;
-											@include transform(scale(1));
-											@include transition(ease all 300ms);
-										}
-									}
-								}
-							}
-
-							&:hover {
-								.dropdown-menu {
-									opacity: 1;
-									visibility: visible;
-									@include transform(scale(1));
-									@include transition(ease all 300ms);
-								}
-							}
-						}
-					}
-				}
-			}
-
-			nav {
-				> ul {
-					> li {
-						> a {
-							font-size: 13px;
-							padding: 35px 20px 30px !important;
-						}
-					}
-				}
-			}
-		}
-	}	
+html.sticky-header-active #header.header-effect-shrink .header-body {
+	box-shadow: none !important;
 }
 
 /*
@@ -459,9 +362,7 @@ h2 {
 
 // Custom Page Header
 .custom-page-header {
-	padding: 120px 0 35px;
-	background: #1A1E2A !important;
-	border-color: #1A1E2A !important;
+	padding: 120px 0 35px !important;
 	h1 {
 		font-size: 2em;
 	}
@@ -503,7 +404,7 @@ h2 {
 	span {
 		&:nth-child(2) {
 			display: block;
-			font-size: 1.8rem;
+			font-size: 1.1rem;
 		}
 	}
 
@@ -516,7 +417,7 @@ h2 {
 	.custom-call-to-action {
 		span {
 			&:nth-child(2) {
-				font-size: 1.6rem;
+				font-size: 1rem;
 			}
 		}
 	}
@@ -526,19 +427,9 @@ h2 {
 	.custom-call-to-action {
 		span {
 			&:nth-child(2) {
-				font-size: 2rem;
+				font-size: 1.2rem;
 			}
 		}
-	}
-}
-
-/*
-* About Us
-*/
-.about-us {
-	.btn {
-		margin-top: 15px;
-		margin-#{$left}: 15px;
 	}
 }
 
@@ -551,7 +442,7 @@ h2 {
 		top: 50%;
 		left: 50%;
 		box-shadow: 0px 0px 97px 70px rgba(152, 152, 152, 0.1);
-		@include transform(translate(-50%, -50%));
+		transform: translate(-50%, -50%);
 	}
 
 	.content-grid-item {
@@ -609,7 +500,7 @@ h2 {
 				}
 
 				.counter-icon {
-					float: initial;
+					float: none;
 					margin-left: 0;
 					position: absolute;
 					top: 50px;
@@ -636,19 +527,20 @@ h2 {
 // Custom Feature Box
 .feature-box {
 	&.custom-feature-box {
-		padding: 20px 10px;
+		margin-bottom: 1.2rem;
 
 		&.custom-feature-box-active, &:hover {
 			.feature-box-icon {
 				box-shadow: 0px 0px 40px 4px rgba(200, 200, 200, 0.5);
 
 				img {
-					@include transform(translate3d(-50%, -50%, 0) scale(1.1));
+					transform: translate3d(-50%, -50%, 0) scale(1.1);
 				}
 			}
 		}
 		
 		.feature-box-icon {
+			flex: 0 0 auto;
 			background: transparent;
 			width: 100px;
 			position: relative;
@@ -657,11 +549,9 @@ h2 {
 			border-radius: 100%;
 			padding: 5px;
 			margin-top: 0;
-			margin-bottom: 20px;
-			margin-right: 20px;
 			overflow: hidden;
 			z-index: 1;
-			@include transition(ease box-shadow 300ms);
+			transition: ease box-shadow 300ms;
 
 			img {
 				position: absolute;
@@ -669,8 +559,8 @@ h2 {
 				top: 50%;
 				left: 50%;
 				z-index: 0;
-				@include transform(translate3d(-50%, -50%, 0) scale(1));
-				@include transition(ease transform 300ms);
+				transform: translate3d(-50%, -50%, 0) scale(1);
+				transition: ease transform 300ms;
 			}
 		}
 	}
@@ -730,7 +620,7 @@ h2 {
 			margin-left: 70px;
 		}
 
-		.owl-dot {
+		button.owl-dot {
 			span {
 				width: 30px;
 				height: 30px;
@@ -759,7 +649,7 @@ h2 {
 	}
 
 	&.owl-theme {
-		.owl-dot {
+		button.owl-dot {
 			span {
 				background: #eef4f2;
 			}
@@ -771,19 +661,24 @@ h2 {
 * Frequently Asked Questions
 */
 .custom-accordion-style-1 {
-	.panel {
+	.card {
 		position: relative;
 		margin-top: 0 !important;
 		border-#{$right}: 0;
-		border-bottom: 1px solid #e4e4e4;
+		border-bottom: 0;
 		border-top: 0;
 		box-shadow: none;
+		border-radius: 0 !important;
 
 		&:last-child {
-			border-bottom: 0;
+			border-bottom: 1px solid #e4e4e4;
 		}
 
-		.panel-title {
+		.card-header {
+			margin: 0;
+		}
+
+		.card-title {
 			> a {
 				font-size: 14px !important;
 
@@ -804,7 +699,7 @@ h2 {
 					.custom-accordion-plus {
 						&:after {
 							border-top: 2px solid #4dbb6d;
-							@include transform(translate(-50%, -50%) rotate(0deg));
+							transform: translate(-50%, -50%) rotate(0deg);
 						}
 					}
 				}
@@ -820,7 +715,7 @@ h2 {
 					.custom-accordion-plus {
 						&:after {
 							border-top: 2px solid #1e1e24;
-							@include transform(translate(-50%, -50%) rotate(90deg));
+							transform: translate(-50%, -50%) rotate(90deg);
 						}
 					}
 				}
@@ -828,7 +723,7 @@ h2 {
 				.custom-accordion-plus {
 					position: absolute;
 					top: 23px;
-					#{$right}: 3px;
+					#{$right}: 15px;
 					width: 15px;
 
 					&:before, &:after {
@@ -839,14 +734,14 @@ h2 {
 						left: 50%;
 						width: 100%;
 						border-top: 2px solid #1e1e24;
-						@include transform(translate(-50%, -50%));
-						@include transition(ease all 300ms);
+						transform: translate(-50%, -50%);
+						transition: ease all 300ms;
 					}
 				}
 			}
 		}
 
-		.panel-body {
+		.card-body {
 			padding: 15px 15px 35px;
 		}
 	}
@@ -888,7 +783,7 @@ h2 {
 		position: relative;
 		padding: 25px;
 		display: block;
-		@include transition(ease background 300ms, ease width 300ms);
+		transition: ease background 300ms, ease width 300ms;
 
 		.custom-thumb-info-title {
 			span {
@@ -903,12 +798,12 @@ h2 {
 		.custom-arrow {
 			position: absolute;
 			top: 50%;
-			#{$right}: 15px;
+			#{$right}: 25px;
 			width: 40px;
-			@include transform(translateY(-50%));
-			@include transition(ease all 300ms);
+			transform: translateY(-50%);
+			transition: ease all 300ms;
 			@include if-rtl() {
-				@include transform(translateY(-50%) rotate(180deg));
+				transform: translateY(-50%) rotate(180deg);
 			}
 
 			&:before {
@@ -919,7 +814,7 @@ h2 {
 				right: -2px;
 				width: 100%;
 				border-top: 1px solid #1e1e24;
-				@include transform(translateY(-50%));
+				transform: translateY(-50%);
 			}
 
 			&:after {
@@ -932,7 +827,7 @@ h2 {
 				height: 15px;
 				border-top: 1px solid #1e1e24;
 				border-right: 1px solid #1e1e24;
-				@include transform(translateY(-50%) rotate(45deg));
+				transform: translateY(-50%) rotate(45deg);
 			}
 		}
 	}
@@ -951,11 +846,11 @@ h2 {
 				height: 100%;
 				box-shadow: 0px 0px 140px 220px rgba(255, 255, 255, 0.8);
 				z-index: 1;
-				@include transition(ease opacity 300ms);
+				transition: ease opacity 300ms;
 			}
 
 			&:after {
-				left: initial;
+				left: auto;
 				right: 0;
 			}
 
@@ -972,7 +867,7 @@ h2 {
 			margin-top: 30px;
 		}
 
-		.owl-dot {
+		button.owl-dot {
 			span {
 				width: 12px;
 				height: 12px;
@@ -996,7 +891,7 @@ h2 {
 						height: 3px;
 						border-radius: 100%;
 						background: #4dbb6d;
-						@include transform(translate3d(-50%, -50%, 0));
+						transform: translate3d(-50%, -50%, 0);
 					}
 				}
 			}
@@ -1064,7 +959,7 @@ h2 {
 				content: '';
 				display: block;
 				position: absolute;
-				top: 0;
+				top: -10px;
 				#{$left}: 0;
 				width: 18px;
 				border-top: 2px solid #1e1e24;
@@ -1082,7 +977,7 @@ h2 {
 	&:hover {
 		.image-wrapper {
 			img {
-				@include transform(scale(1.1));
+				transform: scale(1.1);
 			}
 		}
 	}
@@ -1092,7 +987,7 @@ h2 {
 		overflow: hidden;
 
 		img {
-			@include transition(ease transform 300ms);
+			transition: ease transform 300ms;
 		}
 	}
 
@@ -1108,11 +1003,11 @@ h2 {
 			width: 42px;
 			overflow: hidden;
 			z-index: 1;
-			@include transition(ease height 300ms);
+			transition: ease height 300ms;
 
 			&:hover {
 				.share-icons {
-					@include transform(translateY(0));
+					transform: translateY(0);
 				}
 
 				i {
@@ -1137,8 +1032,8 @@ h2 {
 				text-align: center;
 				padding-bottom: 42px;
 				border-radius: 50px;
-				@include transform(translateY(100%));
-				@include transition(ease transform 300ms);
+				transform: translateY(100%);
+				transition: ease transform 300ms;
 			}
 
 			i {
@@ -1146,7 +1041,7 @@ h2 {
 				color: #FFF;
 				padding: 15px;
 				opacity: 0.5;
-				@include transition(ease opacity 300ms);
+				transition: ease opacity 300ms;
 
 				&.fa-share-alt {
 					position: absolute;
@@ -1158,7 +1053,7 @@ h2 {
 					z-index: 1;
 				}
 
-				&.fa-facebook {
+				&.fa-facebook-f {
 					color: #4d70a8;
 				}
 
@@ -1166,7 +1061,7 @@ h2 {
 					color: #964b00;
 				}
 
-				&.fa-linkedin {
+				&.fa-linkedin-in {
 					color: #0077b5;
 				}
 
@@ -1200,7 +1095,7 @@ article.blog-post {
 			text-align: center;
 			line-height: 1;
 			padding: 25px 15px;
-			@include transform(translateY(-50%));
+			transform: translateY(-50%);
 
 			.month-year {
 				display: block;

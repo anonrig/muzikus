@@ -1,0 +1,132 @@
+<aside id="sidebar-left" class="sidebar-left">			
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            Navigation
+        </div>
+        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+            
+                <ul class="nav nav-main">
+                    <li class="<%= controller_name == "main" ? "nav-active" : "" %>">
+                        <a class="nav-link" href="<%= admin_path %>">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>                        
+                    </li>
+                    <li class="nav-parent <%= controller_name == "users" ? "nav-expanded nav-active" : ""%>">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <span>Users</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="<%= (controller_name == "users" and action_name == "index") ? "nav-active" : "" %> <%= (controller_name == "users" and action_name == "show" and !@user.is_member) ? "nav-active" : "" %>">
+                                <a class="nav-link" href="<%= admin_users_path %>">
+                                    All Users
+                                </a>
+                            </li>
+                            <li class="<%= (controller_name == "users" and action_name == "members") ? "nav-active" : "" %> <%= (controller_name == "users" and action_name == "show" and @user.is_member) ? "nav-active" : "" %>">
+                                <a class="nav-link" href="<%= admin_members_path %>">
+                                    Members
+                                </a>
+                            </li>
+                            <li class="<%= (controller_name == "users" and action_name == "blocked") ? "nav-active" : "" %>">
+                                <a class="nav-link">
+                                    Banned Users (Soon)
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent <%= (controller_name == "rooms" or controller_name == "managers" or controller_name == "lesson_schedules") ? "nav-expanded nav-active" : "" %>">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-door-open" aria-hidden="true"></i>
+                            <span>Rooms</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="<%= (controller_name == "rooms" and (action_name == "index" or action_name == "show")) ? "nav-active" : "" %>">
+                                <a class="nav-link" href="<%= admin_rooms_path %>">
+                                    Room List
+                                </a>
+                            </li>
+                            <li class="<%= (controller_name == "managers" and action_name == "index") ? "nav-active" : "" %>">
+                                <a class="nav-link" href="<%= admin_managers_path %>">
+                                    Managers
+                                </a>
+                            </li>
+                            <li class="<%= (controller_name == "lesson_schedules" and action_name == "index") ? "nav-active" : "" %>">
+                                <a class="nav-link" href="<%= admin_lesson_schedules_path %>">
+                                    Schedules
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                            <span>Muzikus Faculty</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link">
+                                    Teachers
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    Lessons / Projects
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            <span>Events</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link">
+                                    Event List
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" >
+                                    Create New
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<%= controller_name == "budgets" ? "nav-active" : "" %>">
+                        <a  class="nav-link" href="<%= admin_budgets_path %>">
+                            <i class="fas fa-lira-sign" aria-hidden="true"></i>
+                            <span>Budget Status</span>
+                        </a>
+                    </li>
+                    <li class="<%= controller_name == "reservations" ? "nav-active" : "" %>">
+                        <a  class="nav-link" href="<%= admin_reservations_path %>">
+                            <i class="fas fa-history" aria-hidden="true"></i>
+                            <span>Reservation History</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        <script>
+            // Maintain Scroll Position
+            if (typeof localStorage !== 'undefined') {
+                if (localStorage.getItem('sidebar-left-position') !== null) {
+                    var initialPosition = localStorage.getItem('sidebar-left-position'),
+                        sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+                    
+                    sidebarLeft.scrollTop = initialPosition;
+                }
+            }
+        </script>
+
+    </div>
+</aside>

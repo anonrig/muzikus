@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="fixed dark">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="UTF-8">
+
+		<title>Muzikus | Admin</title>
+        <meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
+        <meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
+        <meta name="author" content="Yagiz Nizipli">
+
+        <%= javascript_include_tag "application" %>
+        <%= csrf_meta_tags %>
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<!-- Web Fonts  -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="/admin/vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="/admin/vendor/animate/animate.css">
+
+		<link rel="stylesheet" href="/admin/vendor/font-awesome/css/all.min.css" />
+		<link rel="stylesheet" href="/admin/vendor/magnific-popup/magnific-popup.css" />
+		<link rel="stylesheet" href="/admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="/admin/vendor/jquery-ui/jquery-ui.css" />
+		<link rel="stylesheet" href="/admin/vendor/jquery-ui/jquery-ui.theme.css" />
+		<link rel="stylesheet" href="/admin/vendor/bootstrap-multiselect/css/bootstrap-multiselect.css" />
+		<link rel="stylesheet" href="/admin/vendor/morris/morris.css" />
+		<link rel="stylesheet" href="/admin/vendor/select2/css/select2.css" />
+		<link rel="stylesheet" href="/admin/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+		<link rel="stylesheet" href="/admin/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+		<link rel="stylesheet" href="/admin/vendor/pnotify/pnotify.custom.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="/admin/css/theme.css" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="/admin/css/skins/default.css" />
+
+		<!-- Head Libs -->
+		<script src="/admin/vendor/modernizr/modernizr.js"></script>
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="/admin/css/custom.css">
+
+	</head>
+	<body>
+		<section class="body">
+
+			<!-- start: header -->
+			<%= render partial: "layouts/components/admin_header"%>
+			<!-- end: header -->
+
+			<div class="inner-wrapper">
+				<!-- start: sidebar -->
+				<%= render partial: "layouts/components/admin_sidebar"%>
+				<!-- end: sidebar -->
+				
+				<section role="main" class="content-body">
+
+					<!-- start: page -->
+					<%= yield %>
+					<!-- end: page -->
+					
+				</section>
+			</div>
+
+		</section>
+
+		<!-- Vendor -->
+		<script src="/admin/vendor/jquery/jquery.js"></script>
+		<script src="/admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+		<script src="/admin/vendor/popper/umd/popper.min.js"></script>
+		<script src="/admin/vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="/admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="/admin/vendor/common/common.js"></script>
+		<script src="/admin/vendor/nanoscroller/nanoscroller.js"></script>
+		<script src="/admin/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+		<script src="/admin/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+		
+		<!-- Specific Page Vendor -->
+		<script src="/admin/vendor/jquery-ui/jquery-ui.js"></script>
+		<script src="/admin/vendor/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+		<script src="/admin/vendor/jquery-appear/jquery.appear.js"></script>
+		<script src="/admin/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+		<script src="/admin/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+		<script src="/admin/vendor/jquery.easy-pie-chart/jquery.easypiechart.js"></script>
+		<script src="/admin/vendor/flot/jquery.flot.js"></script>
+		<script src="/admin/vendor/flot.tooltip/jquery.flot.tooltip.js"></script>
+		<script src="/admin/vendor/flot/jquery.flot.pie.js"></script>
+		<script src="/admin/vendor/flot/jquery.flot.categories.js"></script>
+		<script src="/admin/vendor/flot/jquery.flot.resize.js"></script>
+		<script src="/admin/vendor/jquery-sparkline/jquery.sparkline.js"></script>
+		<script src="/admin/vendor/raphael/raphael.js"></script>
+		<script src="/admin/vendor/morris/morris.js"></script>
+		<script src="/admin/vendor/gauge/gauge.js"></script>
+		<script src="/admin/vendor/snap.svg/snap.svg.js"></script>
+		<script src="/admin/vendor/liquid-meter/liquid.meter.js"></script>
+		<script src="/admin/vendor/jqvmap/jquery.vmap.js"></script>
+		<script src="/admin/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
+		<script src="/admin/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+		<script src="/admin/vendor/jquery-validation/jquery.validate.js"></script>
+		<script src="/admin/vendor/select2/js/select2.js"></script>
+		<script src="/admin/vendor/pnotify/pnotify.custom.js"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="/admin/js/theme.js"></script>
+
+		<!-- SweetAlert -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<!-- Knockout -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="/admin/js/theme.init.js"></script>
+
+		<!-- Examples -->
+		<script src="/admin/js/examples/examples.header.menu.js"></script>
+		<script src="/admin/js/examples/examples.dashboard.js"></script>
+		<script src="/admin/js/examples/examples.charts.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="/admin/js/custom.js"></script>
+
+		<!-- Page Specific Scripts -->
+		<% if (controller_name == "users" and (action_name == "members" or action_name == "show"))%>
+			<script src="/admin/js/UserFormVM.js"></script>
+		<% end %>
+
+	</body>
+</html>

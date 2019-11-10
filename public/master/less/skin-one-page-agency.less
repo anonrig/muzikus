@@ -41,19 +41,26 @@
 		nav {
 			> ul {
 				> li {
-					&:hover, &.active {
-						> a {
+					> a {
+						&.active {
 							color: @color-primary !important;
-						}
-					}
-
-					&.active {
-						> a {
 							&:before {
-								border-bottom: 5px solid @color-primary;
+								border-color: @color-primary;
 							}
 						}
 					}
+
+					&:hover, &.open {
+						> a {
+							&.active {
+								color: @color-primary !important;
+								&:before {
+									border-color: @color-primary;
+								}
+							}
+						}
+					}
+
 				}
 			}
 		}

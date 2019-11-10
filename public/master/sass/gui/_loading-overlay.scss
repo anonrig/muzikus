@@ -1,3 +1,4 @@
+/* Loading Overlay */
 .loading-overlay-showing {
 	overflow: hidden;
 
@@ -26,7 +27,7 @@ body > .loading-overlay {
 
 /* Bounce Loading */
 .bounce-loader {
-	transition: all 0.2;
+	transition: all 0.2s;
 	margin: -9px 0 0 -35px;
 	text-align: center;
 	width: 70px;
@@ -38,7 +39,7 @@ body > .loading-overlay {
 	.bounce1,
 	.bounce2,
 	.bounce3 {
-	    animation: 1.4s ease-in-out 0s normal both infinite running bouncedelay;
+	    animation: 1.4s ease-in-out 0s normal both infinite bouncedelay;
 	    background-color: #CCC;
 	    border-radius: 100%;
 	    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
@@ -59,4 +60,17 @@ body > .loading-overlay {
 @keyframes bouncedelay {
 	0%, 80%, 100% {transform: scale(0.0);} 
 	40% {transform: scale(1.0);}
+}
+
+// Mobile Safari Animation Fix
+html {
+	&.safari.iphone {
+		.bounce-loader {
+			.bounce1,
+			.bounce2,
+			.bounce3 {
+				animation: 1.4s ease-in-out infinite bouncedelay;
+			}
+		}
+	}
 }

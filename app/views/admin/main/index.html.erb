@@ -1,0 +1,279 @@
+<header class="page-header">
+    <h2>Dashboard</h2>
+
+    <!-- start: Breadcrumb area -->
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs" style="margin-right: 50px;">
+            <li>
+                <a href="/">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li><span>Dashboard</span></li>
+        </ol>
+
+        
+    </div>
+    <!-- end: Breadcrumb area -->
+    
+</header>
+<div class="row">
+    <div class="col-xl-6 order-xl-2 mb-3">
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <section class="card card-featured-left card-featured-primary mb-3">
+                    <div class="card-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Total Users</h4>
+                                    <div class="info">
+                                        <strong class="amount"><%= @userCount %></strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="<%= admin_users_path %>">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-6">
+                <section class="card card-featured-left card-featured-secondary">
+                    <div class="card-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-secondary">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Members</h4>
+                                    <div class="info">
+                                        <strong class="amount"><%= @memberCount %></strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="<%= admin_members_path %>">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <section class="card card-featured-left card-featured-tertiary mb-3">
+                    <div class="card-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-tertiary">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Reservations</h4>
+                                    <div class="info">
+                                        <strong class="amount"><%= @reservationCount%></strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="<%= admin_reservations_path %>">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-6">
+                <section class="card card-featured-left card-featured-quaternary">
+                    <div class="card-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-quaternary">
+                                    <i class="fas fa-lira-sign"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Budget</h4>
+                                    <div class="info">
+                                        <strong class="amount">&#8378; <%= @totalBudget %></strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="<%= admin_budgets_path %>">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 order-xl-1">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Reservations</h2>
+                <p class="card-subtitle">Reservation counts by room in last 7 days.</p>
+            </header>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="chart chart-sm" id="flotBars"></div>
+                        <script type="text/javascript">
+
+                            var flotBarsData = [
+                                <% @barsChart.reverse.drop(1).reverse.each do |data| %>
+                                ["<%= data[:name] %>", <%= data[:resCount] %>],
+                                <% end %>
+                                ["<%= @barsChart.last[:name] %>", <%= @barsChart.last[:resCount] %>]
+                            ];
+                            
+                        </script>
+                    </div>
+                </div>
+                <!-- Flot: Bars -->
+
+            </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mb-3">
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title">Database Usage</h2>
+                <p class="card-subtitle">Maximum Row Limit: 10.000</p>
+            </div>
+            <div class="card-body">
+                <div class="progress progress-squared light mb-5">
+                    <div class="progress-bar progress-bar-dark" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @coreEntries / 10.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Site Data">
+                        
+                    </div>
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @userCount / 10.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Users">
+                        
+                    </div>
+                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @scoutRelated / 10.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Scout Related Data">
+                        
+                    </div>
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @reservationCount / 10.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reservations">
+                       
+                    </div>
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @banCount / 10.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ban List">
+                        
+                    </div>
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @sessionCount / 10.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="User Sessions">
+                       
+                    </div>
+                </div>
+                <ul class="simple-bullet-list">
+                    <li class="dark">
+                        <span class="title">Site Data</span>
+                        <span class="description truncate">Indicates the data that is necessary for the general functioning of <strong>muzik.us</strong>. (i.e. Budget Status, Projects, Room Schedules etc.)</span>
+                    </li>
+                    <li class="success">
+                        <span class="title">Users</span>
+                        <span class="description truncate">Member and non-member user data which are currently stored in <strong>muzik.us</strong> database.</span>
+                    </li>
+                    <li class="primary">
+                        <span class="title">Scout Related Data</span>
+                        <span class="description truncate">All you can see on the user profile page.</span>
+                    </li>
+                    <li class="warning">
+                        <span class="title">Reservations</span>
+                    </li>
+                    <li class="info">
+                        <span class="title">Ban List</span>
+                        <span class="description truncate">Users who cannot use <strong>muzik.us</strong> rooms.</span>
+                    </li>
+                    <li class="danger">
+                        <span class="title">User Sessions</span>
+                        <span class="description truncate">Sign-in data, delete them when you got bored.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group flex-wrap pull-right">
+                    <button type="button" class="mb-1 mt-1 mr-1 btn btn-primary dropdown-toggle" data-toggle="dropdown">Remove <span class="caret"></span></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item text-1 text-light">Reservations older than 1 month</a>
+                        <a class="dropdown-item text-1 text-light">Non-member user data</a>
+                        <a class="dropdown-item text-1 text-light">Expired ban info</a>
+                        <a class="dropdown-item text-1 text-light">User sessions</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xl-4 mb-3">
+        <section class="card card-featured card-featured-info">
+            <div class="card-header">
+                <h2 class="card-title">Board Members</h2>
+            </div>
+            <div class="card-body">
+                <div class="scrollable" data-plugin-scrollable style="height: 200px">
+                    <div class="scrollable-content">
+                        <% @boardMembers.each do |item| %>
+                            <div class="d-flex justify-content-between mb-3 flex-wrap">
+                                <div class="text-light flex-grow-1"><%= item.name %></div>
+                                <div class="mr-3"><%= item.email %></div>
+                                <div style="width: 30px;"><%= item.is_myk ? "MYK" : "YK" %></div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xl-4 mb-3">
+        <section class="card card-featured card-featured-info">
+            <div class="card-header">
+                <h2 class="card-title">Top Reservations</h2>
+            </div>
+            <div class="card-body">
+                <div class="scrollable" data-plugin-scrollable style="height: 200px">
+                    <div class="scrollable-content">
+                        <% i = 1%>
+                        <% @topReservations.each do |item| %>
+                            <div class="d-flex justify-content-between mb-3 flex-wrap pr-4 pl-4">
+                                <div class="text-light mr-5"><%= i %></div>
+                                <div class="text-light flex-grow-1"><%= item.name %></div>
+                                <div class="text-light"><%= item.rcount %></div>
+                            </div>
+                        <% i = i + 1 %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xl-4 mb-3">
+        <section class="card card-featured card-featured-info">
+            <div class="card-header">
+                <h2 class="card-title">Budget Summary</h2>
+            </div>
+            <div class="card-body">
+                <div class="scrollable" data-plugin-scrollable style="height: 200px">
+                    <div class="scrollable-content">
+                        <% @budgetSummary.each do |item| %>
+                            <div class="d-flex justify-content-between mb-3 flex-wrap pr-4 pl-4">
+                                <div class="text-light flex-grow-1"><p class="text-<%= item.budget_type == "Income" ? "success" : "danger" %>"><%= item.reason %></p></div>
+                                <div class="text-light"><p class="text-<%= item.budget_type == "Income" ? "success" : "danger" %>"><%= item.amount %></p></div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

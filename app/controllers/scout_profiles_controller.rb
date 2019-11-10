@@ -1,4 +1,6 @@
 class ScoutProfilesController < ApplicationController
+	before_action :maintenance, only: :index
+
 	def index
 		members = User.where(is_member: true)
 		@scouts = []

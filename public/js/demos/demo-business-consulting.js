@@ -1,7 +1,7 @@
 /*
 Name: 			Business Consulting
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -77,19 +77,5 @@ Theme Version:	5.7.2
 		
 	// Slider Init
 	$('#revolutionSlider').revolution(sliderOptions);
-
-	// Contact Form Validate
-	$('#contactForm').validate({
-		onkeyup: false,
-		onclick: false,
-		onfocusout: false,
-		errorPlacement: function(error, element) {
-			if (element.attr('type') == 'radio' || element.attr('type') == 'checkbox') {
-				error.appendTo(element.parent().parent());
-			} else {
-				error.insertAfter(element);
-			}
-		}
-	});
 
 }).apply( this, [ jQuery ]);

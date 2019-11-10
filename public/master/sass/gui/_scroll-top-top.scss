@@ -1,21 +1,22 @@
 /* Scroll to Top */
 html {
 	.scroll-to-top {
-		@include transition (opacity 0.3s);
+		transition: opacity 0.3s;
 		background: #404040;
-		border-radius: 7px 7px 0 0;
+		border-radius: 4px 4px 0 0;
 		bottom: 0;
 		color: #FFF;
 		display: block;
 		height: 9px;
 		opacity: 0;
-		padding: 13px 10px 35px;
+		padding: 10px 10px 35px;
 		position: fixed;
 		#{$right}: 10px;
 		text-align: center;
 		text-decoration: none;
-		min-width: 49px;
+		min-width: 50px;
 		z-index: 1040;
+		font-size: 0.8em;
 		&:hover {
 			opacity: 1;
 		}

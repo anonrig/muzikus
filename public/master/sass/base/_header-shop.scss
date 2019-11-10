@@ -5,9 +5,6 @@
 		#{$right}: 15px;
 		#{$left}: auto;
 		border-radius: corner-values(6px 0 6px 6px);
-		&, a {
-			transform: translate3d(0, 0, 0);
-		}
 		li {
 			table {
 				width: 100%;

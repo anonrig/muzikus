@@ -11,3 +11,19 @@
 @color-quaternary: #FFF;
 
 @import "skin";
+
+// Mobile Menu Background Color
+@media(max-width: 991px) {
+	#header {
+		.header-nav-main{
+			&.header-nav-main-mobile-dark:before {
+				background-color: @color-primary;
+			}
+		}
+	}
+}
+
+// Pagination
+.pagination > a.page-link {
+	color: @color-primary;
+}

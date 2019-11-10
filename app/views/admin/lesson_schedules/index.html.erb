@@ -1,0 +1,251 @@
+<style>
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+  }
+</style>
+
+<div role="main" class="main schedule-list scroll">
+    <header class="page-header">
+		<h2>Shedules</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span>Schedules</span></li>
+			</ol>
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+    
+    <div class="row justify-content-around">
+        <div class="col-lg-4 mb-3 order-lg-2">
+            <section class="card card-featured card-featured-info sticky">
+
+                <div class="card-header">
+                    <h2 class="card-title">Create Room Schedule</h2>
+                </div>
+                <div class="card-body">
+                    <%= render partial: 'layouts/components/alert'%>
+                    <form method="post" action="<%= admin_lesson_schedules_path %>">
+                        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    
+                        <div class="form-group mb-3">
+                            <select id="room-select" name="lesson_schedule[room_id]" data-plugin-selectTwo class="form-control" required>
+                                <option value="">Select a room...</option>
+                                <% @roomSelect.each do |item| %>
+                                    <option value="<%= item.val %>"><%= item.text %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <select id="lesson-select" name="lesson_schedule[faculty_lesson_id]" data-plugin-selectTwo class="form-control" required>
+                                <option value="">Select a lesson / project...</option>
+                                <% @lessonSelect.each do |item| %>
+                                    <option value="<%= item.val %>"><%= item.text %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <select id="day-select" name="lesson_schedule[weekday]" data-plugin-selectTwo class="form-control" required>
+                                <% @daySelect.each do |item| %>
+                                    <option value="<%= item %>"><%= item %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <div class="col">
+                                <label>Start at:</label>
+                                <div class="input-group">
+                                    <span class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-clock"></i>
+                                        </span>
+                                    </span>
+                                    <input id="lesson-start-at" name="lesson_schedule[start_at]" type="text" data-plugin-timepicker class="form-control" data-plugin-options='{ "showMeridian": false, "minuteStep": 5 }' required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>End at:</label>
+                                <div class="input-group">
+                                    <span class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-clock"></i>
+                                        </span>
+                                    </span>
+                                    <input id="lesson-end-at" name="lesson_schedule[end_at]" type="text" data-plugin-timepicker class="form-control" data-plugin-options='{ "showMeridian": false, "minuteStep": 5 }' required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="sumbit" class="btn btn-primary pull-right"><i class="fas fa-save"></i> Submit</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-5 mb-3 order-lg-1">
+            <div class="row">
+                <% @rooms.each do |room| %>
+                    <div class="col-12 mb-3">
+                        <section class="card card-featured card-featured-info">
+                            <div class="card-header">
+                                <h2 class="card-title"><%= room.name %></h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline timeline-simple">
+                                    <div class="tm-body">
+                                        <% if room.schedule.Monday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Monday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Monday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if room.schedule.Tuesday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Tuesday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Tuesday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if room.schedule.Wednesday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Wednesday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Wednesday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if room.schedule.Thursday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Thursday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Thursday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if room.schedule.Friday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Friday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Friday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if room.schedule.Saturday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Saturday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Saturday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if room.schedule.Sunday.any? %>
+                                            <div class="tm-title">
+                                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Sunday</h5>
+                                            </div>
+                                            <ol class="tm-items">
+                                                <% room.schedule.Sunday.each do |schedule| %>
+                                                    <li>
+                                                        <div class="tm-box">
+                                                            <p class="text-muted mb-0"><%= "#{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></p>
+                                                            <p class="text-light">
+                                                                <%= @lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name %>
+                                                            </p>
+                                                            <div class="tm-meta"><span><i class="fas fa-trash"></i> <%= link_to "Delete", admin_lesson_schedule_path(schedule.id), method: :delete, data: {confirm: "Are you sure?"} %></span></div>
+                                                        </div>
+                                                    </li>
+                                                <% end %>
+                                            </ol>
+                                        <% end %>
+                                        <% if ((room.schedule.Monday.count + room.schedule.Tuesday.count + room.schedule.Wednesday.count + room.schedule.Thursday.count + room.schedule.Friday.count + room.schedule.Saturday.count + room.schedule.Sunday.count) == 0) %>
+                                            <ol class="tm-items">
+                                                <li>
+                                                    <div class="tm-box">
+                                                        <p class="mt-2">
+                                                            There is nothing to show...
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>    
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ $color-secondary: #312227;
 $color-tertiary: #efece8;
 $color-quaternary: #101019;
 $color-light: #FFF;
-$color-dark: #2e353e;
+$color-dark: #1e1e1e;
 
 // Custom Font Family's
 $primary-font: 'Sintony', sans-serif;
@@ -23,9 +23,9 @@ $secondary-font: 'Playfair Display', serif;
 	}
 
 	// Icons
-	.fa {
+	[class*="fa-"] {
 		&.fa-reply {
-			@include transform(rotate(180deg));
+			transform: rotate(180deg);
 		}
 	}
 }
@@ -34,92 +34,71 @@ $secondary-font: 'Playfair Display', serif;
 * CUSTOM ANIMATIONS
 */
 // Custom Fade In Left
-@include keyframes(customFadeInLeft) {
+@keyframes customFadeInLeft {
     0% {
         opacity: 0;
-        @include transform(translate3d(-100%, -50%, 0) rotate(45deg));
+        transform: translate3d(-100%, -50%, 0) rotate(45deg);
     }
 
     100% {
         opacity: 1;
-		@include transform(translate3d(0, -50%, 0) rotate(45deg));
+		transform: translate3d(0, -50%, 0) rotate(45deg);
     }
 }
 
 .customFadeInLeft {
-    @include animation-name(customFadeInLeft);
+    animation-name: customFadeInLeft;
 }
 
 // Custom Fade In Left No Rotate
-@include keyframes(customFadeInLeftNoRotate) {
+@keyframes customFadeInLeftNoRotate {
     0% {
         opacity: 0;
-        @include transform(translate3d(-100%, -50%, 0));
+        transform: translate3d(-100%, -50%, 0);
     }
 
     100% {
         opacity: 1;
-		@include transform(translate3d(0, -50%, 0));
+		transform: translate3d(0, -50%, 0);
     }
 }
 
 .customFadeInLeftNoRotate {
-    @include animation-name(customFadeInLeftNoRotate);
+    animation-name: customFadeInLeftNoRotate;
 }
 
 // Custom Fade In Right
-@include keyframes(customFadeInRight) {
+@keyframes customFadeInRight {
     0% {
         opacity: 0;
-        @include transform(translate3d(100%, -50%, 0) rotate(45deg));
+        transform: translate3d(100%, -50%, 0) rotate(45deg);
     }
 
     100% {
         opacity: 1;
-		@include transform(translate3d(0, -50%, 0) rotate(45deg));
+		transform: translate3d(0, -50%, 0) rotate(45deg);
     }
 }
 
 .customFadeInRight {
-    @include animation-name(customFadeInRight);
+    animation-name: customFadeInRight;
 }
 
 // Custom Fade In Right No Rotate
-@include keyframes(customFadeInRightNoRotate) {
+@keyframes customFadeInRightNoRotate {
     0% {
         opacity: 0;
-        @include transform(translate3d(100%, -50%, 0));
+        transform: translate3d(100%, -50%, 0);
     }
 
     100% {
         opacity: 1;
-		@include transform(translate3d(0, -50%, 0));
+		transform: translate3d(0, -50%, 0);
     }
 }
 
 .customFadeInRightNoRotate {
-    @include animation-name(customFadeInRightNoRotate);
-}
-
-// Header Reveal
-@-webkit-keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
-}
-
-@-moz-keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
-}
-
-@-o-keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
-}
-
-@keyframes header-reveal {
-	0%   { top: -150px; }
-	100% { top: 0; }
+    animation-name: customFadeInRightNoRotate;
 }
 
 /*
@@ -152,7 +131,7 @@ p {
 
 // Fix for carousel with thumb
 .img-thumbnail {
-    @include transform(translate(0,0));
+    transform: translate(0,0);
 }
 
 /*
@@ -218,7 +197,7 @@ p {
 	position: relative;
 }
 
-.custom-img-responsive-center {
+.custom-img-fluid-center {
 	margin: 0 auto;
 }
 
@@ -280,7 +259,7 @@ p {
 		margin-bottom: 30px !important;
 	}
 
-	.custom-xs-ml-none {
+	.custom-xs-ml-0 {
 		margin-left: 0 !important;
 	}
 
@@ -322,7 +301,7 @@ p {
 	top: 50%;
     width: auto;
     height: 80%;
-    @include transform(translateY(-50%));
+    transform: translateY(-50%);
 
 	&.left-pos {
 		left: 0;
@@ -345,7 +324,7 @@ p {
     top: 50%;
     border: 10px solid #FFF;
     backface-visibility: hidden;
-    @include transform(translateY(-50%) rotate(45deg));
+    transform: translateY(-50%) rotate(45deg);
 
     &.left-pos {
     	left: 3vw;
@@ -369,7 +348,7 @@ p {
     top: 43%;
     border: 10px solid #FFF;
     backface-visibility: hidden;
-    @include transform(translateY(-50%) rotate(45deg));
+    transform: translateY(-50%) rotate(45deg);
 
     &.left-pos {
     	left: -150px;
@@ -490,6 +469,7 @@ p {
 		    height: 60px;
 		    font-size: 23px;
 		    line-height: 65px;
+	        background: transparent !important;
 		}
 
 		.custom-icon-title {
@@ -499,7 +479,7 @@ p {
 		    font-size: 12px;
 		    line-height: 1;
 		    letter-spacing: -1px;
-			@include transform(translateX(-50%));
+			transform: translateX(-50%);
 		}
 	}
 }
@@ -535,14 +515,14 @@ p {
 		    height: 30px;
 		    border-top: 1px solid #FFF;
 		    border-left: 1px solid #FFF;
-			@include transform(translate3d(-50%, -50%, 0) rotate(-45deg));
+			transform: translate3d(-50%, -50%, 0) rotate(-45deg);
 		}
 	}
 }
 
 .tp-rightarrow {
 	&.custom-arrows-style-1 {
-		@include transform(rotate(180deg));
+		transform: rotate(180deg);
 	}
 }
 
@@ -550,11 +530,11 @@ p {
 .owl-carousel {
 	&.custom-arrows-style-1 {
 		.owl-nav {
-			.owl-prev, .owl-next {
+			button.owl-prev, button.owl-next {
 				position: absolute;
 	    		width: 55px;
 	    		background: transparent !important;
-	    		@include transition(ease all 300ms);
+	    		transition: ease all 300ms;
 
 	    		&:before {
 	    			content: '';
@@ -562,10 +542,10 @@ p {
 	    			position: absolute;
 	    			top: 50%;
 	    			right: -2px;
-	    			left: initial;
+	    			left: auto;
 	    			width: 100%;
 	    			border-top: 1px solid #da7940;
-	    			@include transform(translateY(-50%));
+	    			transform: translateY(-50%);
 	    		}
 
 	    		&:after {
@@ -578,24 +558,24 @@ p {
 	    			height: 25px;
 	    			border-top: 1px solid #da7940;
 	    			border-right: 1px solid #da7940;
-	    			@include transform(translateY(-50%) rotate(45deg));
+	    			transform: translateY(-50%) rotate(45deg);
 	    		}
 			}
 
-			.owl-prev {
+			button.owl-prev {
 				#{$left}: 10px;
 				@include if-ltr() {
-					@include transform(rotate(-180deg));
+					transform: rotate(-180deg);
 				}
 				@include if-rtl() {
-					@include transform(rotate(0));
+					transform: rotate(0);
 				}
 			}
 			
-			.owl-next {
+			button.owl-next {
 				#{$right}: 10px;
 				@include if-rtl() {
-					@include transform(rotate(180deg));
+					transform: rotate(180deg);
 				}
 			}
 		}
@@ -603,9 +583,7 @@ p {
 
 	&.custom-arrows-style-2 {
 		.owl-nav {
-			margin-top: -30px;
-
-			[class*="owl-"] {
+			button[class*="owl-"] {
 				width: 32px;
 				height: 55px;
 				background: $color-quaternary;
@@ -619,9 +597,9 @@ p {
 				    height: 15px;
 				    border-top: 1px solid $color-light;
 				    border-left: 1px solid $color-light;
-					@include transform(translate(-50%, -50%) rotate(-45deg));
+					transform: translate(-50%, -50%) rotate(-45deg);
 					@include if-rtl() {
-						left: initial;
+						left: auto;
 						right: -5px;
 					}
 	    		}
@@ -631,20 +609,21 @@ p {
 	    		}
 			}
 
-			.owl-next {
+			button.owl-next {
 				#{$right}: -4px;
+			    transform-origin: 50% 25%;
 				@include if-ltr() {
-					@include transform(rotate(180deg));
+					transform: rotate(180deg);
 				}
 				@include if-rtl() {
-					@include transform(rotate(0deg));
+					transform: rotate(0deg);
 				}
 			}
 
-			.owl-prev {
+			button.owl-prev {
 				#{$left}: -4px;
 				@include if-rtl() {
-					@include transform(rotate(180deg));
+					transform: rotate(180deg);
 				}
 			}
 		}
@@ -655,7 +634,7 @@ p {
 		    position: absolute;
 		    left: 50%;
 			bottom: 10px;
-		    @include transform(translateX(-50%));			
+		    transform: translateX(-50%);			
 		}
 	}
 
@@ -666,7 +645,7 @@ p {
 			    left: 50%;
 			    margin-top: 0;
 			    width: 45%;
-			    @include transform(translateX(-50%));
+			    transform: translateX(-50%);
 			}
 		}
 	}
@@ -681,45 +660,17 @@ p {
 }
 
 /*
-* Header
-*/
-html {
-	&.sticky-header-enabled {
-		&.sticky-header-active {
-			#header {
-				.header-body {
-					top: 0;
-					-webkit-animation: header-reveal 0.4s ease-in;
-					-moz-animation:    header-reveal 0.4s ease-in;
-					-o-animation:      header-reveal 0.4s ease-in;
-					animation:         header-reveal 0.4s ease-in;
-				}
-			}
-		}
-	}
-}
-
-#header.header-narrow {
-	.header-body {
-		border-top: none;
-	}
-	.header-logo {
-		img {
-			top: -2px;
-		}
-	}
-}
-
-/*
 * Newcomers Class
 */
 .custom-newcomers-class {
 	position: relative;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	background-color: #FFF;
 	padding: 0 30px;
     font-size: 1.2em;
-    min-width: 250px;
+    min-width: 445px;
+    white-space: nowrap;
 
 	&:before {
 		content: '';
@@ -733,10 +684,12 @@ html {
 	}
 
 	> span {
-		position: relative;
-	    display: inline-block;
+	    position: relative;
+	    display: inline-flex;
+	    justify-content: center;
 	    padding: 25px 12px;
-	    margin-left: -5px;
+	    font-family: $secondary-font;
+	    line-height: 1.1;
 
 		&:after {
 		    content: '';
@@ -746,7 +699,7 @@ html {
 		    #{$right}: 0;
 		    height: calc(100% - 10px);
 		    border-right: 1px solid #efece8;
-		    @include transform(translateY(-50%));
+		    transform: translateY(-50%);
 		}
 
 		&:last-child {
@@ -756,6 +709,11 @@ html {
 				content: none;
 			}
 		}
+
+		> span {
+	    	font-size: 1.2em;
+	    	padding-right: 3px;
+	    }
 	}
 
 	&.clock-one-events {
@@ -770,54 +728,58 @@ html {
 		position: absolute;
 	    top: -31px;
 	    left: 50%;
-	    @include transform(translateX(-50%));
+	    transform: translateX(-50%);
 
 	    @media (max-width: 767px) {
-	    	top: -70px;
+	    	top: -30px;
 	    }
+	}
+}
+
+@media (max-width: 1199px) {
+	.custom-newcomers-class {
+		font-size: 1em;
 	}
 }
 
 @media (max-width: 767px) {
 	.custom-newcomers-class {
-		padding: 10px 10px 0px 10px;
-
+		flex-wrap: nowrap;
 		> span {
-			padding: 10px 12px;
-			
-			&:first-child {
-				display: block;
-
-				&:before {
-					content: '';
-				    display: block;
-				    position: absolute;
-				    bottom: -6px;
-				    left: 51%;
-				    width: 102.5%;
-				    border-bottom: 1px solid #efece8;
-				    @include transform(translateX(-50%));
-				}
-
-				&:after {
-					content: none;
-				}
-			}
-
-			&:last-child {
-				padding-right: 10px;
-			}
-		}
-
-		&.custom-xs-pt-none {
-			padding-top: 0 !important;
+			margin-bottom: 0;
 		}
 	}
 }
 
-@media (max-width: 320px) {
+
+@media (max-width: 575px) {
 	.custom-newcomers-class {
+		padding: 25px 10px 15px 10px;
 		font-size: 1em;
+		flex-direction: column;
+		min-width: 100%;
+
+		> span {
+			justify-content: center;
+			margin-bottom: 0 !important;
+		    padding: 15px 12px;
+
+			&:after {
+				content: none;
+			}
+
+			&:last-child {
+				padding-#{$right}: 12px;
+			}
+		}
+
+		&.custom-newcomers-pos-2 {
+			min-width: 93%;
+
+			& + img {
+				margin-top: 240px;
+			}
+		}
 	}
 }
 
@@ -923,7 +885,7 @@ html {
 */
 .custom-thumb-info {
 	border: none;
-	overflow: initial;
+	overflow: visible;
 
 	.thumb-info-wrapper {
 		margin: 0 !important;
@@ -1072,7 +1034,7 @@ html {
 .custom-thumb-info-4 {
 	border: none;
 	padding-bottom: 30px;
-	overflow: initial;
+	overflow: visible;
 
 	&:hover {
 		.thumb-info-wrapper {
@@ -1093,7 +1055,7 @@ html {
 
 	.thumb-info-wrapper {
 		&:before {
-		    @include transition(background 0.2s);
+		    transition: background 0.2s;
 		    background: rgba(0, 0, 0, 0);
 		    content: "";
 		    display: block;
@@ -1106,7 +1068,7 @@ html {
 		}
 
 		&:after {
-	        @include transition(top 0.2s, opacity 0.2s);
+	        transition: top 0.2s, opacity 0.2s;
 	        background: transparent;
 		    color: #FFF;
 			content: "\e090";
@@ -1154,7 +1116,7 @@ html {
 .custom-thumb-info-2 {
 	background: transparent;
 	border: none;
-	overflow: initial;
+	overflow: visible;
 
 	.thumb-info-wrapper {
 		&:after {
@@ -1198,7 +1160,7 @@ html {
 			left: 50%;
 			width: calc(100% + 60px);
 			border-top: 1px solid #efece8;
-			@include transform(translateX(-50%));
+			transform: translateX(-50%);
 		}
 
 		&:after {
@@ -1234,6 +1196,17 @@ html {
 			}
 		}
 	}
+}
+
+@media(max-width: 1199px) {
+	.custom-thumb-info-post-infos {
+		ul {
+			li {
+			    font-size: 0.8em;
+			}
+		}
+	}
+
 }
 
 .custom-thumb-style-1 {
@@ -1286,7 +1259,7 @@ ul.custom-comments-style {
     height: 96px;
     overflow: hidden;
     z-index: 1;
-    @include transition(ease all 300ms);
+    transition: ease all 300ms;
 
     &:hover {
     	opacity: 0.9;
@@ -1309,7 +1282,7 @@ ul.custom-comments-style {
 	    top: -60px;
 	    left: 50%;
 	    width: 420px;
-		@include transform(translateX(-50%));
+		transform: translateX(-50%);
 	}
 }
 

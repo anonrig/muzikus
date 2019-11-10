@@ -11,6 +11,9 @@ body {
 	font-size: $body-font-size + 0px;
 	line-height: $body-line-height + 0px;
 	margin: 0;
+	@include if-rtl() {
+		text-align: right;
+	}
 
 	a {
 		outline: none !important;
@@ -18,12 +21,20 @@ body {
 
 }
 
+.body {
+	background-color: $light-bg;
+}
+
+html.safari .body {
+	overflow-x: hidden;
+}
+
 li {
 	line-height: 24px;
 }
 
 /* Responsive */
-@media (max-width: 479px) {
+@media (max-width: 575px) {
 
 	body {
 		font-size: 13px;

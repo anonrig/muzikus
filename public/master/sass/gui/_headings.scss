@@ -2,8 +2,9 @@
 h1, h2, h3, h4, h5, h6 {
 	color: $color-dark;
 	font-weight: 200;
-	letter-spacing: -1px;
+	letter-spacing: -.05em;
 	margin: 0;
+	-webkit-font-smoothing: antialiased;
 }
 
 h1 {
@@ -22,7 +23,6 @@ h2 {
 h3 {
 	font-size: 1.8em;
 	font-weight: 400;
-	letter-spacing: normal;
 	line-height: 24px;
 	margin-bottom: 33px;
 	text-transform: uppercase;
@@ -30,8 +30,7 @@ h3 {
 
 h4 {
 	font-size: 1.4em;
-	font-weight: 400;
-	letter-spacing: normal;
+	font-weight: 600;
 	line-height: 27px;
 	margin: 0 0 14px 0;
 }
@@ -39,7 +38,6 @@ h4 {
 h5 {
 	font-size: 1em;
 	font-weight: 600;
-	letter-spacing: normal;
 	line-height: 18px;
 	margin: 0 0 14px 0;
 	text-transform: uppercase;
@@ -49,7 +47,6 @@ h6 {
 	color: #333;
 	font-size: 1em;
 	font-weight: 400;
-	letter-spacing: normal;
 	line-height: 18px;
 	margin: 0 0 14px 0;
 }
@@ -163,26 +160,26 @@ h6.text-shadow {
 
 	&.heading-bottom-border {
 		h1 {
-			border-bottom: 5px solid #DBDBDB;
+			border-bottom: 5px solid #eaeaea;
 			padding-bottom: 10px;
 		}
 		h2, h3 {
-			border-bottom: 2px solid #DBDBDB;
+			border-bottom: 2px solid #eaeaea;
 			padding-bottom: 10px;
 		}
 		h4, h5, h6 {
-			border-bottom: 1px solid #DBDBDB;
+			border-bottom: 1px solid #eaeaea;
 			padding-bottom: 5px;
 		}
 	}
 
 	&.heading-bottom-double-border {
 		h1, h2, h3 {
-			border-bottom: 3px double #DBDBDB;
+			border-bottom: 3px double #eaeaea;
 			padding-bottom: 10px;
 		}
 		h4, h5, h6 {
-			border-bottom: 3px double #DBDBDB;
+			border-bottom: 3px double #eaeaea;
 			padding-bottom: 5px;
 		}
 	}
@@ -190,7 +187,7 @@ h6.text-shadow {
 	&.heading-middle-border {
 		position: relative;
 		&:before {
-			border-top: 1px solid #DBDBDB;
+			border-top: 1px solid #eaeaea;
 			content: "";
 			height: 0;
 			left: auto;
@@ -279,7 +276,7 @@ h6.text-shadow {
 }
 
 /* Responsive */
-@media (max-width: 479px) {
+@media (max-width: 575px) {
 
 	h2 {
 		line-height: 40px;

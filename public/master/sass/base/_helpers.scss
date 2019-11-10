@@ -1,71 +1,248 @@
-// SIZES
-// -----------------------------------------------------------------------------
-.text-xs {
-	@include font-size( 10 );
+/* Position */
+.p-relative {
+	position: relative !important
 }
 
-.text-sm {
-	@include font-size( 13 );
+.p-absolute {
+	position: absolute !important
 }
 
-.text-md {
-	@include font-size( 16 );
+.p-fixed {
+	position: fixed !important
 }
 
-.text-lg {
-	@include font-size( 19 );
+.p-static {
+	position: static !important
 }
 
-.text-xl {
-	@include font-size( 22 );
+/* Box Shadow */
+.box-shadow-none {
+	box-shadow: none !important;
 }
 
-// STATES
-// -----------------------------------------------------------------------------
-.text-muted {
-	color: $color-muted !important;
+/* Inverted */
+.inverted {
+	color: #FFF;
+	display: inline-block;
+	padding-#{$left}: 10px;
+	padding-#{$right}: 10px;
 }
 
-html.dark {
-	.text-muted {
-		color: darken( $dark-default-text, 20% ) !important;
+h1 .inverted {
+	padding-#{$left}: 10px;
+	padding-#{$right}: 10px;
+}
+
+h2 .inverted {
+	padding-#{$left}: 7px;
+	padding-#{$right}: 7px;
+}
+
+h3 .inverted {
+	padding-#{$left}: 2px;
+	padding-#{$right}: 2px;;
+}
+
+h4 .inverted {
+	padding-#{$left}: 4px;
+	padding-#{$right}: 4px;
+}
+
+h5 .inverted {
+	padding-#{$left}: 2px;
+	padding-#{$right}: 2px;
+}
+
+h6 .inverted {
+	padding-#{$left}: 2px;
+	padding-#{$right}: 2px;
+}
+
+/* Letter Spacing */
+.ls-0 {
+	letter-spacing: 0 !important;
+}
+
+.negative-ls-1 {
+	letter-spacing: -1px;
+}
+
+.negative-ls-2 {
+	letter-spacing: -2px;
+}
+
+.negative-ls-3 {
+	letter-spacing: -2.5px;
+}
+
+.positive-ls-1 {
+	letter-spacing: 1px;
+}
+
+.positive-ls-2 {
+	letter-spacing: 2px;
+}
+
+.positive-ls-3 {
+	letter-spacing: 2.5px;
+}
+
+/* Cursor */
+.cur-pointer {
+	cursor: pointer;
+}
+
+/* Pointer Events */
+.p-events-none {
+	pointer-events: none;
+}
+
+/* Font Size */
+@each $breakpoint in map-keys($grid-breakpoints) {
+	@include media-breakpoint-up($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+		
+		.text#{$infix}-1 {
+			font-size: .8em !important;
+		}
+
+		.text#{$infix}-2 {
+			font-size: .9em !important;
+		}
+
+		.text#{$infix}-3 {
+			font-size: 1em !important;
+		}
+
+		.text#{$infix}-4 {
+			font-size: 1.2em !important;
+		}
+
+		.text#{$infix}-5 {
+			font-size: 1.50em !important;
+		}
+
+		.text#{$infix}-6 {
+			font-size: 1.80em !important;
+		}
+
+		.text#{$infix}-7 {
+			font-size: 2em !important;
+		}
+
+		.text#{$infix}-8 {
+			font-size: 2.30em !important;
+		}
+
+		.text#{$infix}-9 {
+			font-size: 2.50em !important;
+		}
+
+		.text#{$infix}-10 {
+			font-size: 2.75em !important;
+		}
+
+		.text#{$infix}-11 {
+			font-size: 3em !important;
+		}
+
+		.text#{$infix}-12 {
+			font-size: 3.5em !important;
+		}
+
+		.text#{$infix}-13 {
+			font-size: 4em !important;
+		}
+
+		.text#{$infix}-14 {
+			font-size: 4.5em !important;
+		}
+
+		.text#{$infix}-15 {
+			font-size: 5em !important;
+		}
+
 	}
 }
 
-// COLORs
-// -----------------------------------------------------------------------------
-.text-dark {
-	color: $color-dark !important;
+/* Line Height */
+@each $breakpoint in map-keys($grid-breakpoints) {
+	@include media-breakpoint-up($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+		.line-height#{$infix}-initial {
+			line-height: initial !important;
+		}
+
+		.line-height#{$infix}-1 {
+			line-height: 1 !important;
+		}
+
+		@for $i from 2 through 9 {
+			.line-height#{$infix}-#{$i} {
+				line-height: unquote('1.' + $i) !important;
+			}
+		}
+
+	}
 }
 
-.text-light {
-	color: #FFF !important;
+/* Opacity */
+@for $i from 0 through 9 {
+	.opacity-#{$i} {
+		opacity: unquote('0.' + $i) !important;
+	}
 }
 
-// WEIGHTS
-// -----------------------------------------------------------------------------
-.font-weight-light {
-	font-weight: $font-weight-light !important;
+.opacity-10 {
+	opacity: 1 !important;
 }
 
-.font-weight-normal {
-	font-weight: $font-weight-normal !important;
+/* Scale */
+@for $i from 1 through 6 {
+	.scale-#{$i} {
+		transform: scale(unquote('1.' + $i)) !important;
+	}
 }
 
-.font-weight-semibold {
-	font-weight: $font-weight-semibold !important;
+/* Top / Bottom / Left / Right */
+.top-auto {
+	top: auto !important;
 }
 
-.font-weight-bold {
-	font-weight: $font-weight-bold !important;
+.bottom-auto {
+	top: auto !important;
 }
 
-.font-weight-extra-bold {
-	font-weight: $font-weight-extra-bold !important;
+@for $i from 0 through 10 {
+	.top-#{$i} {
+		top: $i + px !important;
+	}
+
+	.bottom-#{$i} {
+		bottom: $i + px !important;
+	}
+
+	.left-#{$i} {
+		left: $i + px !important;
+	}
+
+	.right-#{$i} {
+		right: $i + px !important;
+	}
 }
 
-// TEXT OTHERS
-// -----------------------------------------------------------------------------
+/* Outline */
+.outline-none {
+	outline: 0 !important;
+}
+
+/* Text Decoration */
+.text-decoration-none {
+	text-decoration: none !important;
+}
+
+/* Text Transform */
 .text-uppercase {
 	text-transform: uppercase !important;
 }
@@ -78,8 +255,85 @@ html.dark {
 	text-transform: capitalize !important;
 }
 
-// BORDERS
-// -----------------------------------------------------------------------------
+.text-transform-none {
+	text-transform: none !important;
+}
+
+/* States */
+.text-muted {
+	color: $color-muted !important;
+}
+
+html.dark {
+	.text-muted {
+		color: darken( $dark-default-text, 20% ) !important;
+	}
+}
+
+/* Overflow */
+.overflow-visible {
+	overflow: visible !important;
+}
+
+.overflow-hidden {
+	overflow: hidden !important;
+}
+
+/* Z-Index */
+.z-index-0 {
+	z-index: 0 !important;
+}
+
+.z-index-1 {
+	z-index: 1 !important;
+}
+
+.z-index-2 {
+	z-index: 2 !important;
+}
+
+.z-index-3 {
+	z-index: 3 !important;
+}
+
+@media(max-width: 991px) {
+	.z-index-mobile-0 {
+		z-index: 0 !important;
+	}
+}
+
+/* Colors */
+.text-dark {
+	color: $color-dark !important;
+}
+
+.text-light {
+	color: #FFF !important;
+}
+
+/* Weights */
+.font-weight-semibold {
+	font-weight: $font-weight-semibold !important;
+}
+
+.font-weight-bold, b, strong {
+	font-weight: $font-weight-bold !important;
+}
+
+.font-weight-extra-bold, .font-weight-black {
+	font-weight: $font-weight-extra-bold !important;
+}
+
+/* Letter Space */
+.letter-spacing-minus-1 {
+	letter-spacing: -1px;
+}
+
+/* Borders */
+.no-borders {
+	border: none !important;
+}
+
 .rounded {
 	border-radius: $border-radius !important;
 }
@@ -96,413 +350,139 @@ html.dark {
 	border-width: $border-thick !important;
 }
 
-// SPACEMENTS
-// -----------------------------------------------------------------------------
-/* Spacements */
-/* spacement top & bottom */
-.m-none {
-	margin: 0 !important;
-}
-
-.m-auto {
-	margin: 0 auto !important;
-}
-
-.m-xs {
-	margin: $spacement-xs !important;
-}
-
-.m-sm {
-	margin: $spacement-sm !important;
-}
-
-.m-md {
-	margin: $spacement-md !important;
-}
-
-.m-lg {
-	margin: $spacement-lg !important;
-}
-
-.m-xl {
-	margin: $spacement-xl !important;
-}
-
-.m-xlg {
-	margin: $spacement-xlg !important;
-}
-
-/* spacement top  */
-.mt-none {
-	margin-top: 0 !important;
-}
-
-.mt-xs {
-	margin-top: $spacement-xs !important;
-}
-
-.mt-sm {
-	margin-top: $spacement-sm !important;
-}
-
-.mt-md {
-	margin-top: $spacement-md !important;
-}
-
-.mt-lg {
-	margin-top: $spacement-lg !important;
-}
-
-.mt-xl {
-	margin-top: $spacement-xl !important;
-}
-
-.mt-xlg {
-	margin-top: $spacement-xlg !important;
-}
-
-/* spacement bottom  */
-.mb-none {
-	margin-bottom: 0 !important;
-}
-
-.mb-xs {
-	margin-bottom: $spacement-xs !important;
-}
-
-.mb-sm {
-	margin-bottom: $spacement-sm !important;
-}
-
-.mb-md {
-	margin-bottom: $spacement-md !important;
-}
-
-.mb-lg {
-	margin-bottom: $spacement-lg !important;
-}
-
-.mb-xl {
-	margin-bottom: $spacement-xl !important;
-}
-
-.mb-xlg {
-	margin-bottom: $spacement-xlg !important;
-}
-
-/* spacement #{$left}  */
-.ml-none {
-	margin-#{$left}: 0 !important;
-}
-
-.ml-xs {
-	margin-#{$left}: $spacement-xs !important;
-}
-
-.ml-sm {
-	margin-#{$left}: $spacement-sm !important;
-}
-
-.ml-md {
-	margin-#{$left}: $spacement-md !important;
-}
-
-.ml-lg {
-	margin-#{$left}: $spacement-lg !important;
-}
-
-.ml-xl {
-	margin-#{$left}: $spacement-xl !important;
-}
-
-.ml-xlg {
-	margin-#{$left}: $spacement-xlg !important;
-}
-
-/* spacement right  */
-.mr-none {
-	margin-#{$right}: 0 !important;
-}
-
-.mr-xs {
-	margin-#{$right}: $spacement-xs !important;
-}
-
-.mr-sm {
-	margin-#{$right}: $spacement-sm !important;
-}
-
-.mr-md {
-	margin-#{$right}: $spacement-md !important;
-}
-
-.mr-lg {
-	margin-#{$right}: $spacement-lg !important;
-}
-
-.mr-xl {
-	margin-#{$right}: $spacement-xl !important;
-}
-
-.mr-xlg {
-	margin-#{$right}: $spacement-xlg !important;
-}
-
-/* Spacement Padding */
-.p-none {
-	padding: 0 !important;
-}
-
-.p-xs {
-	padding: $spacement-xs !important;
-}
-
-.p-sm {
-	padding: $spacement-sm !important;
-}
-
-.p-md {
-	padding: $spacement-md !important;
-}
-
-.p-lg {
-	padding: $spacement-lg !important;
-}
-
-.p-xl {
-	padding: $spacement-xl !important;
-}
-
-.p-xlg {
-	padding: $spacement-xlg !important;
-}
-
-/* spacement top  */
-.pt-none {
-	padding-top: 0 !important;
-}
-
-.pt-xs {
-	padding-top: $spacement-xs !important;
-}
-
-.pt-sm {
-	padding-top: $spacement-sm !important;
-}
-
-.pt-md {
-	padding-top: $spacement-md !important;
-}
-
-.pt-lg {
-	padding-top: $spacement-lg !important;
-}
-
-.pt-xl {
-	padding-top: $spacement-xl !important;
-}
-
-.pt-xlg {
-	padding-top: $spacement-xlg !important;
-}
-
-/* spacement bottom  */
-.pb-none {
-	padding-bottom: 0 !important;
-}
-
-.pb-xs {
-	padding-bottom: $spacement-xs !important;
-}
-
-.pb-sm {
-	padding-bottom: $spacement-sm !important;
-}
-
-.pb-md {
-	padding-bottom: $spacement-md !important;
-}
-
-.pb-lg {
-	padding-bottom: $spacement-lg !important;
-}
-
-.pb-xl {
-	padding-bottom: $spacement-xl !important;
-}
-
-.pb-xlg {
-	padding-bottom: $spacement-xlg !important;
-}
-
-/* spacement left  */
-.pl-none {
-	padding-#{$left}: 0 !important;
-}
-
-.pl-xs {
-	padding-#{$left}: $spacement-xs !important;
-}
-
-.pl-sm {
-	padding-#{$left}: $spacement-sm !important;
-}
-
-.pl-md {
-	padding-#{$left}: $spacement-md !important;
-}
-
-.pl-lg {
-	padding-#{$left}: $spacement-lg !important;
-}
-
-.pl-xl {
-	padding-#{$left}: $spacement-xl !important;
-}
-
-.pl-xlg {
-	padding-#{$left}: $spacement-xlg !important;
-}
-
-/* spacement right  */
-.pr-none {
-	padding-#{$right}: 0 !important;
-}
-
-.pr-xs {
-	padding-#{$right}: $spacement-xs !important;
-}
-
-.pr-sm {
-	padding-#{$right}: $spacement-sm !important;
-}
-
-.pr-md {
-	padding-#{$right}: $spacement-md !important;
-}
-
-.pr-lg {
-	padding-#{$right}: $spacement-lg !important;
-}
-
-.pr-xl {
-	padding-#{$right}: $spacement-xl !important;
-}
-
-.pr-xlg {
-	padding-#{$right}: $spacement-xlg !important;
-}
-
-// HELPERS
-// -----------------------------------------------------------------------------
-.ib {
-	display: inline-block;
-	vertical-align: top;
-}
-
-.va-middle {
-	vertical-align: middle;
-}
-
+/* General Helpers */
 .ws-nowrap {
-	white-space: nowrap;
+	white-space: nowrap !important;
 }
 
 .ws-normal {
-	white-space: normal;
+	white-space: normal !important;
 }
 
-// GRID
-// -----------------------------------------------------------------------------
+/* Width */
+@media(max-width: 991px) {
+	.w-auto-mobile {
+		width: auto !important;
+	}
 
+	.w-100-mobile {
+		width: 100% !important;
+	}
+}
+
+/* Grid */
 // 5 Equal Columns
-.col-xs-1-5, .col-sm-1-5, .col-md-1-5, .col-lg-1-5, .col-xs-2-5, .col-sm-2-5, .col-md-2-5, .col-lg-2-5, .col-xs-3-5, .col-sm-3-5, .col-md-3-5, .col-lg-3-5, .col-xs-4-5, .col-sm-4-5, .col-md-4-5, .col-lg-4-5 {
+.col-1-5, .col-sm-1-5, .col-md-1-5, .col-lg-1-5, .col-xl-1-5, .col-2-5, .col-sm-2-5, .col-md-2-5, .col-lg-2-5, .col-xl-2-5, .col-3-5, .col-sm-3-5, .col-md-3-5, .col-lg-3-5, .col-xl-3-5, .col-4-5, .col-sm-4-5, .col-md-4-5, .col-lg-4-5, .col-xl-4-5 {
 	position: relative;
 	min-height: 1px;
+	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;
 }
 
-.col-xs-1-5 {
-	width: 20%;
-	float: $left;
+.col-1-5 {
+	@include flexbox(0, 0, 20%);
 }
 
-.col-xs-2-5 {
-	width: 40%;
-	float: $left;
+.col-2-5 {
+	@include flexbox(0, 0, 40%);
 }
 
-.col-xs-3-5 {
-	width: 60%;
-	float: $left;
+.col-3-5 {
+	@include flexbox(0, 0, 60%);
 }
 
-.col-xs-4-5 {
-	width: 80%;
-	float: $left;
+.col-4-5 {
+	@include flexbox(0, 0, 80%);
+}
+
+@media (min-width: 576px) {
+	.col-sm-1-5 {
+		@include flexbox(0, 0, 20%);
+	}
+
+	.col-sm-2-5 {
+		@include flexbox(0, 0, 40%);
+	}
+
+	.col-sm-3-5 {
+		@include flexbox(0, 0, 60%);
+	}
+
+	.col-sm-4-5 {
+		@include flexbox(0, 0, 80%);
+	}
 }
 
 @media (min-width: 768px) {
-	.col-sm-1-5 {
-		width: 20%;
-		float: $left;
+	.col-md-1-5 {
+		@include flexbox(0, 0, 20%);
 	}
-	col-sm-2-5 {
-		width: 40%;
-		float: $left;
+
+	.col-md-2-5 {
+		@include flexbox(0, 0, 40%);
 	}
-	col-sm-3-5 {
-		width: 60%;
-		float: $left;
+
+	.col-md-3-5 {
+		@include flexbox(0, 0, 60%);
 	}
-	col-sm-4-5 {
-		width: 80%;
-		float: $left;
+
+	.col-md-4-5 {
+		@include flexbox(0, 0, 80%);
 	}
 }
 
 @media (min-width: 992px) {
-	.col-md-1-5 {
-		width: 20%;
-		float: $left;
+	.col-lg-1-5 {
+		@include flexbox(0, 0, 20%);
 	}
-	.col-md-2-5 {
-		width: 40%;
-		float: $left;
+
+	.col-lg-2-5 {
+		@include flexbox(0, 0, 40%);
 	}
-	.col-md-3-5 {
-		width: 60%;
-		float: $left;
+
+	.col-lg-3-5 {
+		@include flexbox(0, 0, 60%);
 	}
-	.col-md-4-5 {
-		width: 80%;
-		float: $left;
+
+	.col-lg-4-5 {
+		@include flexbox(0, 0, 80%);
 	}
 }
 
 @media (min-width: 1200px) {
-	.col-lg-1-5 {
-		width: 20%;
-		float: $left;
+	.col-xl-1-5 {
+		@include flexbox(0, 0, 20%);
 	}
-	.col-lg-2-5 {
-		width: 40%;
-		float: $left;
+
+	.col-xl-2-5 {
+		@include flexbox(0, 0, 40%);
 	}
-	.col-lg-3-5 {
-		width: 60%;
-		float: $left;
+
+	.col-xl-3-5 {
+		@include flexbox(0, 0, 60%);
 	}
-	.col-lg-4-5 {
-		width: 80%;
-		float: $left;
+
+	.col-xl-4-5 {
+		@include flexbox(0, 0, 80%);
 	}
 }
 
-// Grid + Sidebar
-@media (max-width: 991px) {
-	.col-md-3 .sidebar {
-		clear: both;
+/* RTL */
+@include if-rtl() {
+	
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+			
+			// Float
+			.float#{$infix}-left  { float: right !important; }
+			.float#{$infix}-right { float: left !important; }
+
+			// Text Align
+			.text#{$infix}-left   { text-align: right !important; }
+			.text#{$infix}-right  { text-align: left !important; }
+		}
 	}
+
 }

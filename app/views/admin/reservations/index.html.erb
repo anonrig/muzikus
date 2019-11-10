@@ -1,0 +1,96 @@
+<div role="main" class="main">
+    <header class="page-header">
+		<h2>All Reservations</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span>Reservations</span></li>
+			</ol>
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+
+    <div class="row">
+        <div class="col">
+            <section class="card card-featured card-featured-info">
+                <div class="card-body scroll">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr class="text-light">
+                                <th style="width: 50px;">#</th>
+                                <th>User</th>
+                                <th>Room</th>
+                                <th>Date</th>
+                                <th>Between</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% i = (@currentPage - 1) * @pageCounter + 1%>
+                            <% @reservations.each do |reservation| %>
+                                <tr class="text-light">
+                                    <td><%= i %></td>
+                                    <td><%= reservation.user.nil? ? "User not found" : reservation.user.name %></td>
+                                    <td><%= reservation.room.nil? ? "Room not found" : reservation.room.name %></td>
+                                    <td><%= reservation.start_at.to_datetime.strftime("%e %b, %a") %></td>
+                                    <td><%= "#{reservation.start_at.to_datetime.strftime("%H:%M")} - #{reservation.end_at.to_datetime.strftime("%H:%M")}" %></td>
+                                    <td><%= reservation.detail %></td>
+                                </tr>
+                                <% i = i + 1%>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer pt-1 pb-1 text-center">
+					<% if @pageCount > 1 %>
+					<p>
+						<div class="btn-group flex-wrap">
+							<%if @currentPage > 1 %>
+								<a href="<%= admin_reservations_path({page: @currentPage - 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-left"></i></a>
+							<% end %>
+							
+							<% if @currentPage > 4 %>
+								<a href="<%= admin_reservations_path({page: 1}) %>" class="btn btn-primary border-dark">1</a>
+							<% end %>
+							
+							<% i = @currentPage - 3 
+							while i <= @currentPage - 1
+								if i > 0 %>
+									<a href="<%= admin_reservations_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
+							<%	end
+								i = i + 1
+							end %>
+
+							<a class="btn btn-default"><%= @currentPage %></a>
+
+							<% i = @currentPage +  1 
+							while i <= @currentPage + 3 
+								if i <= @pageCount %>
+								<a href="<%= admin_reservations_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
+							<%	end
+								i = i + 1
+							end %>
+
+							<% if ((@pageCount - @currentPage) >= 4) %>
+								<a href="<%= admin_reservations_path({page: @pageCount}) %>" class="btn btn-primary border-dark"><%= @pageCount %></a>
+							<% end %>
+
+							<% if @currentPage < @pageCount %>
+								<a href="<%= admin_reservations_path({page: @currentPage + 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-right"></i></a>
+							<% end %>
+						</div>
+					</p>
+					<% end %>
+				</div>	
+            </section>
+        </div>
+    </div>
+</div>

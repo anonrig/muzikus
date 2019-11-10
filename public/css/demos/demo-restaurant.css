@@ -1,18 +1,9 @@
-/* Header */
-#header .header-btn-collapse-nav {
-	margin-top: 18px;
-}
-
-@media (min-width: 992px) {
-	#header .header-nav-main {
-		margin: 6px 0 0;
-	}
-}
 /* Custom Icon */
 .thumb-info .thumb-info-custom-icon {
 	width: auto;
 	margin: -30px auto 0;
-	transform: none !important;
+	-webkit-transform: none !important;
+					transform: none !important;
 }
 
 /* Custom Divider */
@@ -24,6 +15,7 @@
 /* Custom Thumb Info */
 .thumb-info-custom {
 	position: relative;
+	border: 1px solid #ddd;
 	overflow: visible;
 	z-index: 2;
 }
@@ -57,12 +49,14 @@
 
 /* Thumb Info Custom Icon */
 .thumb-info.thumb-info-centered-icons .thumb-info-action-custom {
-	top: 0;
+	top: 50%;
 	margin-top: 0;
 	height: 100%;
 	left: 0;
 	width: 100%;
 	display: block;
+	-webkit-transform: translate3d(0, -50%, 0);
+					transform: translate3d(0, -50%, 0);
 }
 .thumb-info.thumb-info-centered-icons .thumb-info-action-custom a {
 	display: block;
@@ -92,9 +86,13 @@
 
 /* Thumb Info Caption Text Custom */
 .thumb-info-caption-text-custom {
-	background: #F4f4f4;
+	background: #f7f7f7;
 	margin: 0 !important;
 	padding: 14px !important;
+}
+
+.thumb-info .thumb-info-caption {
+	padding: 0;
 }
 
 /* Thumb Info Custom Blog */
@@ -210,24 +208,4 @@
 .google-map.small {
 	max-width: 300px;
 	height: 200px;
-}
-
-#footer {
-	margin-top: 0;
-}
-#footer .footer-copyright p {
-	color: rgba(255, 255, 255, 0.25);
-	font-size: 15px;
-	padding: 45px 0 10px 0;
-	text-transform: uppercase;
-}
-#footer .footer-copyright p a {
-	color: rgba(255, 255, 255, 0.25);
-}
-#footer .footer-copyright p .separator {
-	display: inline-block;
-	padding: 0 10px;
-	font-size: 10px;
-	position: relative;
-	top: -2px;
 }

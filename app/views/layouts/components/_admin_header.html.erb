@@ -1,0 +1,72 @@
+<header class="header header-nav-menu">
+    <div class="logo-container">
+        <a href="../" class="logo">
+            <img src="/admin/img/logo.png" height="35" width="auto" alt="Porto Admin" />
+        </a>
+        <div class="d-md-none toggle-sidebar-left notification-icon" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+        <button class="btn header-btn-collapse-nav d-lg-none" data-toggle="collapse" data-target=".header-nav" style="margin-right:60px;">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+
+        <!-- start: header nav menu -->
+        <%= render partial: "layouts/components/admin_navbar"%>
+        <!-- end: header nav menu -->
+    </div>
+
+    <!-- start: user box -->
+    <div class="header-right">			
+        <ul class="notifications">
+            <li>
+                <a href="http://www.facebook.com/muzikus" target="_blank" title="Facebook" class="notification-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.instagram.com/muzikussabanci" target="_blank" title="Instagram" class="notification-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+
+            </li>
+            <li>
+                <a href="https://www.youtube.com/user/MuzikusOfficial" target="_blank" title="YouTube" class="notification-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+            </li>
+        </ul>
+
+        <span class="separator"></span>
+
+        <div id="userbox" class="userbox">
+            <a href="#" data-toggle="dropdown">
+                <figure class="profile-picture">
+                    <img src="/admin/img/!logged-user.jpg" alt="Joseph Doe" class="rounded-circle" data-lock-picture="img/!logged-user.jpg" />
+                </figure>
+                <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                    <span class="name"><%= current_user.name%></span>
+                    <span class="role"><%= current_user.is_myk ? "MYK" : "YK" %></span>
+                </div>
+
+                <i class="fa custom-caret"></i>
+            </a>
+
+            <div class="dropdown-menu">
+                <ul class="list-unstyled">
+                    <li class="divider"></li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    </li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fas fa-lock"></i> Lock Screen</a>
+                    </li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="/sign_out"><i class="fas fa-power-off"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end: search & user box -->
+</header>

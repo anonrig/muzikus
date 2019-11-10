@@ -1,7 +1,7 @@
 /*
 Name: 			Finance
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 // Demo Config
 (function($) {
@@ -15,7 +15,7 @@ Theme Version:	5.7.2
 		fullScreenOffsetContainer: '#header, #home-intro',
 		delay: 10000,
 		responsiveLevels: [4096, 1200, 991, 500],
-		gridwidth: [1170, 970, 750],
+		gridwidth: [1140, 960, 720, 540],
 		gridheight: 650,
 		lazyType: "none",
 		shadow: 0,
@@ -90,160 +90,6 @@ Theme Version:	5.7.2
 		midClick: true,
 		removalDelay: 300,
 		mainClass: 'my-mfp-zoom-in'
-	});
-
-	/*
-	Contact Form Message - Home Page
-	*/
-	$('#callSendMessage').validate({
-		submitHandler: function(form) {
-
-			var $form = $(form),
-				$messageSuccess = $('#contactFormSuccess'),
-				$messageError = $('#contactFormError'),
-				$submitButton = $(this.submitButton),
-				$errorMessage = $('#contactFormErrorMessage');
-
-			$submitButton.button('loading');
-
-			// Ajax Submit
-			$.ajax({
-				type: 'POST',
-				url: $form.attr('action'),
-				data: {
-					name: $form.find('#name').val(),
-					email: 'you@domain.com',
-					subject: 'Finance - Contact Message',
-					message: 'Name' + $form.find('#name').val() + '<br>E-mail:' + $form.find('#email').val() + '<br>Phone:' + $form.find('#phone').val() + '<br>Discuss:' + $form.find('#discuss').val()
-				}
-			}).always(function(data, textStatus, jqXHR) {
-
-				$errorMessage.empty().hide();
-
-				if (data.response == 'success') {
-
-					$messageSuccess.removeClass('hidden');
-					$messageError.addClass('hidden');
-
-					// Reset Form
-					$form.find('.form-control')
-						.val('')
-						.blur()
-						.parent()
-						.removeClass('has-success')
-						.removeClass('has-error')
-						.find('label.error')
-						.remove();
-
-					if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
-						$('html, body').animate({
-							scrollTop: $messageSuccess.offset().top - 80
-						}, 300);
-					}
-
-					$submitButton.button('reset');
-					
-					return;
-
-				} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
-					$errorMessage.html(data.errorMessage).show();
-				} else {
-					$errorMessage.html(data.responseText).show();
-				}
-
-				$messageError.removeClass('hidden');
-				$messageSuccess.addClass('hidden');
-
-				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
-					$('html, body').animate({
-						scrollTop: $messageError.offset().top - 80
-					}, 300);
-				}
-
-				$form.find('.has-success')
-					.removeClass('has-success');
-					
-				$submitButton.button('reset');
-
-			});
-		}
-	});
-
-	/*
-	Contact Form Message - Contact Us Page
-	*/
-	$('#contactForm').validate({
-		submitHandler: function(form) {
-
-			var $form = $(form),
-				$messageSuccess = $('#contactFormSuccess'),
-				$messageError = $('#contactFormError'),
-				$submitButton = $(this.submitButton),
-				$errorMessage = $('#contactFormErrorMessage');
-
-			$submitButton.button('loading');
-
-			// Ajax Submit
-			$.ajax({
-				type: 'POST',
-				url: $form.attr('action'),
-				data: {
-					name: $form.find('#name').val(),
-					email: 'you@domain.com',
-					subject: 'Finance - Contact Message',
-					message: 'Name' + $form.find('#name').val() + '<br>E-mail:' + $form.find('#email').val() + '<br>Phone:' + $form.find('#phone').val() + '<br>Select:' + $form.find('#selectSample').val() +'<br>Message:' + $form.find('#message').val()
-				}
-			}).always(function(data, textStatus, jqXHR) {
-
-				$errorMessage.empty().hide();
-
-				if (data.response == 'success') {
-
-					$messageSuccess.removeClass('hidden');
-					$messageError.addClass('hidden');
-
-					// Reset Form
-					$form.find('.form-control')
-						.val('')
-						.blur()
-						.parent()
-						.removeClass('has-success')
-						.removeClass('has-error')
-						.find('label.error')
-						.remove();
-
-					if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
-						$('html, body').animate({
-							scrollTop: $messageSuccess.offset().top - 80
-						}, 300);
-					}
-
-					$submitButton.button('reset');
-					
-					return;
-
-				} else if (data.response == 'error' && typeof data.errorMessage !== 'undefined') {
-					$errorMessage.html(data.errorMessage).show();
-				} else {
-					$errorMessage.html(data.responseText).show();
-				}
-
-				$messageError.removeClass('hidden');
-				$messageSuccess.addClass('hidden');
-
-				if (($messageError.offset().top - 80) < $(window).scrollTop()) {
-					$('html, body').animate({
-						scrollTop: $messageError.offset().top - 80
-					}, 300);
-				}
-
-				$form.find('.has-success')
-					.removeClass('has-success');
-					
-				$submitButton.button('reset');
-
-			});
-		}
 	});
 
 }).apply(this, [jQuery]);

@@ -1,7 +1,7 @@
 /*
 Name: 			Photography
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 // Demo Config
@@ -82,6 +82,10 @@ theme.PluginScrollToTop.initialize = function() {};
 		sliderOptions.fullScreenOffsetContainer = null;
 		sliderOptions.navigation.arrows.style = 'arrows-side-header-1';
 		sliderOptions.navigation.arrows.hide_onleave = false;
+
+		if( $(window).width() < 992 ) {
+			sliderOptions.fullScreenOffsetContainer = '#header';
+		}
 	}
 
 	if( $('.photography-demo-2').get(0) ) {
@@ -110,6 +114,7 @@ theme.PluginScrollToTop.initialize = function() {};
 		currentPage: 0,
 		$wrapper: $('#portfolioDetailLoadMoreWrapper'),
 		$btn: $('#portfolioDetailLoadMore'),
+		$btnWrapper: $('#portfolioDetailLoadMoreBtnWrapper'),
 		$loader: $('#portfolioDetailLoadMoreLoader'),
 
 		build: function() {
@@ -120,7 +125,7 @@ theme.PluginScrollToTop.initialize = function() {};
 
 			if(self.pages <= 1) {
 
-				self.$btn.remove();
+				self.$btnWrapper.remove();
 				return;
 
 			} else {
@@ -174,7 +179,7 @@ theme.PluginScrollToTop.initialize = function() {};
 						if(self.currentPage < self.pages) {
 							self.$btn.show().blur();
 						} else {
-							self.$btn.remove();
+							self.$btnWrapper.remove();
 						}
 
 						self.$wrapper.on( 'layoutComplete', function( laidOutItems ) {
@@ -241,6 +246,7 @@ theme.PluginScrollToTop.initialize = function() {};
 		currentPage: 0,
 		$wrapper: $('.portfolioInfiniteScrollWrapper'),
 		$btn: $('#portfolioInfiniteScrollLoadMore'),
+		$btnWrapper: $('#portfolioInfiniteScrollLoadMoreBtnWrapper'),
 		$loader: $('#portfolioInfiniteScrollLoadMoreLoader'),
 
 		build: function() {
@@ -251,7 +257,7 @@ theme.PluginScrollToTop.initialize = function() {};
 
 			if(self.pages <= 1) {
 
-				self.$btn.remove();
+				self.$btnWrapper.remove();
 				return;
 
 			} else {
@@ -305,7 +311,7 @@ theme.PluginScrollToTop.initialize = function() {};
 						if(self.currentPage < self.pages) {
 							self.$btn.show().blur();
 						} else {
-							self.$btn.remove();
+							self.$btnWrapper.remove();
 						}
 
 						self.$wrapper.on( 'layoutComplete', function( laidOutItems ) {
@@ -487,14 +493,15 @@ theme.PluginScrollToTop.initialize = function() {};
 	*/
 	$(window).on('load', function() {
 		var $portfolioGrid = $('#portfolioGrid'),
-			$ourBlog       = $('#ourBlog');
+			$ourBlog       = $('#ourBlog'),
+			gridSizer      = $portfolioGrid.attr('data-grid-sizer');
 
 		// Portfolio Grid
 		if( $portfolioGrid.get(0) ) {
 			$portfolioGrid.isotope({
 				itemSelector: '.isotope-item',
 				masonry: {
-					columnWidth: '.grid-sizer',
+					columnWidth: gridSizer,
 					gutter: 0
 				}
 			});
@@ -520,7 +527,7 @@ theme.PluginScrollToTop.initialize = function() {};
 	var $horizontalScroll = {
 		$horizontalScrollWrapper : $('#horizontalScrollBox'),
 		$horizontalScrollContent : $('#horizontalScrollBox .content'),
-		$horizontalScrollItem    : $('#horizontalScrollBox .content li'),
+		$horizontalScrollItem    : $('#horizontalScrollBox .content .horizontal-scroll-item-wrapper'),
 
 		build: function(){
 			var self = this;
@@ -536,13 +543,8 @@ theme.PluginScrollToTop.initialize = function() {};
 			$(self.$horizontalScrollItem).each(function(e){
 				var boxImageWidth = $(this).outerWidth(true);
 
-				totalWidth = (totalWidth + boxImageWidth) + 2.45;
+				totalWidth = (totalWidth + boxImageWidth);
 			});
-
-			// If Mozilla Firefox
-		    if($('html.gecko').get(0)) {
-		    	totalWidth = totalWidth + 2.7;
-		    }
 
 			self.$horizontalScrollContent.width( totalWidth );
 		},
@@ -668,6 +670,8 @@ theme.PluginScrollToTop.initialize = function() {};
 	if($('#horizontalScrollBox').get(0)) {
 		$horizontalScroll.build();
 
+		$(window).trigger('resize');
+
 		var $window = $(window);
 
 		// Mousewheel horizontal scroll
@@ -679,22 +683,28 @@ theme.PluginScrollToTop.initialize = function() {};
 		});
 
 		// Build $horizontalScroll on resize
-		$(window).afterResize(function() {
-			$horizontalScroll.setContentWidth();
-			
-			if($('.photography-demo-2').get(0)) {
-				$(".thumb-info-wrapper img").css('transition','ease all 5s');
-				$(".thumb-info-wrapper img").on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(e){
-				    $horizontalScroll.setContentWidth();
+		$window.on('load', function(){
+			$(document).ready(function(){
+				$(window).afterResize(function() {
+					$horizontalScroll.setContentWidth();
+					
+					if($('.photography-demo-2').get(0)) {
+						$(".thumb-info-wrapper img").css('transition','ease all 5s');
+						$(".thumb-info-wrapper img").on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(e){
+						    $horizontalScroll.setContentWidth();
+						});
+					}
 				});
-			}
-		});
 
-		if($('.photography-demo-2').get(0)) {
-			$(window).on('resize', function(){
-				$(".thumb-info-wrapper img").css('transition','none');
-			});	
-		}
+				if($('.photography-demo-2').get(0)) {
+					$(window).on('resize', function(){
+						$(".thumb-info-wrapper img").css('transition','none');
+					});	
+				}
+
+				$(window).trigger('resize');
+			});
+		});
 	}
 
 	/*
@@ -721,6 +731,8 @@ theme.PluginScrollToTop.initialize = function() {};
 			open: function(){
 				$('#thumbGalleryDetail').owlCarousel().trigger('refresh.owl.carousel');
 				$('#thumbGalleryDetail').owlCarousel().trigger('to.owl.carousel', [clickedItem, 0]);
+
+				$('#thumbGalleryThumbs').owlCarousel('refresh');
 
 				removeShowThumbsTimeout = setTimeout(function(){
 					$('#thumbGalleryThumbs').removeClass('show-thumbs');
@@ -898,47 +910,6 @@ theme.PluginScrollToTop.initialize = function() {};
 		    }
 		});
 
-	}
-
-	/*
-	Side Menu Navigation
-	*/
-	var sideHeaderNavigation = {
-		$mainNav: $('#mainNav'),
-		$mainNavItem: $('#mainNav li'),
-
-		build: function(){
-			var self = this;
-
-			self.menuNav();
-		},
-		menuNav: function(){
-			var self = this;
-
-			self.$mainNavItem.on('click', function(e){
-				var currentMenuItem = $(this),
-					currentMenu 	= $(this).parent(),
-					nextMenu        = $(this).find('ul').first(),
-					isSubMenu       = currentMenuItem.hasClass('dropdown') || currentMenuItem.hasClass('dropdown-submenu'),
-					isBack          = currentMenuItem.hasClass('back-button');
-
-				if( isSubMenu ) {
-					currentMenu.addClass('next-menu');
-					nextMenu.addClass('visible');
-				}
-
-				if( isBack ) {
-					currentMenu.parent().parent().removeClass('next-menu');
-					currentMenu.removeClass('visible');
-				}
-
-				e.stopPropagation();
-			});
-		}
-	}
-
-	if( $('.photography-demo-3').get(0) ) {
-		sideHeaderNavigation.build();
 	}
 
 }).apply(this, [jQuery]);

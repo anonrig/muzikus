@@ -43,9 +43,6 @@ html {
 			nav {
 				> ul {
 					> li {
-						> a {
-							color: #FFF !important;
-						}
 						&.active {
 							> a {
 								color: @color-primary !important;
@@ -67,6 +64,15 @@ html {
 			}
 		}
 	}
+}
+
+// Buttons
+.btn-primary.active:not([disabled]):not(.disabled),
+.btn-primary:active:not([disabled]):not(.disabled),
+.show > .btn-primary.dropdown-toggle {
+    background-color: @color-primary;
+    border-color: @color-primary;
+    box-shadow: 0 0 0 .2rem rgba(red(@color-primary), green(@color-primary), blue(@color-primary), 0.5);
 }
 
 // Rev Slider - Custom Arrows Style
@@ -94,8 +100,8 @@ html {
 
 // Custom Accordion Style 1
 .custom-accordion-style-1 {
-	.panel {
-		.panel-title {
+	.card {
+		.card-title {
 			> a {
 				&.accordion-toggle:not(.collapsed) {
 					color: @color-primary;
@@ -132,7 +138,7 @@ html {
 
 // Custom Owl Dots Style 1
 .owl-carousel.custom-dots-style-1 {
-	.owl-dot {
+	button.owl-dot {
 		&.active, &:hover {
 			span {
 				border-color: @color-primary;
@@ -162,7 +168,7 @@ html {
 .owl-carousel {
 	&.custom-arrows-style-2, &.custom-xs-arrows-style-2 {
 		.owl-nav {
-			.owl-prev, .owl-next {
+			button.owl-prev, button.owl-next {
 				&:before {
 					border-color: @color-primary;
 				}

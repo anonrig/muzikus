@@ -1,9 +1,10 @@
 /*
 Name: 			RealEstate
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
+'use strict';
 
 /*
 Header
@@ -78,6 +79,7 @@ var listingLoadMore = {
 	currentPage: 0,
 	$wrapper: $('#listingLoadMoreWrapper'),
 	$btn: $('#listingLoadMore'),
+	$btnWrapper: $('#listingLoadMoreBtnWrapper'),
 	$loader: $('#listingLoadMoreLoader'),
 
 	build: function() {
@@ -88,7 +90,7 @@ var listingLoadMore = {
 
 		if(self.pages <= 1) {
 
-			self.$btn.remove();
+			self.$btnWrapper.remove();
 			return;
 
 		} else {
@@ -111,6 +113,15 @@ var listingLoadMore = {
 					accY: 0
 				});
 			}
+
+			// Relayout Isotope on resize
+			var $grid = self.$wrapper;
+			
+			$(window).on('resize', function() {
+				setTimeout(function() {
+					$grid.isotope('layout');
+				}, 300);
+			});
 
 		}
 
@@ -140,7 +151,7 @@ var listingLoadMore = {
 					if(self.currentPage < self.pages) {
 						self.$btn.show().blur();
 					} else {
-						self.$btn.remove();
+						self.$btnWrapper.remove();
 					}
 
 					// Carousel
@@ -187,7 +198,8 @@ $thumbGalleryDetail1
 		nav: true,
 		dots: false,
 		loop: false,
-		navText: []
+		navText: [],
+		rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 	})
 	.on('changed.owl.carousel', function(e) {
 		if (!flag) {
@@ -203,7 +215,8 @@ $thumbGalleryThumbs1
 		items: 4,
 		nav: false,
 		center: false,
-		dots: false
+		dots: false,
+		rtl: ( $('html').attr('dir') == 'rtl' ) ? true : false
 	})
 	.on('click', '.owl-item', function() {
 		$thumbGalleryDetail1.trigger('to.owl.carousel', [$(this).index(), duration, true]);

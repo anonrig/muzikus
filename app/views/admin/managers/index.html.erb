@@ -1,0 +1,90 @@
+<div role="main" class="main schedule-list scroll">
+	<header class="page-header">
+		<h2>Managers</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span>Managers</span></li>
+			</ol>
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+
+	<div class="row justify-content-around">
+		<div class="col-lg-4 order-lg-2">
+			<section class="card card-featured card-featured-info sticky">
+				<div class="card-header">
+					<h2 class="card-title">Add New</h2>
+				</div>
+				<div class="card-body">
+					<%= render partial: 'layouts/components/alert'%>
+					<%= form_for @newManager, :url => {:controller => "managers", :action => "create"} do |f| %>
+			
+						<div class="form-group mb-3">
+							<select id="room-select" name="manager[room_id]" data-plugin-selectTwo class="form-control" required>
+								<option value="">Select a room...</option>
+								<% @roomSelect.each do |item| %>
+									<option value="<%= item.val %>"><%= item.text %></option>
+								<% end %>
+							</select>
+						</div>
+						<div class="form-group mb-3">
+							<select id="yk-select" name="manager[user_id]" data-plugin-selectTwo class="form-control" required>
+								<option value="">Select a user...</option>
+								<% @ykSelect.each do |item| %>
+									<option value="<%= item.val %>"><%= item.text %></option>
+								<% end %>
+							</select>
+						</div>
+						<div class="form-group mb-3">
+						<label>Phone (Format: +90-123-456-7890):</label>
+							<input type="tel" name="manager[manager_num]" pattern="[+]{1}[9]{1}[0]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" required>
+						</div>
+						
+						<button type="sumbit" class="btn btn-primary pull-right"><i class="fas fa-save"></i> Submit</button>
+
+					<% end %>
+					
+				</div>
+				
+			</section>
+		</div>
+		<div class="col-lg-5 order-lg-1">
+			<section class="card card-featured card-featured-info">
+				<% @rooms.each do |room| %>
+				<div class="card-header" style="border-radius: 0 !important;">
+					<h2 class="card-title"><%= room.name %></h2>
+				</div>
+				<div class="card-body" style="border-radius: 0; padding-bottom: 0;">
+					<div class="content">
+						<ul class="simple-user-list">
+							<% room.managers.each do |manager|%>
+								<li class="ml-4 d-flex">
+									<div class="flex-grow-1">
+										<span class="title"><%= manager.name.nil? ? "Unknown Name" : manager.name %></span>
+										<span class="message truncate"><%= manager.manager_num.nil? ? "No phone info" : manager.manager_num %></span>
+									</div>
+									<span><button class="btn btn-sm btn-danger" onclick="Delete(this)" data-id="<%= manager.id %>" data-delete-action="<%= admin_manager_path(manager.id)%>"><i class="fas fa-trash"></i> Delete</button></span>
+								</li>
+							<% end %>
+							<% if !room.managers.any? %>
+								<li class="ml-4">
+									No manager has been assigned yet...
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+				<% end %>
+			</section>
+		</div>
+	</div>
+</div>

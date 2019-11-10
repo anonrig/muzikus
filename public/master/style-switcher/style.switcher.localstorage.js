@@ -5,9 +5,9 @@ Version: 		2.0
 */
 
 if (typeof localStorage !== "undefined") {
-	if (localStorage.getItem('skin.css') !== null && !document.querySelector('html').hasAttribute('data-style-switcher-options')) {
+	if (localStorage.getItem('porto-skin.css') !== null && !document.querySelector('html').hasAttribute('data-style-switcher-options')) {
 
-		var css = localStorage.getItem('skin.css'),
+		var css = localStorage.getItem('porto-skin.css'),
 		    head = document.head || document.getElementsByTagName('head')[0],
 		    style = document.createElement('style');
 
@@ -22,9 +22,9 @@ if (typeof localStorage !== "undefined") {
 
 	}
 
-	if (localStorage.getItem('layout') !== null && !document.querySelector('html').hasAttribute('data-style-switcher-options')) {
+	if (localStorage.getItem('porto-layout') !== null && !document.querySelector('html').hasAttribute('data-style-switcher-options')) {
 
-		if (localStorage.getItem('layout') == 'boxed') {
+		if (localStorage.getItem('porto-layout') == 'boxed') {
 			document.querySelector('html').className += ' '+'boxed';
 		}
 

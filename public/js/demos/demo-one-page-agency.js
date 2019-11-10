@@ -1,7 +1,7 @@
 /*
 Name: 			One Page Agency
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -99,9 +99,10 @@ Theme Version:	5.7.2
 	var loadMore = {
 
 		pages: 0,
-		currentPage: 0,
+		currentPage: 1,
 		$wrapper: $('#loadMoreWrapper'),
 		$btn: $('#loadMore'),
+		$btnWrapper: $('#loadMoreBtnWrapper'),
 		$loader: $('#loadMoreLoader'),
 
 		build: function() {
@@ -112,7 +113,7 @@ Theme Version:	5.7.2
 
 			if(self.pages <= 1) {
 
-				self.$btn.remove();
+				self.$btnWrapper.remove();
 				return;
 
 			} else {
@@ -148,7 +149,7 @@ Theme Version:	5.7.2
 
 			// Ajax
 			$.ajax({
-				url: 'ajax/demo-one-page-agency-ajax-load-more.html',
+				url: 'ajax/demo-one-page-agency-ajax-load-more-' + (parseInt(self.currentPage)+1) + '.html',
 				complete: function(data) {
 
 					var $items = $(data.responseText);
@@ -164,7 +165,7 @@ Theme Version:	5.7.2
 						if(self.currentPage < self.pages) {
 							self.$btn.show().blur();
 						} else {
-							self.$btn.remove();
+							self.$btnWrapper.remove();
 						}
 
 						// Carousel

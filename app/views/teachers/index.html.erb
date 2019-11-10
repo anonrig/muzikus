@@ -1,81 +1,39 @@
-<section class="content">
-	<section class="page-header">
+<div role="main" class="main">
+	<!-- start: Breadcrumb-->
+	<section class="page-header page-header-modern bg-color-dark-scale-5 page-header-md">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<ul class="breadcrumb">
-						<li><%= link_to "Home", root_path %></li>
-						<li class="active">Faculty</li>
+
+				<div class="col-md-12 align-self-center p-static order-2 text-left">
+
+					<h1 class="text-light font-weight-bold text-8">Faculty Teachers</h1>
+					<span class="sub-title text-dark-scale-1">Muzikus Faculty aims to create an environment that makes it easier and more entertaining to learn music for the university students. The music lessons provided by the faculty are listed below. If you need information about an instructor or a lesson, you can reach the contact related to that lesson.</span>
+
+				</div>
+
+				<div class="col-md-12 align-self-center order-1">
+
+					<ul class="breadcrumb d-block text-left">
+						<li><a href="/">Home</a></li>
+						<li>Music</li>
+						<li>Faculty</li>
 					</ul>
+					
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<h1>Faculty Teachers</h1>
-				</div>
+				
 			</div>
 		</div>
-	</section>	
+	</section>
+	<!-- end: Breadcrumb-->
+
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<p class="lead">Muzikus Faculty aims to create an environment that makes it easier and more entertaining to learn music for the university students. The music lessons provided by the faculty are listed below. If you need information about an instructor or a lesson, you can reach the contact related to that lesson.</p>
-			</div>
-			<% if current_user && current_user.is_myk %>
-				<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-					<div class="row">
-						<% @teachers.each do |item| %>
-						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-							<div class="featured-boxes featured-boxes-style-8">
-				                <div class="featured-box featured-box-quaternary featured-box-text-left">
-				                	<div class="box-content">
-										<div class="row">
-											<div class="col-md-6 col-sm-6 col-xs-6 mb-md">
-												<h4><%= item.name %></h4>
-											</div>
-											<div class="col-md-6 col-sm-6 col-xs-6 mb-md">
-												<div class="align-right">
-													<a href="javascript:void(0);"><i class="icon-featured fa fa-edit"></i></a>
-													<%= link_to "<i class=\"icon-featured fa fa-trash\"></i>".html_safe, teacher_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
-												</div>
-											</div>
-												<div class="col-md-12">
-													<b>Bio:</b><br>
-													<%= item.bio %>
-												</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<% end %>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-					<div class="card">
-		                <div class="body bg-deep-purple">
-								<h4>Add new teacher...</h4><br>
-								<%= form_for @newTeacher, :url => {:controller => "teachers", :action => "create"} do |f| %>
-								<div class="form-group">
-									<div class="form-line">
-										<%= f.text_field :name, id: :teacher_name, :class => "form-control", :placeholder => "Teacher Name" %>
-									</div><br>
-									<div class="form-line">
-										<%= f.text_area :bio, id: :teacher_bio, :class => "form-control no-resize auto-growth", :placeholder => "Bio..." %>
-									</div><br>
-									<%= f.submit :class => "btn btn-block btn-primary" %>
-									<% end %>
-								</div>
-						</div>
-					</div>
-				</div>
-			<% else %>
-				<% @teachers.each do |item| %>
-				<% if item.bio.length != 0 %>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+			<% @teachers.each do |item| %>
+				<% if not item.bio.nil? %>
+					<div class="col-md-4">
 						<div class="featured-boxes featured-boxes-style-8">
-			                <div class="featured-box featured-box-quaternary featured-box-text-left">
-			                	<div class="box-content">
+							<div class="featured-box featured-box-quaternary featured-box-text-left">
+								<div class="box-content">
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12 mb-md">
 											<h4><%= item.name %></h4>
@@ -90,8 +48,8 @@
 						</div>
 					</div>
 				<% end %>
-				<% end %>
 			<% end %>
 		</div>
 	</div>
-</section>
+
+</div>

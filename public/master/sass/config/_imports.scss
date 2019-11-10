@@ -1,13 +1,10 @@
-//VENDOR
-// ---------------------------------------------------------------
-@import "../../../vendor/bourbon/bourbon";
-
 // DIRECTIONAL
 // ---------------------------------------------------------------
 $dir: ltr !default;
 
 // CONFIG
 // ---------------------------------------------------------------
+@import "functions";
 @import "helpers";
 @import "mixins";
 @import "directional";

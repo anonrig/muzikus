@@ -5,26 +5,25 @@
 	width: auto;
 	li {
 		display: inline-block;
-		margin: side-values(-1px 1px 5px 0);
+		margin: side-values(-1px 1px 0 0);
 		padding: 0;
 		border-radius: 100%;
 		overflow: visible;
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
 		a {
-			@include transition (all 0.2s ease);
-			background: #FFF;
+			transition: all 0.2s ease;
 			border-radius: 100%;
 			display: block;
-			height: 30px;
-			line-height: 30px;
-			width: 30px;
+			height: 28px;
+			line-height: 28px;
+			width: 28px;
 			text-align: center;
 			color: #333 !important;
 			text-decoration: none;
+			font-size: 0.8rem;
 		}
 		&:hover {
 			a {
-				background: #171717;
+				background: #151719;
 				color: #FFF !important;
 			}
 			&.social-icons-twitter {
@@ -99,6 +98,16 @@
 			}
 		}
 	}
+	&.social-icons-dark {
+		li {
+			a {
+				background: #181818;
+				i {
+					color: #FFF;
+				}
+			}
+		}
+	}
 	&.social-icons-transparent {
 		li {
 			box-shadow: none;
@@ -114,6 +123,49 @@
 					color: #FFF;
 				}
 			}
+		}
+	}
+	&.social-icons-icon-light.social-icons-clean {
+		li {
+			a {
+				i {
+					color: #FFF !important;
+				}
+			}
+		}
+	}
+	&.social-icons-big {
+		li {
+			a {
+				height: 48px;
+				line-height: 48px;
+				width: 48px;
+			}
+		}
+	}
+	&.social-icons-opacity-light {
+		li {
+			a {
+				background: rgba(255,255,255,0.04);
+			}
+		}
+	}
+}
+
+.social-icons:not(.social-icons-clean) {
+	li {
+		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+		a {
+			background: #FFF;
+		}
+	}
+}
+
+.social-icons-dark.social-icons-clean {
+	li {
+		a {
+			background: transparent;
+			color: #FFF !important;
 		}
 	}
 }

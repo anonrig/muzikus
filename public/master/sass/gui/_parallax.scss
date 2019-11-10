@@ -4,10 +4,13 @@
 	background-position: 50% 50%;
 	background-repeat: repeat;
 	background-attachment: fixed;
-	margin: 70px 0;
-	padding: 50px 0;
 	position: relative;
 	clear: both;
+
+	&:not(.page-header):not(.match-height):not([class*="section-height-"]) {
+		margin: 70px 0;
+		padding: 50px 0;
+	}
 
 	blockquote {
 		border: 0;
@@ -29,7 +32,10 @@
 			#{$left}: -5px;
 		}
 	}
-	&.parallax-disabled {
+}
+
+.parallax-disabled {
+	.parallax-background {
 		background-attachment: scroll !important;
 		background-position: 50% 50% !important;
 	}

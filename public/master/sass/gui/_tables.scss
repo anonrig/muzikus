@@ -1,4 +1,10 @@
 /* Tables */
+.table {
+	td, th {
+		border-color: rgba(0, 0, 0, 0.06);
+	}
+}
+
 @each $state in $states {
 	.table > thead > tr > td.#{nth($state,1)},
 	.table > tbody > tr > td.#{nth($state,1)},

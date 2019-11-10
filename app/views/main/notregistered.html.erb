@@ -1,129 +1,115 @@
 <div role="main" class="main">
-	<div class="slider-container rev_slider_wrapper" style="height: 700px;">
-        <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 800, 'gridheight': 475}">
+    <div class="slider-container rev_slider_wrapper" style="height: 700px;">
+        <div id="revolutionSlider" class="slider rev_slider" data-version="5.4.8" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 670, 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,500], 'parallax': { 'type': 'scroll', 'origo': 'enterpoint', 'speed': 1000, 'levels': [2,3,4,5,6,7,8,9,12,50], 'disable_onmobile': 'on' }, 'navigation' : {'arrows': { 'enable': true }, 'bullets': {'enable': true, 'style': 'bullets-style-1', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 70, 'h_offset': 0}}}">
             <ul>
                 <li data-transition="fade">
-                    <img src="img/slides/slide-bg.jpg" data-fullwidthcentering="on" alt="">
-
-                    <div class="tp-caption"
-                        data-x="-65" 
-                        data-y="95"
-                        data-start="1000"
-                        data-transform_in="x:[300%];opacity:0;s:500;"><img src="img/slides/slide-concept.png" alt=""></div>
-
-
-                    <div class="tp-caption bottom-label"
-                        data-x="400" data-hoffset="0"
-                        data-y="100" data-voffset="5"
-                        data-start="2000"
-                        data-transform_in="y:[100%];opacity:0;s:500;"><iframe width="500" height="300" src="https://www.youtube.com/embed/MFMUWCFXXsg" frameborder="0" allowfullscreen></iframe></div>
+                    <img src="img/slides/slide-bg.jpg"  
+                        alt=""
+                        data-bgposition="center center" 
+                        data-bgfit="cover" 
+                        data-bgrepeat="no-repeat" 
+                        class="rev-slidebg">
+    
+                    <div class="tp-caption tp-resizeme"
+                        data-frames='[{"delay":3000,"speed":2000,"frame":"0","from":"opacity:0;x:right;y:-100%;","to":"o:1;x:300;y:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
+                        data-type="image" 
+                        data-x="center"
+                        data-y="center"
+                        data-width="['auto']"
+                        data-height="['auto']"
+                        data-basealign="slide"><iframe width="500" height="300" src="https://www.youtube.com/embed/MFMUWCFXXsg" frameborder="0" allowfullscreen></iframe></div>
+    
+                    <div class="tp-caption tp-resizeme"
+                        data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"opacity:0;x:left;y:-100%;","to":"o:1;x:-300;y:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
+                        data-type="image" 
+                        data-x="center"
+                        data-y="bottom"
+                        data-width="['auto']"
+                        data-height="['auto']"
+                        data-basealign="slide"><img src="img/slides/slide-concept.png" alt=""></div>
                 </li>
             </ul>
         </div>
     </div>
-	<div class="home-intro">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-					<p>
-						The easiest way to learn more about <em>Müzikus.</em>
-						<span>You are logged in.</span>
-					</p>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-					<div class="get-started">
-						<%= link_to "Contact Us!", '/contactus', class: "btn btn-lg btn-primary" %>
-						<div class="learn-more">or <%= link_to "learn more", aboutus_path %></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    <div id="content" class="content full">
-		<div class="container">
-			<div class="row center">
-				<div id="info_block">
-					<h2 class="short">Sorry, <strong>Alfonso</strong> is only available for Muzikus members.</h2>
-					<p class="featured lead">
-						Lütfen Müzikus üyesi olduğunuzdan emin olunuz. Eğer ödemenizi yapmış bir üyeyseniz, sorunun sebebi üyeliğinizin henüz aktifleştirilmemiş olması veya başka teknik bir sıkıntı olabilir. Hızlıca yardım almak için <b>muzikus@sabanciuniv.edu</b> adresine mail atınız.
-					</p>
-					<p class="featured lead">
-						Something went wrong! We couldn't reserve a room for you, please make sure that you're a Muzikus member. If you've already paid and become a member, this may be due to your membership not being activated yet, or some other technical issue. Either way, contact <b>muzikus@sabanciuniv.edu</b> for immediate assistance.
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="home-concept appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="500">
-            <svg class="home-concept-bg" x="0px" y="0px" width="345px" height="93px" viewBox="0 0 345 83" enable-background="new 0 0 345 93" xml:space="preserve">
-                <image overflow="visible" width="26" height="39" xlink:href="img/home-concept-pin.png" transform="matrix(0.169 0.1308 -0.1308 0.169 339.8496 0.6826)" class="final-pin appear-animation" data-appear-animation="animated-pin" data-appear-animation-delay="3650">
-                </image>
-                <path class="line appear-animation" fill="none" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-duration="4s" d="M7.086,87.455c8.133-8.646,54.247-51.634,155.173-36.766C268.762,66.38,327.34,17.642,337.992,10.241"/>
-                <path fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" d="M7.086,87.455c8.133-8.646,54.247-51.634,155.173-36.766C268.762,66.38,327.34,17.642,337.992,10.241"/>
-                <image overflow="visible" width="26" height="39" xlink:href="img/home-concept-pin.png" transform="matrix(0.2137 0 0 0.2137 1 81.5898)" class="initial-pin appear-animation" data-appear-animation="animated-pin">
-                </image>
-            </svg>
-            <div class="container">
-                <div class="row center">
-                    <span class="sun"></span>
-                    <span class="cloud"></span>
-                    <div class="col-md-2 col-md-offset-1">
-                        <div class="process-image">
-                            <div class="box-image">
-                                <svg class="small-circle" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
-                                    <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="800" cx="19.5" cy="19.5" r="19.063"/>
-                                    <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="19.5" cy="19.5" r="19.063"/>
-                                </svg>
-                                <img src="img/home-concept-item-1.png" alt="" class="appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="1400" />
-                            </div>
-                            <strong class="appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="1150" data-plugin-options="{'accY': 200}">Register</strong>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="process-image">
-                            <div class="box-image">
-                                <svg class="small-circle" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
-                                    <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="1200" cx="19.5" cy="19.5" r="19.063"/>
-                                    <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="19.5" cy="19.5" r="19.063"/>
-                                </svg>
-                                <img src="img/home-concept-item-2.png" alt="" class="appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="1900" />
-                            </div>
-                            <strong class="appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="2150" data-plugin-options="{'accY': 200}">Reserve</strong>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="process-image">
-                            <div class="box-image">
-                                <svg class="small-circle" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
-                                    <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="1700" cx="19.5" cy="19.5" r="19.063"/>
-                                    <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="19.5" cy="19.5" r="19.063"/>
-                                </svg>
-                                <img src="img/home-concept-item-3.png" alt="" class="appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="2400" />
-                            </div>
-                            <strong class="appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="2650" data-plugin-options="{'accY': 200}">Play</strong>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-offset-1">
-                        <div class="project-image">
-                            <div class="box-image">
-                                <svg class="big-circle" x="0px" y="0px" width="85px" height="85px" viewBox="0 0 85 85" enable-background="new 0 0 85 85" xml:space="preserve">
-                                    <circle class="line appear-animation" fill="#FFF" stroke="#6f6f6f" stroke-width="0.25" stroke-miterlimit="0" stroke-dasharray="0" data-appear-animation="animated-line" data-appear-animation-delay="2250" cx="42.5" cy="42.5" r="42.063"/>
-                                    <circle fill="none" stroke="#FFF" stroke-width="0.50" stroke-miterlimit="10" stroke-dasharray="1,2.5" cx="42.5" cy="42.5" r="42.063"/>
-                                </svg>
-                                <div id="fcSlideshow" class="fc-slideshow appear-animation" data-appear-animation="zoomIn" data-appear-animation-duration="300" data-appear-animation-delay="2900">
-                                    <ul class="fc-slides">
-                                        <li><img class="img-responsive" src="img/home-concept-item-4.png" alt="" /></li>
-                                        <li><img class="img-responsive" src="img/home-concept-item-5.png" alt="" /></li>
-                                        <li><img class="img-responsive" src="img/home-concept-item-6.png" alt="" /></li>
-                                        <li><img class="img-responsive" src="img/home-concept-item-7.png" alt="" /></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <strong class="our-work appear-animation" data-appear-animation="fadeInDown" data-appear-animation-delay="3150" data-plugin-options="{'accY': 300}">Perform</strong>
-                        </div>
+    
+    <div class="home-intro">
+        <div class="container">
+
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <p>
+                        The easiest way to learn more about <span class="highlighted-word">Müzikus.</span>
+                        <span>You are logged in.</span>
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="get-started text-left text-lg-right">
+                        <%= link_to "Reserve Now!", reservations_path, class: "btn btn-dark btn-lg text-3 font-weight-semibold px-4 py-3" %>
+                        <div class="learn-more">or <%= link_to "see all Muzikus events!", events_path, style:"color: #0099e6;" %></div>
                     </div>
                 </div>
             </div>
-            <hr class="tall" />
+
         </div>
-	</div>
+    </div>
+
+    <div class="container">
+
+        <div class="row text-center pt-3">
+            <div class="col-md-10 mx-md-auto">
+                <h2 class="short">Sorry, <strong>Alfonso</strong> is only available for Muzikus members.</h2>
+				<p class="featured lead">
+                    Lütfen Müzikus üyesi olduğunuzdan emin olunuz. Eğer ödemenizi yapmış bir üyeyseniz, sorunun sebebi üyeliğinizin henüz aktifleştirilmemiş olması veya başka teknik bir sıkıntı olabilir. Hızlıca yardım almak için <b>muzikus@sabanciuniv.edu</b> adresine mail atınız.
+                </p>
+                <p class="featured lead">
+                    Something went wrong! We couldn't reserve a room for you, please make sure that you're a Muzikus member. If you've already paid and become a member, this may be due to your membership not being activated yet, or some other technical issue. Either way, contact <b>muzikus@sabanciuniv.edu</b> for immediate assistance.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
+        <div class="home-concept mt-5">
+            <div class="container">
+
+                <div class="row text-center">
+                    <span class="sun"></span>
+                    <span class="cloud"></span>
+                    <div class="col-lg-2 ml-lg-auto">
+                        <div class="process-image">
+                            <img src="img/home-concept-item-1.png" alt="" />
+                            <strong>Register</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="process-image process-image-on-middle">
+                            <img src="img/home-concept-item-2.png" alt="" />
+                            <strong>Reserve</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="process-image">
+                            <img src="img/home-concept-item-3.png" alt="" />
+                            <strong>Play</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ml-lg-auto">
+                        <div class="project-image">
+                            <div id="fcSlideshow" class="fc-slideshow">
+                                <ul class="fc-slides">
+                                    <li><img class="img-responsive" src="img/home-concept-item-4.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/home-concept-item-5.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/home-concept-item-6.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/home-concept-item-7.png" alt="" /></li>
+                                </ul>
+                            </div>
+                            <strong class="our-work">Perform</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

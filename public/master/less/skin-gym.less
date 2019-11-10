@@ -40,7 +40,7 @@ html {
 		#header {
 			&.custom-header-style-1 {
 				.custom-sm-btn-header-style-1 {
-					> .btn {
+					> .btn:not(.header-btn-collapse-nav) {
 						color: @color-primary;
 
 						&:hover {
@@ -54,8 +54,8 @@ html {
 						nav {
 							> ul {
 								> li {
-									> span {
-										.item-two {
+									> a {
+										&.item-original.active {
 											color: @color-primary;
 										}
 									}
@@ -99,7 +99,7 @@ html {
 .owl-carousel {
 	&.custom-arrows-style-1 {
 		.owl-nav {
-			[class*="owl-"] {
+			button[class*="owl-"] {
 			    background-color: @color-quaternary;
 
 			    &:active:hover, &:active:focus {

@@ -1,7 +1,7 @@
 /*
 Name: 			Law Firm
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -101,7 +101,7 @@ Theme Version:	5.7.2
 				var $buttonGroup = $(buttonGroup);
 				$buttonGroup.on('click', 'a', function() {
 					$buttonGroup.find('.active').removeClass('active');
-					$(this).parent().addClass('active');
+					$(this).addClass('active');
 				});
 			});
 
@@ -113,7 +113,15 @@ Theme Version:	5.7.2
 				return value;
 			}
 
+			$(window).on('resize', function() {
+				setTimeout(function() {
+					$grid.isotope('layout');
+				}, 300);
+			});
+
 		});
+
+		
 
 	}
 

@@ -3,12 +3,12 @@
 
 // RTL
 @include if-rtl() {
-	.fa.fa-long-arrow-right {
+	.fa-long-arrow-alt-right {
 		&:before {
 			content: "\f177";
 		}
 	}
-	.fa.fa-reply {
+	.fa-reply {
 		&:before {
 			content: "\f064";
 		}
@@ -23,10 +23,6 @@
 			z-index: 3;
 		}
 
-		.header-nav-main.header-nav-main-square {
-			margin-bottom: -8px;	
-		}
-
 		.header-logo {
 			.logo-default {
 				margin: -37px -70px -102px 0;
@@ -36,14 +32,35 @@
 			}
 
 			.logo-small {
-				-webkit-backface-visibility: hidden;
-				-moz-backface-visibility: hidden;
 				backface-visibility: hidden;
 				transform: translate3d(87px, 0, 0);
 				position: absolute;
 				z-index: 1;
 				opacity: 0;
 				#{$left}: 0;
+			}
+		}
+	}
+
+	#header {
+		.header-nav {
+			&.header-nav-stripe {
+				.header-nav-main {
+					nav {
+						> ul {
+							> li {
+								> a {
+									min-height: 90px !important;
+								}
+								&.dropdown {
+									.dropdown-menu {
+										margin-top: 0px !important;
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -55,7 +72,7 @@
 					transform: translate3d(0, 0, 0);
 					opacity: 1;
 					z-index: 3;
-					margin: 15px 12px 12px 0;
+					margin: 12px 12px 12px 0;
 				}
 
 				.logo-default {
@@ -83,11 +100,34 @@
 }
 
 // Header
+#header {
+	min-height: 0 !important;
+	width: 100%;
+	position: absolute;
+}
+
+html:not(.sticky-header-active) {
+	#header.header-semi-transparent-light {
+		.header-body {
+			background: #FFF !important;
+		}
+	}
+}
+
+html.sticky-header-active {
+	#header.header-semi-transparent-light {
+		.header-body {
+			background: rgba(255, 255, 255, 0.8) !important;
+		}
+	}
+}
+
 @media (min-width: 992px) {
 	html {
 		#header.header-semi-transparent-light .header-body {
-			@include transition (transform 0.3s ease);
+			transition: transform 0.3s ease;
 			transform: translate3d(0, 25px, 0);
+			border: 0;
 			&:before {
 				background: #fff none repeat scroll 0 0;
 				opacity: 1;
@@ -124,41 +164,6 @@
 		}
 	}
 
-	#header.header-narrow {
-
-		// Header Nav Main Styles
-		.header-nav {
-			
-			// Header Nav
-			&.header-nav-stripe, &.header-nav-dark-dropdown {
-				nav {
-					> ul {
-						> li, > li:hover {
-							> a {
-								padding: side-values(39px 13px 36px 13px);
-							}
-						}
-						> li.dropdown, > li.dropdown:hover {
-							> a {
-								padding: side-values(39px 13px 36px 13px);
-								&.dropdown-toggle {
-									&:after {
-										top: 38px;
-									}
-								}
-							}
-							.dropdown-menu {
-								margin-top: 0px;
-							}
-						}
-					}
-				}
-			}
-
-		}
-
-	}
-
 	html.ie9 {
 		#header.header-narrow {
 
@@ -166,7 +171,7 @@
 			.header-nav {
 				
 				// Header Nav
-				&.header-nav-stripe, &.header-nav-dark-dropdown {
+				&.header-nav-stripe, &.header-nav-dropdowns-dark {
 					nav {
 						> ul {
 							> li.dropdown, > li.dropdown:hover {
@@ -194,6 +199,13 @@
 	}
 }
 
+// Feature Box
+.feature-box.custom-feature-box {
+	.feature-box-icon {
+		top: 20px;
+	}
+}
+
 // Slider
 .tp-caption-custom-stripe {
 	color: #FFF !important;
@@ -210,7 +222,7 @@
 		z-index: 1;
 	}
 	&:after {
-		@include transition (all 0.2s ease);
+		transition: all 0.2s ease;
 		background: #000 none repeat scroll 0 0;
 		opacity: 0.2;
 		height: 40px;
@@ -237,14 +249,14 @@
 		}
 	}
 	.home-concept-construction {
-		background: transparent url(../../img/home-concept-small.png) no-repeat center 63%;
+		background: transparent url(../../img/home/home-concept-small.png) no-repeat center 63%;
 	}
 }
 
 // Diamonds
 .diamonds {
 	font-size: 0;
-	margin: 40px auto;
+	margin: 40px auto 85px;
 	position: relative;
 	text-align: center;
 	padding: 50px 0 0 57px;
@@ -256,7 +268,7 @@
 	}
 
 	.diamond {
-		background: #f4f4f4;
+		background: #f7f7f7;
 		display: block;
 		height: 255px;
 		overflow: hidden;
@@ -267,7 +279,7 @@
 		transform: rotate(-45deg);
 
 		&:after {
-			@include transition (all 0.2s ease);
+			transition: all 0.2s ease;
 			content: " ";
 			width: 100%;
 			height: 100%;
@@ -312,7 +324,7 @@
 		}
 
 		&:after {
-			@include transition (all 0.2s ease);
+			transition: all 0.2s ease;
 			color: #fff;
 			content: "\e091";
 			font-family: "simple-line-icons";
@@ -325,15 +337,20 @@
 			z-index: 1000;
 			transform: scale(2);
 			@include if-rtl() {
-				left: initial;
+				left: auto;
 				right: 57%;
 				top: 74%;
 			}
 		}
 
 		img {
-			margin-#{$left}: -25%;
 			max-width: 375px;
+			@include if-ltr() {
+				margin-left: -50%;
+			}
+			@include if-rtl() {
+				margin-right: -25%;
+			}
 		}
 	}
 
@@ -363,7 +380,7 @@
 			}
 
 			&:nth-child(4) {
-				#{$right}: 145px;
+				#{$right}: 132px;
 				top: 9px;
 				position: absolute;
 				@include if-rtl() {
@@ -379,7 +396,7 @@
 			&:nth-child(6) {
 				position: absolute;
 				margin: -6px 0 0 -27px;
-				#{$right}: -15px;
+				#{$right}: -32px;
 				@include if-rtl() {
 					left: 65px;
 				}
@@ -388,7 +405,7 @@
 			&:nth-child(7) {
 				position: absolute;
 				margin: 97px 0 0 -133px;
-				#{$right}: 88px;
+				#{$right}: 73px;
 				@include if-rtl() {
 					left: 278px;
 				}
@@ -413,9 +430,8 @@
 			}
 		}
 	}
-	.row-diamons-description {
+	.row-diamonds-description {
 		margin-top: -150px;
-		float: $left;
 	}
 }
 
@@ -460,7 +476,7 @@
 	}
 }
 
-@media (max-width: 479px) {
+@media (max-width: 575px) {
 	.diamonds-wrapper {
 		min-height: 2650px;
 		.diamonds {
@@ -545,7 +561,6 @@
 
 // Project Detail
 .project-detail-construction {
-	padding: 6px 0 0 15px;
 	.list-project-details {
 		margin: 30px 0;
 		padding: 0;
@@ -625,7 +640,7 @@
 		}
 	}
 
-	.fa {
+	[class*="fa-"] {
 		display: inline-block;
 		padding-#{$right}: 2px;
 		position: relative;
@@ -650,10 +665,6 @@
 	#footer {
 		margin-top: 0;
 
-		.logo {
-			margin-top: 75px;
-		}
-
 		&:after {
 			background: #000 none repeat scroll 0 0;
 			bottom: -233px;
@@ -666,5 +677,11 @@
 			z-index: 1;
 		}
 
+	}
+}
+
+@media (min-width: 768px) {	
+	.logo {
+		margin-top: 75px;
 	}
 }

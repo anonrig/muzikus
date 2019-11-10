@@ -1,7 +1,7 @@
 /*
 Name: 			theme-shop.css
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 /* Custom Font - Stars (From WooCommerce) */
 @font-face {
@@ -12,17 +12,7 @@ Theme Version:	5.7.2
 	font-style: normal;
 }
 /* Shop - Base */
-.shop {
-	margin-top: -10px;
-}
-
-.shop ul.products {
-	margin: 0;
-	padding: 25px 0;
-	list-style: none;
-}
-
-.shop ul.products:after {
+.shop .products:after {
 	content: ".";
 	display: block;
 	clear: both;
@@ -31,66 +21,63 @@ Theme Version:	5.7.2
 	height: 0;
 }
 
-.shop ul.products .product {
+.shop .products .product {
 	position: relative;
 	margin-bottom: 30px;
 }
 
-.shop ul.products .product a {
+.shop .products .product a {
 	text-decoration: none;
 }
 
-.shop ul.products .product .add-to-cart-product {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
+.shop .products .product .add-to-cart-product {
 	transition: all 0.2s;
 	position: absolute;
-	top: 0;
+	top: -100%;
 	right: 0;
-	border-radius: 6px 6px 0 0;
 	padding: 8px 10px 5px;
 	font-size: 0.9em;
 	color: #FFF;
 	background: #222;
 	z-index: 1;
 	opacity: 0;
-	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 
-.shop ul.products .product .add-to-cart-product .fa, .shop ul.products .product .add-to-cart-product .icons {
+.shop .products .product .add-to-cart-product [class*="fa-"], .shop .products .product .add-to-cart-product .icons {
 	margin-left: 3px;
 	font-size: 1.1em;
 }
 
-.shop ul.products .product:hover .add-to-cart-product {
-	filter: alpha(opacity=100);
+.shop .products .product:hover .add-to-cart-product {
 	opacity: 1;
+	top: 0;
 }
 
-.shop ul.products .product:hover .add-to-cart-product:hover {
+.shop .products .product:hover .add-to-cart-product:hover {
 	background: #000;
 }
 
-.shop ul.products .product .price {
+.shop .products .product .price {
 	display: block;
 	min-height: 28px;
 }
 
-.shop ul.products .product .price del {
+.shop .products .product .price del {
 	color: rgba(145, 145, 145, 0.5);
 	font-size: 0.7em;
 	margin: -2px 0 0;
 }
 
-.shop ul.products .product .price ins {
+.shop .products .product .price ins {
 	text-decoration: none;
 }
 
-.shop ul.products .product .price .amount {
+.shop .products .product .price .amount {
 	font-size: 1.3em;
 }
 
-.shop ul.products .product .onsale {
+.shop .products .product .onsale {
 	position: absolute;
 	background-image: none;
 	border-radius: 100%;
@@ -110,12 +97,13 @@ Theme Version:	5.7.2
 	border-bottom: 2px solid transparent;
 }
 
+.masonry-loader-showing .products {
+	opacity: 0;
+}
+
 /* Product Info */
 .product-info {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
-	border-radius: 6px;
 	padding: 0;
 	position: relative;
 	border: 1px solid #DDD;
@@ -148,10 +136,7 @@ Theme Version:	5.7.2
 }
 
 .product-info img {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
-	border-radius: 6px 6px 0 0;
 }
 
 .product-info h4 {
@@ -165,7 +150,6 @@ Theme Version:	5.7.2
 }
 
 .product-info + .product-info {
-	border-radius: 0 0 6px 6px;
 	margin-top: -5px;
 }
 
@@ -175,8 +159,6 @@ Theme Version:	5.7.2
 }
 
 .product-info .product-info-image:before {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
 	content: "";
 	display: block;
@@ -189,12 +171,10 @@ Theme Version:	5.7.2
 	width: 100%;
 	height: 100%;
 	opacity: 0;
-	border-radius: 6px 6px 0 0;
 }
 
 .product-info:hover .product-info-image:before {
-	filter: alpha(opacity=80);
-	opacity: 0.8;
+	opacity: 0.4;
 }
 
 .product-info .product-info-act {
@@ -224,8 +204,6 @@ Theme Version:	5.7.2
 }
 
 .product-info .product-info-act-left em {
-	-webkit-transition: all 0.2s ease 0s;
-	-moz-transition: all 0.2s ease 0s;
 	transition: all 0.2s ease 0s;
 	right: 0%;
 	opacity: 0;
@@ -238,8 +216,6 @@ Theme Version:	5.7.2
 }
 
 .product-info .product-info-act-right em {
-	-webkit-transition: all 0.2s ease 0s;
-	-moz-transition: all 0.2s ease 0s;
 	transition: all 0.2s ease 0s;
 	left: 0%;
 	font-weight: 600;
@@ -247,12 +223,10 @@ Theme Version:	5.7.2
 }
 
 .product-info:hover .product-info-act-left em {
-	filter: alpha(opacity=100);
 	opacity: 1;
 }
 
 .product-info:hover .product-info-act-right em {
-	filter: alpha(opacity=100);
 	opacity: 1;
 }
 
@@ -311,8 +285,6 @@ Theme Version:	5.7.2
 }
 
 .product-info.secondary .product-info-content h4 {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
 	color: #FFF;
 	position: relative;
@@ -321,8 +293,6 @@ Theme Version:	5.7.2
 }
 
 .product-info.secondary .product-info-content .date {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
 	position: relative;
 	top: 25%;
@@ -335,8 +305,6 @@ Theme Version:	5.7.2
 }
 
 .product-info.secondary .label {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
 	clear: both;
 	display: inline-block;
@@ -345,67 +313,24 @@ Theme Version:	5.7.2
 }
 
 .product-info.secondary:hover .label {
-	filter: alpha(opacity=100);
 	opacity: 1;
 }
 
 .product-info.secondary:hover .product-info-content h4 {
 	top: 0;
-	filter: alpha(opacity=100);
 	opacity: 1;
 }
 
 .product-info.secondary:hover .product-info-content .date {
 	top: 0;
-	filter: alpha(opacity=100);
 	opacity: 1;
 }
 
 /* Rating */
-.shop .review_num {
-	margin-left: 10px;
+.shop .review-num {
+	margin-right: 7px;
 	float: right;
-	position: relative;
-	top: -1px;
-}
-
-.shop .star-rating {
-	float: none;
-	position: relative;
-	top: 2px;
-	font-family: 'star';
-	font-size: 1em;
-	height: 1.2em;
-	line-height: 1em;
-	overflow: hidden;
-	position: relative;
-	width: 5.4em;
-	margin-bottom: 25px;
-}
-
-.shop .star-rating:before {
-	color: #E0DADF;
-	content: "SSSSS";
-	float: right;
-	right: 0;
-	position: absolute;
-	top: 0;
-}
-
-.shop .star-rating span {
-	float: right;
-	right: 0;
-	overflow: hidden;
-	padding-top: 1.5em;
-	position: absolute;
-	top: 0;
-}
-
-.shop .star-rating span:before {
-	content: "SSSSS";
-	right: 0;
-	position: absolute;
-	top: 0;
+	font-size: 0.85em;
 }
 
 .shop .summary .price {
@@ -413,7 +338,8 @@ Theme Version:	5.7.2
 	font-size: 2em;
 	letter-spacing: -1px;
 	line-height: 30px;
-	margin-top: 20px;
+	margin-top: 10px;
+	clear: both;
 }
 
 .shop .quantity {
@@ -421,13 +347,13 @@ Theme Version:	5.7.2
 	overflow: hidden;
 	position: relative;
 	width: 125px;
-	height: 35px;
+	height: 40px;
 	float: right;
 }
 
 .shop .quantity .minus {
-	background: #f4f4f4;
-	border: 1px solid #C8BFC6;
+	background: transparent;
+	border: 1px solid #F0F0F0;
 	border-radius: 2px;
 	box-shadow: none;
 	color: #5E5E5E;
@@ -435,7 +361,7 @@ Theme Version:	5.7.2
 	display: block;
 	font-size: 12px;
 	font-weight: bold;
-	height: 35px;
+	height: 40px;
 	line-height: 13px;
 	margin: 0;
 	overflow: visible;
@@ -444,14 +370,14 @@ Theme Version:	5.7.2
 	position: absolute;
 	text-align: center;
 	text-decoration: none;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 	vertical-align: text-top;
-	width: 35px;
+	width: 40px;
+	border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .shop .quantity .plus {
-	background: #f4f4f4;
-	border: 1px solid #C8BFC6;
+	background: transparent;
+	border: 1px solid #F0F0F0;
 	border-radius: 2px;
 	box-shadow: none;
 	color: #5E5E5E;
@@ -459,7 +385,7 @@ Theme Version:	5.7.2
 	display: block;
 	font-size: 12px;
 	font-weight: bold;
-	height: 35px;
+	height: 40px;
 	line-height: 13px;
 	margin: 0;
 	overflow: visible;
@@ -468,22 +394,25 @@ Theme Version:	5.7.2
 	position: absolute;
 	text-align: center;
 	text-decoration: none;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 	vertical-align: text-top;
-	width: 35px;
+	width: 40px;
+	border-radius: 0.25rem 0 0 0.25rem;
 	left: 0;
 	top: 0;
 }
 
 .shop .quantity .qty {
-	border: 1px solid #CCC;
+	border: 1px solid #F0F0F0;
 	box-shadow: none;
 	float: right;
-	height: 35px;
+	height: 40px;
 	padding: 0 39px;
 	text-align: center;
 	width: 125px;
+	font-weight: bold;
 	font-size: 1em;
+	outline: 0;
+	border-radius: .25rem;
 }
 
 .shop .quantity .qty::-webkit-inner-spin-button, .shop .quantity .qty::-webkit-outer-spin-button {
@@ -495,12 +424,30 @@ Theme Version:	5.7.2
 	display: none;
 }
 
-.shop .product_meta {
+.shop .quantity.quantity-lg {
+	height: 45px;
+}
+
+.shop .quantity.quantity-lg .minus {
+	height: 45px;
+	width: 45px;
+}
+
+.shop .quantity.quantity-lg .plus {
+	height: 45px;
+	width: 45px;
+}
+
+.shop .quantity.quantity-lg .qty {
+	height: 45px;
+}
+
+.shop .product-meta {
 	clear: both;
 }
 
 .shop .tabs-product {
-	margin-top: 35px;
+	margin-top: 40px;
 }
 
 .shop ul.comments .comment-arrow {
@@ -527,16 +474,16 @@ Theme Version:	5.7.2
 }
 
 .shop table.cart td {
-	border-top: 1px solid #DCDCDC;
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
 	padding: 8px 10px;
 }
 
 .shop table.cart td.actions {
-	padding: 20px 10px;
+	padding: 20px 0;
 }
 
-.shop table.cart .remove .fa {
-	font-size: 1.5em;
+.shop table.cart .remove [class*="fa-"] {
+	font-size: 1em;
 }
 
 .shop table.cart .coupon {
@@ -548,7 +495,7 @@ Theme Version:	5.7.2
 }
 
 .shop table.cart .product-thumbnail {
-	width: 7%;
+	width: 8%;
 }
 
 .shop table.cart .product-name {
@@ -569,7 +516,7 @@ Theme Version:	5.7.2
 }
 
 .shop .cart-totals th, .shop .cart-totals td {
-	border-top: 1px solid #DCDCDC;
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
 	padding: 8px 10px;
 }
 
@@ -581,14 +528,12 @@ Theme Version:	5.7.2
 
 .shop ul.simple-post-list li {
 	border: 0;
+	padding-bottom: 0;
 }
 
 /* Product Thumb Info */
 .product-thumb-info {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
-	border-radius: 6px;
 	padding: 0;
 	position: relative;
 	border: 0;
@@ -622,10 +567,7 @@ Theme Version:	5.7.2
 }
 
 .product-thumb-info img {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
-	border-radius: 6px 6px 0 0;
 }
 
 .product-thumb-info h4 {
@@ -639,7 +581,6 @@ Theme Version:	5.7.2
 }
 
 .product-thumb-info + .product-thumb-info {
-	border-radius: 0 0 6px 6px;
 	margin-top: -5px;
 }
 
@@ -665,8 +606,6 @@ Theme Version:	5.7.2
 }
 
 .product-thumb-info .product-thumb-info-image:before {
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
 	transition: all 0.2s;
 	content: "";
 	display: block;
@@ -675,16 +614,14 @@ Theme Version:	5.7.2
 	right: 0;
 	left: 0;
 	bottom: 0;
-	background: #171717;
+	background: #FFF;
 	width: 100%;
 	height: 100%;
 	opacity: 0;
-	border-radius: 6px 6px 0 0;
 }
 
 .product-thumb-info:hover .product-thumb-info-image:before {
-	filter: alpha(opacity=80);
-	opacity: 0.8;
+	opacity: 0.4;
 }
 
 .product-thumb-info .product-thumb-info-act {
@@ -698,7 +635,6 @@ Theme Version:	5.7.2
 }
 
 .product-thumb-info:hover .product-thumb-info-act {
-	filter: alpha(opacity=100);
 	opacity: 1;
 	top: 50%;
 }
@@ -749,8 +685,12 @@ Theme Version:	5.7.2
 		float: none;
 	}
 
-	.shop table.cart th.product-price, .shop table.cart td.product-price, .shop table.cart th.product-quantity, .shop table.cart td.product-quantity {
-		display: none;
+	.shop table.cart .product-thumbnail {
+		width: 12%;
+	}
+
+	.shop table.cart .product-name {
+		width: 35%;
 	}
 
 	#header nav.mega-menu .mega-menu-shop a {
@@ -763,5 +703,15 @@ Theme Version:	5.7.2
 
 	#header nav.mega-menu .mega-menu-shop > ul.dropdown-menu {
 		display: none !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.shop table.cart .product-name {
+		width: 65%;
+	}
+
+	.shop table.cart th.product-price, .shop table.cart td.product-price, .shop table.cart th.product-quantity, .shop table.cart td.product-quantity, .shop table.cart .product-thumbnail {
+		display: none;
 	}
 }

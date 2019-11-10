@@ -10,27 +10,26 @@
 	@include if-rtl {
 		padding-right: 2px;
 	}
-	font-size: 0;
 	border-bottom-color: #EEE;
 
 	li {
-		display: inline-block;
-		float: none;
 
 		&:last-child {
-			a {
+			.nav-link {
 				margin-#{$right}: 0;
 			}
 		}
 
-		a {
+		.nav-link {
 			border-radius: corner-values(5px 5px 0 0);
 			font-size: 14px;
+		    transition: all .2s;
+
 			margin-#{$right}: 1px;
 
 			&,
 			&:hover {
-				background: #F4F4F4;
+				background: #f7f7f7;
 				border: {
 					bottom: none;
 					#{$left}: 1px solid #EEE;
@@ -53,9 +52,9 @@
 		}
 
 		&.active {
-			a,
-			a:hover,
-			a:focus {
+			.nav-link,
+			.nav-link:hover,
+			.nav-link:focus {
 				background: #FFF;
 				border-#{$left}-color: #EEE;
 				border-#{$right}-color: #EEE;
@@ -100,12 +99,12 @@
 			margin-top: -1px;
 
 			&:last-child {
-				a {
+				.nav-link {
 					margin-#{$right}: 0;
 				}
 			}
 
-			a {
+			.nav-link {
 				border-radius: corner-values(0 0 5px 5px);
 				font-size: 14px;
 				margin-#{$right}: 1px;
@@ -125,11 +124,11 @@
 			}
 
 			&.active {
-				a,
-				a:hover,
-				a:focus {
+				.nav-link,
+				.nav-link:hover,
+				.nav-link:focus {
 					border-bottom: 3px solid #CCC;
-					border-top-color: transparent;
+					border-top-color: transparent !important;
 				}
 			}
 		}
@@ -155,11 +154,12 @@
 		float: none;
 		padding: 0;
 		vertical-align: top;
+		width: 25%;
 
 		& > li {
 			display: block;
 
-			a {
+			.nav-link {
 				border-radius: corner-values(0);
 				display:block;
 				padding-top: 10px;
@@ -173,9 +173,9 @@
 			}
 
 			&.active {
-				a,
-				a:hover,
-				&:focus {
+				.nav-link,
+				.nav-link:hover,
+				.nav-link:focus {
 					border-top: none;
 				}
 			}
@@ -196,19 +196,19 @@
 			margin-#{$right}: -1px;
 
 			&:first-child {
-				a {
+				.nav-link {
 					border-radius: corner-values(5px 0 0 0);
 				}
 			}
 
 			&:last-child {
-				a {
+				.nav-link {
 					border-radius: corner-values(0 0 0 5px);
 					border-bottom: 1px solid #eee;
 				}
 			}
 
-			a {
+			.nav-link {
 				border: {
 					#{$right}: 1px solid #EEE;
 					#{$left}: 3px solid #EEE;
@@ -222,9 +222,9 @@
 			}
 
 			&.active {
-				a,
-				a:hover,
-				a:focus {
+				.nav-link,
+				.nav-link:hover,
+				.nav-link:focus {
 					border-#{$left}: 3px solid #CCC;
 					border-#{$right}-color: #FFF;
 				}
@@ -246,19 +246,19 @@
 			margin-#{$left}: -1px;
 
 			&:first-child {
-				a {
+				.nav-link {
 					border-radius: corner-values(0 5px 0 0);
 				}
 			}
 
 			&:last-child {
-				a {
+				.nav-link {
 					border-radius: corner-values(0 0 5px 0);
 					border-bottom: 1px solid #eee;
 				}
 			}
 
-			a {
+			.nav-link {
 				border: {
 					#{$right}: 3px solid #EEE;
 					#{$left}: 1px solid #EEE;
@@ -272,9 +272,9 @@
 			}
 
 			&.active {
-				a,
-				a:hover,
-				a:focus {
+				.nav-link,
+				.nav-link:hover,
+				.nav-link:focus {
 					border-#{$right}: 3px solid #CCC;
 					border-#{$left}: 1px solid #FFF;
 				}
@@ -292,20 +292,20 @@
 		margin-bottom: 0;
 
 		&:first-child {
-			a,
-			a:hover {
+			.nav-link,
+			.nav-link:hover {
 				border-radius: corner-values(5px 0 0 0);
 			}
 		}
 
 		&:last-child {
-			a,
-			a:hover {
+			.nav-link,
+			.nav-link:hover {
 				border-radius: corner-values(0 5px 0 0);
 			}
 		}
 
-		a {
+		.nav-link {
 			border-bottom: 1px solid #DDD;
 			border-radius: corner-values(0);
 			margin-#{$right}: 0;
@@ -318,9 +318,9 @@
 		}
 
 		&.active {
-			a,
-			a:hover,
-			a:focus {
+			.nav-link,
+			.nav-link:hover,
+			.nav-link:focus {
 				background: #FFF;
 				border-#{$left}-color: #EEE;
 				border-#{$right}-color: #EEE;
@@ -329,7 +329,7 @@
 		}
 
 		&.active {
-			a {
+			.nav-link {
 				&,
 				&:hover,
 				&:focus {
@@ -351,28 +351,28 @@
 	.nav.nav-tabs.nav-justified {
 		border-top: none;
 		li {
-			a {
+			.nav-link {
 				margin-#{$right}: 0;
 				border-top-color: transparent;
 			}
 
 			&:first-child {
-				a {
+				.nav-link {
 					border-radius: corner-values(0 0 0 5px);
 				}
 			}
 
 			&:last-child {
-				a {
+				.nav-link {
 					margin-#{$right}: 0;
 					border-radius: corner-values(0 0 5px 0);
 				}
 			}
 
 			&.active {
-				a,
-				a:hover,
-				a:focus {
+				.nav-link,
+				.nav-link:hover,
+				.nav-link:focus {
 					border-top-color: transparent;
 				}
 			}
@@ -394,36 +394,68 @@
 	.nav-tabs {
 		> li {
 			margin-bottom: 1px;
-			a {
+			.nav-link {
 				color: #777;
 				padding: 18px;
 				line-height: 100%;
+				position: relative;
 				&:before {
-					font-family: FontAwesome;
+					font-family: 'Font Awesome 5 Free';
+					font-weight: 900;
+					font-size: 10px;
 					content: "\f054";
 					position: absolute;
 					#{$right}: 15px;
 					top: 50%;
-					margin-top: -7px;
+					transform: translateY(-50%);
 					@include if-rtl() {
 						content: "\f053";
 					}
 				}
-				.fa, .icons {
+				[class*="fa-"], .icons {
 					margin-#{$right}: 4px;
 				}
 			}
 		}
-		> li:first-child a {
+		 li:first-child .nav-link {
 			border-radius: corner-values(5px 5px 0 0);
 		}
-		> li.active a {
+		 li.active .nav-link {
 			&, &:hover, &:focus {
 				border-right-color: #eee;
 			}
 		}
-		> li:last-child a {
+		 li:last-child .nav-link {
 			border-radius: corner-values(0 0 5px 5px);
+		}
+	}
+}
+
+.tabs-navigation-simple {
+	border: 0 !important;
+	border-radius: 0 !important;
+
+	.nav-tabs {
+		border: 0 !important;
+		border-radius: 0 !important;
+		.nav-link {
+			&, &:hover {
+				background: transparent !important;
+				border-radius: 0 !important;
+				border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+				border-#{$left}: 0 !important;
+				padding-#{$left}: 0 !important;
+			}
+
+		}
+		li {
+			&:last-child {
+				.nav-link {
+					&, &:hover {
+						border-bottom: 0 !important;
+					}
+				}
+			}
 		}
 	}
 }
@@ -438,12 +470,13 @@
 /* Simple */
 .tabs.tabs-simple {
 	.nav-tabs {
+		justify-content: center;
 		border: 0;
 		margin-bottom: 10px;
 		> li {
 			margin-left: 0;
 			margin-bottom: $spacement-lg;
-			a, a:hover, a:focus {
+			.nav-link, .nav-link:hover, .nav-link:focus {
 				padding: 15px 30px;
 				background: none;
 				border: 0;
@@ -464,29 +497,24 @@
 }
 
 /* Responsive */
-@media (max-width: 479px) {
+@media (max-width: 575px) {
 
 	.tabs {
 		.nav.nav-tabs.nav-justified {
 			li {
 				display: block;
 				margin-bottom: -5px;
-				a {
+				.nav-link {
 					border-top-width: 3px !important;
 					border-bottom-width: 0 !important;
 				}
-				&:first-child a,
-				&:first-child a:hover {
+				&:first-child .nav-link,
+				&:first-child .nav-link:hover {
 					border-radius: corner-values(5px 5px 0 0);
 				}
-				&:last-child a,
-				&:last-child a:hover {
+				&:last-child .nav-link,
+				&:last-child .nav-link:hover {
 					border-radius: corner-values(0);
-				}
-				&.active {
-					a {
-						
-					}
 				}
 			}
 		}
@@ -495,16 +523,16 @@
 				li {
 					margin-bottom: 0;
 					margin-top: -5px;
-					a {
+					.nav-link {
 						border-bottom-width: 3px !important;
 						border-top-width: 0 !important;
 					}
-					&:first-child a,
-					&:first-child a:hover {
+					&:first-child .nav-link,
+					&:first-child .nav-link:hover {
 						border-radius: corner-values(0);
 					}
-					&:last-child a,
-					&:last-child a:hover {
+					&:last-child .nav-link,
+					&:last-child .nav-link:hover {
 						border-radius: corner-values(0 0 5px 5px);
 					}
 				}
@@ -512,3 +540,55 @@
 		}
 	}
 }
+
+//tabs to accordion
+
+.responsive-tabs-container {
+
+	.tab-pane {
+	  margin-bottom: 15px;
+	}
+  
+	.accordion-link {
+	  display: none;
+	  margin-bottom: 10px;
+	  padding: 10px 15px;
+	  background-color: #f7f7f7;
+	  border-radius: 3px;
+	  border: 1px solid #ebebeb;
+	}
+  
+	@mixin accordion-toggle(){
+	  .nav-tabs {
+		display: none;
+	  }
+  
+	  .accordion-link {
+		display: block;
+	  }
+	}
+  
+	@media (max-width: 767px) {
+	  &.accordion-xs {
+		@include accordion-toggle();
+	  }
+	}
+  
+	@media (min-width: 768px) and (max-width: 991px) {
+	  &.accordion-sm {
+		@include accordion-toggle();
+	  }
+	}
+  
+	@media (min-width: 992px) and (max-width: 1199px) {
+	  &.accordion-md {
+		@include accordion-toggle();
+	  }
+	}
+  
+	@media (min-width: 1200px) {
+	  &.accordion-lg {
+		@include accordion-toggle();
+	  }
+	}
+  }

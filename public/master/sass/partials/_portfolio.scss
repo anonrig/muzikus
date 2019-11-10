@@ -4,7 +4,7 @@
 	a {
 		display: inline-block;
 	}
-	.fa, .icons {
+	[class*="fa-"], .icons {
 		font-size: 1.7em;
 	}
 	.portfolio-nav {
@@ -20,8 +20,8 @@
 		width: 40%;
 		@include if-rtl {
 			float: right;
-		    @include transform(rotate(180deg));
-		    @include transform-origin(50% 42%);
+		    transform: rotate(180deg);
+		    transform-origin: 50% 42%;
 		}
 	}
 	.portfolio-nav-all .fa,
@@ -39,7 +39,6 @@
 /* Portfolio Info */
 .portfolio-info {
 	margin: 2px 0 10px;
-	float: $right;
 	ul {
 		list-style: none;
 		padding: 0;
@@ -65,7 +64,7 @@
 					}
 				}
 			}
-			.fa, .icons {
+			[class*="fa-"], .icons {
 				margin-#{$right}: 4px;
 			}
 		}
@@ -73,50 +72,46 @@
 }
 
 /* Portfolio List */
-ul {
-	&.portfolio-list {
-		list-style: none;
+.portfolio-list {
+	list-style: none;
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	&:not(.row) {
 		margin: 0;
-		padding: 0;
-		.portfolio-item {
-			position: relative;
-			margin-bottom: 35px;
-		}
-		&.portfolio-list-no-margins {
-			margin-left: 15px;
-			margin-right: 15px;
-		}
+	}
+	.portfolio-item {
+		position: relative;
+		margin-bottom: 35px;
 	}
 }
 
 /* Portfolio Details */
-ul {
-	&.portfolio-details {
-		list-style: none;
+.portfolio-details {
+	list-style: none;
+	padding: 0;
+	margin: side-values(45px 0 0 5px);
+	font-size: 0.9em;
+	> li {
 		padding: 0;
-		margin: side-values(45px 0 0 5px);
-		font-size: 0.9em;
+		margin: 0 0 20px;
+	}
+	p {
+		padding: 0;
+		margin: 0;
+	}
+	blockquote {
+		padding: 0 0 0 10px;
+		margin: 15px 0 0;
+		color: #999;
+	}
+	.list-icons {
+		margin-#{$left}: 0;
 		> li {
-			padding: 0;
-			margin: 0 0 20px;
-		}
-		p {
-			padding: 0;
-			margin: 0;
-		}
-		blockquote {
-			padding: 0 0 0 10px;
-			margin: 15px 0 0;
-			color: #999;
-		}
-		.list-icons {
-			margin-#{$left}: 0;
-			> li {
-				padding-#{$left}: 18px;
-				margin-#{$right}: 10px;
-				.fa, .icons {
-					top: 7px;
-				}
+			padding-#{$left}: 18px;
+			margin-#{$right}: 10px;
+			[class*="fa-"], .icons {
+				top: 7px;
 			}
 		}
 	}
@@ -125,8 +120,7 @@ ul {
 /* Portfolio Modal */
 .portfolio-modal,
 .portfolio-ajax-modal {
-	.mfp-arrow,
-	.mfp-close {
+	.mfp-arrow {
 		display: none;
 	}
 }
@@ -139,6 +133,17 @@ ul {
 
 .btn-portfolio-infinite-scroll {
 	opacity: 0;
+}
+
+/* Portfolio Navigation */
+.portfolio-next,
+.portfolio-prev {
+	&:hover {
+		[class*="fa-"], .icons {
+			animation: navItemArrow 600ms ease;
+			animation-iteration-count: infinite;
+		}
+	}
 }
 
 /* Responsive */

@@ -21,13 +21,33 @@
 			nav {
 				> ul {
 					> li {
-						&:hover, &.active {
+						&, &:hover {
 							> a {
-								color: @color-primary;
+								&.active {
+									color: @color-primary;
+								}
 
 								&:after {
 									border-color: @color-primary transparent transparent transparent !important;
 								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 991px) {
+	#header {
+		.header-nav-main {
+			nav {
+				> ul {
+					> li {
+						> a {
+							&:not(.active) {
+								color: #1e1e1e;
 							}
 						}
 					}

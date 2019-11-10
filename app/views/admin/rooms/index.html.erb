@@ -1,0 +1,55 @@
+<div role="main" class="main">
+	<header class="page-header">
+		<h2>Rooms</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span>Rooms</span></li>
+			</ol>
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+	<div class="row">
+		<div class="col">
+			<section class="card card-featured card-featured-info">
+				<div class="card-body">
+					<table class="table table-hover table-striped" id="usersTable">
+						<thead>
+							<tr class="text-light">
+								<th>#</th>
+								<th>Name</th>
+								<th style="width: 120px;">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @rooms.each do |item| %>
+								<tr class="text-light">
+									<td><%= item.id %></td>
+									<td><%= item.name %></td>
+									<td>
+										<a href="<%= admin_room_path(item) %>" class="btn btn-sm btn-warning mr-1"><i class="fas fa-eye"></i> Details</a>
+									</td>
+								</tr>
+							<% end %>
+							
+							<% if not @rooms.any? %>
+								<tr>
+									<td colspan="6" class="text-center text-light">There is nothing to show...</td>
+								</tr>
+							<% end %>
+
+						</tbody>
+					</table>
+				</div>		
+			</section>
+		</div>
+	</div>
+</div>

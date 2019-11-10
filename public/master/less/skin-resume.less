@@ -1,8 +1,6 @@
 @import "variables";
 
-@border-radius: 0;
-
-@color-primary: #ffd93e;
+@color-primary: #FDD55C;
 
 @color-secondary: #ecf1f7;
 
@@ -10,7 +8,7 @@
 
 @color-quaternary: #1f1e1c;
 
-@color-dark: #2e353e;
+@color-dark: #1e1e1e;
 
 @import "skin";
 
@@ -18,7 +16,7 @@
 * Menu
 */
 #header {
-	&.header-floating {
+	&.header-floating-icons {
 		.header-nav-main {
 			nav {
 				> ul {
@@ -41,7 +39,7 @@
 .owl-carousel {
 	&.custom-dots-style-1 {
 		.owl-dots {
-			.owl-dot {
+			button.owl-dot {
 				&.active, &:hover {
 					span {
 						border-color: @color-primary;

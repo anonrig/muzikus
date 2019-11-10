@@ -1,7 +1,7 @@
 /*
 Name: 			Resume
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
@@ -12,6 +12,7 @@ Theme Version:	5.7.2
 	$('#aboutMeMoreBtn').on('click', function() {
 		$(this).hide();
 		$('#aboutMeMore').toggleClass('about-me-more-visible');
+		return false;
 	});
 
 	/*
@@ -52,20 +53,6 @@ Theme Version:	5.7.2
 		timelineHeightAdjust.build();
 	}
 
-	// Contact Form Validate
-	$('#callSendMessage').validate({
-		onkeyup: false,
-		onclick: false,
-		onfocusout: false,
-		errorPlacement: function(error, element) {
-			if (element.attr('type') == 'radio' || element.attr('type') == 'checkbox') {
-				error.appendTo(element.parent().parent());
-			} else {
-				error.insertAfter(element);
-			}
-		}
-	});
-
 	/*
 	* Header Image Anim
 	*/
@@ -85,39 +72,5 @@ Theme Version:	5.7.2
 	   }
 	   lastScrollTop = st;
 	});
-
-	/*
-	* Menu Movement
-	*/
-	var menuFloatingAnim = {
-		$menuFloating: $('#header.header-floating .header-container > .header-row'),
-
-		build: function() {
-			var self = this;
-
-			self.init();
-		},
-		init: function(){
-			var self  = this,
-				divisor = 0;
-
-			$(window).scroll(function() {
-			    var scrollPercent = 100 * $(window).scrollTop() / ($(document).height() - $(window).height()),
-			    	st = $(this).scrollTop();
-
-				divisor = $(document).height() / $(window).height();
-
-			    self.$menuFloating.find('.header-column > .header-row').css({
-			    	transform : 'translateY( calc('+ scrollPercent +'vh - '+ st / divisor +'px) )' 
-			    });
-			});
-		}
-	}
-
-	if( $('.header-floating').get(0) ) {
-		if( $(window).height() > 700 ) {
-			menuFloatingAnim.build();
-		}
-	}
 
 }).apply( this, [ jQuery ]);

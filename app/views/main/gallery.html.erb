@@ -5,51 +5,58 @@
 	.thumb-info-inner a {
 	}
 </style>
+
 <div role="main" class="main">
-	<section class="page-header">
+	<!-- start: Breadcrumb-->
+	<section class="page-header page-header-modern bg-color-dark-scale-5 page-header-md">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<ul class="breadcrumb">
-						<li><%= link_to "HOME", root_path %></li>
-						<li class="active">GALLERY</li>
+
+				<div class="col-md-12 align-self-center p-static order-2 text-left">
+
+					<h1 class="text-light font-weight-bold text-8">Gallery</h1>
+					<span class="sub-title text-dark-scale-1">View more on <a href="http://www.instagram.com/muzikussabanci" target="_blank"><strong>Muzikus</strong></a> Instagram account.</span>
+
+				</div>
+
+				<div class="col-md-12 align-self-center order-1">
+
+					<ul class="breadcrumb d-block text-left">
+						<li><a href="/">Home</a></li>
+						<li>Gallery</li>
 					</ul>
+					
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<h1>Gallery</h1>
-				</div>
+				
 			</div>
 		</div>
 	</section>
+	<!-- end: Breadcrumb-->
 	<div class="container">
 		<ul hidden class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}"></ul>
-		<div class="row">
-			<div class="sort-destination-loader sort-destination-loader-showing">
-				<ul class="portfolio-list sort-destination" data-sort-id="portfolio">
-					<% @popular.each do |insta|%>
-						<li class="col-sm-6 col-md-4 isotope-item">
-							<div class="portfolio-item">
-								<a href="#">
-									<span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
-										<span class="thumb-info-wrapper">
-											<%= image_tag insta.images.standard_resolution.url, class: 'image-responsive', html:{alt: ''} %>
-											<span class="thumb-info-title">
-												<span class="thumb-info-inner"><%= insta.caption.text %></span>
-											</span>
+		<div class="sort-destination-loader sort-destination-loader-showing">
+			<div class="portfolio-list sort-destination" data-sort-id="portfolio">
+				<% @popular.each do |insta|%>
+					<div class="col-sm-6 col-md-4 isotope-item">
+						<div class="portfolio-item">
+							<a href="#">
+								<span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+									<span class="thumb-info-wrapper">
+										<%= image_tag insta.images.standard_resolution.url, class: 'img-fluid', html:{alt: ''} %>
+										<span class="thumb-info-title">
+											<span class="thumb-info-inner"><%= insta.caption.text %></span>
 										</span>
 									</span>
-								</a>
-							</div>
-						</li>
-					<% end %>
-				</ul>
+								</span>
+							</a>
+						</div>
+					</div>
+				<% end %>
 			</div>
-        </div> 
+		</div>
   </div>
-  <div id="test"></div>
 </div>
+
 <script>
 	String.prototype.parseURL = function() {
 		return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {

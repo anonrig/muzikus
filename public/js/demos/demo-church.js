@@ -1,10 +1,12 @@
 /*
 Name: 			Church
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 
 (function( $ ) {
+
+	'use strict';
 
 	/*
 	Slider
@@ -47,23 +49,6 @@ Theme Version:	5.7.2
 					}
 				}
 			}
-		});
-	}
-
-	/*
-	Countdown
-	*/
-	if( $('#countdown').get(0) ) {
-		var countdown_date  = $('#countdown').data('countdown-date'),
-			countdown_title = $('#countdown').data('countdown-title');
-
-		$('#countdown').countdown(countdown_date).on('update.countdown', function(event) {
-			var $this = $(this).html(event.strftime(countdown_title
-				+ '<span class="days custom-secondary-font"><span class="text-color-primary">%D</span> Day%!d</span> '
-				+ '<span class="hours custom-secondary-font"><span class="text-color-primary">%H</span> Hrs</span> '
-				+ '<span class="minutes custom-secondary-font"><span class="text-color-primary">%M</span> Min</span> '
-				+ '<span class="seconds custom-secondary-font"><span class="text-color-primary">%S</span> Sec</span> '
-			));
 		});
 	}
 
@@ -143,7 +128,7 @@ Theme Version:	5.7.2
 						var $this = $(this),
 							opts;
 
-						var pluginOptions = $this.data('plugin-options');
+						var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
 						if (pluginOptions)
 							opts = pluginOptions;
 

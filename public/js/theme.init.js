@@ -73,6 +73,30 @@
 
 }).apply(this, [jQuery]);
 
+// Before / After
+(function($) {
+
+	'use strict';
+
+	if ($.isFunction($.fn['themePluginBeforeAfter'])) {
+
+		$(function() {
+			$('[data-plugin-before-after]:not(.manual)').each(function() {
+				var $this = $(this),
+					opts;
+
+				var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+				if (pluginOptions)
+					opts = pluginOptions;
+
+				$this.themePluginBeforeAfter(opts);
+			});
+		});
+
+	}
+
+}).apply(this, [jQuery]);
+
 // Carousel
 (function($) {
 
@@ -121,6 +145,30 @@
 
 }).apply(this, [jQuery]);
 
+// Countdown
+(function($) {
+
+	'use strict';
+
+	if ($.isFunction($.fn['themePluginCountdown'])) {
+
+		$(function() {
+			$('[data-plugin-countdown]:not(.manual), .countdown').each(function() {
+				var $this = $(this),
+					opts;
+
+				var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+				if (pluginOptions)
+					opts = pluginOptions;
+
+				$this.themePluginCountdown(opts);
+			});
+		});
+
+	}
+
+}).apply(this, [jQuery]);
+
 // Counter
 (function($) {
 
@@ -141,6 +189,57 @@
 			});
 		});
 
+	}
+
+}).apply(this, [jQuery]);
+
+// Float Element
+(function($) {
+
+	'use strict';
+
+	if ($.isFunction($.fn['themePluginFloatElement'])) {
+
+		$(function() {
+			$('[data-plugin-float-element]:not(.manual)').each(function() {
+				var $this = $(this),
+					opts;
+
+				var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+				if (pluginOptions)
+					opts = pluginOptions;
+
+				$this.themePluginFloatElement(opts);
+			});
+		});
+
+	}
+
+}).apply(this, [jQuery]);
+
+// Animated Icon
+(function($) {
+
+	'use strict';
+
+	if ($.isFunction($.fn['themePluginIcon'])) {
+
+		$(document).ready(function(){
+			$(function() {
+
+				$('[data-icon]:not(.svg-inline--fa)').each(function() {
+					var $this = $(this),
+						opts;
+
+					var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+					if (pluginOptions)
+						opts = pluginOptions;
+
+					$this.themePluginIcon(opts);
+				});
+				
+			});
+		});
 	}
 
 }).apply(this, [jQuery]);
@@ -313,6 +412,55 @@
 
 }).apply(this, [jQuery]);
 
+// Scrollable
+(function($) {
+
+	'use strict';
+
+	if ( $.isFunction($.fn[ 'nanoScroller' ]) ) {
+
+		$(function() {
+			$('[data-plugin-scrollable]').each(function() {
+				var $this = $( this ),
+					opts = {};
+
+				var pluginOptions = $this.data('plugin-options');
+				if (pluginOptions) {
+					opts = pluginOptions;
+				}
+
+				$this.themePluginScrollable(opts);
+			});
+		});
+
+	}
+
+}).apply(this, [jQuery]);
+
+// Section Scroll
+(function($) {
+
+	'use strict';
+
+	if ($.isFunction($.fn['themePluginSectionScroll'])) {
+
+		$(function() {
+			$('[data-plugin-section-scroll]:not(.manual)').each(function() {
+				var $this = $(this),
+					opts;
+
+				var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+				if (pluginOptions)
+					opts = pluginOptions;
+
+				$this.themePluginSectionScroll(opts);
+			});
+		});
+
+	}
+
+}).apply(this, [jQuery]);
+
 // Sort
 (function($) {
 
@@ -330,6 +478,30 @@
 					opts = pluginOptions;
 
 				$this.themePluginSort(opts);
+			});
+		});
+
+	}
+
+}).apply(this, [jQuery]);
+
+// Star Rating
+(function($) {
+
+	'use strict';
+
+	if ($.isFunction($.fn['themePluginStarRating'])) {
+
+		$(function() {
+			$('[data-plugin-star-rating]:not(.manual)').each(function() {
+				var $this = $(this),
+					opts;
+
+				var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+				if (pluginOptions)
+					opts = pluginOptions;
+
+				$this.themePluginStarRating(opts);
 			});
 		});
 
@@ -426,30 +598,6 @@
 					opts = pluginOptions;
 
 				$this.themePluginVideoBackground(opts);
-			});
-		});
-
-	}
-
-}).apply(this, [jQuery]);
-
-// Word Rotate
-(function($) {
-
-	'use strict';
-
-	if ($.isFunction($.fn['themePluginWordRotate'])) {
-
-		$(function() {
-			$('[data-plugin-word-rotate]:not(.manual), .word-rotate:not(.manual)').each(function() {
-				var $this = $(this),
-					opts;
-
-				var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
-				if (pluginOptions)
-					opts = pluginOptions;
-
-				$this.themePluginWordRotate(opts);
 			});
 		});
 

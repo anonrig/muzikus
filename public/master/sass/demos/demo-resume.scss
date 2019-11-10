@@ -2,12 +2,12 @@
 @import "../config/imports";
 
 // DEMO COLORS
-$color-primary: #ffd93e;
+$color-primary: #FDD55C;
 $color-secondary: #ecf1f7;
 $color-tertiary: #403f3d;
 $color-quaternary: #1f1e1c;
 $color-light: #FFF;
-$color-dark: #2e353e;
+$color-dark: #1e1e1e;
 
 /*
 * DEMO GENERAL STYLES
@@ -15,6 +15,10 @@ $color-dark: #2e353e;
 body {
 	position: relative;
 	overflow-x: hidden;
+}
+
+.body {
+	background: transparent;
 }
 
 h2 {
@@ -68,6 +72,14 @@ section.section {
 	color: #4a3b00 !important;
 }
 
+// PARALLAX OVERFLOW
+.parallax-no-overflow {
+	overflow: visible !important;
+	.parallax-background {
+		z-index: -1;
+	}
+}
+
 // BORDER
 .custom-border {
 	border: 10px solid $color-light;
@@ -78,13 +90,15 @@ section.section {
 		position: absolute;
 		max-width: 90%;
 		top: -60px;
+		z-index: 1;
 	}
 }
 
 // SPACEMENT
 .custom-margin-bottom-1 {
-	margin-bottom: 50px !important;
+	margin-bottom: 30px !important;
 }
+
 
 @media (min-width: 992px) {
 	.custom-section-padding-1 {
@@ -93,7 +107,14 @@ section.section {
 	}
 
 	.custom-md-margin-top-1 {
-		margin-top: 72px;
+		margin-top: 58px;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.custom-section-padding-1 {
+		padding-top: 150px !important;
+		padding-bottom: 2.3rem !important;
 	}
 }
 
@@ -120,7 +141,7 @@ section.section {
 	padding: 10px 30px;
 	border-radius: 35px !important;
 
-	&.btn-borders {
+	&.btn-outline {
 		border-color: #b5b5b5 !important;
 		border-width: 1px;
 	}
@@ -144,7 +165,7 @@ section.section {
 }
 
 // CUSTOM BACKGROUND
-.custom-background-color-1 {
+.custom-bg-color-1 {
 	background: #f4f9ff !important;
 }
 
@@ -155,42 +176,19 @@ section.section {
 	} 
 }
 
-// ORDER
-@media (max-width: 991px) {
-	.custom-sm-flex-order {
-		display: flex;
-		flex-flow: row wrap;
-
-		.col-md-4 {
-			&:nth-child(2) {
-				order: 2;
-			}
-
-			&:nth-child(3) {
-				order: 1;
-			}
-		}
-	}
-}
-
-@media (max-width: 767px) {
-	.custom-sm-flex-order {
-		.col-md-4 {
-			&:nth-child(2) {
-				order: 1;
-			}
-
-			&:nth-child(3) {
-				order: 2;
-			}
-		}
-	}
-}
-
 // FLAGS
 .flag {
 	position: relative;
 	top: -1px;
+}
+
+// Custom Image Pos
+@media(min-width: 992px) and (max-width: 1199px) {
+	.custom-image-pos-1 {
+	    position: relative;
+	    left: -60px;
+	    max-width: 160%;
+	}
 }
 
 /*
@@ -201,11 +199,11 @@ section.section {
 		width: calc(100% + 120px);
 		#{$left}: 50%;
 		@include if-ltr() {
-			@include transform(translateX(-50%));
+			transform: translateX(-50%);
 		}
 
 		@include if-rtl() {
-			@include transform(translateX(50%));
+			transform: translateX(50%);
 		}
 
 	}
@@ -218,7 +216,7 @@ section.section {
 
 	&.custom-dots-style-1 {
 		.owl-dots {
-			.owl-dot {
+			button.owl-dot {
 				&.active, &:hover {
 					span {
 						border-color: $color-dark !important;
@@ -240,7 +238,7 @@ section.section {
 
 	&.custom-dots-color-1 {
 		.owl-dots {
-			.owl-dot {
+			button.owl-dot {
 				&.active, &:hover {
 					span {
 						border-color: $color-dark !important;
@@ -266,13 +264,19 @@ section.section {
 /*
 * Header
 */
-#header.header-floating {
+#header.header-floating-icons {
+	.nav {
+		flex-direction: column;
+	}
+
 	.header-nav-main {
 		nav {
 			> ul {
 				> li {
-					&.active {
-						> a {
+					flex: 0 0 auto;
+					margin-left: 0;
+					> a {
+						&.active {
 							background: $color-light !important;
 
 							&:after {
@@ -287,12 +291,13 @@ section.section {
 }
 
 @media (min-width: 992px) {
-	#header.header-floating {
+	#header.header-floating-icons {
 		background: transparent;
 		height: 0;
 		min-height: 0 !important;
 
 		.header-row {
+			display: block;
 			position: absolute;
 			top: 45px;
 			#{$left}: -40px;
@@ -321,7 +326,7 @@ section.section {
 						&:hover {
 							> a {
 								> span {
-									@include transform(rotateY(0deg));
+									transform: rotateY(0deg);
 								}
 							}
 						}
@@ -354,15 +359,15 @@ section.section {
 							    white-space: nowrap;
 							    font-size: 14px;
 							    z-index: -2;
-							    @include transition(ease transform 300ms);
+							    transition: ease transform 300ms;
 							    @include if-ltr() {
-							    	@include transform-origin(-19% 0%);
-							    	@include transform(rotateY(88deg));
+							    	transform-origin: -19% 0%;
+							    	transform: rotateY(88deg);
 							    }
 
 							    @include if-rtl() {
-							    	@include transform-origin(107% 0% 11px);
-							    	@include transform(rotateY(-88deg));
+							    	transform-origin: 107% 0% 11px;
+							    	transform: rotateY(-88deg);
 							    }
 
 							    &:before {
@@ -374,7 +379,7 @@ section.section {
     								padding: 10px;
 								    background: #FFF;
 								    z-index: -1;
-							    	@include transform(translate(0, -50%) rotate(45deg));
+							    	transform: translate(0, -50%) rotate(45deg);
 							    }
 							}
 						}
@@ -386,7 +391,7 @@ section.section {
 }
 
 @media (min-width: 992px) and (max-width: 1281px) {
-	#header.header-floating {
+	#header.header-floating-icons {
 		.header-row {
 			#{$left}: -19px;
 		}
@@ -411,7 +416,7 @@ section.section {
 }
 
 @media (max-width: 991px) {
-	#header.header-floating {
+	#header.header-floating-icons {
 		position: absolute;
 		top: 60px;
 		#{$right}: 0px;
@@ -424,23 +429,36 @@ section.section {
 
 		.header-btn-collapse-nav {
 			padding: 15px 20px;
+			margin: 0;
+			color: #1e1e1e;
 		}
 
 		.header-nav-main {
 			position: absolute;
 			#{$right}: 0px;
 			top: 77px;
+			max-width: 53px;
 			overflow: hidden;
+			&:before {
+				content: none;
+			}
 
 			nav {
+				padding: 0;
+				max-height: none;
 				> ul {
+					display: block;
+					padding: 0;
 					> li {
+						display: inline-block;
 						border: none;
 
 						> a {
 							font-size: 1.7em;
 							margin: 0;
 							padding: 15px;
+							color: #1e1e1e !important;
+						    border-bottom-color: #FDD55C;
 
 							> span {
 								display: none;
@@ -486,9 +504,9 @@ section.section {
 		position: absolute;
 		bottom: 0;
 		#{$right}: 0;
-		width: 78vw;
+		width: 75vw;
 		border-bottom: 1px solid #e2e2e2;
-		z-index: -1;
+		z-index: 0;
 	}
 }
 
@@ -496,6 +514,14 @@ section.section {
 	.custom-about-me-links {
 		&:after {
 			width: 100vw;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.custom-about-me-links {
+		> .container {
+			max-width: none;
 		}
 	}
 }
@@ -520,7 +546,7 @@ section.section {
 		}
 
 		&:after {
-			#{$left}: initial;
+			#{$left}: auto;
 			#{$right}: -16px;
 		}
 	}
@@ -533,7 +559,14 @@ section.section {
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
+	.custom-nav-button {
+		&.custom-divisors {
+			&:before, &:after {
+				content: none;
+			}
+		}
+	}
 	.custom-xs-border-bottom {
 		border-bottom: 1px solid #e2e2e2;
 	}
@@ -579,7 +612,7 @@ section.section {
     position: absolute;
     top: 50%;
     #{$right}: 0;
-    @include transform(translate(0, -50%));
+    transform: translate(0, -50%);
 
     li {
     	display: block;
@@ -628,22 +661,32 @@ section.section {
 */
 section.custom-timeline {
 	width: calc(100% - 30px);
-	margin: side-values(0 0 0 30px);
+	margin: side-values(0 0 0 40px);
 	padding: 0;
 
-	&:after {
+	&:after,
+	&:before {
 		content: none;
+	}
+
+	.timeline-body {
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 	}
 
 	.timeline-bar {
 		position: absolute;
 		background: $color-dark;
 		width: 3px;
-		#{$left}: -2.6%;
+		#{$left}: -3.6%;
 		z-index: 0;
 	}
 
 	.timeline-box {
+		position: relative;
 		border: 0 !important;
 		margin: 15px 0 !important;
 		width: 100%;
@@ -655,17 +698,19 @@ section.custom-timeline {
 
 			&:before {
 				top: 50%;
-				#{$left}: -2.5%;
+				#{$left}: -3.8%;
 				background: $color-dark !important;
 				box-shadow: 0 0 0 3px $color-secondary, 0 0 0 6px $color-dark !important;
-				@include transform(translateY(-50%));
+				margin-top: 0;
+				transform: translateY(-50%);
 			}
 
 			&:after {
 				top: 50%;
+				left: -22px;
 				background: $color-primary;
 				border: none;
-				@include transform(translateY(-50%) rotate(45deg));
+				transform: translateY(-50%) rotate(45deg);
 			}
 		}
 
@@ -708,10 +753,31 @@ section.custom-timeline {
 	}
 }
 
+@media (max-width: 1199px) {
+	section.custom-timeline {
+		width: calc(100% - 60px);
+		margin: side-values(0 0 0 60px);
+
+		.timeline-bar {
+			#{$left}: -5.1%;
+		}
+
+		.timeline-box {
+			&.right {
+				&:before {
+					#{$left}: -5.5%;
+				}
+			}
+		}
+	}
+}
+
 @media (max-width: 991px) {
 	section.custom-timeline {
+	    width: calc(100% - 30px);
+	    margin: 0 0 0 20px;
 		.timeline-bar {
-			#{$left}: -3.7%;
+			#{$left}: -6.7%;
 		}
 
 		.timeline-box {
@@ -723,7 +789,7 @@ section.custom-timeline {
 				float: $right;
 
 				&:before {
-					#{$left}: -3.4%;
+					#{$left}: -7%;
 				}
 			}
 		}
@@ -734,6 +800,8 @@ section.custom-timeline {
 	section.custom-timeline {
 		width: 100%;
 		margin: 0;
+		padding-left: 15px;
+		padding-right: 15px;
 
 		.timeline-bar {
 			display: none;
@@ -747,12 +815,20 @@ section.custom-timeline {
 	}
 }
 
+@media (max-width: 575px) {
+	section.custom-timeline {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
 /*
 * Education
 */
 .custom-box-details-2 {
 	padding: 45px;
-	margin: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 
 	h4 {
 		letter-spacing: -0.5px;
@@ -776,17 +852,20 @@ section.custom-timeline {
 	.progress-label {
 		float: $left;
 		width: 30%;
+		clear: both;
+		margin-top: 10px;
 	}
 
 	.progress {
 		float: $left;
 		width: 70%;
 		height: 3px;
-		margin-top: 10px;
+		margin-top: 20px;
 
 		.progress-bar {
 			background-color: $color-dark;
 			overflow: visible !important;
+			height: auto;
 		}
 	}
 }
@@ -808,7 +887,7 @@ section.custom-timeline {
 				font-weight: 700;
 				padding: 7px 30px;
 				font-size: 0.9em;
-				@include transition(ease background 300ms);
+				transition: ease background 300ms;
 			}
 
 			&.active, &:hover {
@@ -837,8 +916,8 @@ section.custom-timeline {
 
 .custom-thumb-info-1 {
 	border: none;
-	@include backface-visibility(intiial);
-	@include transform(initial);
+	backface-visibility: initial;
+	transform: none;
 
 	&:hover {
 		.thumb-info-wrapper {
@@ -851,7 +930,7 @@ section.custom-timeline {
 				width: 30%;
 
 				&:after {
-					@include transform(translate(-50%, -50%) rotate(90deg));
+					transform: translate(-50%, -50%) rotate(90deg);
 				}
 			}
 		}
@@ -859,8 +938,8 @@ section.custom-timeline {
 
 	.thumb-info-wrapper {
 		margin: 0 !important;
-		@include backface-visibility(intiial);
-		@include transform(initial);
+		backface-visibility: initial;
+		transform: none;
 
 		&:after {
 			background: $color-primary;
@@ -873,8 +952,8 @@ section.custom-timeline {
 			top: 50%;
 			left: 50%;
 			z-index: 2;
-			@include transform(translate(-50%, -50%));
-			@include transition(ease all 0.3s);
+			transform: translate(-50%, -50%);
+			transition: ease all 0.3s;
 
 			&:before, &:after {
 				content: '';
@@ -884,11 +963,11 @@ section.custom-timeline {
 				top: 50%;
 				left: 50%;
 				border-top: 1px solid $color-dark;
-				@include transform(translate(-50%, -50%));
+				transform: translate(-50%, -50%);
 			}
 
 			&:after {
-				@include transform(translate(-50%, -50%) rotate(0deg));
+				transform: translate(-50%, -50%) rotate(0deg);
 			}
 		}
 	}
@@ -922,14 +1001,14 @@ section.custom-timeline {
 
 	.testimonial-author {
 		position: relative;
-		margin: 19px 0 0 35px;
+		margin: 19px 0 0 72px;
 
 		&:before {
 			content: '';
 			display: block;
 			position: absolute;
-			top: -8px;
-			#{$left}: 24px;
+			top: -10px;
+			#{$left}: 10px;
 			width: 100px;
 			border-top: 1px solid #deb717;
 		}
@@ -984,7 +1063,7 @@ section.custom-timeline {
 
 					a {
 						line-height: 1;
-						@include transition(ease opacity 300ms);
+						transition: ease opacity 300ms;
 
 						&:hover {
 							opacity: 0.7;
@@ -1122,10 +1201,6 @@ section.custom-timeline {
 }
 
 .custom-feature-box {
-	position: relative;
-	display: inline-block;
-	width: 100%;
-
 	&:hover {
 		.custom-feature-box-icon {
 			background: $color-primary;
@@ -1137,30 +1212,26 @@ section.custom-timeline {
 	}
 
 	.custom-feature-box-icon {
-		position: absolute;
 		border: 1px solid #454441;
 		line-height: 0.9;
 		padding: 10px;
-		top: 2px;
-		@include transition(ease background 300ms);
+		transition: ease background 300ms;
 
 		i {
 			font-size: 1.4em;
-			@include transition(ease color 300ms);
+			transition: ease color 300ms;
 		}
 	}
 
 	.feature-box-info {
-		display: inline-block;
-		padding-#{$left}: 65px;
-
-		> label {
+		padding-left: 25px;
+		flex: none;
+		> .custom-label {
 			display: block;
 			line-height: 1;
 			font-size: 0.8em;
 			color: #bdbdbd;
 			position: relative;
-			top: 5px;
 		}
 
 		> strong {

@@ -1,7 +1,7 @@
 /*
 Name: 			Portfolio - Examples
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	5.7.2
+Theme Version:	7.4.0
 */
 (function($) {
 
@@ -15,6 +15,16 @@ Theme Version:	5.7.2
 		type: 'inline',
 		gallery: {
 			enabled: true
+		},
+		callbacks: {
+		  	open: function() {
+		  		$('.owl-carousel').owlCarousel('refresh');
+		  	},
+		  	change: function() {
+		  		setTimeout(function(){
+			  		$('.owl-carousel').owlCarousel('refresh');
+		  		}, 1);
+		  	}
 		}
 	});
 
@@ -199,14 +209,18 @@ Theme Version:	5.7.2
 			// Key Press
 			$(document.documentElement).on('keyup', function(e) {
 
-				// Next
-				if (e.keyCode == 39) {
-					self.next();
-				}
+				if( !$('.mfp-wrap').get(0) ) {
 
-				// Prev
-				if (e.keyCode == 37) {
-					self.prev();
+					// Next
+					if (e.keyCode == 39) {
+						self.next();
+					}
+
+					// Prev
+					if (e.keyCode == 37) {
+						self.prev();
+					}
+
 				}
 
 			});
@@ -330,11 +344,12 @@ Theme Version:	5.7.2
 			// Ajax
 			$.ajax({
 				url: self.pages[i],
+				cache: false,
 				complete: function(data) {
 				
 					setTimeout(function() {
 
-						self.$ajaxBoxContent.html(data.responseText).append('<div class="row"><div class="col-md-12"><hr class="tall mt-xl"></div></div>');
+						self.$ajaxBoxContent.html(data.responseText).append('<div class="row"><div class="col-md-12"><hr class="tall mt-4"></div></div>');
 						self.$ajaxBox.removeClass('ajax-box-loading');
 
 						self.events();
@@ -359,6 +374,7 @@ Theme Version:	5.7.2
 		type: 'ajax',
 		tLoading: '<div class="bounce-loader"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>',
 		mainClass: 'portfolio-ajax-modal',
+		closeBtnInside: true,
 		gallery: {
 			enabled: true
 		},
@@ -424,6 +440,7 @@ Theme Version:	5.7.2
 		currentPage: 1,
 		$wrapper: $('#portfolioLoadMoreWrapper'),
 		$btn: $('#portfolioLoadMore'),
+		$btnWrapper: $('#portfolioLoadMoreBtnWrapper'),
 		$loader: $('#portfolioLoadMoreLoader'),
 
 		build: function() {
@@ -434,7 +451,7 @@ Theme Version:	5.7.2
 
 			if(self.pages <= 1) {
 
-				self.$btn.remove();
+				self.$btnWrapper.remove();
 				return;
 
 			} else {
@@ -460,14 +477,15 @@ Theme Version:	5.7.2
 		},
 		loadMore: function() {
 
-			var self = this;
+			var self = this,
+				ajax_url = ( self.$wrapper.data('ajax-url') ) ? self.$wrapper.data('ajax-url') : 'ajax/portfolio-ajax-load-more-';
 
 			self.$btn.hide();
-			self.$loader.show();
+			self.$loader.addClass('portfolio-load-more-loader-showing').show();
 
 			// Ajax
 			$.ajax({
-				url: 'ajax/portfolio-ajax-load-more-' + (parseInt(self.currentPage)+1) + '.html',
+				url: ajax_url + (parseInt(self.currentPage)+1) + '.html',
 				complete: function(data) {
 
 					var $items = $(data.responseText);
@@ -483,7 +501,7 @@ Theme Version:	5.7.2
 						if(self.currentPage < self.pages) {
 							self.$btn.show().blur();
 						} else {
-							self.$btn.remove();
+							self.$btnWrapper.remove();
 						}
 
 						// Carousel
@@ -500,7 +518,7 @@ Theme Version:	5.7.2
 							});
 						});
 
-						self.$loader.hide();
+						self.$loader.removeClass('portfolio-load-more-loader-showing').hide();
 
 					}, 1000);
 
@@ -531,6 +549,7 @@ Theme Version:	5.7.2
 
 			self.$filter.on('filtered', function(event, laidOutItems) {
 				self.build();
+				self.$filter.find('.active').trigger('click');
 			});
 
 		},
@@ -579,15 +598,20 @@ Theme Version:	5.7.2
 
 				self.$pager.bootpag({
 					total: self.pages,
-					page: 1
+					page: 1,
+					next: '<i class="fas fa-angle-right"></i>',
+					prev: '<i class="fas fa-angle-left"></i>'
 				}).on('page', function(event, num) {
 					self.$wrapper.attr('data-current-page', num);
-					self.$filter.find('.active a').trigger('click');
+					self.$filter.find('.active').trigger('click');
 				});
 
 			}
 
-			self.$filter.find('.active a').trigger('click');
+			self.$filter.find('.active').trigger('click');
+
+			self.$pager.find('li').addClass('page-item');
+			self.$pager.find('a').addClass('page-link');
 
 		}
 
@@ -646,6 +670,7 @@ Theme Version:	5.7.2
 					$buttonGroup.on('click', 'a', function() {
 						$buttonGroup.find('.active').removeClass('active');
 						$(this).parent().addClass('active');
+						$(this).addClass('active');
 					});
 				});
 

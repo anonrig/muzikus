@@ -7,7 +7,7 @@ $color-secondary: #8ad2f3;
 $color-tertiary: #f8f8f8;
 $color-quaternary: #3c3f44;
 $color-light: #FFF;
-$color-dark: #2e353e;
+$color-dark: #1e1e1e;
 
 // Custom Font Family's
 $primary-font: 'Poppins', sans-serif;
@@ -110,7 +110,7 @@ section {
 }
 
 .custom-margin-1 {
-	margin-#{$left}: 60px;
+	margin-#{$left}: 70px;
 	margin-bottom: 40px;
 }
 
@@ -140,6 +140,12 @@ section {
 
 .custom-rounded-image {
 	border-radius: 100%;
+}
+
+.custom-height {
+	@media(min-width: 768px) {
+		height: 210px;
+	}
 }
 
 /*
@@ -281,7 +287,7 @@ html {
 .thumb-info {
 	&.custom-thumb-info-style-1 {
 		.thumb-info-wrapper {
-			@include transform(initial);
+			transform: none;
 
 			&:after {
 				background-color: rgba($color-primary, 0.8);
@@ -305,7 +311,7 @@ html {
 
 		.thumb-info-wrapper {
 			&:not(._rounded) {
-				@include transform(initial);
+				transform: none;
 			}
 
 			&:after {
@@ -366,24 +372,26 @@ html {
 	}
 	&.custom-arrows-style-1 {
 		.owl-nav {
-			[class*="owl-"], [class*="owl-"]:hover {
+			button[class*="owl-"], button[class*="owl-"]:hover {
 				font-size: 30px;
 				color: $color-dark !important;
 				background: transparent;
 			}
 
-			.owl-prev {
+			button.owl-prev {
 				&:before {
 					content: "\f104";
+					font-size: 0.7em;
 					@include if-rtl() {
 						content: "\f105";
 					}
 				}
 			}
 
-			.owl-next {
+			button.owl-next {
 				&:before {
 					content: "\f105";
+					font-size: 0.7em;
 					@include if-rtl() {
 						content: "\f104";
 					}
@@ -406,7 +414,7 @@ html {
 #header {
 	position: absolute;
 	width: 100%;
-	top: calc(100vh - 69px);
+	top: calc(100% - 71px);
 	left: 0;
 
 	.header-btn-collapse-nav {
@@ -428,36 +436,36 @@ html {
 		}
 	}
 
+	.header-nav {
+		padding: 0;
+	}
+
 	.header-nav-main {
+		&:before {
+			content: none;
+		}
 		nav {
 			> ul {
 				> li {
 					> a {
+						position: relative;
 						background: transparent !important;
 						font-weight: 100;
-						color: $color-light;
-						@include transition(ease color 300ms);
+						color: $color-light !important;
+						transition: ease color 300ms;
 
 						@media (min-width: 992px) and (max-width: 1060px) {
 							padding: 10px 9px;
 						}
-					}
 
-					&:hover, &.active {
-						> a {
-							color: $color-primary !important;
-						}
-					}
-
-					&.active {
-						> a {
+						&.active {
 							&:before {
 								content: '';
 								display: block;
 								position: absolute;
 								left: 0;
-								bottom: -15px;
-								border-bottom: 3px solid $color-primary;
+								bottom: -16px;
+								border-bottom: 3px solid #CCC;
 								width: 100%;
 
 								@media (max-width: 991px) {
@@ -501,34 +509,45 @@ html {
 
 @media (min-width: 992px) {
 	#header {
-		.header-logo {
-			img {
-				margin: 15px 5px 15px 15px;
+		.header-nav-main {
+			nav {
+				> ul {
+					> li {
+						> a {
+							height: 100%;
+							&.active {
+								color: #CCC !important;
+							}
+						}
+
+						&:hover, &.open {
+							> a {
+								color: $color-primary !important;
+							}
+						}
+					}
+				}
 			}
 		}
-
-
 	}
 
 	.custom-divider-1 {
 		position: relative;
-		width: 110px;
-
 		&:after {
 			content: '';
 			display: block;
 			position: absolute;
 			top: 50%;
-			#{$right}: -30px;
+			#{$right}: 0;
 			border-right: 1px solid #5b5d61;
-			height: 133%;
-			@include transform(translate(0, -50%));
+			height: 100%;
+			transform: translate(0, -50%);
 		}
 
 		&._left {
 			&:after {
-				#{$right}: initial;
-				#{$left}: -30px;
+				#{$right}: auto;
+				#{$left}: 0;
 			}
 		}
 	}
@@ -547,7 +566,7 @@ html {
 	@media (min-width: 767px) {
 	    &:not(._middle) {
 	    	position: absolute;
-	    	top: 7%;
+	    	top: 30%;
 		    z-index: 1;
 	    }
 
@@ -563,6 +582,10 @@ html {
 			}
 	    }
 
+	    &._middle {
+	    	top: 23%;
+	    }
+
 	    &._right {
 	    	left: 65%;
 	    }
@@ -576,7 +599,7 @@ svg#curved-line-1 {
     width: 100%;
     height: 180%;
     @include if-rtl() {
-    	@include transform(rotateY(180deg));
+    	transform: rotateY(180deg);
     }
 
 	.path, .circle  {
@@ -587,9 +610,9 @@ svg#curved-line-1 {
 
 	@media (min-width: 992px) and (max-width: 1199px) {
 		width: 107.4%;
-	    @include transform(scale(1.13));
+	    transform: scale(1.13);
 	    @include if-rtl() {
-	    	@include transform(scale(1.13) rotateY(180deg));
+	    	transform: scale(1.13) rotateY(180deg);
 	    }
 	}
 }
@@ -599,7 +622,7 @@ svg#curved-line-1 {
 */
 .counters {
 	&.custom-counters {
-		.fa {
+		[class*="fa-"] {
 			font-size: 28px;
 			margin-bottom: 15px;
 		}
@@ -643,7 +666,7 @@ svg#curved-line-1 {
 		width: 90%;
 
 		@media (max-width: 991px) {
-			position: initial;
+			position: static;
 		}
 	}
 
@@ -651,7 +674,7 @@ svg#curved-line-1 {
 	    #{$left}: 0;
 
 		@media (max-width: 991px) {
-			#{$left}: initial;
+			#{$left}: auto;
 			#{$right}: 25px;
 			bottom: 0;
 			width: 23.5%;
@@ -670,11 +693,11 @@ svg#curved-line-1 {
 
 svg#curved-line-2 {
 	position: absolute;
-	top: -105px;
+	top: -85px;
 	#{$right}: 190px;
 	z-index: 1;
 	@include if-rtl() {
-		@include transform(rotateY(180deg));
+		transform: rotateY(180deg);
 	}
 
 	.path, .circle  {
@@ -705,7 +728,7 @@ svg#curved-line-2 {
 
 		.testimonial-author {
 			position: relative;
-			margin-top: 30px;
+			margin-top: 1.5rem;
 
 			&:before {
 				content: '';
@@ -713,9 +736,9 @@ svg#curved-line-2 {
 				position: absolute;
 				width: 25px;
 				border-top: 2px solid $color-dark;
-				top: 0;
+				top: -15px;
 				left: 50%;
-				@include transform(translate(-50%, 0));
+				transform: translate(-50%, 0);
 			}
 		}
 	}
@@ -740,7 +763,7 @@ svg#curved-line-2 {
 		    color: $color-dark;
 		    font-size: 12px;
 		    font-weight: 500;
-		    @include transition(ease color 300ms);
+		    transition: ease color 300ms;
 		}
 
 		&.active, &:hover {
@@ -749,6 +772,16 @@ svg#curved-line-2 {
 
 				&:hover, &:focus {
 					color: #777;
+				}
+			}
+		}
+		&.active {
+			> a {
+				color: $color-dark !important;
+				opacity: 0.7;
+
+				&:hover, &:focus {
+					opacity: 0.5;
 				}
 			}
 		}
@@ -793,12 +826,26 @@ svg#curved-line-2 {
 	}
 
 	@media (max-width: 767px) {
-		height: initial !important;
+		height: auto !important;
 		margin-top: 0 !important;
 	}
 }
 
 .custom-contact-form-style-1 {
+	.form-row {
+		&._divider {
+			@media(min-width: 576px) {
+				> div:nth-child(1) {
+					border-right: 1px solid #5a5a5a;
+				}
+
+				> div:nth-child(2) {
+					padding-left: 1rem;
+				}
+			}
+		}
+	}
+
 	.form-group {
 		position: relative;
 		margin-bottom: 0;
@@ -809,35 +856,9 @@ svg#curved-line-2 {
 			position: absolute;
 			left: 50%;
 			top: 0;
-			width: calc(100% + 69px);
+			width: calc(100% + 90px);
 			border-top: 1px solid #5a5a5a;
-			@include transform(translateX(-50%));
-		}
-
-		&._divider {
-			> div:nth-child(1) {
-				&:after {
-					content: '';
-					display: block;
-					position: absolute;
-					#{$right}: 0;
-					top: 0;
-					height: 100%;
-					border-right: 1px solid #5a5a5a;
-
-					@media (max-width: 767px) {
-						border-right: 0;
-						border-bottom: 1px solid #5a5a5a;
-						height: initial;
-						#{$right}: initial;
-						top: initial;
-						width: calc(100% + 69px);
-						left: 50%;
-						bottom: 0;
-						@include transform(translateX(-50%));
-					}
-				}
-			}
+			transform: translateX(-50%);
 		}
 	}
 
@@ -877,6 +898,30 @@ svg#curved-line-2 {
 		position: absolute;
 		bottom: -6px;
 	}
+
+	.custom-textarea-style {
+	    margin: 10px 0 10px 0;
+	    box-sizing: content-box;
+	    padding: 6px 34px 6px 0 !important;
+
+		&::-webkit-scrollbar-track {
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			border-radius: 10px;
+			background-color: #3c3f44 ;
+		}
+
+		&::-webkit-scrollbar {
+			width: 12px;
+			background-color: #3c3f44 ;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			background-color: #01b1f5;
+		}
+	}
+
 }
 
 /*

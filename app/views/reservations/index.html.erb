@@ -1,203 +1,282 @@
-<style type="text/css">
-	.scroll {
-		max-height: 150px;
-	  	overflow-y: scroll;
-	}
-	.scroll::-webkit-scrollbar {
-    	width: 12px;
-	}
-
-	.scroll::-webkit-scrollbar-track {
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-	    border-radius: 10px;
-	}
-
-	.scroll::-webkit-scrollbar-thumb {
-	    border-radius: 10px;
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-	}
-</style>
-
 <div role="main" class="main">
-	<section class="page-header">
+	<!-- start: Breadcrumb-->
+	<section class="page-header page-header-modern bg-color-dark-scale-5 page-header-md">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<ul class="breadcrumb">
-						<li><%= link_to "HOME", root_path %></li>
-						<li>ALFONSO</li>
-						<li class="active">RESERVATIONS</li>
+
+				<div class="col-md-12 align-self-center p-static order-2 text-left">
+
+					<h1 class="text-light font-weight-bold text-8">Alfonso</h1>
+					<span class="sub-title text-dark-scale-1">Here is the list of all <strong>reservations.</strong> Feel free to make yours. Today.</span>
+
+				</div>
+
+				<div class="col-md-12 align-self-center order-1">
+
+					<ul class="breadcrumb d-block text-left">
+						<li><a href="/">Home</a></li>
+						<li>Alfonso</li>
+						<li>Reserve</li>
 					</ul>
+					
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div>
-						<h1>Introducing the new <strong>Alfonso</strong>.</h1>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</section>
+	<!-- end: Breadcrumb-->
 	
 
-	<div class="container">
-		<div id="reservation_result" class="alert" role="alert" data-bind="css: alertColor, html: alertMessage" style="display: none;">
+		<div id="reservation_result" class="alert" role="alert"  style="display: none;">
 		</div>
 
-		<h4>Here is a list of all <strong>reservations.</strong> Feel free to make yours. Today.</h4>
-
-		<div class="row">
-			<div class="col-lg-8">
-				<% if (@reservations.count > 0) %>
-            		<table class="hover stripe" id="reserveTable">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Room</th>
-								<th>Date</th>
-								<th>Day</th>
-								<th>Time</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<% @reservations.each do |item| %>
-							<% member = @memberList.select{|x| x.id == item.user_id}.first %>
-							<% room = @rooms.select{|x| x.id == item.room_id}.first %>
-								<tr>
-									<td><%= member.nil? ? "User does not exist..." : member.name %></td>
-									<td><%= room.nil? ? "Room does not exist..." : room.name %></td>
-									<td><%= item.start_at.strftime("%B %d, %Y") %></td>
-									<td><%= item.start_at.strftime("%A") %></td>
-									<td><%= item.start_at.strftime("%H:%M") %> - <%= item.end_at.strftime("%H:%M") %></td>
-									<td style="text-align: right;">
-									<% if not member.nil? %>
-										<%= link_to "<i class=\"fa fa-user\"></i>".html_safe, profile_path(member.email.split('@')[0]), :style => "color:#9E9E9E" %>
-									<% end %>
-									<%  if ((current_user.id == item.user_id) || (not Manager.where(room_id: item.room_id, user_id: current_user.id).first.nil?)) && Time.now < item.end_at %>
-										<%if item.detail && item.detail.length > 0%>
-											<a href='#'  data-tooltip data-placement="top" data-original-title="<%= item.detail %>"><i class="fa fa-question" style="color:#9E9E9E;"></i></a>
-										<%end%>
-										<%= link_to "<i class=\"fa fa-trash\"></i>".html_safe, reservation_path(item), method: :delete, data: { confirm: 'Are you sure?' }, :style => "color:#9E9E9E"%>
-									<% end %>
-									</td>
-								</tr>
-							<% end %>
-						</tbody>
-					</table>                    		
-				<% else %>
-					<img style="display: block; margin-left: auto; margin-right: auto;" src="/idontalways.png" />
-				<% end %>
-			</div>
-            <div class="col-lg-4">
-	            <div class="body">
-	                <h4>New Reservation?</h4><hr>
-					<% room_options = @rooms.collect{|x| [x.name, x.id]} %>
-					<%= form_for @newReservation, :url => {:controller => "reservations", :action => "create"} do |f| %>
-						<% if current_user && current_user.is_workshop && current_user.is_drum %>
-							<%= f.select :room_id, options_for_select(room_options), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
-						<% elsif current_user && current_user.is_workshop && (not current_user.is_myk) %>
-							<%= f.select :room_id, options_for_select(room_options, disabled: @drum_id), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
-						<% elsif current_user && current_user.is_drum && (not current_user.is_myk) %>
-							<%= f.select :room_id, options_for_select(room_options, disabled: @hangar_id), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
-						<% elsif current_user && (not current_user.is_myk) %>
-							<%= f.select :room_id, options_for_select(room_options, disabled: [@hangar_id, @drum_id]), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
-						<% else %> 
-							<%= f.select :room_id, options_for_select(room_options), {:include_blank => "Select One"}, id: :reservation_room_id, :class => "form-control show-tick", data: {bind: 'value: room_id'} %>
-						<% end %>
+		<div class="row justify-content-center">
+			<div class="col-lg-3 order-lg-2">
+	            <div class="card" data-plugin-sticky data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 110}}">
+					<div class="card-header">
+						<h4 class="card-title">New Reservation?</h4>
+						<div class="card-subtitle"><a data-toggle="modal" data-target="#largeModal" href="">(View Room Schedules)</a></div>
 						
-						<br>
-						<div class="row">
-							<div class="col-lg-6 col-md-6">
-								<%= f.text_field :start_at, id: :start_date, :class => 'form-control', data: {bind: 'textInput: start_at'} %><br>
-							</div>					
-							<div class="col-lg-6 col-md-6">
-								<%= f.text_field :end_at, id: :end_date, :class => "form-control", data: {bind: 'textInput: end_at'} %><br>
-							</div>					
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<%= f.text_area :detail, id: :detail, placeholder: "You must enter the other people's names, who you'll share the room with.", :class=> 'form-control', data: {bind: 'textInput: detail'} %> <br>
-							</div>
-						</div>
-
-						<%= f.hidden_field :is_canceled, id: :is_canceled, :value => false, data: {bind: 'value: is_canceled'} %>
-						<%= f.hidden_field :user_id, id: :user_id, :value => current_user.id, data: {bind: 'value: user_id'} %>
-						<div class="form-group">
-							<%= f.submit "RESERVE!", :class =>"btn btn-primary btn-block", id: :submit_reservation, data: {bind: 'click: saveReservation, disable: !isFormValid()'} %>
-						</div>
-					<% end %>
-					<div>
-						<ul class="nav nav-tabs tab-nav-right hidden" role="tablist" id="room_tabs">
-							<li role="presentation" class="active"><a href="#room0" data-toggle="tab" id="tab">EMPTY</a></li>
-							<% room_options.each do |room| %>
-							<li role="presentation" ><a href="#room<%=room[1]%>" data-toggle="tab" id="tab<%=room[1]%>" ><%=room[0]%></a></li>
-							<% end %>
-						</ul>
-						<div class="tab-content hidden" id="content">
-							<div role="tabpanel" class="tab-pane fade in active hidden" id="room0">
-								
-							</div>
-							<% room_options.each do |room| %>
-							<div role="tabpanel" class="tab-pane fade" id="room<%=room[1]%>">
-								<h5>May I present you the Studio <strong>Officer</strong>?</h5>
-								<%	room_id = room[1] 
-									managerTemp = Manager.where(room_id: room_id)
-									names = []
-									phones = []
-									emails = []
-									managerTemp.each do |temp|
-										item = User.find(temp.user_id)
-										names += [item.name.nil? ? "" : item.name]
-										phones += [item.phone_num.nil? ? "" : item.phone_num]
-										emails += [item.email]
-									end %>
-									<b>Name:	</b><%= names.join(" | ") %><br>
-									<b>Phone:	</b><%= phones.join(" | ") %><br>
-									<b>Email:	</b><%= emails.join(" | ") %>
-								<br><br>
-								<%	@schedule = {
-												:Monday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Monday").order("start_at ASC"),
-												:Tuesday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Tuesday").order("start_at ASC"),
-												:Wednesday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Wednesday").order("start_at ASC"),
-												:Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Thursday").order("start_at ASC"),
-												:Friday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Friday").order("start_at ASC"),
-												:Saturday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Saturday").order("start_at ASC"),
-												:Sunday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Sunday").order("start_at ASC")
-												}
-								count = 0
-								@schedule.each { |sch|
-									count+= sch[1].length
-								}
-
-								if count != 0
-								%>
-								<h5>Weekly <strong>Schedule</strong></h5><hr>
-								<div class="scroll">
-									<% @schedule.each do |sch| %>
-										<% if not sch[1].length == 0 %>
-											<h6><strong><%= sch[1][0].weekday %></strong></h6>
-											<% sch[1].each do |item| %>
-												<% lesson = @lessons.select{|x| x.id == item.faculty_lesson_id}.first %>
-												<div class="input-group">
-													<p style="margin-left: 15px;"><%= lesson.name %> | <%= item.start_at.strftime("%H:%M") %> - <%= item.end_at.strftime("%H:%M") %></p>
-												</div>
+						<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<div class="modal-body justify-content-center">
+										<ul class="list list-icons">
+											<% @tmpRooms.each do |room| %>
+												<li>
+													<i class="fas fa-door-open text-light"></i><%= room.name %>
+													<ul class="list list-icons">
+														<% if room.schedule.Monday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Monday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if room.schedule.Tuesday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Tuesday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if room.schedule.Wednesday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Wednesday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if room.schedule.Thursday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Thursday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if room.schedule.Friday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Friday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if room.schedule.Saturday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Saturday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if room.schedule.Sunday.any? %>
+															<li>
+																<i class="fas fa-calendar-week text-light"></i>Monday
+																<ul class="list list-icons">
+																	<% room.schedule.Sunday.each do |schedule| %>
+																		<li><i class="fas fa-chevron-right"></i><%= "#{@lessons.select{|x| x.id == schedule.faculty_lesson_id}.first.name}, #{schedule.start_at.to_datetime.strftime("%H:%M")} - #{schedule.end_at.to_datetime.strftime("%H:%M")}" %></li>
+																	<% end %>
+																</ul>
+															</li>
+														<% end %>
+														<% if ((room.schedule.Monday.count + room.schedule.Tuesday.count + room.schedule.Wednesday.count + room.schedule.Thursday.count + room.schedule.Friday.count + room.schedule.Saturday.count + room.schedule.Sunday.count) == 0) %>
+															<li><i class="fas fa-chevron-right"></i>There is nothing to show...</li>
+														<% end %>
+													</ul>
+												</li>
 											<% end %>
-										<% end %>
-									<% end %>
+										</ul>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+									</div>
 								</div>
-								<%end%>
 							</div>
-							<% end %>
 						</div>
 					</div>
-	            </div>
+					<div class="card-body">
+						<% room_options = @rooms.collect{|x| [x.name, x.id]} %>
+						<%= form_for @newReservation, :url => {controller: "reservations", action: "create"}, data: {bind: "with: reservationForm, submit: submitForm"} do |f| %>
+							<select name="reservation[room_id]" class="form-control text-light" data-bind="value: room_id" required>
+								<option value="">Select a room</option>
+								<% @rooms.each do |room| %>
+									<option value="<%= room.id %>" <%= (!current_user.is_myk and ((!current_user.is_workshop and room.id == @hangar_id) or (!current_user.is_drum and room.id == @drum_id))) ? "disabled" : "" %>><%= room.name %></option>
+								<% end %>
+							</select>
+							
+							<br>
+							<div class="row">
+								<div class="col-lg-6 col-md-6">
+									<label>Start At:</label>
+									<%= f.text_field :start_at, id: :start_date, :class => 'form-control text-light', data: {bind: "timePicker: start_at"} %><br>
+								</div>					
+								<div class="col-lg-6 col-md-6">
+									<label>End At:</label>
+									<%= f.text_field :end_at, id: :end_date, :class => "form-control text-light", data: {bind: "timePicker: end_at"} %><br>
+								</div>					
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<%= f.text_area :detail, id: :detail, placeholder: "You must enter the other people's names, who you'll share the room with.", :class=> 'form-control text-light', data: {bind: "textInput: detail"} %> <br>
+								</div>
+							</div>
+
+							<%= f.hidden_field :is_canceled, id: :is_canceled, :value => false %>
+							<%= f.hidden_field :user_id, id: :user_id, :value => current_user.id %>
+							<div class="form-group">
+								<%= f.submit "RESERVE!", :class =>"btn btn-primary btn-block", id: :submit_reservation, data: {bind: "enable: !$parent.showSpinner()"}%>
+							</div>
+						<% end %>
+
+						<div data-bind="visible: reservationForm.room_id() != ''">
+							<h4 class="card-title mb-1 text-4 font-weight-bold">May I present you the Studio Officer?</h4>
+							<p data-bind="html: managerNames(<%= @managers %>)"></p>
+							<p data-bind="html: managerEmails(<%= @managers %>)"></p>
+							<p data-bind="html: managerNums(<%= @managers %>)"></p>
+						</div>
+						<!--
+						<div>
+							<ul class="nav nav-tabs tab-nav-right hidden" role="tablist" id="room_tabs">
+								<li role="presentation" class="active"><a href="#room0" data-toggle="tab" id="tab">EMPTY</a></li>
+								<% room_options.each do |room| %>
+								<li role="presentation" ><a href="#room<%=room[1]%>" data-toggle="tab" id="tab<%=room[1]%>" ><%=room[0]%></a></li>
+								<% end %>
+							</ul>
+							<div class="tab-content hidden" id="content">
+								<div role="tabpanel" class="tab-pane fade in active hidden" id="room0">
+									
+								</div>
+								<% room_options.each do |room| %>
+								<div role="tabpanel" class="tab-pane fade" id="room<%=room[1]%>">
+									<h5>May I present you the Studio <strong>Officer</strong>?</h5>
+									<%	room_id = room[1] 
+										managerTemp = Manager.where(room_id: room_id)
+										names = []
+										phones = []
+										emails = []
+										managerTemp.each do |temp|
+											item = User.find(temp.user_id)
+											names += [item.name.nil? ? "" : item.name]
+											phones += [item.phone_num.nil? ? "" : item.phone_num]
+											emails += [item.email]
+										end %>
+										<b>Name:	</b><%= names.join(" | ") %><br>
+										<b>Phone:	</b><%= phones.join(" | ") %><br>
+										<b>Email:	</b><%= emails.join(" | ") %>
+									<br><br>
+									<%	@schedule = {
+													:Monday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Monday").order("start_at ASC"),
+													:Tuesday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Tuesday").order("start_at ASC"),
+													:Wednesday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Wednesday").order("start_at ASC"),
+													:Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Thursday").order("start_at ASC"),
+													:Friday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Friday").order("start_at ASC"),
+													:Saturday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Saturday").order("start_at ASC"),
+													:Sunday => LessonSchedule.where("room_id = ? AND weekday = ?", room_id, "Sunday").order("start_at ASC")
+													}
+									count = 0
+									@schedule.each { |sch|
+										count+= sch[1].length
+									}
+
+									if count != 0
+									%>
+									<h5>Weekly <strong>Schedule</strong></h5><hr>
+									<div class="scroll">
+										<% @schedule.each do |sch| %>
+											<% if not sch[1].length == 0 %>
+												<h6><strong><%= sch[1][0].weekday %></strong></h6>
+												<% sch[1].each do |item| %>
+													<% lesson = @lessons.select{|x| x.id == item.faculty_lesson_id}.first %>
+													<div class="input-group">
+														<p style="margin-left: 15px;"><%= lesson.name %> | <%= item.start_at.strftime("%H:%M") %> - <%= item.end_at.strftime("%H:%M") %></p>
+													</div>
+												<% end %>
+											<% end %>
+										<% end %>
+									</div>
+									<%end%>
+								</div>
+								<% end %>
+							</div>
+						</div>-->
+					</div>
+				</div>
         	</div>
+			<div class="col-lg-5 order-lg-1 scroll">
+				<div class="d-flex justify-content-center">
+					<div class="spinner-border" role="status" data-bind="visible: showSpinner">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
+				<table class="table table-hover table-striped" data-bind="attr: {hidden: showSpinner() ? true : (filteredResult().length > 0 ? null : true) }" hidden>
+					<thead>
+						<tr class="text-light">
+							<th>Name</th>
+							<th>Room</th>
+							<th class="text-center">Date</th>
+							<th class="text-center">Day</th>
+							<th class="text-center">Time</th>
+							<th class="text-center">Actions</th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: filteredResult">
+							<tr class="text-light">
+								<td data-bind="text: user.name"></td>
+								<td data-bind="text: room_name"></td>
+								<td class="text-center" data-bind="text: date"></td>
+								<td class="text-center" data-bind="text: weekday"></td>
+								<td class="text-center" data-bind="text: time"></td>
+								<td class="text-center">
+									<!-- ko if: user_id == <%= current_user.id %> || $parent.isManager($data.managers, <%= current_user.id %>) -->
+									<button onclick="Delete(this)" data-bind="attr: { 'data-delete-action': '/reservations/' + id }" class="btn btn-sm btn-danger">Delete</button>
+									<!-- /ko -->
+								</td>
+							</tr>
+					</tbody>
+				</table>                    		
+				<img data-bind="attr: {hidden: showSpinner() ? true : (filteredResult().length == 0 ? null : true) }" hidden style="display: block; margin-left: auto; margin-right: auto;" src="/idontalways.png" />
+				
+			</div>
 		</div>
-	</div>
 </div>
-<script>
+<%# <script>
     var table = $('#reserveTable').DataTable({
 					"columnDefs": [
 						{ "orderable": false, "targets": [0, 1, 3, 5] }
@@ -238,7 +317,7 @@
 	function ReservationViewModel(){
 		var self = this;
 
-		self.user_id = ko.observable('<%= current_user.id %>');
+		self.user_id = ko.observable('<%= current_user.id %><%#');
 		self.room_id = ko.observable(0);
 		self.start_at = ko.observable(start.format('ddd, DD MMM - HH:mm'));
 		self.end_at = ko.observable(end2.format('ddd, DD MMM - HH:mm'));
@@ -336,4 +415,4 @@
         $('#end_date').bootstrapMaterialDatePicker('setMinDate', date);
         $('#end_date').bootstrapMaterialDatePicker('setMaxDate', date_changed);
     });
-</script>
+</script> %>

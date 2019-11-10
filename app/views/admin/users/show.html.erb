@@ -1,0 +1,139 @@
+<div role="main" class="main">
+	<header class="page-header">
+		<h2>User Details</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span><a href="<%= @user.is_member ? admin_members_path : admin_users_path %>">Users</a></span></li>
+				<li><span>Show</span></li>
+			</ol>
+
+			
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+    <div class="row">
+        <div class="col-lg-6 order-lg-2">
+            <div class="row">
+                <div class="col-lg-6">
+                    <section class="card card-featured-left card-featured-primary mb-4">
+                        <div class="card-body">
+                            <div class="widget-summary widget-summary-md">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-warning">
+                                        <i class="fas fa-exclamation"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Warning Count</h4>
+                                        <div class="info">
+                                            <strong class="amount">Not Implemented</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase">(view all)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section class="card card-featured-left card-featured-primary mb-4">
+                        <div class="card-body">
+                            <div class="widget-summary widget-summary-md">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Reservation Count</h4>
+                                        <div class="info">
+                                            <strong class="amount"><%= @user.reservations.count %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase">(view all)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+            <%= form_for [:admin, @user] do |f| %>
+                <section class="card card-featured card-featured-info">
+                    <div class="card-body">
+                            <div class="form-group row mb-4">
+                                <div class="col-12 mb-3">
+                                    <label>Name</label>
+                                    <input type="text" name="user[name]" value="<%= @user.name %>" class="form-control" id="form-name"/>
+                                </div>
+                                <div class="col-12">
+                                    <label>Email</label>
+                                    <div class="input-group">
+                                        <input type="text" name="user[email]" value="<%= @user.email.split('@')[0] %>" class="form-control" id="form-email" placeholder="Enter new member's Sabanci mail..." readonly>
+                                        <span class="input-group-append">
+                                            <span class="input-group-text">@sabanciuniv.edu</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row pl-3 pr-3">
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="user[is_myk]" id="form-myk" data-bind="checked: is_myk" data-value="<%= @user.is_myk %>">
+                                            MYK
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="user[is_yk]" id="form-yk" data-bind="checked: is_yk" data-value="<%= @user.is_yk %>">
+                                            YK
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="user[is_drum]" id="form-drum" data-bind="checked: is_drum" data-value="<%= @user.is_drum %>">
+                                            Drum
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="user[is_workshop]" id="form-workshop" data-bind="checked: is_workshop" data-value="<%= @user.is_workshop %>">
+                                            Workshop
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-lg btn-primary"><i class="fas fa-save"></i>&nbsp; Save</button>
+                        <button type="button" onclick="" data-delete-action="<%= admin_user_path(@user) %>" class="btn btn-lg btn-warning" data-toggle="tooltip" data-placement="bottom" title="Soon"><i class="fas fa-exclamation"></i>&nbsp; Warning</button>
+                        <button type="button" onclick="" data-delete-action="<%= admin_user_path(@user) %>" class="btn btn-lg btn-danger" data-toggle="tooltip" data-placement="bottom" title="Soon"><i class="fas fa-ban"></i>&nbsp; Ban</button>
+                    </div>
+                </section>
+            <% end %>
+        </div>
+    </div>
+</div>

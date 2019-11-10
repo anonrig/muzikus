@@ -1,7 +1,5 @@
 @import "variables";
 
-@border-radius: 0;
-
 @color-primary: #43a6a3;
 
 @color-secondary: #eff3f5;
@@ -19,7 +17,7 @@
 	&.custom-dots-style-1 {
 		&.custom-dots-color-primary {
 			.owl-dots {
-				.owl-dot {
+				button.owl-dot {
 					border-color: @color-primary;
 
 					&.active, &:hover {
@@ -42,22 +40,39 @@
 */
 #header {
 	&.custom-header-transparent-style-1 {
-		.header-nav-main {
-			nav {
-				> ul {
-					> li {
-						&.active, &:hover {
+		.header-body {
+			&:before {
+				background-color: @color-quaternary !important;
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	#header {
+		&.custom-header-transparent-style-1 {
+			.header-nav-main {
+				nav {
+					> ul {
+						> li {
 							> a {
-								color: @color-primary !important;
+								&.active {
+									color: @color-primary;
+								}
+							}
+							&:hover {
+								> a {
+									color: @color-primary !important;
+								}
 							}
 						}
 					}
 				}
 			}
-		}
-		.header-body {
-			&:before {
-				background-color: @color-quaternary !important;
+			.header-body {
+				&:before {
+					background-color: @color-quaternary !important;
+				}
 			}
 		}
 	}
@@ -67,7 +82,17 @@
 	#header {
 		&.custom-header-transparent-style-1 {
 			.header-nav-main {
-				background-color: @color-quaternary;
+				nav {
+					> ul {
+						> li {
+							> a {
+								&.active {
+									background: @color-primary !important;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
