@@ -1,3 +1,2 @@
-* linguist-vendored
-public/* linguist-vendored=false
-*.erb linguist-language=Ruby
+public/* linguist-vendored
+*.html.erb linguist-language=Ruby
