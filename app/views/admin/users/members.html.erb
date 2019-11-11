@@ -72,17 +72,17 @@
 					<p>
 						<div class="btn-group flex-wrap">
 							<%if @currentPage > 1 %>
-								<a href="<%= admin_mambers_path({page: @currentPage - 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-left"></i></a>
+								<a href="<%= admin_members_path({page: @currentPage - 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-left"></i></a>
 							<% end %>
 							
 							<% if @currentPage > 4 %>
-								<a href="<%= admin_mambers_path({page: 1}) %>" class="btn btn-primary border-dark">1</a>
+								<a href="<%= admin_members_path({page: 1}) %>" class="btn btn-primary border-dark">1</a>
 							<% end %>
 							
 							<% i = @currentPage - 3 
 							while i <= @currentPage - 1
 								if i > 0 %>
-									<a href="<%= admin_mambers_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
+									<a href="<%= admin_members_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
 							<%	end
 								i = i + 1
 							end %>
@@ -92,17 +92,17 @@
 							<% i = @currentPage +  1 
 							while i <= @currentPage + 3 
 								if i <= @pageCount %>
-								<a href="<%= admin_mambers_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
+								<a href="<%= admin_members_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
 							<%	end
 								i = i + 1
 							end %>
 
 							<% if ((@pageCount - @currentPage) >= 4) %>
-								<a href="<%= admin_mambers_path({page: @pageCount}) %>" class="btn btn-primary border-dark"><%= @pageCount %></a>
+								<a href="<%= admin_members_path({page: @pageCount}) %>" class="btn btn-primary border-dark"><%= @pageCount %></a>
 							<% end %>
 
 							<% if @currentPage < @pageCount %>
-								<a href="<%= admin_mambers_path({page: @currentPage + 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-right"></i></a>
+								<a href="<%= admin_members_path({page: @currentPage + 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-right"></i></a>
 							<% end %>
 						</div>
 					</p>
@@ -119,7 +119,7 @@
         <header class="card-header">
             <h2 class="card-title">Add New Member</h2>
         </header>
-		<%= form_for [:admin, @newMember] do |f| %>mambersdiv class="card-body">
+		<%= form_for [:admin, @newMember] do |f| %>membersdiv class="card-body">
 				<div class="form-group mb-4">
 					<label>Email</label>
 					<div class="input-group">
