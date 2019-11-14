@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
 	def index
 		@hangar_id = ENV["HANGAR_ID"].to_i
 		@drum_id = ENV["DRUM_ID"].to_i
+		p @drum_id, @hangar_id
 		@memberList = User.where(is_member: true)
 		@newReservation = Reservation.new
 		@rooms = Room.all
@@ -45,7 +46,7 @@ class ReservationsController < ApplicationController
 
 	def create
 		@newReservation = Reservation.new(reservation_params)
-		
+		p ENV['HANGAR_ID'].to_i, ENV['DRUM_ID'].to_i
 		if(@newReservation.room_id.nil? || @newReservation.start_at.nil? || @newReservation.end_at.nil?)
 			render json: {type: 'warning', message: 'It seems like you forgot something, master.'}, status: :not_acceptable
 		elsif(@newReservation.start_at > @newReservation.end_at)
