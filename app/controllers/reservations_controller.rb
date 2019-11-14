@@ -49,14 +49,18 @@ class ReservationsController < ApplicationController
 		p ENV['HANGAR_ID'].to_i, ENV['DRUM_ID'].to_i
 		if(@newReservation.room_id.nil? || @newReservation.start_at.nil? || @newReservation.end_at.nil?)
 			render json: {type: 'warning', message: 'It seems like you forgot something, master.'}, status: :not_acceptable
+			return
 		elsif(@newReservation.start_at > @newReservation.end_at)
 			render json:  {type: 'warning', message: 'Unknown error... Please refresh the current page and try again.'}, status: :not_acceptable
+			return
 		else
 			if current_user && current_user.is_member
 				if @newReservation.room_id == ENV['HANGAR_ID'].to_i && !current_user.is_workshop
 					render json: {type: 'error', title: 'Oh snap!', text: 'You cannot reserve this room because you didn\'t take hangar workshop.'}, status: :not_acceptable
+					return
 				elsif @newReservation.room_id == ENV['DRUM_ID'].to_i && !current_user.is_drum
 					render json: {type: 'error', title: 'Oh snap!', text: 'You cannot reserve this room because you are not taking drum lesson.'}, status: :not_acceptable
+					return
 				end
 				@newReservation.user_id = current_user.id
 				isValid = true
@@ -83,11 +87,11 @@ class ReservationsController < ApplicationController
 						if(startTime < @newReservation.start_at && endTime > @newReservation.start_at)
 							isValid = false
 							render json: {type: 'error', title: 'Oh snap!', text: 'There is a faculty lesson or project in this room, don\'t forget to check the room schedule.'}, status: :not_acceptable
-							break
+							return
 						elsif (startTime >= @newReservation.start_at && startTime < @newReservation.end_at)
 							isValid = false
 							render json: {type: 'error', title: 'Oh snap!', text: 'There is a faculty lesson or project in this room, don\'t forget to check the room schedule.'}, status: :not_acceptable
-							break							
+							return							
 						end
 					end
 					#max 2 hours
@@ -104,15 +108,19 @@ class ReservationsController < ApplicationController
 						if total <= 60*60*2
 							@newReservation.save!
 							render json: {type: 'success', title: 'Success!', text: 'Your reservation has been successfully added.', data: @newReservation}, status: :ok
+							return
 						else
 							render json: {type: 'error', title: 'Oh snap!', text: 'You can\'t reserve more than 2 hours in 24 hour interval.'}, status: :not_acceptable
+							return
 						end
 					end
 				else
 					render json: {type: 'error', title: 'Oh snap!', text: 'You\'re trying to reserve to an occupied spot.'}, status: :not_acceptable
+					return
 				end
 			else
 				render json: {}, status: :forbidden
+				return
 			end
 		end
 	end

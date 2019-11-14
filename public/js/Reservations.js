@@ -186,7 +186,7 @@ function ReservationViewModel(){
                 })
             else
                 Swal.fire({
-                    text: `<p class="text-dark-scale-5">Unexpected error occured while adding reservation.</p>`,
+                    text: `Unexpected error occured while adding reservation.`,
                     type: 'error'
                 })
         }).always(() =>{
