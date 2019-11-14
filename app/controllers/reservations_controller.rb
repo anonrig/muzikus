@@ -1,8 +1,8 @@
 class ReservationsController < ApplicationController
 	before_action :set_rights
 	def index
-		@hangar_id = ENV["HANGAR_ID"]
-		@drum_id = ENV["DRUM_ID"]
+		@hangar_id = ENV["HANGAR_ID"].to_i
+		@drum_id = ENV["DRUM_ID"].to_i
 		@memberList = User.where(is_member: true)
 		@newReservation = Reservation.new
 		@rooms = Room.all
@@ -52,9 +52,9 @@ class ReservationsController < ApplicationController
 			render json:  {type: 'warning', message: 'Unknown error... Please refresh the current page and try again.'}, status: :not_acceptable
 		else
 			if current_user && current_user.is_member
-				if @newReservation.room_id == ENV['HANGAR_ID'] && !current_user.is_workshop
+				if @newReservation.room_id == ENV['HANGAR_ID'].to_i && !current_user.is_workshop
 					render json: {type: 'error', title: 'Oh snap!', text: 'You cannot reserve this room because you didn\'t take hangar workshop.'}, status: :not_acceptable
-				elsif @newReservation.room_id == ENV['DRUM_ID'] && !current_user.is_drum
+				elsif @newReservation.room_id == ENV['DRUM_ID'].to_i && !current_user.is_drum
 					render json: {type: 'error', title: 'Oh snap!', text: 'You cannot reserve this room because you are not taking drum lesson.'}, status: :not_acceptable
 				end
 				@newReservation.user_id = current_user.id
