@@ -52,6 +52,11 @@ class ReservationsController < ApplicationController
 			render json:  {type: 'warning', message: 'Unknown error... Please refresh the current page and try again.'}, status: :not_acceptable
 		else
 			if current_user && current_user.is_member
+				if @newReservation == ENV['HANGAR_ID'] && !current_user.is_workshop
+					render json: {type: 'error', title: 'Oh snap!', text: 'You cannot reserve this room because you didn\'t take hangar workshop.'}, status: :not_acceptable
+				elsif @newReservation == ENV['DRUM_ID'] && !current_user.is_drum
+					render json: {type: 'error', title: 'Oh snap!', text: 'You cannot reserve this room because you are not taking drum lesson.'}, status: :not_acceptable
+				end
 				@newReservation.user_id = current_user.id
 				isValid = true
 				#take 6 hour interval to check if its occupied before
