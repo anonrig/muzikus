@@ -65,19 +65,19 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-parent">
+                    <li class="nav-parent <%= (controller_name == "teachers" or controller_name == "faculty_lessons") ? "nav-expanded nav-active" : "" %>">
                         <a class="nav-link" href="#">
                             <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                             <span>Muzikus Faculty</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
+                            <li class="<%= (controller_name == "teachers") ? "nav-active" : "" %>">
                                 <a class="nav-link">
                                     Teachers
                                 </a>
                             </li>
-                            <li>
-                                <a class="nav-link">
+                            <li class="<%= (controller_name == "faculty_lessons") ? "nav-active" : "" %>">
+                                <a class="nav-link" href="<%= admin_faculty_lessons_path %>">
                                     Lessons / Projects
                                 </a>
                             </li>

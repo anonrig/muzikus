@@ -1,0 +1,71 @@
+<div role="main" class="main schedule-list scroll">
+    <header class="page-header">
+		<h2>Shedules</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span>Lessons | Projects</span></li>
+			</ol>
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+    <div class="row justify-content-around">
+        <div class="col-lg-4 mb-3 order-lg-2">
+            <section class="card card-featured card-featured-info sticky">
+
+                <div class="card-header">
+                    <h2 class="card-title">Create Room Schedule</h2>
+                </div>
+                <div class="card-body">
+                    <%= render partial: 'layouts/components/alert'%>
+                    <form method="post" action="<%= admin_faculty_lessons_path %>">
+                        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                        <div class="form-group mb-3">
+                            <label>Lesson / Project Name:</label>
+                            <input type="text" name="faculty_lesson[name]" placeholder="Enter a name..." class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <select id="teacher-select" name="faculty_lesson[teacher_id]" data-plugin-selectTwo class="form-control" required>
+                                <option value="">Select a teacher...</option>
+                                <% @teacherSelect.each do |item| %>
+                                    <option value="<%= item.val %>"><%= item.text %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <button type="sumbit" class="btn btn-primary pull-right"><i class="fas fa-save"></i> Submit</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-6 mb-3 order-lg-1">
+            <table class="table table-dark table-hover table-stiped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Teacher</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @lessons.each do |item| %>
+                        <tr>
+                            <td><%= item.name %></td>
+                            <td><%= item.teacher_name %></td>
+                            <td>
+                                <button onclick="Delete(this)" class="btn btn-sm btn-danger" data-delete-action="<%= admin_faculty_lesson_path(item.id) %>"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

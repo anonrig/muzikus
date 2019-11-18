@@ -47,6 +47,9 @@ Rails.application.routes.draw do
     #MANAGERS
     resources :managers, only: [:index, :create, :destroy]
 
+    #LESSONS / PROJECTS
+    resources :faculty_lessons, only: [:index, :create, :destroy]
+
     #SCHEDULES
     resources :lesson_schedules, only: [:index, :create, :destroy]
 
