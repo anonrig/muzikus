@@ -21,12 +21,44 @@
 		
 	</header>
 	<div class="row">
-		<div class="col">
+		<div class="col-12">
+			<section class=" card card-featured card-featured-info mb-5" style="<%= @activeSearch ? "" : "display: none;"%>" id="searchArea">
+				<header class="card-header d-flex justify-content-between">
+					<h2 class="card-title">Filter Results</h2>
+					<div class="card-actions">
+						<a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+					</div>
+				</header>
+				<div class="card-body scroll">
+					<form action="<%= admin_members_path %>">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<input name="fullname" value="<%= @filterFullname %>" placeholder="Search by name or email..." class="form-control"/>
+							</div>
+							<div class="form-group col-md-4">
+								<select name="memberRole" class="form-control">
+									<option value="">Select one...</option>
+									<option value="0" <%= @memberRole == 0 ? "selected" : "" %>>None</option>
+									<option value="1" <%= @memberRole == 1 ? "selected" : "" %>>YK</option>
+									<option value="2" <%= @memberRole == 2 ? "selected" : "" %>>MYK</option>
+								</select>
+							</div>
+						</div>
+						<div class="d-flex flex-row justify-content-between">
+						<a class="btn btn-warning pull-right mt-3" href="<%= admin_members_path %>">Clear Filter</a>
+						<input type="submit" class="btn btn-primary pull-right mt-3" value="Seacrh"/>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+		<div class="col-12">
 			<section class=" card card-featured card-featured-info">
 				<header class="card-header d-flex justify-content-between">
 					<h2 class="card-title">Members</h2>
                     <div >
-                        <a href="#modalForm" class="modal-with-form btn btn-xs btn-info">Add New Member</a>
+                        <a href="#modalForm" class="modal-with-form btn btn-sm btn-info mr-2">New Member</a>
+                        <button id="openSearch" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
                     </div>
 				</header>
 				<div class="card-body scroll">
@@ -72,17 +104,17 @@
 					<p>
 						<div class="btn-group flex-wrap">
 							<%if @currentPage > 1 %>
-								<a href="<%= admin_members_path({page: @currentPage - 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-left"></i></a>
+								<a href="<%= admin_members_path({page: @currentPage - 1, fullname: @filterFullname, memberRole: @memberRole}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-left"></i></a>
 							<% end %>
 							
 							<% if @currentPage > 4 %>
-								<a href="<%= admin_members_path({page: 1}) %>" class="btn btn-primary border-dark">1</a>
+								<a href="<%= admin_members_path({page: 1, fullname: @filterFullname, memberRole: @memberRole}) %>" class="btn btn-primary border-dark">1</a>
 							<% end %>
 							
 							<% i = @currentPage - 3 
 							while i <= @currentPage - 1
 								if i > 0 %>
-									<a href="<%= admin_members_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
+									<a href="<%= admin_members_path({page: i, fullname: @filterFullname, memberRole: @memberRole}) %>" class="btn btn-primary border-dark"><%= i %></a>
 							<%	end
 								i = i + 1
 							end %>
@@ -92,17 +124,17 @@
 							<% i = @currentPage +  1 
 							while i <= @currentPage + 3 
 								if i <= @pageCount %>
-								<a href="<%= admin_members_path({page: i}) %>" class="btn btn-primary border-dark"><%= i %></a>
+								<a href="<%= admin_members_path({page: i, fullname: @filterFullname, memberRole: @memberRole}) %>" class="btn btn-primary border-dark"><%= i %></a>
 							<%	end
 								i = i + 1
 							end %>
 
 							<% if ((@pageCount - @currentPage) >= 4) %>
-								<a href="<%= admin_members_path({page: @pageCount}) %>" class="btn btn-primary border-dark"><%= @pageCount %></a>
+								<a href="<%= admin_members_path({page: @pageCount, fullname: @filterFullname, memberRole: @memberRole}) %>" class="btn btn-primary border-dark"><%= @pageCount %></a>
 							<% end %>
 
 							<% if @currentPage < @pageCount %>
-								<a href="<%= admin_members_path({page: @currentPage + 1}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-right"></i></a>
+								<a href="<%= admin_members_path({page: @currentPage + 1, fullname: @filterFullname, memberRole: @memberRole}) %>" class="btn btn-primary border-dark"><i class="fas fa-chevron-right"></i></a>
 							<% end %>
 						</div>
 					</p>

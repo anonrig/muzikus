@@ -22,8 +22,34 @@ class Admin::UsersController < BaseAdminController
     def members
         @newMember = User.new
         @users = User.where(is_member: true)
-        #TODO: User search
+        @activeSearch = false
+        
+        
+        #User search
+        if (not params["fullname"].nil?) and params["fullname"].length > 0
+            @filterFullname = params["fullname"]
+            @users = @users.select{|x| (x.name.nil? ? false : x.name.downcase.include?(@filterFullname.downcase)) || x.email.include?(@filterFullname.downcase)}
+            @activeSearch = true
+        end
 
+        if (not params["memberRole"].nil?) and params["memberRole"].length > 0
+            @memberRole = params["memberRole"].to_i
+            case @memberRole
+            when 0
+                @activeSearch = true
+                @users = @users.select{|x| !x.is_myk & !x.is_yk }
+            when 1
+                @users = @users.select{|x| x.is_yk && !x.is_myk }
+                @activeSearch = true
+            when 2
+                @users = @users.select{|x| x.is_myk }
+                @activeSearch = true
+            else
+                @memberRole = nil
+            end
+        end
+        
+        
         # Pagination
         @currentPage = params["page"].to_i
         if @currentPage == 0 then @currentPage = 1 end

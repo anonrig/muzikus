@@ -95,3 +95,9 @@ if(scheduleForm[0])
     //     }
     // });
 }
+
+var searchButton = $("#openSearch");
+if(searchButton[0])
+{
+    searchButton.on('click', function(e) { debugger;$("#searchArea").fadeIn("slow"); })
+}
