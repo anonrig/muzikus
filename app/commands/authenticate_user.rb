@@ -15,18 +15,16 @@ class AuthenticateUser
   
     def user
         # Authorize token with google...
-        param = {
-            id_token: token
-        }
         uri = URI("https://oauth2.googleapis.com/tokeninfo?id_token=#{token}")
         response = Net::HTTP.get(uri)
         authResponse = JSON.parse(response)
         
         hd = authResponse["hd"]
-        if hd == "sabanciniv.edu"
+        if hd == "sabanciuniv.edu"
             uid = authResponse["sub"]
             user = User.where(uid: uid).first
-            
+            return user if user
+
             email = authResponse["email"]
             user = User.where(email: email).first
             if user
