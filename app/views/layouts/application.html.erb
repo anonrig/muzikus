@@ -25,6 +25,10 @@
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
 
+		<meta name="google-signin-scope" content="profile email">
+		<meta name="google-signin-client_id" content="728359879380-9qqtcpngh151h7g4nk912pr7lbqe3m67.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 		<!-- Web Fonts  -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light%7CPlayfair+Display:400" rel="stylesheet" type="text/css">
 
@@ -67,7 +71,7 @@
 			<!-- start: header-->
 			<%= render partial: "/layouts/components/application_header" %>
 			<!-- end: header--> 
-
+			<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 			<!-- start: Page Content-->
 			<%= yield %>
 			<!-- end: Page Content-->
@@ -162,6 +166,23 @@
 			ko.applyBindings(new EventViewModel());
 		</script>
 		<% end %>
+
+		<script>
+			function onSignIn(googleUser) {
+				// Useful data for your client-side scripts:
+				var profile = googleUser.getBasicProfile();
+				console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+				console.log('Full Name: ' + profile.getName());
+				console.log('Given Name: ' + profile.getGivenName());
+				console.log('Family Name: ' + profile.getFamilyName());
+				console.log("Image URL: " + profile.getImageUrl());
+				console.log("Email: " + profile.getEmail());
+
+				// The ID token you need to pass to your backend:
+				var id_token = googleUser.getAuthResponse().id_token;
+				console.log("ID Token: " + id_token);
+			}
+		</script>
 		
 		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>

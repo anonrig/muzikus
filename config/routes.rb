@@ -72,6 +72,7 @@ Rails.application.routes.draw do
 
   #API routes
   namespace :api do
+    post 'authenticate', to: 'authentication#authenticate'
     resources :events, only: [:index, :show]
   end
 end

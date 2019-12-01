@@ -24,6 +24,8 @@ gem 'uglifier', '>= 1.3.0'
 # Google Login
 gem 'omniauth-google-oauth2', "~> 0.6.0"
 gem 'certified'
+gem 'jwt'
+gem 'simple_command'
 #instagram gallery
 gem 'instagram'
 # Use CoffeeScript for .coffee assets and views
@@ -58,6 +60,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
 #  gem 'selenium-webdriver'
+  gem 'thin'
 end
 
 group :development do
