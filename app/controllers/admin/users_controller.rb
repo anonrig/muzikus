@@ -36,8 +36,8 @@ class Admin::UsersController < BaseAdminController
             @memberRole = params["memberRole"].to_i
             case @memberRole
             when 0
-                @activeSearch = true
                 @users = @users.select{|x| !x.is_myk & !x.is_yk }
+                @activeSearch = true
             when 1
                 @users = @users.select{|x| x.is_yk && !x.is_myk }
                 @activeSearch = true
