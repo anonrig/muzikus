@@ -36,7 +36,7 @@
 					<div class="card-header">
 						<h4 class="card-title">New Reservation?</h4>
 						<div class="card-subtitle"><a data-toggle="modal" data-target="#largeModal" href="">(View Room Schedules)</a></div>
-						
+						<!-- Room Schedule Modal-->
 						<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-md">
 								<div class="modal-content">
@@ -130,6 +130,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- /Room Schedule Modal -->
 					</div>
 					<div class="card-body">
 						<% room_options = @rooms.collect{|x| [x.name, x.id]} %>
@@ -265,7 +266,10 @@
 								<td class="text-center" data-bind="text: time"></td>
 								<td class="text-center">
 									<!-- ko if: user_id == <%= current_user.id %> || $parent.isManager($data.managers, <%= current_user.id %>) -->
-									<button onclick="Delete(this)" data-bind="attr: { 'data-delete-action': '/reservations/' + id }" class="btn btn-sm btn-danger">Delete</button>
+									<button data-bind="click: $parent.deleteReservation" class="btn btn-sm btn-danger">Delete</button>
+									<!-- /ko -->
+									<!-- ko if: (user_id == <%= current_user.id %> || $parent.isManager($data.managers, <%= current_user.id %>)) && detail.length -->
+									<button data-bind="attr: {'data-tooltip' : detail}" class="btn btn-sm btn-info"><i class="fas fa-question"></i></button>
 									<!-- /ko -->
 								</td>
 							</tr>
@@ -274,7 +278,7 @@
 				<img data-bind="attr: {hidden: showSpinner() ? true : (filteredResult().length == 0 ? null : true) }" hidden style="display: block; margin-left: auto; margin-right: auto;" src="/idontalways.png" />
 				
 			</div>
-		</div>
+		</div>						
 </div>
 <%# <script>
     var table = $('#reserveTable').DataTable({
