@@ -18,19 +18,31 @@ class AuthenticateUser
         param = {
             id_token: token
         }
-        response = Net::HTTP.get_response("https://oauth2.googleapis.com","/tokeninfo?id_token=#{token}")
-        authResponse = JSON.parse(response.body)
+        uri = URI("https://oauth2.googleapis.com/tokeninfo?id_token=#{token}")
+        response = Net::HTTP.get(uri)
+        authResponse = JSON.parse(response)
+        
         hd = authResponse["hd"]
         if hd == "sabanciniv.edu"
             uid = authResponse["sub"]
             user = User.where(uid: uid).first
-            return user if user
             
+            email = authResponse["email"]
+            user = User.where(email: email).first
+            if user
+                user.update(
+                    provider: "google_oauth2",
+                    uid: uid,
+                    name: authResponse['name'].split(' (Student)')[0]
+                )
+                return user
+            end
+
             user = User.create(
                 provider: "google_oauth2",
                 uid: uid,
                 name: authResponse['name'].split(' (Student)')[0],
-                email: authResponse['email'],
+                email: email,
                 is_member: false,
                 is_yk: false,
                 is_myk: false,
