@@ -74,5 +74,6 @@ Rails.application.routes.draw do
   namespace :api do
     post 'authenticate', to: 'authentication#authenticate'
     resources :events, only: [:index, :show]
+    resources :reservations, only: [:index, :create, :destroy]
   end
 end

@@ -2,12 +2,17 @@ class Api::AuthenticationController < ApiController
     skip_before_action :authenticate_request
    
     def authenticate
+      response = ApiModels::BaseApiResponse.new
       command = AuthenticateUser.call(params[:token])
    
       if command.success?
-        render json: { auth_token: command.result }
+        response.data = {
+          auth_token: command.result 
+        }
+        render json: response
       else
-        render json: { error: command.errors }, status: :unauthorized
+        response.setMessage command.errors
+        render json: response, status: :unauthorized
       end
     end
 end

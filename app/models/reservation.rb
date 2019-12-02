@@ -20,6 +20,6 @@ class Reservation < ActiveRecord::Base
 
 	def managers
 		managers = Manager.where(room_id: self.room_id)
-		managers.map{|manager| Hash[user_id: manager.user_id, name: manager.user[:name], phone: manager.manager_num]}
+		managers.map{|manager| Hash[user_id: manager.user_id, name: manager.manager[:name], phone: manager.manager_num]}
 	end
 end

@@ -32,4 +32,15 @@ class User < ActiveRecord::Base
 			)
 		end
 	end
+
+	def parse_response
+		{
+			id: self.id,
+			fullName: self.name,
+			email: self.email,
+			profilePic: nil,
+			isMember: self.is_member,
+			role: self.is_myk ? 1 : self.is_yk ? 2 : 3
+		}
+	end
 end

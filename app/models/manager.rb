@@ -5,12 +5,23 @@ class Manager < ActiveRecord::Base
 	def as_json(options={})
 		super(
             except: [:created_at, :updated_at],
-			methods: [:user]
+			methods: [:manager]
 		)
 	end
 
-	def user
+	def manager
 		user = User.find(self.user_id)
 		Hash[name: user.name, email: user.email]
+	end
+
+	def parse_response
+		{
+			id: self.user.id,
+			fullName: self.user.name,
+			email: self.user.email,
+			profilePic: nil,
+			isMember: self.user.is_member,
+			role: self.user.is_myk ? 1 : self.user.is_yk ? 2 : 3
+		}
 	end
 end
