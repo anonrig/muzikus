@@ -22,7 +22,7 @@ class Api::ReservationsController < ApiController
 
         #User should be a member
         if not current_user.is_member
-            render json: {}, :forbidden
+            render json: {}, status: :forbidden
             return
         end
 
