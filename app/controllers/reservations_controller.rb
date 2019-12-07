@@ -1,6 +1,9 @@
 class ReservationsController < ApplicationController
 	before_action :set_rights
 	def index
+		@hangar_id = ENV["HANGAR_ID"].to_i
+		@drum_id = ENV["DRUM_ID"].to_i
+		p @drum_id, @hangar_id
 		@memberList = User.where(is_member: true)
 		@newReservation = Reservation.new
 		@rooms = Room.all
@@ -8,13 +11,13 @@ class ReservationsController < ApplicationController
 		#Room schedules
 		@tmpRooms = Room.all.to_a.map(&:serializable_hash)
 
-		@tmpRooms.each do |room|
+        @tmpRooms.each do |room|
             schedule = {
-				:Monday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Monday").order("start_at ASC").to_a.map(&:serializable_hash),
+                :Monday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Monday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Tuesday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Tuesday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Wednesday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Wednesday").order("start_at ASC").to_a.map(&:serializable_hash),
-				:Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Thursday").order("start_at ASC").to_a.map(&:serializable_hash),
-				:Friday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Friday").order("start_at ASC").to_a.map(&:serializable_hash),
+                :Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Thursday").order("start_at ASC").to_a.map(&:serializable_hash),
+                :Friday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Friday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Saturday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Saturday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Sunday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Sunday").order("start_at ASC").to_a.map(&:serializable_hash)
             }
@@ -43,7 +46,7 @@ class ReservationsController < ApplicationController
 
 	def create
 		@newReservation = Reservation.new(reservation_params)
-
+		p ENV['HANGAR_ID'].to_i, ENV['DRUM_ID'].to_i
 		if(@newReservation.room_id.nil? || @newReservation.start_at.nil? || @newReservation.end_at.nil?)
 			render json: {type: 'warning', message: 'It seems like you forgot something, master.'}, status: :not_acceptable
 			return
@@ -64,8 +67,8 @@ class ReservationsController < ApplicationController
 				#take 6 hour interval to check if its occupied before
 				reservationsOnThatDay = Reservation.where(room_id: @newReservation.room_id).where('start_at BETWEEN ? AND ?', @newReservation.start_at - 2.hours, @newReservation.start_at + 2.hours)
 				#take room schedule on that day
-				 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-				rweekdaysoomSchedule = LessonSchedule.where(room_id: @newReservation.room_id, weekday: weekdays[@newReservation.start_at.wday - 1])
+				weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+				roomSchedule = LessonSchedule.where(room_id: @newReservation.room_id, weekday: weekdays[@newReservation.start_at.wday - 1])
 
 				reservationsOnThatDay.each do |item|
 					if(item.start_at < @newReservation.start_at && item.end_at > @newReservation.start_at)
