@@ -75,7 +75,7 @@ Rails.application.routes.draw do
     post 'authenticate', to: 'authentication#authenticate'
     resources :events, only: [:index, :show]
     resources :reservations, only: [:index, :create, :destroy]
-    resources :rooms, only: [:index]
+    resources :rooms, only: [:index, :show]
     get 'account/get' => 'account#get'
   end
 end

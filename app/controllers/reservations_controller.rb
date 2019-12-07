@@ -1,9 +1,6 @@
 class ReservationsController < ApplicationController
 	before_action :set_rights
 	def index
-		@hangar_id = ENV["HANGAR_ID"].to_i
-		@drum_id = ENV["DRUM_ID"].to_i
-		p @drum_id, @hangar_id
 		@memberList = User.where(is_member: true)
 		@newReservation = Reservation.new
 		@rooms = Room.all
@@ -11,13 +8,13 @@ class ReservationsController < ApplicationController
 		#Room schedules
 		@tmpRooms = Room.all.to_a.map(&:serializable_hash)
 
-        @tmpRooms.each do |room|
+         :Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Thursday").order("start_at ASC").to_a.map(&:serializable_hash),
+                @tmpRooms.each do |room|
             schedule = {
                 :Monday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Monday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Tuesday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Tuesday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Wednesday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Wednesday").order("start_at ASC").to_a.map(&:serializable_hash),
-                :Thursday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Thursday").order("start_at ASC").to_a.map(&:serializable_hash),
-                :Friday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Friday").order("start_at ASC").to_a.map(&:serializable_hash),
+               :Friday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Friday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Saturday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Saturday").order("start_at ASC").to_a.map(&:serializable_hash),
                 :Sunday => LessonSchedule.where("room_id = ? AND weekday = ?", room["id"], "Sunday").order("start_at ASC").to_a.map(&:serializable_hash)
             }
@@ -46,12 +43,12 @@ class ReservationsController < ApplicationController
 
 	def create
 		@newReservation = Reservation.new(reservation_params)
-		p ENV['HANGAR_ID'].to_i, ENV['DRUM_ID'].to_i
+
 		if(@newReservation.room_id.nil? || @newReservation.start_at.nil? || @newReservation.end_at.nil?)
 			render json: {type: 'warning', message: 'It seems like you forgot something, master.'}, status: :not_acceptable
 			return
 		elsif(@newReservation.start_at > @newReservation.end_at)
-			render json:  {type: 'warning', message: 'Unknown error... Please refresh the current page and try again.'}, status: :not_acceptable
+			render json:  {type: 'warning', message: 'End date must be greater than start date... Please refresh the current page and try again.'}, status: :not_acceptable
 			return
 		else
 			if current_user && current_user.is_member
