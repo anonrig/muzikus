@@ -18,14 +18,14 @@ class Api::RoomsController < ApiController
             return
         end
 
-        managers = room.parse_response[:managers]
+        managers = room.managers.map(&:parse_response)
 
         schedules = room.lesson_schedules
         .group_by(&:weekday)
         .collect{|key, val| {
             weekday: key, 
             lessons: val.sort_by{|x| x.start_at}.collect{|x| {
-                lesson: x.faculty_lesson.name,
+                name: x.faculty_lesson.name,
                 startAt: x.start_at,
                 endAt: x.end_at
             }}

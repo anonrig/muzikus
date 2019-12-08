@@ -20,6 +20,7 @@ class Manager < ActiveRecord::Base
 			fullName: self.user.name,
 			email: self.user.email,
 			profilePic: nil,
+			phone_number: self.manager_num,
 			isMember: self.user.is_member,
 			role: self.user.is_myk ? 1 : self.user.is_yk ? 2 : 3
 		}
