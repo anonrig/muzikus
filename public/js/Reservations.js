@@ -87,9 +87,9 @@ function ReservationViewModel(){
             return "<strong>Name: </strong>" + ko.utils.arrayFilter(managers, (item) => {
                 return item.room_id == self.reservationForm.room_id()
             }).map((item) => {
-                if(!item.user.name)
-                    item.user.name = "Not found"
-                return item.user.name
+                if(!item.manager.name)
+                    item.manager.name = "Not found"
+                return item.manager.name
             }).join(', ')
         })
     }
@@ -98,9 +98,9 @@ function ReservationViewModel(){
             return "<strong>Email: </strong>" + ko.utils.arrayFilter(managers, (item) => {
                 return item.room_id == self.reservationForm.room_id()
             }).map((item) => {
-                if(!item.user.email)
-                    item.user.email = "Not found"
-                return item.user.email
+                if(!item.manager.email)
+                    item.manager.email = "Not found"
+                return item.manager.email
             }).join(', ')
         })
     }
@@ -115,22 +115,22 @@ function ReservationViewModel(){
             }).join(', ').toString()
         })
     }
-    self.roomManagers = (managers) =>{
-        ko.utils.arrayMap(managers, (item) =>{
-            if(!item.user.name)
-                item.user.name = "Not Found"
-            if(!item.user.email)
-                item.user.email = "Not Found"
-            if(!item.manager_num)
-                item.manager_num = "Not Found"
-        })
+    // self.roomManagers = (managers) =>{
+    //     ko.utils.arrayMap(managers, (item) =>{
+    //         if(!item.manager.name)
+    //             item.manager.name = "Not Found"
+    //         if(!item.manager.email)
+    //             item.manager.email = "Not Found"
+    //         if(!item.manager_num)
+    //             item.manager_num = "Not Found"
+    //     })
 
-        return ko.computed(() => {
-            return ko.utils.arrayFilter(managers, (item) => {
-                return item.room_id == self.reservationForm.room_id()
-            })
-        })
-    }
+    //     return ko.computed(() => {
+    //         return ko.utils.arrayFilter(managers, (item) => {
+    //             return item.room_id == self.reservationForm.room_id()
+    //         })
+    //     })
+    // }
 
     self.isManager = (managerList, user_id)=>{
         debugger
