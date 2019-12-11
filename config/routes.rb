@@ -58,6 +58,9 @@ Rails.application.routes.draw do
 
     #BUDGET STATUS
     resources :budgets, only: [:index, :create]
+
+    #EVENTS
+    resources :events, only: [:new, :create]
   end
 
 

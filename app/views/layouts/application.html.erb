@@ -130,18 +130,21 @@
 				this.id = ko.observable(data.id);
 				this.title = ko.observable(data.title);
 				this.location = ko.observable(data.location);
-				this.starts_at = ko.observable(moment(data.starts_at).format('ddd, DD MMM - HH:mm'));
+				this.starts_at = ko.observable(moment(data.starts_at));
 				this.details = ko.observable(data.details);
 				this.photo_url = ko.observable(data.photo_url);
 
-				this.getEventType = ko.pureComputed(function()
+				this.getStartsAt = ko.pureComputed(function(){
+					return moment(self.starts_at()).format('ddd, DD MMM - HH:mm')
+				})
+				this.isPast = ko.pureComputed(function()
 				{
-					return this.starts_at <  now ? 'past' : 'upcoming';
+					return this.starts_at <  now;
 				})
 			}
 			function EventViewModel(){
 				var self = this;
-
+				this.now = ko.observable(moment())
 				this.EventList = ko.observableArray([]);
 				this.SelectedEvent = ko.observable(new Event());
 				

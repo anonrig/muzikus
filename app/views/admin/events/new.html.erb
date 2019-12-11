@@ -1,0 +1,92 @@
+<div role="main" class="main">
+    <header class="page-header">
+		<h2>Create New Event</h2>
+
+		<!-- start: Breadcrumb area -->
+		<div class="right-wrapper text-right">
+			<ol class="breadcrumbs" style="margin-right: 50px;">
+				<li>
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li><span><a href="/admin">Admin</a></span></li>
+				<li><span>Events</span></li>
+				<li><span>Create</span></li>
+			</ol>
+		</div>
+		<!-- end: Breadcrumb area -->
+		
+	</header>
+    <%= render partial: "/layouts/components/alert" %>
+    <div class="row justify-content-center">
+        <div class="col-lg-5 mr-5">
+            <form action="<%=admin_events_path%>" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="control-label">Title</label>
+                        <input name="event[title]" class='form-control' data-bind="textInput: title" required/>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="control-label">Location</label>
+                            <input name="event[location]" class='form-control' data-bind='textInput: location' required/>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Starts at</label>
+                        <input class='form-control' data-bind='timePicker: starts_at' id="event_starts_at" required/>
+                        <input data-bind='value: starts_at' name="event[starts_at]" type="hidden"/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label">Details</label>
+                        <div class="form-control" id="editor" onkeyup="auto_grow(this)" data-bind="ckeditor: details" style="min-height: 250px"></div>
+                        <input name='event[details]' class='form-control' data-bind='value: details' type="hidden" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label">Poster</label>
+                        <div class="fileupload fileupload-new" data-provides="fileupload" style="width: 100%;">
+                            <div class="input-append">
+                                <div class="uneditable-input">
+                                    <span class="fileupload-preview"></span>
+                                </div>
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileupload-exists">Change</span>
+                                    <span class="fileupload-new">Select file</span>
+                                    <input name='event[photo]' data-bind='value: picture' type="file" required/>
+                                </span>
+                                <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input class='btn btn-primary pull-right' data-bind='disable: false' type="submit"/>
+            </form>        
+        </div>
+        <div class="col-lg-3 ml-5">
+            
+                <label>Preview:</label>
+                <hr>
+                <div class="row">
+					<div class="col-md-12 mb-2">
+                        <h5 class="mt-sm" data-bind="text: Title()"></h5>
+					</div>
+					<div class="col-md-12 mb-3">
+                        <img alt="" class="img-thumbnail" id="eventPosterPreview" src="/img/facebook-image.jpg">
+						
+					</div>
+                    <div class="col-md-12 mb-5">
+                        <div data-bind="html: Details()"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="d-flex flex-row justify-content-between">
+                            <p data-bind="html: '<i class=\'fa fa-map-marker-alt\'></i> ' + Location()"></p>
+                            <p data-bind="html: StartsAt()"></p>
+                        </div>
+                    </div>
+					
+				</div>
+        </div>
+    </div>
+        
+        
+</div>
