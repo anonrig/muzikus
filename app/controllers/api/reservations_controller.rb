@@ -118,9 +118,11 @@ class Api::ReservationsController < ApiController
     end
 
     def destroy
+        response = ApiModels::BaseApiResponse.new
         reservation = Reservation.where(id: params[:id]).first
         if reservation.nil?
-            render json: {}, status: :not_found
+            response.setMessage("Couldn't find the item...")
+            render json: response
             return
         end
 
@@ -128,13 +130,13 @@ class Api::ReservationsController < ApiController
         manager_ids = room.parse_response[:managers].collect{|x| x[:id]}
 
         if ((reservation.user_id != current_user.id) and (not manager_ids.include?(current_user.id)))
-            render json: {}, status: :forbidden
+            response.setMessage("You don't have permission to do this...")
+            render json: response
             return
         end
 
         reservation.destroy
 
-        response = ApiModels::BaseApiResponse.new
         response.message = "Reservation has been deleted successfully..."
         response.data = true
         render json: response 
