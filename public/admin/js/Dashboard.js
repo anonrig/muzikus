@@ -1,5 +1,4 @@
 $("#deleteSession").click(function(){
-    debugger
     Swal.fire({
         title: '<p class="text-dark-scale-5">Are you sure?<p>',
         text: "You won't be able to revert this!",
@@ -23,7 +22,6 @@ $("#deleteSession").click(function(){
 });
 
 $("#deleteReservations").click(function(){
-    debugger
     Swal.fire({
         title: '<p class="text-dark-scale-5">Are you sure?<p>',
         text: "You won't be able to revert this!",

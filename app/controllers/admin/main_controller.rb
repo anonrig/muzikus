@@ -50,7 +50,7 @@ class Admin::MainController < BaseAdminController
     end
 
     def reservations
-        reservations = Reservation.where("start_at < ?", Time.now.beginning_of_day - 1.month.ago)
+        reservations = Reservation.where("start_at < ?", 1.month.ago.beginning_of_day)
 
         reservations.destroy_all
         
