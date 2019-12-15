@@ -1,4 +1,6 @@
 class Admin::MainController < BaseAdminController
+    before_action :admin_authorization, except: [:index]
+
     def index
         #Reservation graph
         resCounts = Reservation.where("created_at > ?", 1.week.ago).group("room_id").count
@@ -45,5 +47,27 @@ class Admin::MainController < BaseAdminController
         end
         @reservations = JSON.parse(@reservations.to_json, object_class: OpenStruct)
         p @reservations[0]
+    end
+
+    def reservations
+        reservations = Reservation.where("start_at < ?", Time.now.beginning_of_day - 1.month.ago)
+
+        reservations.destroy_all
+        
+        render json: {reservationCount: Reservation.count}
+    end
+
+    def user_data
+    end
+
+    def ban_info
+    end
+
+    def sessions
+        sessions = Session.where("created_at < ?", 1.week.ago)
+        
+        sessions.destroy_all
+
+        render json: {sessionCount: Session.count}
     end
 end

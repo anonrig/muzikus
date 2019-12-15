@@ -160,19 +160,19 @@
                     <div class="progress-bar progress-bar-dark" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @coreEntries / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Site Data">
                         
                     </div>
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @userCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Users">
+                    <div id="userCount" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @userCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Users">
                         
                     </div>
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @scoutRelated / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Scout Related Data">
+                    <div id="scoutCount" class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @scoutRelated / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Scout Related Data">
                         
                     </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @reservationCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reservations">
+                    <div id="reservationCount" class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @reservationCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reservations">
                        
                     </div>
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @banCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ban List">
+                    <div id="banCount" class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @banCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ban List">
                         
                     </div>
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @sessionCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="User Sessions">
+                    <div id="sessionCount" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <%= @sessionCount / 100.0 %>%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="User Sessions">
                        
                     </div>
                 </div>
@@ -206,10 +206,10 @@
                 <div class="btn-group flex-wrap pull-right">
                     <button type="button" class="mb-1 mt-1 mr-1 btn btn-primary dropdown-toggle" data-toggle="dropdown">Remove <span class="caret"></span></button>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item text-1 text-light">Reservations older than 1 month</a>
+                        <a class="dropdown-item text-1 text-primary" href="javascript:;" id="deleteReservations">Reservations older than 1 month</a>
                         <a class="dropdown-item text-1 text-light">Non-member user data</a>
                         <a class="dropdown-item text-1 text-light">Expired ban info</a>
-                        <a class="dropdown-item text-1 text-light">User sessions</a>
+                        <a class="dropdown-item text-1 text-primary" href="javascript:;" id="deleteSession">User sessions</a>
                     </div>
                 </div>
             </div>

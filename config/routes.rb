@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => "main#index"
+    get '/clear/sessions' => "main#sessions"
+    get '/clear/reservations' => "main#reservations"
     
     #USERS
     get 'users/members' => 'users#members', as: 'members'
