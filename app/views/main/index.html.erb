@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="get-started text-left text-lg-right">
-                        <%= link_to "Login Now!", '/auth/google_oauth2', id: "sign_in", class: "btn btn-dark btn-lg text-3 font-weight-semibold px-4 py-3" %>
+                        <%= link_to "Login Now!", '/auth/google_oauth2', id: "sign_in", class: "btn btn-dark btn-lg text-3 font-weight-semibold px-4 py-3", method: :post %>
                         <div class="learn-more">or <%= link_to "see all Muzikus events!", events_path, style:"color: #0099e6;" %></div>
                     </div>
                 </div>

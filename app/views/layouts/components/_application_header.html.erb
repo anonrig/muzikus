@@ -16,16 +16,16 @@
                         <nav class="header-nav-top">
                             <ul class="nav nav-pills">
                                 <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                    <a class="nav-link pl-0" href="/howto"><i class="fas fa-angle-right"></i> How To?</a>
+                                    <a class="nav-link pl-0" href="/howto">How To?</a>
                                 </li>
                                 <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                    <a class="nav-link" href="/contactus"><i class="fas fa-angle-right"></i> Contact Us</a>
+                                    <a class="nav-link" href="/contactus">Contact Us</a>
                                 </li>
                                 <li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-md-show">
                                     <% if current_user %>
-                                        <a class="nav-link" href="/sign_out"><i class="fas fa-angle-right"></i> Log Out, <%= current_user.name.split(' ')[0] %></a>
+                                        <a class="nav-link" href="/sign_out">Log Out, <%= current_user.name.split(' ')[0] %></a>
                                     <% else %>
-                                        <% link_to 'Register/Login', '/auth/google_oauth2', method: :post, class: 'nav-link' %>
+                                        <%= link_to 'Register/Login', '/auth/google_oauth2', method: :post, class: 'nav-link' %>
                                     <% end %>
                                 </li>
                             </ul>
