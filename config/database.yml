@@ -26,7 +26,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: MuzikusTestServer_test
+  database: muzikus
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: muzikus
-  username: muzikus
-  password: <%= ENV['MUZIKUSTESTSERVER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
