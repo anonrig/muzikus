@@ -66,16 +66,12 @@ Rails.application.routes.draw do
   end
 
 
-#Events
   resources :events, except: [:show]
   
   get 'auth/:provider/callback', to: "sessions#create"
   get 'auth/failure', to: redirect('/')
   get 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  #API routes
   namespace :api do
     post 'authenticate', to: 'authentication#authenticate'
     resources :events, only: [:index, :show]

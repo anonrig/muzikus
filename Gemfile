@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 gem 'sprockets'
@@ -18,7 +20,10 @@ gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Google Login
+
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
 gem 'certified'
 gem 'jwt'
 gem 'simple_command'
@@ -34,7 +39,6 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'json'
 # For use of environment variables
-gem 'dotenv-rails', :groups => [:development, :test]
 gem 'faker', :groups => [:development, :production]
 gem 'paperclip'
 gem 'aws-sdk'
