@@ -2,5 +2,7 @@
 
 require_relative "config/environment"
 
+require 'localhost/authority' if Rails.env.development?
+
 run Rails.application
 Rails.application.load_server
