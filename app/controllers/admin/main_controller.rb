@@ -29,7 +29,6 @@ class Admin::MainController < BaseAdminController
 
         #Board members, Top reservations, Budget summary
         @topReservations = User.connection.select_all("select u.name, count(r.id) as rcount from users u inner join reservations r on u.id = r.user_id group by u.id order by rcount desc limit 10;")
-        @topReservations.to_hash
         @topReservations = JSON.parse(@topReservations.to_json, object_class: OpenStruct)
 
         @boardMembers = User.where(is_yk: true).to_a
