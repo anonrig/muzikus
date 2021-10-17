@@ -1,167 +1,171 @@
 
 <!DOCTYPE html>
 <!--[if IE 8]>		  <html class="ie ie8"> <![endif]-->
-<!--[if IE 9]>		  <html class="ie ie9"> <![endif]-->
-<!--[if gt IE 9]><!-->  
-<html class="dark"> <!--<![endif]-->
-	<head>
+	<!--[if IE 9]>		  <html class="ie ie9"> <![endif]-->
+		<!--[if gt IE 9]><!-->
+			<html class="dark"> <!--<![endif]-->
+				<head>
 
-		<!-- Basic -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">   
+					<!-- Basic -->
+					<meta charset="utf-8">
+					<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>Muzikus - Sabanci University Music Club</title>
-        <meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
-        <meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
-        <meta name="author" content="Yagiz Nizipli">
+					<title>Muzikus - Sabanci University Music Club</title>
+					<meta name="keywords" content="muzikus, alfonso, sabanci, sabanci universitesi, sabanci university" />
+					<meta name="description" content="Muzikus Alfonso, Sabanci Universitesi muzik kulubunun internet sitesidir.">
+					<meta name="author" content="Yagiz Nizipli">
 
-		<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-		<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+					<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+					<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 
-		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+					<!-- Mobile Metas -->
+					<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
 
-		<!-- Web Fonts  -->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light%7CPlayfair+Display:400" rel="stylesheet" type="text/css">
+					<!-- Web Fonts  -->
+					<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light%7CPlayfair+Display:400" rel="stylesheet" type="text/css">
 
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/vendor/fontawesome-free/css/all.min.css">
-		<link rel="stylesheet" href="/vendor/animate/animate.min.css">
-		<link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.min.css">
-		<link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.theme.default.min.css">
-		<link rel="stylesheet" href="/vendor/magnific-popup/magnific-popup.min.css">
-		<link rel="stylesheet" href="/css/bootstrap-material-datetimepicker.css" media="screen">
+					<!-- Vendor CSS -->
+					<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+					<link rel="stylesheet" href="/vendor/fontawesome-free/css/all.min.css">
+					<link rel="stylesheet" href="/vendor/animate/animate.min.css">
+					<link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.min.css">
+					<link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.carousel.min.css">
+					<link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.theme.default.min.css">
+					<link rel="stylesheet" href="/vendor/magnific-popup/magnific-popup.min.css">
+					<link rel="stylesheet" href="/css/bootstrap-material-datetimepicker.css" media="screen">
 
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="/css/theme.css">
-		<link rel="stylesheet" href="/css/theme-elements.css">
-		<link rel="stylesheet" href="/css/theme-blog.css">
-		<link rel="stylesheet" href="/css/theme-shop.css">
+					<!-- Theme CSS -->
+					<link rel="stylesheet" href="/css/theme.css">
+					<link rel="stylesheet" href="/css/theme-elements.css">
+					<link rel="stylesheet" href="/css/theme-blog.css">
+					<link rel="stylesheet" href="/css/theme-shop.css">
 
-		<!-- Current Page CSS -->
-		<link rel="stylesheet" href="/vendor/rs-plugin/css/settings.css">
-		<link rel="stylesheet" href="/vendor/rs-plugin/css/layers.css">
-		<link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css">
-		<link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css">
-		
-		<!-- Demo CSS -->
+					<!-- Current Page CSS -->
+					<link rel="stylesheet" href="/vendor/rs-plugin/css/settings.css">
+					<link rel="stylesheet" href="/vendor/rs-plugin/css/layers.css">
+					<link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css">
+					<link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css">
+
+					<!-- Demo CSS -->
 
 
-		<!-- Skin CSS -->
-		<link rel="stylesheet" href="/css/skins/default.css"> 
+					<!-- Skin CSS -->
+					<link rel="stylesheet" href="/css/skins/default.css">
 
-		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="/css/custom.css">
+					<!-- Theme Custom CSS -->
+					<link rel="stylesheet" href="/css/custom.css">
 
-		<!-- Head Libs -->
-		<script src="/vendor/modernizr/modernizr.min.js"></script>
-	</head>
-	<body>
-		<div class="body">
-			<!-- start: header-->
-			<%= render partial: "/layouts/components/application_header" %>
-			<!-- end: header--> 
-			
-			<!-- start: Page Content-->
-			<%= yield %>
-			<!-- end: Page Content-->
+					<!-- Head Libs -->
+					<script src="/vendor/modernizr/modernizr.min.js"></script>
 
-			<!-- start: footer-->
-			<%= render partial: "/layouts/components/application_footer" %>
-			<!-- end: footer-->
-		</div>
-		<!-- Vendor -->
-		<script src="/vendor/jquery/jquery.min.js"></script>
-		<script src="/vendor/jquery.appear/jquery.appear.min.js"></script>
-		<script src="/vendor/jquery.easing/jquery.easing.min.js"></script>
-		<script src="/vendor/jquery.cookie/jquery.cookie.min.js"></script>
-		<script src="/vendor/popper/umd/popper.min.js"></script>
-		<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/vendor/common/common.min.js"></script>
-		<script src="/vendor/jquery.validation/jquery.validate.min.js"></script>
-		<script src="/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="/vendor/jquery.gmap/jquery.gmap.min.js"></script>
-		<script src="/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
-		<script src="/vendor/isotope/jquery.isotope.min.js"></script>
-		<script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
-		<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script src="/vendor/vide/jquery.vide.min.js"></script>
-		<script src="/vendor/vivus/vivus.min.js"></script>
-		
-		<!-- Theme Base, Components and Settings -->
-		<script src="/js/theme.js"></script>
+					<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+					<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+					<%= csrf_meta_tags %>
+				</head>
+				<body>
+					<div class="body">
+						<!-- start: header-->
+						<%= render partial: "/layouts/components/application_header" %>
+						<!-- end: header-->
 
-		<!-- SweetAlert -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-		<!-- Knockout -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-		<!-- Moment -->
-		<script src="https://momentjs.com/downloads/moment.min.js"></script>
-		<!-- Material Datetime -->
-		<script src="/js/bootstrap-material-datetimepicker.js"></script>
-		
-		<!-- Current Page Vendor and Views -->
-		<script src="/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script src="/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-		<script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
-		<script src="/js/views/view.home.js"></script>
-		
-		<!-- Theme Custom -->
-		<script src="/js/custom.js"></script>
-		
-		<!-- Theme Initialization Files -->
-		<script src="/js/theme.init.js"></script>
+						<!-- start: Page Content-->
+						<%= yield %>
+						<!-- end: Page Content-->
 
-		<% if (controller_name == "reservations" and action_name == "index") %>
-			<script src="/js/Reservations.js"></script>
-		<% end %>
-		<% if (controller_name == "events" and action_name == "index")%>
-		<script>
-			var now = moment().toNow();
-			function Event(data = {}){
-				var self = this;
+						<!-- start: footer-->
+						<%= render partial: "/layouts/components/application_footer" %>
+						<!-- end: footer-->
+					</div>
+					<!-- Vendor -->
+					<script src="/vendor/jquery/jquery.min.js"></script>
+					<script src="/vendor/jquery.appear/jquery.appear.min.js"></script>
+					<script src="/vendor/jquery.easing/jquery.easing.min.js"></script>
+					<script src="/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+					<script src="/vendor/popper/umd/popper.min.js"></script>
+					<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+					<script src="/vendor/common/common.min.js"></script>
+					<script src="/vendor/jquery.validation/jquery.validate.min.js"></script>
+					<script src="/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+					<script src="/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+					<script src="/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+					<script src="/vendor/isotope/jquery.isotope.min.js"></script>
+					<script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
+					<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+					<script src="/vendor/vide/jquery.vide.min.js"></script>
+					<script src="/vendor/vivus/vivus.min.js"></script>
 
-				this.id = ko.observable(data.id);
-				this.title = ko.observable(data.title);
-				this.location = ko.observable(data.location);
-				this.starts_at = ko.observable(moment(data.starts_at));
-				this.details = ko.observable(data.details);
-				this.photo_url = ko.observable(data.photo_url);
+					<!-- Theme Base, Components and Settings -->
+					<script src="/js/theme.js"></script>
 
-				this.getStartsAt = ko.pureComputed(function(){
-					return moment(self.starts_at()).format('ddd, DD MMM - HH:mm')
-				})
-				this.isPast = ko.pureComputed(function()
-				{
-					return this.starts_at <  now;
-				})
-			}
-			function EventViewModel(){
-				var self = this;
-				this.now = ko.observable(moment())
-				this.EventList = ko.observableArray([]);
-				this.SelectedEvent = ko.observable(new Event());
-				
-				this.getSelectedEvent = function(event){
-					self.SelectedEvent(event)
-				}
+					<!-- SweetAlert -->
+					<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+					<!-- Knockout -->
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+					<!-- Moment -->
+					<script src="https://momentjs.com/downloads/moment.min.js"></script>
+					<!-- Material Datetime -->
+					<script src="/js/bootstrap-material-datetimepicker.js"></script>
 
-				this.editPath = ko.pureComputed(function(){
-					return `/events/${self.SelectedEvent().id()}/edit`
-				})
-				
-				$.getJSON('/api/events', function(data){
-					var mappedEvents = $.map(data, function(item){ return new Event(item) });
-					self.EventList(mappedEvents);
-				});
-			}
+					<!-- Current Page Vendor and Views -->
+					<script src="/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+					<script src="/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+					<script src="/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+					<script src="/js/views/view.home.js"></script>
 
-			ko.applyBindings(new EventViewModel());
-		</script>
-		<% end %>
-		
+					<!-- Theme Custom -->
+					<script src="/js/custom.js"></script>
+
+					<!-- Theme Initialization Files -->
+					<script src="/js/theme.init.js"></script>
+
+					<% if (controller_name == "reservations" and action_name == "index") %>
+					<script src="/js/Reservations.js"></script>
+					<% end %>
+					<% if (controller_name == "events" and action_name == "index")%>
+					<script>
+						var now = moment().toNow();
+						function Event(data = {}){
+							var self = this;
+
+							this.id = ko.observable(data.id);
+							this.title = ko.observable(data.title);
+							this.location = ko.observable(data.location);
+							this.starts_at = ko.observable(moment(data.starts_at));
+							this.details = ko.observable(data.details);
+							this.photo_url = ko.observable(data.photo_url);
+
+							this.getStartsAt = ko.pureComputed(function(){
+								return moment(self.starts_at()).format('ddd, DD MMM - HH:mm')
+							})
+							this.isPast = ko.pureComputed(function()
+							{
+								return this.starts_at <  now;
+							})
+						}
+						function EventViewModel(){
+							var self = this;
+							this.now = ko.observable(moment())
+							this.EventList = ko.observableArray([]);
+							this.SelectedEvent = ko.observable(new Event());
+
+							this.getSelectedEvent = function(event){
+								self.SelectedEvent(event)
+							}
+
+							this.editPath = ko.pureComputed(function(){
+								return `/events/${self.SelectedEvent().id()}/edit`
+							})
+
+							$.getJSON('/api/events', function(data){
+								var mappedEvents = $.map(data, function(item){ return new Event(item) });
+								self.EventList(mappedEvents);
+							});
+						}
+
+						ko.applyBindings(new EventViewModel());
+					</script>
+					<% end %>
+
 		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -172,7 +176,7 @@
 			ga('create', 'UA-12345678-1', 'auto');
 			ga('send', 'pageview');
 		</script>
-		 -->
+	-->
 
-	</body>
+</body>
 </html>
