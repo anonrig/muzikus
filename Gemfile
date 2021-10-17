@@ -49,3 +49,5 @@ group :development do
   gem 'web-console'
   gem 'listen'
 end
+
+gem "tailwindcss-rails", "~> 0.5.0"

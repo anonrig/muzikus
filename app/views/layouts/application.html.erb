@@ -34,21 +34,12 @@
 		<link rel="stylesheet" href="/vendor/magnific-popup/magnific-popup.min.css">
 		<link rel="stylesheet" href="/css/bootstrap-material-datetimepicker.css" media="screen">
 
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="/css/theme.css">
-		<link rel="stylesheet" href="/css/theme-elements.css">
-		<link rel="stylesheet" href="/css/theme-blog.css">
-		<link rel="stylesheet" href="/css/theme-shop.css">
-
 		<!-- Current Page CSS -->
 		<link rel="stylesheet" href="/vendor/rs-plugin/css/settings.css">
 		<link rel="stylesheet" href="/vendor/rs-plugin/css/layers.css">
 		<link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css">
 		<link rel="stylesheet" href="/vendor/circle-flip-slideshow/css/component.css">
 		
-		<!-- Demo CSS -->
-
-
 		<!-- Skin CSS -->
 		<link rel="stylesheet" href="/css/skins/default.css"> 
 
@@ -57,39 +48,14 @@
 
 		<!-- Head Libs -->
 		<script src="/vendor/modernizr/modernizr.min.js"></script>
+    <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 	</head>
 	<body>
-		<div class="body">
-			<!-- start: header-->
-			<%= render partial: "/layouts/components/application_header" %>
-			<!-- end: header--> 
-			
-			<!-- start: Page Content-->
-			<%= yield %>
-			<!-- end: Page Content-->
+		<%= render partial: "/layouts/components/application_header" %>
+		<%= yield %>
+		<%= render partial: "/layouts/components/application_footer" %>
 
-			<!-- start: footer-->
-			<%= render partial: "/layouts/components/application_footer" %>
-			<!-- end: footer-->
-		</div>
-		<!-- Vendor -->
-		<script src="/vendor/jquery/jquery.min.js"></script>
-		<script src="/vendor/jquery.appear/jquery.appear.min.js"></script>
-		<script src="/vendor/jquery.easing/jquery.easing.min.js"></script>
-		<script src="/vendor/jquery.cookie/jquery.cookie.min.js"></script>
-		<script src="/vendor/popper/umd/popper.min.js"></script>
-		<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/vendor/common/common.min.js"></script>
-		<script src="/vendor/jquery.validation/jquery.validate.min.js"></script>
-		<script src="/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="/vendor/jquery.gmap/jquery.gmap.min.js"></script>
-		<script src="/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
-		<script src="/vendor/isotope/jquery.isotope.min.js"></script>
-		<script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
-		<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script src="/vendor/vide/jquery.vide.min.js"></script>
-		<script src="/vendor/vivus/vivus.min.js"></script>
-		
 		<!-- Theme Base, Components and Settings -->
 		<script src="/js/theme.js"></script>
 
@@ -117,62 +83,5 @@
 		<% if (controller_name == "reservations" and action_name == "index") %>
 			<script src="/js/Reservations.js"></script>
 		<% end %>
-		<% if (controller_name == "events" and action_name == "index")%>
-		<script>
-			var now = moment().toNow();
-			function Event(data = {}){
-				var self = this;
-
-				this.id = ko.observable(data.id);
-				this.title = ko.observable(data.title);
-				this.location = ko.observable(data.location);
-				this.starts_at = ko.observable(moment(data.starts_at));
-				this.details = ko.observable(data.details);
-				this.photo_url = ko.observable(data.photo_url);
-
-				this.getStartsAt = ko.pureComputed(function(){
-					return moment(self.starts_at()).format('ddd, DD MMM - HH:mm')
-				})
-				this.isPast = ko.pureComputed(function()
-				{
-					return this.starts_at <  now;
-				})
-			}
-			function EventViewModel(){
-				var self = this;
-				this.now = ko.observable(moment())
-				this.EventList = ko.observableArray([]);
-				this.SelectedEvent = ko.observable(new Event());
-				
-				this.getSelectedEvent = function(event){
-					self.SelectedEvent(event)
-				}
-
-				this.editPath = ko.pureComputed(function(){
-					return `/events/${self.SelectedEvent().id()}/edit`
-				})
-				
-				$.getJSON('/api/events', function(data){
-					var mappedEvents = $.map(data, function(item){ return new Event(item) });
-					self.EventList(mappedEvents);
-				});
-			}
-
-			ko.applyBindings(new EventViewModel());
-		</script>
-		<% end %>
-		
-		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-			ga('create', 'UA-12345678-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-		 -->
-
 	</body>
 </html>

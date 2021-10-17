@@ -1,53 +1,47 @@
-<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 57, 'stickySetTop': '-57px', 'stickyChangeLogo': true}">
-    <div class="header-body">
-        <div class="header-container container">
-            <div class="header-row">
-                <div class="header-column">
-                    <div class="header-row">
-                        <div class="header-logo">
-                            <a href="/">
-                                <img alt="Muzikus" width="70" height="70" data-sticky-width="40" data-sticky-height="40" data-sticky-top="40" src="/img/logo.png">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-column justify-content-end">
-                    <div class="header-row pt-3">
-                        <nav class="header-nav-top">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                    <a class="nav-link pl-0" href="/howto">How To?</a>
-                                </li>
-                                <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                    <a class="nav-link" href="/contactus">Contact Us</a>
-                                </li>
-                                <li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-md-show">
-                                    <% if current_user %>
-                                        <a class="nav-link" href="/sign_out">Log Out, <%= current_user.name.split(' ')[0] %></a>
-                                    <% else %>
-                                        <%= link_to 'Register/Login', '/auth/google_oauth2', method: :post, class: 'nav-link' %>
-                                    <% end %>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="header-row">
-                        <div class="header-nav pt-1">
-                            <!-- start: Navbar-->
-                            <%= render partial: '/layouts/components/application_navbar' %>
-                            <!-- end: Navbar-->										
-                            <ul class="header-social-icons social-icons d-none d-sm-block">
-                                <li class="social-icons-facebook"><a href="http://www.facebook.com/muzikus" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                <li class="social-icons-instagram"><a href="http://www.instagram.com/muzikussabanci" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                <li class="social-icons-youtube"><a href="https://www.youtube.com/user/MuzikusOfficial" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a></li>
-                            </ul>
-                            <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                        </div>
-                    </div> 
-                </div>
-            </div>
+<nav class="bg-white">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="flex-1 flex items-center sm:items-stretch justify-start">
+        <a href="/" class="flex-shrink-0 flex items-center">
+          <img alt="Muzikus" class="h-8 w-auto block" src="/img/logo.png">
+        </a>
+        <div class="ml-6">
+          <div class="flex space-x-4">
+            <%=
+              link_to "Home",
+              root_path,
+              class: "px-3 py-2 rounded-md text-sm font-medium #{(controller_name == "main" and action_name == "index") ? "bg-gray-100 text-gray-900 hover:text-gray-900" : "text-gray-900 hover:bg-gray-50 hover:text-gray-900"}"
+            %>
+
+            <%=
+              link_to "Projects",
+              projects_path,
+              class: "hidden sm:block px-3 py-2 rounded-md text-sm font-medium #{(controller_name == "main" and action_name == "projects") ? "bg-gray-100 text-gray-900 hover:text-gray-900" : "text-gray-900 hover:bg-gray-50 hover:text-gray-900"}"
+            %>
+
+            <%=
+              link_to "Faculty",
+              teachers_path,
+              class: "hidden sm:block px-3 py-2 rounded-md text-sm font-medium #{(controller_name == "teachers" and action_name == "index") ? "bg-gray-100 text-gray-900 hover:text-gray-900" : "text-gray-900 hover:bg-gray-50 hover:text-gray-900"}"
+            %>
+
+            <%=
+              link_to "Contact",
+              contactus_path,
+              class: "px-3 py-2 rounded-md text-sm font-medium #{(controller_name == "main" and action_name == "contactus") ? "bg-gray-100 text-gray-900 hover:text-gray-900" : "text-gray-900 hover:bg-gray-50 hover:text-gray-900"}"
+            %>
+          </div>
         </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div class="ml-3 relative">
+          <% if current_user %>
+            <a class="text-gray-700 hover:bg-gray-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" href="/sign_out">Sign Out</a>
+          <% else %>
+            <%= link_to 'Sign In', '/auth/google_oauth2', method: :post, class: 'text-gray-900 hover:bg-gray-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium' %>
+          <% end %>
+        </div>
+      </div>
     </div>
-</header>
+  </div>
+</nav>

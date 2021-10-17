@@ -1359,6 +1359,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tailwindcss-rails (0.5.0)
+      rails (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.1.0)
@@ -1406,6 +1408,7 @@ DEPENDENCIES
   sass-rails
   simple_command
   sprockets
+  tailwindcss-rails (~> 0.5.0)
   turbolinks
   uglifier
   web-console
