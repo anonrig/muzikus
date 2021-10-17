@@ -11,7 +11,6 @@ class Reservation < ActiveRecord::Base
 	
 	def user
 		user = User.find(self.user_id)
-		Hash[name: user.name, email: user.email]
 	end
 
 	def room_name
