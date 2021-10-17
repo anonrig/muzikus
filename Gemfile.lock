@@ -1229,7 +1229,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    dalli (3.0.2)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -1402,7 +1401,6 @@ DEPENDENCIES
   certified
   coffee-rails
   coffee-script-source
-  dalli
   dotenv-rails
   faker
   instagram
