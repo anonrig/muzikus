@@ -26,9 +26,6 @@
             <li class="">
                 <%= link_to "Events", events_path, class: "nav-link #{(controller_name == "events" and action_name == "index") ? "active" : ""}" %>
             </li>
-            <li class="">
-                <%= link_to "Gallery", gallery_path, class: "nav-link #{(controller_name == "main" and action_name == "gallery") ? "active" : ""}" %>
-            </li>
             <% if current_user && current_user.is_member %>
             <li class="dropdown">
                 <a class="dropdown-item dropdown-toggle <%= ((controller_name == "main" and action_name == "howto") or (controller_name == "reservations" and action_name == "index")) ? "active" : "" %>" href="#">
